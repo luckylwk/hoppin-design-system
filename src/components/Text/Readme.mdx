@@ -1,0 +1,35 @@
+---
+name: Text
+route: /components/Text
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Paragraph } from 'components/Paragraph';
+import { Text } from 'components/Text';
+
+# Text
+
+The Text is used for marking up text. It inherites the style from it's parent, but can be overridden, say to change the `color`, `fontWeight`,...
+
+## Props
+
+<Props of={Text} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+If you need more options, consider using [Text](components/Text) or [Heading](components/Heading) instead.
+
+<Playground>
+  <Paragraph>
+    Lorem ipsum dolor amet{' '}
+    <Text color="primaries.dark" fontWeight="bold">
+      photo booth
+    </Text>{' '}
+    scenester cornhole trust fund vaporware williamsburg. Selfies tbh tumeric
+    XOXO man braid cred. Skateboard heirloom locavore, kogi everyday carry af
+    tattooed art party asymmetrical cardigan sustainable. Tbh cornhole
+    post-ironic, literally hashtag ethical adaptogen brooklyn bushwick
+    distillery. Vape stumptown swag glossier small batch gastropub. Taxidermy
+    90's everyday carry kombucha. Banjo VHS occupy marfa roof party slow-carb.
+  </Paragraph>
+</Playground>

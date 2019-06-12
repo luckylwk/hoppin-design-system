@@ -1,0 +1,43 @@
+---
+name: Paragraph
+route: /components/Paragraph
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Paragraph } from 'components/Paragraph';
+
+# Paragraph
+
+The Paragraph is used for body copy. It comes with default margins and is optimised for readability.
+
+## Props
+
+<Props of={Paragraph} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+The main props to set are:
+
+- **marginBottom** - set to 0, if you don't want the default margin.
+- **color** - is set to `inherit` to adapt to the context, but you might want to explicitly set the color if needed.
+
+If you need more options, consider using [Text](components/Text) or [Heading](components/Heading) instead.
+
+<Playground>
+  <Paragraph>
+    Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
+    williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
+    locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
+    sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
+    brooklyn bushwick distillery. Vape stumptown swag glossier small batch
+    gastropub. Taxidermy 90's everyday carry kombucha. Banjo VHS occupy marfa
+    roof party slow-carb.
+  </Paragraph>
+  <Paragraph>
+    Pour-over ethical echo park pork belly kickstarter tumeric cornhole
+    humblebrag live-edge hammock. Farm-to-table irony ennui brunch keytar
+    knausgaard tofu. Hashtag sartorial organic franzen. Taxidermy woke 90's
+    crucifix prism offal. Vape microdosing messenger bag whatever bitters banh
+    mi intelligentsia art party chambray lyft.
+  </Paragraph>
+</Playground>

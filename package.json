@@ -1,25 +1,23 @@
 {
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "start": "next",
-    "build": "next build && next export"
-  },
+  "name": "hoppin-design-system",
+  "version": "0.0.1",
+  "description": "Design system and shared components for Hoppin.",
+  "main": "index.js",
+  "repository": "git@github.com:luckylwk/hoppin-design-system.git",
+  "author": "jonashaefele <hello@jonashaefele.com>",
+  "license": "MIT",
   "dependencies": {
-    "@mdx-js/mdx": "^0.15.0",
-    "mdx-docs": "^2.0.0-alpha.0",
-    "next": "^7.0.1",
-    "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "remark-autolink-headings": "^5.1.0",
-    "remark-emoji": "^2.0.2",
-    "remark-images": "^0.16.1",
-    "remark-slug": "^5.1.1",
-    "remark-unwrap-images": "^0.1.0"
+    "@styled-system/prop-types": "^5.0.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.1",
+    "styled-system": "^5.0.6"
   },
   "devDependencies": {
-    "@mdx-js/loader": "^0.16.6"
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0"
   },
-  "name": "hoppin-design-system"
+  "resolutions": {
+    "webpack": "4.28.4"
+  }
 }
