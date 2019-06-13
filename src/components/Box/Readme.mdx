@@ -7,19 +7,35 @@ menu: Components
 import { Box } from 'components/Box';
 import { Props, Playground } from 'docz';
 
-# Box - WIP
-
-All up for debate.
+# Box
 
 The Box is the basic building block of most elements in the Hoppin Design System.
 
+## Props
+
 <Props of={Box} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Box implements the styled-system props for:
+
+- [space](https://styled-system.com/api#space) (only use full-length props. e.g. `paddingBottom`, not `pb`)
+- [layout](https://styled-system.com/api#layout)
+- [color](https://styled-system.com/api#color)
+- [border](https://styled-system.com/api#border)
+- [flex](https://styled-system.com/api#flex)
+- [flexGrow](https://styled-system.com/api#flexGrow)
+- [flexShrink](https://styled-system.com/api#flexShrink)
+- [textAlign](https://styled-system.com/api#textAlign)
+
+The API is intentionally held minimal. By default `<Box/>` has `flex-grow` set to `1`, so components built on Box fill all available space and the container components take care of layout.
+
+You can override `flex`, `flexGrow` and `flexShrink` props if needed, for full flexbox capabilities (expecially flex containers), use [Flex](/components/Flex)
 
 <Playground>
   <Box
     width={300}
     padding="1rem"
-    bg="neutrals.light"
+    bg="neutrals.lighter"
     border="1px solid"
     borderColor="primary"
   >

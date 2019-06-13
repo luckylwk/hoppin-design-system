@@ -8,13 +8,22 @@ import { Flex } from 'components/Flex';
 import { Box } from 'components/Box';
 import { Props, Playground } from 'docz';
 
-# Flex - WIP
+# Flex
 
-All up for debate.
+Flex is a [Box](/components/Box) that will also accept Flexbox CSS properties and default to `display: flex`
 
-Flex is a `Box` that will also accept Flexbox CSS properties and default to `display: flex`
+## Props
 
 <Props of={Flex} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Box implements the styled-system props for:
+
+- [space](https://styled-system.com/api#space) (only use full-length props. e.g. `paddingBottom`, not `pb`)
+- [layout](https://styled-system.com/api#layout)
+- [color](https://styled-system.com/api#color)
+- [border](https://styled-system.com/api#border)
+- [flexbox](https://styled-system.com/api#flex)
 
 <Playground>
   <Flex>
