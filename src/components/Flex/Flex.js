@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from 'components/Box';
+import { Box } from '../Box';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
