@@ -2,8 +2,12 @@
   "name": "hoppin-design-system",
   "version": "0.0.1",
   "description": "Design system and shared components for Hoppin.",
-  "main": "src/index.js",
-  "module": "dist/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es",
+    "lib"
+  ],
   "repository": "git@github.com:luckylwk/hoppin-design-system.git",
   "author": "jonashaefele <hello@jonashaefele.com>",
   "license": "MIT",
@@ -20,17 +24,22 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "16.x",
+    "react-dom": "16.x"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  },
   "resolutions": {
     "webpack": "4.28.4"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "yarn run clean && yarn run build:dist:es && yarn run build:docz",
-    "build:dist:es": "npx babel src --out-dir dist --env-name 'esm'",
+    "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
+    "build:babel:es": "npx babel src --out-dir dist --env-name 'esm'",
+    "build:nwb:es": "nwb build-react-component",
+    "clean": "nwb clean-module",
+    "prepublishOnly": "npm run build",
     "build:docz": "docz build",
     "start": "docz dev"
   }

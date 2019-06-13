@@ -47,10 +47,10 @@ const HoppinDesignProvider = ({ children, mode, theme }) => {
   };
   return (
     <ThemeProvider theme={themeWithOverrides} mode={mode}>
-      <>
+      <React.Fragment>
         <GlobalStyle />
         {children}
-      </>
+      </React.Fragment>
     </ThemeProvider>
   );
 };
