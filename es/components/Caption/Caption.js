@@ -1,0 +1,28 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _templateObject = _taggedTemplateLiteralLoose(['\n  display: block;\n  ', '\n  ', '\n  font-family: ', ';\n  font-size: ', ';\n  text-transform: uppercase;\n  letter-spacing: 1px;\n\n  & + ', ' {\n    margin-top: 0;\n  }\n'], ['\n  display: block;\n  ', '\n  ', '\n  font-family: ', ';\n  font-size: ', ';\n  text-transform: uppercase;\n  letter-spacing: 1px;\n\n  & + ', ' {\n    margin-top: 0;\n  }\n']);
+
+function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+
+import React from 'react';
+import styled from 'styled-components';
+import { space, color } from 'styled-system';
+import propTypes from '@styled-system/prop-types';
+import { Heading } from 'components/Heading';
+
+var Caption = styled('span')(_templateObject, space, color, function (_ref) {
+  var theme = _ref.theme;
+  return theme.fonts.secondary;
+}, function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.fontSizes.label;
+}, Heading);
+
+Caption.propTypes = _extends({}, propTypes.space, propTypes.color);
+
+Caption.defaultProps = {
+  color: 'neutrals.light',
+  marginTop: 'small',
+  marginBottom: 0
+};
+export default Caption;

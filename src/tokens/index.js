@@ -1,6 +1,12 @@
 import { default as colors } from './colors';
 import { default as space } from './space';
-import { fonts, fontSizes, lineHeights, headings } from './typography';
+import {
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+  headings,
+} from './typography';
 
 /* exports theme object. 
    make sure to set mode='host' or mod='hopper' in the HoppinDesignProvider to select primary colors.
@@ -10,10 +16,11 @@ import { fonts, fontSizes, lineHeights, headings } from './typography';
 */
 
 export default {
-    space,
-    fonts,
-    fontSizes,
-    lineHeights,
-    colors,
-    headings
+  space,
+  fonts,
+  fontSizes,
+  lineHeights,
+  fontWeights,
+  colors,
+  headings,
 };

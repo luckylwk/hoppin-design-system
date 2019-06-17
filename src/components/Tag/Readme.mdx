@@ -1,0 +1,26 @@
+---
+name: Tag
+route: /components/Tag
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Heading } from 'components/Heading';
+import { Tag } from 'components/Tag';
+
+# Tag
+
+The Tag is used to list themes or keywords related to an experience or blog post.
+It can be used by itself, or in combination with a [Heading](/components/Heading). If used before a Heading, it behaves the same as [Capotion](/components/Caption). It nests itself on top of the Heading to give context.
+
+## Props
+
+<Props of={Tag} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Tag>Featured</Tag>
+  <Tag>Exciting</Tag>
+  <Tag>New</Tag>
+  <Heading as="h3">The hop of your life</Heading>
+</Playground>

@@ -1,0 +1,37 @@
+---
+name: Lede
+route: /components/Lede
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Heading } from 'components/Heading';
+import { Paragraph } from 'components/Paragraph';
+import { Lede } from 'components/Lede';
+
+# Lede
+
+The Lede is used for the main introducory paragraph after big page Headings. It inherites the style from it's parent, but can be overridden, say to change the `color`, `fontWeight`,...
+
+## Props
+
+<Props of={Lede} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Heading as='h1'>Welcome to Hoppin</Heading>
+  <Lede>
+    Scenester cornhole trust fund vaporware williamsburg. Selfies tbh tumeric
+    XOXO man braid cred. Skateboard heirloom locavore, kogi everyday carry af
+    tattooed art party asymmetrical cardigan sustainable.
+  </Lede>
+
+  <Paragraph>
+    It follows normal paragraphs. Cornhole trust fund vaporware williamsburg. Selfies tbh tumeric
+    XOXO man braid cred. Skateboard heirloom locavore, kogi everyday carry af
+    tattooed art party asymmetrical cardigan sustainable. Tbh cornhole
+    post-ironic, literally hashtag ethical adaptogen brooklyn bushwick
+    distillery. Vape stumptown swag glossier small batch gastropub. Taxidermy
+    90's everyday carry kombucha. Banjo VHS occupy marfa roof party slow-carb.
+  </Paragraph>
+</Playground>
