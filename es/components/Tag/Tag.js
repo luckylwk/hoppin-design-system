@@ -8,7 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { space, color, get } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
-import { Heading } from 'components/Heading';
+import { Heading } from '../Heading';
 
 var Tag = styled('span')(_templateObject, space, color, function (_ref) {
   var theme = _ref.theme;

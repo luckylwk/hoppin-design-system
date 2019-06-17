@@ -8,7 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { space, color, textAlign } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
-import { Heading } from 'components/Heading';
+import { Heading } from '../Heading';
 
 var Lede = styled('p')(_templateObject, textAlign, space, color, function (_ref) {
   var theme = _ref.theme;

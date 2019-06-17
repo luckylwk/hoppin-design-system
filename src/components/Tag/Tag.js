@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { space, color, get } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
-import { Heading } from 'components/Heading';
+import { Heading } from '../Heading';
 
 const Tag = styled('span')`
   display: inline-block;
