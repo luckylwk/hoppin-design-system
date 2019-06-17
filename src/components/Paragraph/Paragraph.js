@@ -19,6 +19,7 @@ Paragraph.propTypes = {
 };
 
 Paragraph.defaultProps = {
+  marginTop: 0,
   marginBottom: 3,
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   textAlign: 'left',

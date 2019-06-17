@@ -7,16 +7,16 @@ var fonts = {
   system: '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue'
 };
 // font-sizes are multiples of 2, 8 if possible, to create a natural rythm, together with space tokens.
-var fontSizes = ['.5em', // 8px
-'.625em', // 10px
-'.875em', // 14px
+var fontSizes = ['.5rem', // 8px
+'.625rem', // 10px
+'.875rem', // 14px
 '1em', // 16px
-'1.25em', // 20px
-'1.75em', // 28px
-'2.5em', // 40px
+'1.25rem', // 20px
+'1.75rem', // 28px
+'2.5rem', // 40px
 '3em', // 48px
 '4em', // 64px
-'5em'];
+'5rem'];
 
 // shortcuts, so we don't have to remember array indices.
 fontSizes.body = fontSizes[3];
@@ -44,7 +44,7 @@ var headings = {
   h1: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h1,
-    color: colors.primary,
+    color: colors.primary.base,
     letterSpacing: '-2px',
     lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold,
@@ -54,7 +54,7 @@ var headings = {
   h2: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h2,
-    color: colors.primaries.darker,
+    color: colors.primary.darker,
     letterSpacing: '-1px',
     fontWeight: fontWeights.bold
   },

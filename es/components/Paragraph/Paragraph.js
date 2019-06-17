@@ -23,6 +23,7 @@ var Paragraph = styled('p')(_templateObject, function (_ref) {
 Paragraph.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.textAlign);
 
 Paragraph.defaultProps = {
+  marginTop: 0,
   marginBottom: 3,
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   textAlign: 'left'

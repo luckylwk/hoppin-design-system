@@ -5,16 +5,68 @@ menu: Components
 ---
 
 import { Props, Playground } from 'docz';
+import { Flex } from '../Flex';
 import Button from './Button';
 
 # Button
 
-The button is a simple way to call for an action
-
-Exports "old" Buttons for now.
+Buttons are components which signify that an action will occur when a user interacts with them.
+If many Buttons are used immediately next to each other, they automatically have a `small` space between them. Otherwise no spacing is applied.
 
 <Props of={Button} />
 
+## Standard Button
+
+This is your standard button. They typically trigger one action when interacted with, providing the basis for creating an interactive page. Add additional context to them using the context prop.
+
 <Playground>
-  <Button>Click me</Button>
+  <Flex>
+    <Button>Click me</Button>
+    <Button context="hopper">Hopper</Button>
+    <Button context="host">Host</Button>
+    <Button context="danger">Danger</Button>
+  </Flex>
+</Playground>
+
+## Outline Button
+
+These are our outline buttons. Use them for secondary actions. Most of the time, this will be when used alongside a standard button or primary action.
+
+<Playground>
+<Flex>
+
+<Button variant='outline'>Click me</Button>
+<Button variant='outline' context="hopper">Hopper</Button>
+<Button variant='outline' context="host">Host</Button>
+<Button variant='outline' context="danger">Danger</Button>
+
+</Flex>
+</Playground>
+
+## Subtle Button
+
+These are our subtle buttons. Use them for when the action is not overly important and should blend into its surroundings.
+
+<Playground>
+<Flex>
+
+<Button variant='subtle'>Click me</Button>
+<Button variant='subtle' context="hopper">Hopper</Button>
+<Button variant='subtle' context="host">Host</Button>
+<Button variant='subtle' context="danger">Danger</Button>
+
+</Flex>
+</Playground>
+
+## Sizes
+
+All variants can come in three sizes.
+
+<Playground>
+
+<Button display='inline-block'>Default size</Button>
+<Button display='inline-block' size="small">Small</Button>
+<Button display='inline-block' size="base">Base is default</Button>
+<Button display='inline-block' size="large">Large</Button>
+
 </Playground>

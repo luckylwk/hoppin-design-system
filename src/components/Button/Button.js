@@ -3,111 +3,43 @@ import styled from 'styled-components';
 import {
   display,
   space,
-  color,
   width,
   flex,
-  fontSize,
-  fontWeight,
   textAlign,
-  lineHeight,
   alignSelf,
   order,
+  get,
+  variant,
 } from 'styled-system';
+
+import systemPropTypes from '@styled-system/prop-types';
+import propTypes from 'prop-types';
 
 /**
  * Core Button component. Allows for rendering different
  * styles using the `type` prop.
  */
 
+// using the variants in styled-system, we can set several css styles
+// AND render the component as different HTML tags using the `as` prop of styled-components.
+// https://styled-system.com/variants
+
+const buttonSize = variant({
+  // theme key for variant definitions
+  scale: 'buttonSizes',
+  // component prop
+  prop: 'size',
+});
+
 const Button = styled.button`
-  margin: 0;
-  padding: ${props => props.theme.space[2]} ${props =>
-  props.theme.space[4]} ${props => props.theme.space[2]};
-
   font-family: ${({ theme }) => theme.fonts.secondary};
-
-  background: ${props => {
-    switch (props.type) {
-      case 'primary':
-        return props.theme.colors.primary;
-      case 'host':
-        return props.theme.colors.host;
-      case 'tertiary':
-      case 'negative':
-        return 'transparent';
-      case 'danger':
-        return props.theme.colors.danger;
-      case 'host_secondary':
-      case 'secondary':
-      default:
-        return props.theme.colors.white;
-    }
-  }};
-
-  color: ${props => {
-    switch (props.type) {
-      case 'primary':
-      case 'danger':
-      case 'host':
-        return props.theme.colors.white;
-      case 'host_secondary':
-        return props.theme.colors.host;
-      case 'negative':
-        return props.theme.colors.danger;
-      case 'tertiary':
-        return props.theme.colors.grey_light;
-      case 'secondary':
-      default:
-        return props.theme.colors.primary;
-    }
-  }};
   cursor: pointer;
 
   border: 1px solid transparent;
-  border-radius: 1em;
-  border-color: ${props => {
-    switch (props.type) {
-      case 'primary':
-      case 'secondary':
-        return props.theme.colors.primary;
-      case 'host':
-      case 'host_secondary':
-        return props.theme.colors.host;
-      case 'tertiary':
-        return 'transparent';
-      case 'danger':
-        return props.theme.colors.danger;
-      case 'negative':
-        return props.theme.colors.danger;
-      default:
-        return props.theme.colors.primary;
-    }
-  }};
+  border-radius: 2em;
 
-  & [role='img'] {
-    display: inline-block;
-    margin: .25em auto -.25em;
-  }
-
-  @media (min-width: 769px) {
-    &:hover {
-      border-color: ${props => {
-        switch (props.type) {
-          case 'primary':
-            return props.theme.colors.secondary;
-          case 'secondary':
-            return props.theme.colors.primary;
-          case 'host':
-          case 'host_secondary':
-            return props.theme.colors.secondary;
-          default:
-            return props.theme.colors.primary;
-        }
-      }};
-    }
-  }
-
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  letter-spacing: 0.5px;
   
   outline: none;
 
@@ -116,27 +48,100 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 
+  transition: all 0.5s;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.tiny};
+  }
+
+  ${({ theme, variant, context }) => {
+    // `variant` defines full color (default), outline, or subtle shape
+    // `context` defines color default (host/hopper inherited from context), host, hopper, danger
+    const colors = get(theme, `colors.${context}`, '#333');
+
+    let variantCSS = '';
+    switch (variant) {
+      case 'outline':
+        variantCSS = `
+          border-color: ${colors.base};
+          color: ${colors.base};
+        `;
+        break;
+      case 'subtle':
+        variantCSS = `
+          border-color: 'transparent';
+          color: ${colors.base};
+          text-decoration: underline;
+
+          &:hover {
+            box-shadow: none;
+          }
+        `;
+        break;
+      case 'full':
+      default:
+        variantCSS = `
+          border-color: ${colors.base};
+          background-color: ${colors.base};
+          color: ${theme.colors.white};
+        `;
+        break;
+    }
+    return variantCSS;
+  }}
+
+  & + & {
+    margin-left: ${({ theme }) => theme.space.small};
+  }
+
+  /* our buttonSize variant */
+  ${buttonSize}
+  /* styled-system props */
   ${display}
   ${space}
-  ${color}
   ${width}
   ${flex}
-  ${fontSize}
-  ${fontWeight}
   ${textAlign}
-  ${lineHeight}
   ${alignSelf}
   ${order}
+
+  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */
+  & [role='img'] {
+    display: inline-block;
+    margin: .25em auto -.25em;
+  }
 `;
 
 Button.propTypes = {
   disabled: PropTypes.bool,
-  type: PropTypes.string,
+  ...systemPropTypes.buttonStyle,
+  ...systemPropTypes.display,
+  ...systemPropTypes.space,
+  ...systemPropTypes.width,
+  ...systemPropTypes.flex,
+  ...systemPropTypes.textAlign,
+  ...systemPropTypes.alignSelf,
+  ...systemPropTypes.order,
+  size: propTypes.oneOf(['small', 'base', 'large']),
+  variant: propTypes.oneOf(['full', 'outline', 'subtle']),
+  context: propTypes.oneOf([
+    'primary',
+    'secondary',
+    'tertiary',
+    'hopper',
+    'host',
+    'danger',
+  ]),
 };
 
 Button.defaultProps = {
   disabled: false,
-  type: 'secondary',
+  variant: 'full',
+  context: 'primary',
+  size: 'base',
+  display: 'block',
+  flex: '1 0 auto',
 };
 
 Button.displayName = 'Button';

@@ -1,0 +1,74 @@
+---
+name: Card
+route: /components/Card
+menu: Components
+---
+
+import { Card } from 'components/Card';
+import { Box } from 'components/Box';
+import { Heading } from 'components/Heading';
+import { Paragraph } from 'components/Paragraph';
+import { Flex } from 'components/Flex';
+import { Props, Playground } from 'docz';
+
+# Card
+
+Card is a [Box](/components/Box) with a bit of extra styling, it can be used for a list of items, or to highlight an important piece of UI.
+
+## Props
+
+<Props of={Card} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Box implements the styled-system props for:
+
+- [space](https://styled-system.com/api#space) (only use full-length props. e.g. `paddingBottom`, not `pb`)
+- [layout](https://styled-system.com/api#layout)
+- [color](https://styled-system.com/api#color)
+- [border](https://styled-system.com/api#border)
+- [flexbox](https://styled-system.com/api#flex)
+
+It add a prop for `elevation` that controls the size of the drop shadow. _A number between 0 an 5 - defaults to 3/base'_
+
+<Playground>
+  <Card>
+    <Heading as="h3">Card titles can be set with your normal Heading</Heading>
+    <Paragraph>Two</Paragraph>
+  </Card>
+</Playground>
+
+## Elevation
+
+<Playground>
+<Box bg='neutrals.lightest' padding='xlarge'>
+  <Card elevation='0' marginBottom='xlarge'>
+    <Heading as="h3">No shadow</Heading>
+    <Paragraph>Generally avoid, only use on colored backgrounds.</Paragraph>
+  </Card>
+
+<Card elevation="1" marginBottom="xlarge">
+  <Heading as="h3">Tiny Shadow</Heading>
+  <Paragraph>Usually you'll use the default</Paragraph>
+</Card>
+
+<Card elevation="2" marginBottom="xlarge">
+  <Heading as="h3">Small Shadow</Heading>
+  <Paragraph>Usually you'll use the default</Paragraph>
+</Card>
+
+<Card elevation="3" marginBottom="xlarge">
+  <Heading as="h3">Base Shadow</Heading>
+  <Paragraph>This is the default</Paragraph>
+</Card>
+
+<Card elevation="4" marginBottom="xlarge">
+  <Heading as="h3">Large Shadow</Heading>
+  <Paragraph>Usually you'll use the default</Paragraph>
+</Card>
+
+<Card elevation="5" marginBottom="xlarge">
+  <Heading as="h3">XLarge Shadow</Heading>
+  <Paragraph>Usually you'll use the default</Paragraph>
+</Card>
+</Box>
+</Playground>
