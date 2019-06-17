@@ -36,6 +36,7 @@
   },
   "scripts": {
     "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
+    "now-build": "yarn run build:docz",
     "build:babel:es": "npx babel src --out-dir dist --env-name 'esm'",
     "build:nwb:es": "nwb build-react-component",
     "clean": "nwb clean-module",
