@@ -1,4 +1,4 @@
-import space from './space';
+import { space } from './space';
 import { fontSizes } from './typography';
 
 var buttonSizes = {
@@ -16,4 +16,4 @@ var buttonSizes = {
   }
 };
 
-export default buttonSizes;
+export { buttonSizes };

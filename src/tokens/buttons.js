@@ -1,4 +1,4 @@
-import space from './space';
+import { space } from './space';
 import { fontSizes } from './typography';
 
 const buttonSizes = {
@@ -16,4 +16,4 @@ const buttonSizes = {
   },
 };
 
-export default buttonSizes;
+export { buttonSizes };

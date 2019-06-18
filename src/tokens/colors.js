@@ -65,4 +65,4 @@ colors.modes = {
   },
 };
 
-export default colors;
+export { colors };

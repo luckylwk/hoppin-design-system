@@ -1,8 +1,8 @@
 export { HoppinDesignProvider } from './components/HoppinDesignProvider';
 
 export { Box } from './components/Box';
-export { Button } from './components/Button';
 export { Flex } from './components/Flex';
+export { Container } from './components/Container';
 
 export { Heading } from './components/Heading';
 export { Lede } from './components/Lede';
@@ -13,5 +13,6 @@ export { Tag } from './components/Tag';
 
 export { Timeline } from './components/Timeline';
 export { Card } from './components/Card';
+export { Button } from './components/Button';
 
 export { default as tokens } from './tokens';

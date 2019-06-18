@@ -1,0 +1,33 @@
+---
+name: Container
+route: /components/Container
+menu: Components
+---
+
+import { Container } from 'components/Container';
+import { Card } from 'components/Card';
+import { Props, Playground } from 'docz';
+
+# Container
+
+Container is a [Flex](/components/Flex) has a max-width and centers content on the page, it defaults to `display: flex`.
+
+## Props
+
+<Props of={Container} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Box implements the styled-system props for:
+
+- [space](https://styled-system.com/api#space) (only use full-length props. e.g. `paddingBottom`, not `pb`)
+- [layout](https://styled-system.com/api#layout)
+- [color](https://styled-system.com/api#color)
+- [border](https://styled-system.com/api#border)
+- [flexbox](https://styled-system.com/api#flex)
+
+<Playground>
+  <Container bg="neutrals.light" padding="large">
+    <Card margin="base">One</Card>
+    <Card margin="base">Two</Card>
+  </Container>
+</Playground>

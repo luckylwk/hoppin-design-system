@@ -14,4 +14,6 @@ space.base = space[3];
 space.large = space[4];
 space.xlarge = space[5];
 
-export default space;
+var containerWidth = '60rem';
+
+export { space, containerWidth };

@@ -1,7 +1,7 @@
-import { default as colors } from './colors';
-import { default as space } from './space';
-import { default as buttonSizes } from './buttons';
-import { default as shadows } from './shadows';
+import { colors } from './colors';
+import { space, containerWidth } from './space';
+import { buttonSizes } from './buttons';
+import { shadows } from './shadows';
 import {
   fonts,
   fontSizes,
@@ -19,6 +19,7 @@ import {
 
 export default {
   space,
+  containerWidth,
   fonts,
   fontSizes,
   lineHeights,

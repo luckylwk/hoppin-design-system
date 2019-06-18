@@ -1,5 +1,5 @@
-import colors from './colors';
-import space from './space';
+import { colors } from './colors';
+import { space } from './space';
 
 const fonts = {
   primary: 'Pluto, sans-serif',

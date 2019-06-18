@@ -1,4 +1,4 @@
-import space from './space';
+import { space } from './space';
 
 const shadowColor = 'rgba(0,0,0,.05)';
 const shadows = [
@@ -16,4 +16,4 @@ shadows.base = shadows[3];
 shadows.large = shadows[4];
 shadows.xlarge = shadows[5];
 
-export default shadows;
+export { shadows };
