@@ -12,5 +12,6 @@ export { Caption } from './components/Caption';
 export { Tag } from './components/Tag';
 
 export { Timeline } from './components/Timeline';
+export { Card } from './components/Card';
 
 export { default as tokens } from './tokens';
