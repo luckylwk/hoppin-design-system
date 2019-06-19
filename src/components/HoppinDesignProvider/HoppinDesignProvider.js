@@ -17,14 +17,15 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: #f8fafb;
     font-size: 16px;
-    /* set default text color, so color inheritance works */
+    /* set default text color and family, so inheritance works */
+    font-family: ${tokens.fonts.secondary};
     color: ${({ theme }) => theme.colors.neutrals.darker};
   }
 
   * {
     color: inherit;
   }
-  
+
   @font-face {
     font-family: 'Pluto';
     font-weight: normal;
