@@ -11,12 +11,22 @@ const space = [
   '5rem', // 80px
 ];
 
-space.tiny = space[1];
+space.xsmall = space[1];
 space.small = space[2];
 space.base = space[3];
+space.medium = space[3];
 space.large = space[4];
 space.xlarge = space[5];
 
 const containerWidth = '60rem';
 
-export { space, containerWidth };
+const radii = [0, space.xsmall, space.small, space.base, space.large, '100%'];
+
+radii.none = radii[1];
+radii.xsmall = radii[1];
+radii.small = radii[2];
+radii.medium = radii[3];
+radii.large = radii[4];
+radii.xlarge = radii[5];
+
+export { space, containerWidth, radii };

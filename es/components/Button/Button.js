@@ -51,7 +51,7 @@ var Button = styled.button(_templateObject, function (_ref) {
       variantCSS = '\n          border-color: ' + colors.base + ';\n          color: ' + colors.base + ';\n        ';
       break;
     case 'subtle':
-      variantCSS = '\n          border-color: \'transparent\';\n          color: ' + colors.base + ';\n          text-decoration: underline;\n\n          &:hover {\n            box-shadow: none;\n          }\n        ';
+      variantCSS = '\n          border-color: \'transparent\';\n          color: ' + colors.base + ';\n\n          &:hover {\n            box-shadow: none;\n          }\n        ';
       break;
     case 'full':
     default:

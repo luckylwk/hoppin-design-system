@@ -1,0 +1,53 @@
+---
+name: Link
+route: /components/Link
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Paragraph } from '../Paragraph';
+import { Link } from './';
+
+# Link
+
+Link needs `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
+This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
+
+Use the `as` prop to replace the react-router-dom `<Link/>` with a standard `<a/>` tag for external links.
+All demos here use`as="a"` because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+
+<Props of={Link} />
+
+## Standard Link
+
+This is your standard link. It can have the same `context` prop as [Button](/components/Button) components.
+
+<Playground>
+  <Link as="a">Click me</Link>
+
+  <Link as="a" context="hopper">
+    Hopper
+  </Link>
+  <Link as="a" context="host">
+    Host
+  </Link>
+  <Link as="a" context="danger">
+    Danger
+  </Link>
+</Playground>
+
+## Links in context
+
+Link are displayed as `inline-block` by default, so they nest in to any body copy, like the [Paragraph](/components/Paragraph).
+
+<Playground>
+  <Paragraph>
+    Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
+    williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
+    locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
+    sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
+    brooklyn bushwick distillery. <Link as="a">Click me</Link> vapes stumptown
+    swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
+    Banjo VHS occupy marfa roof party slow-carb.
+  </Paragraph>
+</Playground>

@@ -29,7 +29,8 @@
   },
   "peerDependencies": {
     "react": "16.x",
-    "react-dom": "16.x"
+    "react-dom": "16.x",
+    "react-router-dom": "^5.0.1"
   },
   "resolutions": {
     "webpack": "4.28.4"

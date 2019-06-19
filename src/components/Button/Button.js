@@ -75,7 +75,6 @@ const Button = styled.button`
         variantCSS = `
           border-color: 'transparent';
           color: ${colors.base};
-          text-decoration: underline;
 
           &:hover {
             box-shadow: none;

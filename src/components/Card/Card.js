@@ -7,7 +7,7 @@ import propTypes from '@styled-system/prop-types';
 const Card = styled(Box)`
   border: 0px;
   border-top: 4px solid ${({ theme }) => theme.colors.primary.base};
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.radii.xsmall};
   box-shadow: ${({ theme, elevation }) => theme.shadows[elevation]};
 
   ${flexbox}
