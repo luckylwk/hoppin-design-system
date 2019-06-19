@@ -23,7 +23,7 @@ Card.propTypes = _extends({}, Box.propTypes, propTypes.flexbox);
 Card.defaultProps = {
   display: 'flex',
   flexDirection: 'column',
-  padding: ['tiny', 'small'],
+  padding: ['xsmall', 'small'],
   flexGrow: 1,
   elevation: 3,
   bg: 'white'

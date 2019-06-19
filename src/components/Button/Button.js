@@ -55,7 +55,7 @@ const Button = styled.button`
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: ${({ theme }) => theme.shadows.tiny};
+    box-shadow: ${({ theme }) => theme.shadows.xsmall};
   }
 
   ${({ theme, variant, context }) => {

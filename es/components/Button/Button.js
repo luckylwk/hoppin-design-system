@@ -35,7 +35,7 @@ var Button = styled.button(_templateObject, function (_ref) {
   return theme.fontWeights.bold;
 }, function (_ref3) {
   var theme = _ref3.theme;
-  return theme.shadows.tiny;
+  return theme.shadows.xsmall;
 }, function (_ref4) {
   var theme = _ref4.theme,
       variant = _ref4.variant,

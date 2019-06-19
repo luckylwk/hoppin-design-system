@@ -10,8 +10,6 @@ const GlobalStyle = createGlobalStyle`
   * {
     /* use border-box model */
     box-sizing: border-box;
-    /* set default text color, so color inheritance works */
-    color: ${({ theme }) => theme.colors.neutrals.darker};
   }
 
   html,
@@ -19,6 +17,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: #f8fafb;
     font-size: 16px;
+    /* set default text color, so color inheritance works */
+    color: ${({ theme }) => theme.colors.neutrals.darker};
   }
 
   @font-face {
