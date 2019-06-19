@@ -43,6 +43,7 @@ const Button = styled.button`
 
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.5px;
+  text-decoration: none;
 
   outline: none;
 
@@ -149,7 +150,6 @@ Button.defaultProps = {
   context: 'primary',
   size: 'base',
   display: 'block',
-  flex: '1 0 auto',
 };
 
 Button.displayName = 'Button';
