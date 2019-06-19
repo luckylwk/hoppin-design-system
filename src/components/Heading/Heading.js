@@ -1,6 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { variant, space, color } from 'styled-system';
+import {
+  variant,
+  space,
+  color,
+  flex,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  justifySelf,
+  alignSelf,
+  order,
+} from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 // using the variants in styled-system, we can set several css styles
@@ -18,6 +29,13 @@ const Heading = styled('h2')`
   ${headingStyles}
   ${space}
   ${color}
+  ${flex}
+  ${flexGrow}
+  ${flexShrink}
+  ${flexBasis}
+  ${justifySelf}
+  ${alignSelf}
+  ${order}
 
   &:first-child {
     margin-top: 0;
@@ -28,6 +46,13 @@ const Heading = styled('h2')`
 Heading.propTypes = {
   ...propTypes.space,
   ...propTypes.color,
+  ...propTypes.flex,
+  ...propTypes.flexGrow,
+  ...propTypes.flexShrink,
+  ...propTypes.flexBasis,
+  ...propTypes.justifySelf,
+  ...propTypes.alignSelf,
+  ...propTypes.order,
 };
 
 Heading.defaultProps = {

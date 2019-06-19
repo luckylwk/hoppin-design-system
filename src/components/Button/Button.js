@@ -5,7 +5,10 @@ import {
   space,
   width,
   flex,
-  textAlign,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  justifySelf,
   alignSelf,
   order,
   get,
@@ -40,7 +43,7 @@ const Button = styled.button`
 
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.5px;
-  
+
   outline: none;
 
   &:disabled {
@@ -102,7 +105,10 @@ const Button = styled.button`
   ${space}
   ${width}
   ${flex}
-  ${textAlign}
+  ${flexGrow}
+  ${flexShrink}
+  ${flexBasis}
+  ${justifySelf}
   ${alignSelf}
   ${order}
 
@@ -120,7 +126,10 @@ Button.propTypes = {
   ...systemPropTypes.space,
   ...systemPropTypes.width,
   ...systemPropTypes.flex,
-  ...systemPropTypes.textAlign,
+  ...systemPropTypes.flexGrow,
+  ...systemPropTypes.flexShrink,
+  ...systemPropTypes.flexBasis,
+  ...systemPropTypes.justifySelf,
   ...systemPropTypes.alignSelf,
   ...systemPropTypes.order,
   size: propTypes.oneOf(['small', 'base', 'large']),

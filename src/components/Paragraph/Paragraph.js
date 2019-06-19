@@ -1,6 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space, color, textAlign } from 'styled-system';
+import {
+  space,
+  color,
+  textAlign,
+  flex,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  justifySelf,
+  alignSelf,
+  order,
+} from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 const Paragraph = styled('p')`
@@ -10,12 +21,26 @@ const Paragraph = styled('p')`
   ${textAlign}
   ${space}
   ${color}
+  ${flex}
+  ${flexGrow}
+  ${flexShrink}
+  ${flexBasis}
+  ${justifySelf}
+  ${alignSelf}
+  ${order}
 `;
 
 Paragraph.propTypes = {
   ...propTypes.space,
   ...propTypes.color,
   ...propTypes.textAlign,
+  ...propTypes.flex,
+  ...propTypes.flexGrow,
+  ...propTypes.flexShrink,
+  ...propTypes.flexBasis,
+  ...propTypes.justifySelf,
+  ...propTypes.alignSelf,
+  ...propTypes.order,
 };
 
 Paragraph.defaultProps = {
