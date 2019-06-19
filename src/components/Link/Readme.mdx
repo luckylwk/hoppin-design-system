@@ -6,7 +6,8 @@ menu: Components
 
 import { Props, Playground } from 'docz';
 import { Paragraph } from '../Paragraph';
-import { Link } from './';
+import { Box } from '../Box';
+import { Link, LinkUnstyled } from './';
 
 # Link
 
@@ -15,6 +16,20 @@ This is to avoid version clashes. Hoppin Design System does not bundle `react-ro
 
 Use the `as` prop to replace the react-router-dom `<Link/>` with a standard `<a/>` tag for external links.
 All demos here use`as="a"` because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+
+### Note
+
+If using the `<Link>` component internally, set the `to` prop:
+
+```
+<Link to='/my/app/route'>
+```
+
+If using the `<Link>` component externalls with `as="a"`, set the `href` and `target` props:
+
+```
+<Link as="a" href='https://gohoppin.com' target="_blank">
+```
 
 <Props of={Link} />
 
@@ -50,4 +65,49 @@ Link are displayed as `inline-block` by default, so they nest in to any body cop
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
+</Playground>
+
+## Unstyled Links
+
+Unstyled Links are identical with the normal link components, but remove any stuyling. No underline, no hover state.
+
+<Playground>
+  <Paragraph>
+    Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
+    williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
+    locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
+    sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
+    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">Find me, click me</LinkUnstyled> vapes stumptown
+    swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
+    Banjo VHS occupy marfa roof party slow-carb.
+  </Paragraph>
+
+  <Box padding='large' bg='neutrals.light'>
+  <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">
+    <Box margin='large' padding='large' bg='white'>
+      Clickable Box
+    </Box>
+    </LinkUnstyled>
+  </Box>
+</Playground>
+
+LinkUnstyled takes a `color` prop.
+It also accepts basic `display` and `flexbox (child)` props and can be used like a `Box` that links to something.
+
+<Playground>
+  <Paragraph>
+    Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
+    williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
+    locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
+    sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
+    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</LinkUnstyled> vapes stumptown
+    swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
+    Banjo VHS occupy marfa roof party slow-carb.
+  </Paragraph>
+
+  <Box padding='large' bg='neutrals.light'>
+    <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
+      Clickable Box
+    </LinkUnstyled>
+  </Box>
 </Playground>

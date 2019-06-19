@@ -6,7 +6,7 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, get, variant } from 'styled-system';
+import { display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, get } from 'styled-system';
 
 import { Link as RouterLink } from 'react-router-dom';
 import systemPropTypes from '@styled-system/prop-types';

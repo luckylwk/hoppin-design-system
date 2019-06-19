@@ -14,6 +14,6 @@ export { Tag } from './components/Tag';
 export { Timeline } from './components/Timeline';
 export { Card } from './components/Card';
 export { Button } from './components/Button';
-export { Link } from './components/Link';
+export { Link, LinkUnstyled } from './components/Link';
 
 export { default as tokens } from './tokens';

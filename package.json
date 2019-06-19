@@ -24,6 +24,7 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
     "react": "16.x",
     "react-dom": "16.x"
   },

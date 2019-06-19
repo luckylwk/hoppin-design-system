@@ -11,7 +11,7 @@ import {
   justifySelf,
   alignSelf,
   order,
-  get,
+  color,
 } from 'styled-system';
 
 import { Link as RouterLink } from 'react-router-dom';
@@ -25,35 +25,12 @@ import propTypes from 'prop-types';
  * Use the `as` prop to replace the react-router-dom <Link/> with a standard <a/> tag for external links.
  */
 
-const Link = styled(RouterLink)`
+const LinkUnstyled = styled(RouterLink)`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 1em;
   cursor: pointer;
   text-decoration: none;
   padding: 0;
-
-  border: none;
-  border-bottom: 1px solid ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.light;
-  }};
-
-  color: ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.darker;
-  }};
-
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
-  letter-spacing: 0.5px;
-
-  outline: none;
-
-  transition: all 0.5s;
-
-  &:hover {
-    transform: translateY(-1px);
-    text-shadow: ${({ theme }) => theme.shadows.small};
-  }
 
   & + & {
     margin-left: ${({ theme }) => theme.space.small};
@@ -61,6 +38,7 @@ const Link = styled(RouterLink)`
 
   /* styled-system props */
   ${display}
+  ${color}
   ${space}
   ${width}
   ${flex}
@@ -72,9 +50,8 @@ const Link = styled(RouterLink)`
   ${order}
 `;
 
-Link.propTypes = {
+LinkUnstyled.propTypes = {
   disabled: PropTypes.bool,
-  ...systemPropTypes.buttonStyle,
   ...systemPropTypes.display,
   ...systemPropTypes.space,
   ...systemPropTypes.width,
@@ -85,22 +62,13 @@ Link.propTypes = {
   ...systemPropTypes.justifySelf,
   ...systemPropTypes.alignSelf,
   ...systemPropTypes.order,
-
-  context: propTypes.oneOf([
-    'primary',
-    'secondary',
-    'tertiary',
-    'hopper',
-    'host',
-    'danger',
-  ]),
 };
 
-Link.defaultProps = {
-  disabled: false,
+LinkUnstyled.defaultProps = {
   display: 'inline-block',
+  color: 'inherit',
 };
 
-Link.displayName = 'Link';
+LinkUnstyled.displayName = 'LinkUnstyled';
 
-export default Link;
+export default LinkUnstyled;
