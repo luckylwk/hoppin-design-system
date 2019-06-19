@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.neutrals.darker};
   }
 
+  * {
+    color: inherit;
+  }
+  
   @font-face {
     font-family: 'Pluto';
     font-weight: normal;
