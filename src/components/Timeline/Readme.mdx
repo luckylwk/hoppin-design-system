@@ -6,6 +6,10 @@ menu: Components
 
 import { Playground } from 'docz';
 import { Timeline } from 'components/Timeline';
+import { Banner } from 'components/Banner';
+import { Container } from 'components/Container';
+import { Heading } from 'components/Heading';
+import { Lede } from 'components/Lede';
 
 # Timeline
 
@@ -29,83 +33,164 @@ You should not need to import Steps individually.
 
   the image key can also contain a plain string, rather than an object with mobile and desktop keys.
 
-- `title` and `subtitle`: Optional strings to set a title at the top of the section.
 - `nextLabel`: Optional string to be used as the label for the "Next" button
 - `minHeight`: Optional. By default the Timeline will be min 500px high and scale to get bigger to fit the content.
   set minHeight prop to set a specific height on the container
-
-- `p` : overwrite default padding of the container FlexBox
-- `bg`: overwrite the default bg color of the container Flexbox
 - any other prop that `<Flex>` can have (styled-system) will be forwarded to the container Flex
+- `onStepChange`: callback that returns step object, useful to set background of `<Banner>` if used together.
+- `hideStepImageOnDesktop`: hide images in the individual `Step` components on larger screens. To be uses with `onStepChange`, defaults to `false`
+
+## Usage
+
+`Timeline` renders just the timeline, responsive to the screen size.
 
 <Playground>
-{() => {
-  const timelineMockData = [
-  {
-    title: 'Kick Off',
-    description:
-      'A 1:1 introductory meeting where the host sets the context for the day.',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-  {
-    title: 'Office Tour',
-    description:
-      'You get a full tour of your host’s office, which is half the fun when it’s a really different environment! ',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-  {
-    title: 'Meetings',
-    description:
-      'An opportunity to attend meetings, listen in on calls and really see your host in action! ',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-  {
-    title: 'Lunch / Networking Event',
-    description:
-      'Whether a team lunch, or a networking event, hosts will use every opportunity to engage you with the wider team and their industry.',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-  {
-    title: 'An Independent Task',
-    description:
-      'A chance to really get hands on with your host’s job and try doing it yourself. ',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-  {
-    title: 'Wrap Up',
-    description:
-      'Each experience ends with a debrief and it’s your time to ask any final questions and share highlights of the day.',
-    image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
-    },
-  },
-];
+  {() => {
+    const timelineMockData = [
+      {
+        title: "Kick Off",
+        description:
+          "A 1:1 introductory meeting where the host sets the context for the day.",
+        image: {
+          mobile: "https://picsum.photos/320/240",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "Office Tour",
+        description:
+          "You get a full tour of your host’s office, which is half the fun when it’s a really different environment! ",
+        image: {
+          mobile: "https://picsum.photos/320/241",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action! ",
+        image: {
+          mobile: "https://picsum.photos/320/242",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "Lunch / Networking Event",
+        description:
+          "Whether a team lunch, or a networking event, hosts will use every opportunity to engage you with the wider team and their industry.",
+        image: {
+          mobile: "https://picsum.photos/320/241",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "An Independent Task",
+        description:
+          "A chance to really get hands on with your host’s job and try doing it yourself. ",
+        image: {
+          mobile: "https://picsum.photos/320/240",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "Wrap Up",
+        description:
+          "Each experience ends with a debrief and it’s your time to ask any final questions and share highlights of the day.",
+        image: "https://picsum.photos/320/241"
+      }
+    ];
 
-return (
+    return (
+    <Container bg='neutrals.base'>
+      <Timeline
+        steps={timelineMockData}
+        minHeight={800}
+        nextLabel={`There's more...`}
+      />
+    </Container>
+    );
 
-<Timeline
-steps={timelineMockData}
-minHeight={800}
-nextLabel={`There's more...`}
-title="What can you expect from the experience?"
-subtitle="We take pride in facilitating authentic experiences, where every day is different and it varies from industry to industry. Where possible, the hosts aim to ensure the following:"
-/>
-)}}
+}}
+
+</Playground>
+
+## Usage inside Banner
+
+Timeline plays well with a [Banner](components/Banner) component to create a full-width section.
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        title: "Kick Off",
+        description:
+          "A 1:1 introductory meeting where the host sets the context for the day.",
+        image: {
+          mobile: "https://picsum.photos/320/240",
+          desktop: "https://picsum.photos/1200/800"
+        }
+      },
+      {
+        title: "Office Tour",
+        description:
+          "You get a full tour of your host’s office, which is half the fun when it’s a really different environment! ",
+        image: {
+          mobile: "https://picsum.photos/320/241",
+          desktop: "https://picsum.photos/1200/801"
+        }
+      },
+      {
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action! ",
+        image: {
+          mobile: "https://picsum.photos/320/242",
+          desktop: "https://picsum.photos/1200/802"
+        }
+      },
+      {
+        title: "Lunch / Networking Event",
+        description:
+          "Whether a team lunch, or a networking event, hosts will use every opportunity to engage you with the wider team and their industry.",
+        image: {
+          mobile: "https://picsum.photos/320/241",
+          desktop: "https://picsum.photos/1200/803"
+        }
+      },
+      {
+        title: "An Independent Task",
+        description:
+          "A chance to really get hands on with your host’s job and try doing it yourself. ",
+        image: {
+          mobile: "https://picsum.photos/320/240",
+          desktop: "https://picsum.photos/1200/804"
+        }
+      },
+      {
+        title: "Wrap Up",
+        description:
+          "Each experience ends with a debrief and it’s your time to ask any final questions and share highlights of the day.",
+        image: "https://picsum.photos/320/241"
+      }
+    ];
+
+    const [image, setImage ] = React.useState(timelineMockData[0].image)
+
+    return (
+    <Banner height='auto' shadow='top' backgroundImage={image.desktop && image.mobile ? image.desktop : image}>
+      <Container>
+        <Heading color='white'>What can you expect from the experience?</Heading>
+        <Lede>We take pride in facilitating authentic experiences, where every day is different and it varies from industry to industry. Where possible, the hosts aim to ensure the following:</Lede>
+        <Timeline
+          steps={timelineMockData}
+          nextLabel={`There's more...`}
+          onStepChange={(step) => {setImage(step.image)}}
+          hideStepImageOnDesktop={true}
+        />
+      </Container>
+    </Banner>
+    );
+
+}}
 
 </Playground>

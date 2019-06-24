@@ -17,11 +17,6 @@ const MobileImage = styled(Box)`
       : image}); /* there's only one image URL */
   background-size: cover;
   background-position: center center;
-
-  /* Add responsive media query to load desktop size image if we have it */
-  @media (min-width: 832px) {
-    display: none;
-  }
 `;
 
 const StepContainer = styled(Flex)`
@@ -48,8 +43,8 @@ const StepContainer = styled(Flex)`
     border-radius: 50%;
     border: 2px solid ${props =>
       props.isActive
-        ? props.theme.colors.primary
-        : props.theme.colors.grey_light}
+        ? props.theme.colors.primary.base
+        : props.theme.colors.neutrals.light}
     background: ${props => props.theme.colors.white}
     box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);
   }
@@ -76,6 +71,7 @@ const ActiveStepBox = styled(Box)`
   background: ${props => props.theme.colors.white};
   box-shadow: 0 15px 35px 0 rgba(43, 64, 78, 0.1),
     0 5px 15px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 `;
 
 const StepContent = styled(Box)`
@@ -87,7 +83,7 @@ const StepTitle = styled(Heading)`
     ${props =>
       props.isActive &&
       `
-  color: ${props.theme.colors.primary};
+  color: ${props.theme.colors.primary.base};
   text-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);
   `};
 
@@ -101,26 +97,43 @@ function Step({
   index,
   isActive,
   isLast,
-  setActiveStep,
+  goToStep,
   nextLabel,
+  hideStepImageOnDesktop,
+  ...rest
 }) {
   const ContentWrapper = isActive ? ActiveStepBox : Box;
   return (
-    <StepContainer index={index} isActive={isActive} isLast={isLast}>
+    <StepContainer index={index} isActive={isActive} isLast={isLast} {...rest}>
       <ContentWrapper>
-        {isActive && <MobileImage image={image} />}
+        {isActive && (
+          <MobileImage
+            image={image}
+            display={[
+              'block',
+              'block',
+              hideStepImageOnDesktop ? 'none' : 'block',
+            ]}
+          />
+        )}
         <StepContent isActive={isActive}>
           <StepTitle
             as="h3"
             isActive={isActive}
             isLast={isLast}
-            onClick={e => setActiveStep(index)}
+            onClick={() => goToStep(index)}
           >
             {title}
           </StepTitle>
           {isActive && <Text display="block">{description}</Text>}
           {isActive && !isLast && (
-            <Button onClick={e => setActiveStep(index + 1)} mt={2}>
+            <Button
+              onClick={e => {
+                e.preventDefault();
+                goToStep(index + 1);
+              }}
+              mt={2}
+            >
               {nextLabel}
             </Button>
           )}
@@ -131,6 +144,9 @@ function Step({
   );
 }
 
+Step.defaultProps = {
+  color: 'neutrals.darker',
+};
 Step.displayName = 'Step';
 
 export default Step;
