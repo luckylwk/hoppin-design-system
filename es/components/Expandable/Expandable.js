@@ -13,9 +13,10 @@ var ExpandableContext = createContext();
 
 // Expandable is the parent component that holds  state and passes it down through context.
 var Expandable = function Expandable(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      initExpanded = _ref.initExpanded;
 
-  var _useState = useState(false),
+  var _useState = useState(initExpanded),
       isExpanded = _useState[0],
       setExpanded = _useState[1];
 
@@ -59,7 +60,13 @@ var ExpandableBody = function ExpandableBody(_ref3) {
 Expandable.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
   /* TODO: figrue out how to code that in propTypes */
-  children: propTypes.any
+  children: propTypes.any,
+  /** Set the initial state, expanded or not. */
+  initExpanded: propTypes.bool
 } : {};
+
+Expandable.defaultProps = {
+  initExpanded: false
+};
 
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };

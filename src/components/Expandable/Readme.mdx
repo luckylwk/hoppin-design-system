@@ -43,58 +43,40 @@ Make sure `Expandable` has exactly one instance of `ExpandableToggle` and one in
   </Expandable>
 </Playground>
 
-## Many Toggles
+## Many Toggles, initial state
 
 Since context is held locally, there can be many Expandables on the same page. You should even be able to nest them.
 
+Set prop `initExpanded={true}` to initialise the component in an extended state.
+
 <Playground>
   <Expandable>
-
     <ExpandableToggle>
       <Heading as='h4'>Click to expand</Heading>
     </ExpandableToggle>
-
     <ExpandableBody>
       <Paragraph>And you can read so much more. It's a miracle</Paragraph>
     </ExpandableBody>
-
   </Expandable>
 
-  <Expandable>
+<Expandable initExpanded={true}>
+  <ExpandableToggle>
+    <Heading as="h4">Starting expanded</Heading>
+  </ExpandableToggle>
+  <ExpandableBody>
+    <Paragraph>And you can read so much more. It's a miracle</Paragraph>
+  </ExpandableBody>
+</Expandable>
 
-    <ExpandableToggle>
-      <Heading as='h4'>Click to expand</Heading>
-    </ExpandableToggle>
+<Expandable>
+  <ExpandableToggle>
+    <Heading as="h4">Click to expand</Heading>
+  </ExpandableToggle>
+  <ExpandableBody>
+    <Paragraph>And you can read so much more. It's a miracle</Paragraph>
+  </ExpandableBody>
+</Expandable>
 
-    <ExpandableBody>
-      <Paragraph>And you can read so much more. It's a miracle</Paragraph>
-    </ExpandableBody>
-
-  </Expandable>
-
-  <Expandable>
-
-    <ExpandableToggle>
-      <Heading as='h4'>Click to expand</Heading>
-    </ExpandableToggle>
-
-    <ExpandableBody>
-      <Paragraph>And you can read so much more. It's a miracle</Paragraph>
-    </ExpandableBody>
-
-  </Expandable>
-
-  <Expandable>
-
-    <ExpandableToggle>
-      <Heading as='h4'>Click to expand</Heading>
-    </ExpandableToggle>
-
-    <ExpandableBody>
-      <Paragraph>And you can read so much more. It's a miracle</Paragraph>
-    </ExpandableBody>
-
-  </Expandable>
 </Playground>
 
 ## Indicate expanded/collapsed state

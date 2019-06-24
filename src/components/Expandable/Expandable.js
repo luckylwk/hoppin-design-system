@@ -8,8 +8,8 @@ import { Box } from '../Box';
 const ExpandableContext = createContext();
 
 // Expandable is the parent component that holds  state and passes it down through context.
-const Expandable = ({ children }) => {
-  const [isExpanded, setExpanded] = useState(false);
+const Expandable = ({ children, initExpanded }) => {
+  const [isExpanded, setExpanded] = useState(initExpanded);
 
   const toggleExpanded = () => {
     setExpanded(!isExpanded);
@@ -40,6 +40,12 @@ Expandable.propTypes = {
   /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
   /* TODO: figrue out how to code that in propTypes */
   children: propTypes.any,
+  /** Set the initial state, expanded or not. */
+  initExpanded: propTypes.bool,
+};
+
+Expandable.defaultProps = {
+  initExpanded: false,
 };
 
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };
