@@ -1,6 +1,11 @@
+var _templateObject = _taggedTemplateLiteralLoose(['\n  cursor: pointer;\n'], ['\n  cursor: pointer;\n']);
+
+function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+
 import React, { createContext, useContext, useState } from 'react';
 import propTypes from 'prop-types';
 
+import styled from 'styled-components';
 import { Box } from '../Box';
 
 // context allows us to pass down the  toggle state to children without needing to manually set props.
@@ -24,6 +29,7 @@ var Expandable = function Expandable(_ref) {
   );
 };
 
+var ToggleBox = styled(Box)(_templateObject);
 var ExpandableToggle = function ExpandableToggle(_ref2) {
   var children = _ref2.children;
 
@@ -31,7 +37,7 @@ var ExpandableToggle = function ExpandableToggle(_ref2) {
       toggleExpanded = _useContext.toggleExpanded;
 
   return React.createElement(
-    Box,
+    ToggleBox,
     { onClick: toggleExpanded },
     children
   );

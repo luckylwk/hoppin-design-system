@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import propTypes from 'prop-types';
 
+import styled from 'styled-components';
 import { Box } from '../Box';
 
 // context allows us to pass down the  toggle state to children without needing to manually set props.
@@ -20,10 +21,13 @@ const Expandable = ({ children }) => {
   );
 };
 
+const ToggleBox = styled(Box)`
+  cursor: pointer;
+`;
 const ExpandableToggle = ({ children }) => {
   const { toggleExpanded } = useContext(ExpandableContext);
 
-  return <Box onClick={toggleExpanded}>{children}</Box>;
+  return <ToggleBox onClick={toggleExpanded}>{children}</ToggleBox>;
 };
 
 const ExpandableBody = ({ children }) => {
