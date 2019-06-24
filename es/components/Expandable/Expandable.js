@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import propTypes from 'prop-types';
 
-import { Box } from 'components/Box';
+import { Box } from '../Box';
 
 // context allows us to pass down the  toggle state to children without needing to manually set props.
 var ExpandableContext = createContext();
