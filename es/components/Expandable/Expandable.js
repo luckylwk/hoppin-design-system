@@ -14,14 +14,17 @@ var ExpandableContext = createContext();
 // Expandable is the parent component that holds  state and passes it down through context.
 var Expandable = function Expandable(_ref) {
   var children = _ref.children,
-      initExpanded = _ref.initExpanded;
+      initExpanded = _ref.initExpanded,
+      onToggle = _ref.onToggle;
 
   var _useState = useState(initExpanded),
       isExpanded = _useState[0],
       setExpanded = _useState[1];
 
   var toggleExpanded = function toggleExpanded() {
-    setExpanded(!isExpanded);
+    var newState = !isExpanded;
+    setExpanded(newState);
+    onToggle && onToggle(newState);
   };
   return React.createElement(
     ExpandableContext.Provider,
@@ -62,7 +65,9 @@ Expandable.propTypes = process.env.NODE_ENV !== "production" ? {
   /* TODO: figrue out how to code that in propTypes */
   children: propTypes.any,
   /** Set the initial state, expanded or not. */
-  initExpanded: propTypes.bool
+  initExpanded: propTypes.bool,
+  /** provide a custom callback on click, it reveives the new state of the Expandable*/
+  onToggle: propTypes.func
 } : {};
 
 Expandable.defaultProps = {

@@ -50,7 +50,7 @@ Since context is held locally, there can be many Expandables on the same page. Y
 Set prop `initExpanded={true}` to initialise the component in an extended state.
 
 <Playground>
-  <Expandable>
+  <Expandable onToggle={(expanded)=> { console.log(expanded ? 'expanded': 'closed')}}>
     <ExpandableToggle>
       <Heading as='h4'>Click to expand</Heading>
     </ExpandableToggle>
