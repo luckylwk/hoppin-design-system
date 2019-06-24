@@ -1,5 +1,5 @@
 import { colors } from './colors';
-import { space, containerWidth, radii } from './space';
+import { space, containerWidths, radii, zIndexes } from './space';
 import { buttonSizes } from './buttons';
 import { shadows } from './shadows';
 import {
@@ -19,8 +19,9 @@ import {
 
 export default {
   space,
-  containerWidth,
+  containerWidths,
   radii,
+  zIndexes,
   fonts,
   fontSizes,
   lineHeights,

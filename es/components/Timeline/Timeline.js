@@ -105,4 +105,5 @@ Timeline.defaultProps = {
   nextLabel: 'Next'
 };
 
+Timeline.displayName = 'Timeline';
 export default Timeline;

@@ -108,4 +108,6 @@ function Step(_ref2) {
   );
 }
 
+Step.displayName = 'Step';
+
 export default Step;

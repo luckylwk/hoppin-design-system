@@ -12,7 +12,7 @@ import { Heading } from '../Heading';
 
 var Lede = styled('p')(_templateObject, textAlign, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, function (_ref) {
   var theme = _ref.theme;
-  return theme.fonts.primary;
+  return theme.fonts.secondary;
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.fontSizes[4];
@@ -27,9 +27,12 @@ var Lede = styled('p')(_templateObject, textAlign, space, color, flex, flexGrow,
 Lede.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.textAlign, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order);
 
 Lede.defaultProps = {
-  textAlign: 'left',
+  textAlign: 'inherit',
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginX: 0,
   marginY: 'large'
 };
+
+Lede.displayName = 'Lede';
+
 export default Lede;

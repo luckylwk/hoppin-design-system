@@ -131,4 +131,6 @@ function Step({
   );
 }
 
+Step.displayName = 'Step';
+
 export default Step;

@@ -1,0 +1,43 @@
+---
+name: Banner
+route: /components/Banner
+menu: Components
+---
+
+import { Banner } from 'components/Banner';
+import { Container } from 'components/Container';
+import { Heading } from 'components/Heading';
+import { Lede } from 'components/Lede';
+
+import { Props, Playground } from 'docz';
+
+# Banner
+
+Banner is a [Flex](/components/Flex) and is to be used to create a large banner with a background image.
+
+## Props
+
+<Props of={Banner} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+TODO:
+
+- add shadow
+- add content (elevate over shadow)
+
+### Main Props:
+
+- `backgroundImage` - maps to CSS attribute `backgroundImage` location of the background image
+- `backgroundSize`: maps to CSS attribute `backgroundSize`, defaults to `cover`
+- `backgroundPosition`: maps to CSS attribute `backgroundPosition`, defaults to `center center`
+- `backgroundRepeat`: maps to CSS attribute `backgroundRepeat`, defaults to `no-repeat`
+- `children`: use normal react children as the children. often you'll want a `<Container>` as your only child to contain text within.
+
+<Playground>
+  <Banner backgroundImage="http://placekitten.com/1001/700">
+    <Container>
+      <Heading as="h1">The main site title</Heading>
+      <Lede>A little intro to why users should read on</Lede>
+    </Container>
+  </Banner>
+</Playground>

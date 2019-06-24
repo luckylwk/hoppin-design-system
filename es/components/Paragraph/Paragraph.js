@@ -28,4 +28,7 @@ Paragraph.defaultProps = {
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   textAlign: 'left'
 };
+
+Paragraph.displayName = 'Paragraph';
+
 export default Paragraph;

@@ -27,4 +27,6 @@ Tag.defaultProps = {
   marginTop: 'small',
   marginBottom: 0
 };
+
+Tag.displayName = 'Tag';
 export default Tag;

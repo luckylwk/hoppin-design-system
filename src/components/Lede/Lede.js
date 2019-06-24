@@ -27,7 +27,7 @@ const Lede = styled('p')`
   ${alignSelf}
   ${order}
 
-  font-family: ${({ theme }) => theme.fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: ${({ theme }) => theme.fontSizes[4]};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   letter-spacing: 1px;
@@ -52,9 +52,12 @@ Lede.propTypes = {
 };
 
 Lede.defaultProps = {
-  textAlign: 'left',
+  textAlign: 'inherit',
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginX: 0,
   marginY: 'large',
 };
+
+Lede.displayName = 'Lede';
+
 export default Lede;

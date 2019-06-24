@@ -29,4 +29,7 @@ Heading.defaultProps = {
   marginBottom: 'base',
   marginTop: 'xlarge'
 };
+
+Heading.displayName = 'Heading';
+
 export default Heading;

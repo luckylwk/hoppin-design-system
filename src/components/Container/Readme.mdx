@@ -17,7 +17,11 @@ Container is a [Flex](/components/Flex) has a max-width and centers content on t
 <Props of={Container} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-Box implements the styled-system props for:
+Set `width="narrow"` for to optimize body text width, set it to `base` for a wider layout.
+
+Only set `maxWidth` if absolutely necessary and you cant use narrow/base widths.
+
+Container implements the styled-system props for:
 
 - [space](https://styled-system.com/api#space) (only use full-length props. e.g. `paddingBottom`, not `pb`)
 - [layout](https://styled-system.com/api#layout)

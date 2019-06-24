@@ -23,6 +23,8 @@
     "@babel/preset-react": "^7.0.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
+    "exenv": "^1.2.2",
+    "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "react": "16.x",
@@ -40,7 +42,6 @@
   "scripts": {
     "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
     "now-build": "yarn run build:docz",
-    "build:babel:es": "npx babel src --out-dir dist --env-name 'esm'",
     "build:nwb:es": "nwb build-react-component",
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",

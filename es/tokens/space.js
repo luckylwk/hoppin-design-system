@@ -15,7 +15,12 @@ space.medium = space[3];
 space.large = space[4];
 space.xlarge = space[5];
 
-var containerWidth = '60rem';
+var containerWidths = {
+  narrow: '45rem',
+  base: '60rem',
+  full: '100%'
+};
+containerWidths.normal = containerWidths.base;
 
 var radii = [0, space.xsmall, space.small, space.base, space.large, '100%'];
 
@@ -26,4 +31,12 @@ radii.medium = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
-export { space, containerWidth, radii };
+var zIndexes = [0, 3, 5, 8, 13];
+
+zIndexes.farBack = zIndexes[-3];
+zIndexes.back = zIndexes[-1];
+zIndexes.base = zIndexes[0];
+zIndexes.front = zIndexes[3];
+zIndexes.overlay = zIndexes[4];
+
+export { space, containerWidths, radii, zIndexes };

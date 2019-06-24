@@ -13,4 +13,6 @@ Flex.defaultProps = {
   display: 'flex'
 };
 
+Flex.displayName = 'Flex';
+
 export default Flex;

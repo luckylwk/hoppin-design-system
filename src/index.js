@@ -3,6 +3,7 @@ export { HoppinDesignProvider } from './components/HoppinDesignProvider';
 export { Box } from './components/Box';
 export { Flex } from './components/Flex';
 export { Container } from './components/Container';
+export { Banner } from './components/Banner';
 
 export { Heading } from './components/Heading';
 export { Lede } from './components/Lede';

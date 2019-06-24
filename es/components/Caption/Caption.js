@@ -25,4 +25,7 @@ Caption.defaultProps = {
   marginTop: 'small',
   marginBottom: 0
 };
+
+Caption.displayName = 'Caption';
+
 export default Caption;
