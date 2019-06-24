@@ -12,26 +12,27 @@ import PropTypes from 'prop-types';
 
 var Banner = styled(Flex)(_templateObject, function (props) {
   // switch shadow direction depending on shadow prop.
-  var shadow = void 0;
+  var shadowCSS = void 0;
   switch (props.shadow) {
     case 'top':
-      shadow = 'linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0))';
       break;
     case 'right':
-      shadow = 'linear-gradient(to left,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to left,rgba(0,0,0,0.45),rgba(0,0,0,0))';
       break;
     case 'left':
-      shadow = 'linear-gradient(to right,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to right,rgba(0,0,0,0.45),rgba(0,0,0,0))';
       break;
     case 'none':
-      shadow = '';
+      shadowCSS = '';
+      break;
     case 'bottom':
     default:
-      shadow = 'linear-gradient(to top,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to top,rgba(0,0,0,0.45),rgba(0,0,0,0))';
       break;
   }
 
-  return 'background-image: ' + shadow + ', url(' + props.backgroundImage + ');';
+  return 'background-image: ' + (shadowCSS ? shadowCSS + ', ' : '') + ' url(' + props.backgroundImage + ');';
 }, function (props) {
   return props.backgroundPosition;
 }, function (props) {
