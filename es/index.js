@@ -16,5 +16,6 @@ export { Timeline } from './components/Timeline';
 export { Card } from './components/Card';
 export { Button } from './components/Button';
 export { Link, LinkUnstyled } from './components/Link';
+export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from './components/Expandable';
 
 export { default as tokens } from './tokens';
