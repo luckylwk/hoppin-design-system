@@ -27,7 +27,9 @@ const Banner = styled(Flex)`
         break;
     }
 
-    return `background-image: ${shadowCSS}, url(${props.backgroundImage});`;
+    return `background-image: ${shadowCSS ? `${shadowCSS}, ` : ''} url(${
+      props.backgroundImage
+    });`;
   }}
 
   background-position: ${props => props.backgroundPosition};
