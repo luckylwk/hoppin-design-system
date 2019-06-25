@@ -32,4 +32,5 @@ Card.defaultProps = {
   bg: 'white'
 };
 
+Card.displayName = 'Card';
 export default Card;

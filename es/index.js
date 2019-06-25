@@ -18,4 +18,6 @@ export { Button } from './components/Button';
 export { Link, LinkUnstyled } from './components/Link';
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from './components/Expandable';
 
+export { ChatBubble, ChatMeta } from './components/Chat';
+
 export { default as tokens } from './tokens';

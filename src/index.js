@@ -23,4 +23,6 @@ export {
   ExpandableContext,
 } from './components/Expandable';
 
+export { ChatBubble, ChatMeta } from './components/Chat';
+
 export { default as tokens } from './tokens';
