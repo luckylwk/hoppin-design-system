@@ -6,6 +6,7 @@ menu: Components
 
 import { Props, Playground } from 'docz';
 import { HoppinDesignProvider } from 'components/HoppinDesignProvider';
+import { Button } from 'components/Button';
 
 # HoppinDesignProvider
 
@@ -22,10 +23,17 @@ Make sure to set `mode='host'` or `mode='hopper'` in the to set primary colors, 
 
 <Playground>
   <HoppinDesignProvider>
-    <span>
-      {
-        'TODO: examples of say Buttons that change color depending on the mode of set in the HoppinDesignProvider.'
-      }
-    </span>
+    <Button variant="full" context="primary">Primary Button</Button>
+  </HoppinDesignProvider>
+
+<br/>
+<HoppinDesignProvider mode="hopper">
+  <Button variant="full" context="primary">
+    Primary Button
+  </Button>
+</HoppinDesignProvider>
+<br/>
+  <HoppinDesignProvider mode="host">
+    <Button variant="full" context="primary">Primary Button</Button>
   </HoppinDesignProvider>
 </Playground>

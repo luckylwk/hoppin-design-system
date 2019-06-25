@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
+import { merge, get } from 'lodash';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -46,12 +47,18 @@ const GlobalStyle = createGlobalStyle`
 
 const HoppinDesignProvider = ({ children, mode, theme }) => {
   console.log(theme, tokens);
-  const themeWithOverrides = {
-    ...tokens,
-    ...theme,
-  };
+  // if we specify a theme-override, merge it with the default tokens
+  const tokensWithOverrides = merge({}, tokens, theme);
+  // depending on mode, set the primary colors
+  const tokensWithMode = merge({}, tokens, {
+    colors: get(
+      tokensWithOverrides.colors.modes,
+      mode,
+      tokensWithOverrides.colors
+    ),
+  });
   return (
-    <ThemeProvider theme={themeWithOverrides} mode={mode}>
+    <ThemeProvider theme={tokensWithMode}>
       <React.Fragment>
         <GlobalStyle />
         {children}
