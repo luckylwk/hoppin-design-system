@@ -37,14 +37,14 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
 Wrap it in a `Container` and you're good to go.
 
 <Playground>
-  <Container width="narrow">
+  <Container width="narrow" bg="neutrals.lightest">
     <ChatMeta>
-      This is the beginning of your conversation with your host. Why don't you
-      say hi?!
+      This is the beginning of your conversation with your host. <br />
+      Why don't you say hi?!
     </ChatMeta>
     <ChatBubble variant="me">Hi there!</ChatBubble>
-    <ChatMeta>Yesterday</ChatMeta>
     <ChatBubble variant="me">Super excited to meet you.</ChatBubble>
+    <ChatMeta>Yesterday</ChatMeta>
     <ChatBubble
       variant="them"
       avatarURL="https://randomuser.me/api/portraits/women/76.jpg"

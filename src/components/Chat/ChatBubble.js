@@ -33,7 +33,7 @@ const ChatBubble = styled(Box)`
         variantCSS = `
           align-self: flex-end;
           margin-left: 25%;
-          background-color: ${theme.colors.primary.lightest};
+          background-color: ${theme.colors.primary.lighter};
           border-bottom-right-radius: ${theme.radii.xsmall};
         `;
         break;
@@ -43,7 +43,7 @@ const ChatBubble = styled(Box)`
           align-self: flex-start;
           margin-right: ${theme.space.large}
           margin-left: 3rem;
-          background-color: ${theme.colors.neutrals.lightest};
+          background-color: ${theme.colors.white};
           border-bottom-left-radius: ${theme.radii.xsmall};
 
           &: before {

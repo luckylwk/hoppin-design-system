@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 
 const ChatMeta = styled(Box)`
   align-self: center;
+  text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.label};
 `;
 
