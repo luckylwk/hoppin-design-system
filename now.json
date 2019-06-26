@@ -8,5 +8,10 @@
       "use": "@now/static-build",
       "config": { "distDir": ".docz/dist" }
     }
-  ]
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/" }
+  ],
+  "alias": ["design-system.hoppin.now.sh", "design-system-brunobernardino.hoppin.now.sh", "design-system-slowworks.hoppin.now.sh"]
 }
