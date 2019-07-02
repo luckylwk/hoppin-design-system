@@ -6,6 +6,7 @@ menu: Components
 
 import { Props, Playground } from 'docz';
 import { Flex } from '../Flex';
+import { Box } from '../Box';
 import Button from './Button';
 
 # Button
@@ -26,6 +27,9 @@ This is your standard button. They typically trigger one action when interacted 
     <Button context="host">Host</Button>
     <Button context="danger">Danger</Button>
   </Flex>
+  <Box bg="primary.base" padding="large" marginTop="large">
+    <Button context="whiteout">Whiteout</Button>
+  </Box>
 </Playground>
 
 ## Outline Button
@@ -39,8 +43,10 @@ These are our outline buttons. Use them for secondary actions. Most of the time,
 <Button variant='outline' context="hopper">Hopper</Button>
 <Button variant='outline' context="host">Host</Button>
 <Button variant='outline' context="danger">Danger</Button>
-
 </Flex>
+<Box bg="primary.base" padding="large" marginTop="large">
+  <Button variant="outline" context="whiteout">Whiteout</Button>
+</Box>
 </Playground>
 
 ## Subtle Button
@@ -56,6 +62,10 @@ These are our subtle buttons. Use them for when the action is not overly importa
 <Button variant='subtle' context="danger">Danger</Button>
 
 </Flex>
+
+<Box bg="primary.base" padding="large" marginTop="large">
+  <Button variant="subtle" context="whiteout">Whiteout</Button>
+</Box>
 </Playground>
 
 ## Sizes

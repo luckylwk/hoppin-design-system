@@ -48,14 +48,14 @@ var Button = styled.button(_templateObject, function (_ref) {
   var variantCSS = '';
   switch (variant) {
     case 'outline':
-      variantCSS = '\n          border-color: ' + colors.base + ';\n          color: ' + colors.base + ';\n        ';
+      variantCSS = '\n          border-color: ' + colors.base + ';\n          background-color: transparent;\n          color: ' + colors.base + ';\n        ';
       break;
     case 'subtle':
-      variantCSS = '\n          border-color: \'transparent\';\n          color: ' + colors.base + ';\n\n          &:hover {\n            box-shadow: none;\n          }\n        ';
+      variantCSS = '\n          border-color: transparent;\n          background-color: transparent;\n          color: ' + colors.base + ';\n\n          &:hover {\n            box-shadow: none;\n          }\n        ';
       break;
     case 'full':
     default:
-      variantCSS = '\n          border-color: ' + colors.base + ';\n          background-color: ' + colors.base + ';\n          color: ' + theme.colors.white + ';\n        ';
+      variantCSS = '\n          border-color: ' + colors.base + ';\n          background-color: ' + colors.base + ';\n          color: ' + (context === 'whiteout' ? theme.colors.primary.base : theme.colors.white) + ';\n        ';
       break;
   }
   return variantCSS;
@@ -69,7 +69,7 @@ Button.propTypes = _extends({
 }, systemPropTypes.buttonStyle, systemPropTypes.display, systemPropTypes.space, systemPropTypes.width, systemPropTypes.flex, systemPropTypes.flexGrow, systemPropTypes.flexShrink, systemPropTypes.flexBasis, systemPropTypes.justifySelf, systemPropTypes.alignSelf, systemPropTypes.order, {
   size: propTypes.oneOf(['small', 'base', 'large']),
   variant: propTypes.oneOf(['full', 'outline', 'subtle']),
-  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'danger'])
+  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'danger', 'whiteout'])
 });
 
 Button.defaultProps = {
