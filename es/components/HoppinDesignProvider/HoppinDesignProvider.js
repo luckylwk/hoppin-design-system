@@ -2,8 +2,8 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  html,\n  body,\n  * {\n 
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, { useContext } from 'react';
+import { ThemeProvider, ThemeContext } from 'styled-components';
 import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
@@ -16,19 +16,24 @@ var GlobalStyle = createGlobalStyle(_templateObject, tokens.fonts.secondary, fun
 
 var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
   var children = _ref2.children,
-      mode = _ref2.mode,
+      context = _ref2.context,
       theme = _ref2.theme;
 
-  console.log(theme, tokens);
+  // Get theme from the react context.
+  // This is used when we use nested HoppinDesignProviders,
+  // it will inherit the tokens/theme form it's parent, no need to pass in a new theme, just set the context.
+  var themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
-  var tokensWithOverrides = merge({}, tokens, theme);
+  var tokensWithOverrides = merge({}, tokens, themeContext, theme);
   // depending on mode, set the primary colors
-  var tokensWithMode = merge({}, tokens, {
-    colors: get(tokensWithOverrides.colors.modes, mode, tokensWithOverrides.colors)
+  var tokensWithContext = merge({}, tokensWithOverrides, {
+    colors: get(tokensWithOverrides.colors.contexts, context, tokensWithOverrides.colors)
   });
+
+  console.log('merged tokensWithContext', tokensWithContext);
   return React.createElement(
     ThemeProvider,
-    { theme: tokensWithMode },
+    { theme: tokensWithContext },
     React.createElement(
       React.Fragment,
       null,

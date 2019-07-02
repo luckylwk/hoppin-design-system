@@ -12,7 +12,7 @@ import { Button } from 'components/Button';
 
 The HoppinDesignProvider should wrap the main App component, it provides the theme to all the siblings.
 
-Make sure to set `mode='host'` or `mode='hopper'` in the to set primary colors, it defaults to `mode='hopper'`.
+Make sure to set `context='host'` or `context='hopper'` in the to set primary colors, it defaults to `context='hopper'`.
 
 - `host` => primary is host pink
 - `hopper` => primary is hopper blue
@@ -27,13 +27,13 @@ Make sure to set `mode='host'` or `mode='hopper'` in the to set primary colors, 
   </HoppinDesignProvider>
 
 <br/>
-<HoppinDesignProvider mode="hopper">
+<HoppinDesignProvider context="hopper">
   <Button variant="full" context="primary">
     Primary Button
   </Button>
 </HoppinDesignProvider>
 <br/>
-  <HoppinDesignProvider mode="host">
+  <HoppinDesignProvider context="host">
     <Button variant="full" context="primary">Primary Button</Button>
   </HoppinDesignProvider>
 </Playground>
