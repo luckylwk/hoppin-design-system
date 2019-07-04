@@ -1,5 +1,5 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, { useContext } from 'react';
+import { ThemeProvider, ThemeContext } from 'styled-components';
 import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
@@ -45,20 +45,25 @@ const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
 `;
 
-const HoppinDesignProvider = ({ children, mode, theme }) => {
-  console.log(theme, tokens);
+const HoppinDesignProvider = ({ children, context, theme }) => {
+  // Get theme from the react context.
+  // This is used when we use nested HoppinDesignProviders,
+  // it will inherit the tokens/theme form it's parent, no need to pass in a new theme, just set the context.
+  const themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
-  const tokensWithOverrides = merge({}, tokens, theme);
+  const tokensWithOverrides = merge({}, tokens, themeContext, theme);
   // depending on mode, set the primary colors
-  const tokensWithMode = merge({}, tokens, {
+  const tokensWithContext = merge({}, tokensWithOverrides, {
     colors: get(
-      tokensWithOverrides.colors.modes,
-      mode,
+      tokensWithOverrides.colors.contexts,
+      context,
       tokensWithOverrides.colors
     ),
   });
+
+  console.log('merged tokensWithContext', tokensWithContext);
   return (
-    <ThemeProvider theme={tokensWithMode}>
+    <ThemeProvider theme={tokensWithContext}>
       <React.Fragment>
         <GlobalStyle />
         {children}

@@ -26,9 +26,37 @@ const headingStyles = variant({
 });
 
 const Heading = styled('h2')`
+  /* use styled-system variants defined in tokens/typography */
   ${headingStyles}
-  ${space}
+  /* get color from theme to get dymanic mode colors (host vs hopper)*/
+  ${({ theme, as }) => {
+    let colorCSS = '';
+    switch (as) {
+      case 'h1':
+        colorCSS = `color: ${theme.colors.primary.base};`;
+        break;
+      case 'h2':
+        colorCSS = `color: ${theme.colors.primary.darker};`;
+        break;
+      case 'h3':
+        colorCSS = `color: ${theme.colors.neutrals.darker};`;
+        break;
+      case 'h4':
+        colorCSS = `color: ${theme.colors.neutrals.darker};`;
+        break;
+      case 'h5':
+        colorCSS = `color: ${theme.colors.neutrals.dark};`;
+        break;
+      case 'h6':
+        colorCSS = `color: ${theme.colors.neutrals.dark};`;
+        break;
+    }
+    return colorCSS;
+  }}
+  /* allow color override with props */
   ${color}
+  /* other styled-system props */
+  ${space}
   ${flex}
   ${flexGrow}
   ${flexShrink}

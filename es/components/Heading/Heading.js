@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n'], ['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n'], ['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -20,7 +20,33 @@ var headingStyles = variant({
   prop: 'as'
 });
 
-var Heading = styled('h2')(_templateObject, headingStyles, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
+var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {
+  var theme = _ref.theme,
+      as = _ref.as;
+
+  var colorCSS = '';
+  switch (as) {
+    case 'h1':
+      colorCSS = 'color: ' + theme.colors.primary.base + ';';
+      break;
+    case 'h2':
+      colorCSS = 'color: ' + theme.colors.primary.darker + ';';
+      break;
+    case 'h3':
+      colorCSS = 'color: ' + theme.colors.neutrals.darker + ';';
+      break;
+    case 'h4':
+      colorCSS = 'color: ' + theme.colors.neutrals.darker + ';';
+      break;
+    case 'h5':
+      colorCSS = 'color: ' + theme.colors.neutrals.dark + ';';
+      break;
+    case 'h6':
+      colorCSS = 'color: ' + theme.colors.neutrals.dark + ';';
+      break;
+  }
+  return colorCSS;
+}, color, space, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
 
 Heading.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order);
 

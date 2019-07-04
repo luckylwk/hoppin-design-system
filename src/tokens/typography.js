@@ -43,11 +43,11 @@ const fontWeights = {
   bold: 600,
 };
 
+// headings style attributes, all but color, since color is dependent on host/hopper context
 const headings = {
   h1: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h1,
-    color: colors.primary.base,
     letterSpacing: '-2px',
     lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold,
@@ -57,32 +57,27 @@ const headings = {
   h2: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h2,
-    color: colors.primary.darker,
     letterSpacing: '-1px',
     fontWeight: fontWeights.bold,
   },
   h3: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h3,
-    color: colors.neutrals.darker,
     fontWeight: fontWeights.bold,
   },
   h4: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h4,
-    color: colors.neutrals.darker,
     fontWeight: fontWeights.normal,
   },
   h5: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h5,
-    color: colors.neutrals.dark,
     fontWeight: fontWeights.bold,
   },
   h6: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h6,
-    color: colors.neutrals.dark,
     textTransform: 'uppercase',
     fontWeight: fontWeights.bold,
   },

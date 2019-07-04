@@ -69,12 +69,14 @@ const Button = styled.button`
       case 'outline':
         variantCSS = `
           border-color: ${colors.base};
+          background-color: transparent;
           color: ${colors.base};
         `;
         break;
       case 'subtle':
         variantCSS = `
-          border-color: 'transparent';
+          border-color: transparent;
+          background-color: transparent;
           color: ${colors.base};
 
           &:hover {
@@ -87,7 +89,11 @@ const Button = styled.button`
         variantCSS = `
           border-color: ${colors.base};
           background-color: ${colors.base};
-          color: ${theme.colors.white};
+          color: ${
+            context === 'whiteout'
+              ? theme.colors.primary.base
+              : theme.colors.white
+          };
         `;
         break;
     }
@@ -141,6 +147,7 @@ Button.propTypes = {
     'hopper',
     'host',
     'danger',
+    'whiteout',
   ]),
 };
 
