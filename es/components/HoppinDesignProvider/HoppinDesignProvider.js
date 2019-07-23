@@ -30,7 +30,6 @@ var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
     colors: get(tokensWithOverrides.colors.contexts, context, tokensWithOverrides.colors)
   });
 
-  console.log('merged tokensWithContext', tokensWithContext);
   return React.createElement(
     ThemeProvider,
     { theme: tokensWithContext },

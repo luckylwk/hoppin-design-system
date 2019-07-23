@@ -13,7 +13,10 @@ function Timeline(_ref) {
       nextLabel = _ref.nextLabel,
       hideStepImageOnDesktop = _ref.hideStepImageOnDesktop,
       onStepChange = _ref.onStepChange,
-      rest = _objectWithoutProperties(_ref, ['steps', 'nextLabel', 'hideStepImageOnDesktop', 'onStepChange']);
+      bulletSize = _ref.bulletSize,
+      showTrack = _ref.showTrack,
+      interactive = _ref.interactive,
+      rest = _objectWithoutProperties(_ref, ['steps', 'nextLabel', 'hideStepImageOnDesktop', 'onStepChange', 'bulletSize', 'showTrack', 'interactive']);
 
   var _useState = useState(0),
       activeStep = _useState[0],
@@ -41,7 +44,10 @@ function Timeline(_ref) {
         isLast: index === steps.length - 1,
         goToStep: goToStep,
         nextLabel: nextLabel,
-        hideStepImageOnDesktop: hideStepImageOnDesktop
+        hideStepImageOnDesktop: hideStepImageOnDesktop,
+        bulletSize: bulletSize,
+        showTrack: showTrack,
+        interactive: interactive
       }, step));
     })
   );
@@ -60,7 +66,10 @@ Timeline.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 Timeline.defaultProps = {
-  nextLabel: 'Next'
+  nextLabel: 'Next',
+  showTrack: true,
+  bulletSize: 'small',
+  interactive: true
 };
 
 Timeline.displayName = 'Timeline';

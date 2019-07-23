@@ -9,6 +9,9 @@ function Timeline({
   nextLabel,
   hideStepImageOnDesktop,
   onStepChange,
+  bulletSize,
+  showTrack,
+  interactive,
   ...rest
 }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -36,6 +39,9 @@ function Timeline({
           goToStep={goToStep}
           nextLabel={nextLabel}
           hideStepImageOnDesktop={hideStepImageOnDesktop}
+          bulletSize={bulletSize}
+          showTrack={showTrack}
+          interactive={interactive}
           {...step}
         />
       ))}
@@ -62,6 +68,9 @@ Timeline.propTypes = {
 
 Timeline.defaultProps = {
   nextLabel: 'Next',
+  showTrack: true,
+  bulletSize: 'small',
+  interactive: true,
 };
 
 Timeline.displayName = 'Timeline';
