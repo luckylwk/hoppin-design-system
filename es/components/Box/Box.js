@@ -2,15 +2,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 import React from 'react';
 import styled from 'styled-components';
-import { space, border, color, layout, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
+import { space, border, color, layout, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, size } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 var Box = styled('div')({
   boxSizing: 'border-box',
   minWidth: 0
-}, space, layout, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, color, border, textAlign);
+}, space, layout, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, color, border, textAlign, size);
 
-Box.propTypes = _extends({}, propTypes.space, propTypes.layout, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order, propTypes.color, propTypes.border, propTypes.textAlign);
+Box.propTypes = _extends({}, propTypes.space, propTypes.layout, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order, propTypes.color, propTypes.border, propTypes.textAlign, propTypes.size);
 
 Box.defaultProps = {
   display: 'block',
