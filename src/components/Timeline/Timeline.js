@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Flex } from '../Flex';
@@ -12,6 +12,7 @@ function Timeline({
   bulletSize,
   showTrack,
   interactive,
+  initAtStep,
   ...rest
 }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -20,6 +21,12 @@ function Timeline({
     setActiveStep(index);
     onStepChange && onStepChange(steps[index]);
   };
+
+  useEffect(() => {
+    if (initAtStep !== undefined && parseInt(initAtStep) !== 'NaN') {
+      setActiveStep(parseInt(initAtStep));
+    }
+  });
   return (
     <Flex
       width="100%"

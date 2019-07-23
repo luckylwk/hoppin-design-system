@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Flex } from '../Flex';
@@ -16,7 +16,8 @@ function Timeline(_ref) {
       bulletSize = _ref.bulletSize,
       showTrack = _ref.showTrack,
       interactive = _ref.interactive,
-      rest = _objectWithoutProperties(_ref, ['steps', 'nextLabel', 'hideStepImageOnDesktop', 'onStepChange', 'bulletSize', 'showTrack', 'interactive']);
+      initAtStep = _ref.initAtStep,
+      rest = _objectWithoutProperties(_ref, ['steps', 'nextLabel', 'hideStepImageOnDesktop', 'onStepChange', 'bulletSize', 'showTrack', 'interactive', 'initAtStep']);
 
   var _useState = useState(0),
       activeStep = _useState[0],
@@ -26,6 +27,12 @@ function Timeline(_ref) {
     setActiveStep(index);
     onStepChange && onStepChange(steps[index]);
   };
+
+  useEffect(function () {
+    if (initAtStep !== undefined && parseInt(initAtStep) !== 'NaN') {
+      setActiveStep(parseInt(initAtStep));
+    }
+  });
   return React.createElement(
     Flex,
     _extends({

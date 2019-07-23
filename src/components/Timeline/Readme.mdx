@@ -332,3 +332,47 @@ The inactive step headings inherit the color from the parant components. Set col
 }}
 
 </Playground>
+
+## Initialise with specific active step
+
+To define which step is active before the user starts to click on things, set `initAtStep` to the array index of the step you want to jump to.
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        bullet: '1',
+        title: "How to be a great host",
+        description:
+          "Learn the basics of being the host of a shadowing experience."
+      },
+      {
+        bullet: '2',
+        title: "Build your profile",
+        description:
+          "Build your profile by giving us a information about you and your organization."
+      },
+      {
+        bullet: '3',
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action!"
+      }
+    ];
+
+    return (
+    <Container bg='neutrals.lightest' color='neutrals.light'>
+      <Timeline
+        steps={timelineMockData}
+        nextLabel={`There's more...`}
+        bulletSize='large'
+        showTrack={false}
+        interactive={false}
+        initAtStep={2}
+      />
+    </Container>
+    );
+
+}}
+
+</Playground>
