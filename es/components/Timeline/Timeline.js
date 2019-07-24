@@ -33,6 +33,7 @@ function Timeline(_ref) {
       setActiveStep(parseInt(initAtStep));
     }
   });
+
   return React.createElement(
     Flex,
     _extends({
@@ -69,7 +70,10 @@ Timeline.propTypes = process.env.NODE_ENV !== "production" ? {
       desktop: PropTypes.string
     }), PropTypes.string])
   })),
-  nextLabel: PropTypes.string
+  nextLabel: PropTypes.string,
+  showTrack: PropTypes.bool,
+  bulletSize: PropTypes.string,
+  interactive: PropTypes.bool
 } : {};
 
 Timeline.defaultProps = {

@@ -27,6 +27,7 @@ function Timeline({
       setActiveStep(parseInt(initAtStep));
     }
   });
+
   return (
     <Flex
       width="100%"
@@ -71,6 +72,9 @@ Timeline.propTypes = {
     })
   ),
   nextLabel: PropTypes.string,
+  showTrack: PropTypes.bool,
+  bulletSize: PropTypes.string,
+  interactive: PropTypes.bool,
 };
 
 Timeline.defaultProps = {
