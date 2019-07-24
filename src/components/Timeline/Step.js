@@ -22,11 +22,12 @@ MobileImage.displayName = 'MobileImage';
 
 const StepContainer = styled(Flex)`
   position: relative;
-  margin-left: 2.5em;
   flex-grow: 1;
   flex-direction: column;
   max-width: 36em;
   margin-bottom: ${props => (props.isLast ? 0 : props.theme.space[3])};
+  margin-left: calc(2 * ${props =>
+    props.theme.space[props.bulletSize]} + .75rem);
 
   ${props => props.isActive && `flex-grow: 2;`}
   ${props => props.isLast && `flex-grow: 0;`}
