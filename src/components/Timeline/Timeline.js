@@ -30,8 +30,6 @@ function Timeline({
 
   return (
     <Flex
-      width="100%"
-      flex="1 0 100%"
       flexDirection="column"
       alignItems="flex-start"
       justifyItems="space-around"
@@ -82,6 +80,8 @@ Timeline.defaultProps = {
   showTrack: true,
   bulletSize: 'small',
   interactive: true,
+  width: '1',
+  flexGrow: 1,
 };
 
 Timeline.displayName = 'Timeline';

@@ -37,8 +37,6 @@ function Timeline(_ref) {
   return React.createElement(
     Flex,
     _extends({
-      width: '100%',
-      flex: '1 0 100%',
       flexDirection: 'column',
       alignItems: 'flex-start',
       justifyItems: 'space-around',
@@ -80,7 +78,9 @@ Timeline.defaultProps = {
   nextLabel: 'Next',
   showTrack: true,
   bulletSize: 'small',
-  interactive: true
+  interactive: true,
+  width: '1',
+  flexGrow: 1
 };
 
 Timeline.displayName = 'Timeline';
