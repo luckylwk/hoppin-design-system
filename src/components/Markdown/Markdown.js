@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { Link } from '../Link';
-import { MarkdownImage } from './index';
+import MarkdownImage from './MarkdownImage';
 
 /*
  * Use the unified ecosystem to parse Markdown
@@ -38,8 +38,7 @@ var processor = unified()
       h4: H4,
       h5: H5,
       h6: H6,
-      // somehow rehype2react gets confused if we pass in MarkdownImage directly. Lost an hour trying to debug it.
-      img: props => <MarkdownImage {...props} />,
+      img: MarkdownImage,
     },
   });
 

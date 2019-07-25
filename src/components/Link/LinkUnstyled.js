@@ -17,10 +17,10 @@ import {
 import systemPropTypes from '@styled-system/prop-types';
 
 /**
- * Core UnstyledLink component.
+ * Core LinkUnstyled component.
  */
 
-const UnstyledLink = styled.a`
+const LinkUnstyled = styled.a`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 1em;
   cursor: pointer;
@@ -41,7 +41,7 @@ const UnstyledLink = styled.a`
   ${order}
 `;
 
-UnstyledLink.propTypes = {
+LinkUnstyled.propTypes = {
   disabled: PropTypes.bool,
   ...systemPropTypes.display,
   ...systemPropTypes.space,
@@ -55,11 +55,11 @@ UnstyledLink.propTypes = {
   ...systemPropTypes.order,
 };
 
-UnstyledLink.defaultProps = {
+LinkUnstyled.defaultProps = {
   display: 'inline-block',
   color: 'inherit',
 };
 
-UnstyledLink.displayName = 'UnstyledLink';
+LinkUnstyled.displayName = 'LinkUnstyled';
 
-export default UnstyledLink;
+export default LinkUnstyled;

@@ -22,7 +22,7 @@ import propTypes from 'prop-types';
  * Adds link styling, use RoutedLink for internal links that get picked up by react-router
  */
 
-const Link = styled.a`
+const LinkStyled = styled.a`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 1em;
   cursor: pointer;
@@ -69,7 +69,7 @@ const Link = styled.a`
   ${order}
 `;
 
-Link.propTypes = {
+LinkStyled.propTypes = {
   disabled: PropTypes.bool,
   ...systemPropTypes.buttonStyle,
   ...systemPropTypes.display,
@@ -93,11 +93,11 @@ Link.propTypes = {
   ]),
 };
 
-Link.defaultProps = {
+LinkStyled.defaultProps = {
   disabled: false,
   display: 'inline-block',
 };
 
-Link.displayName = 'Link';
+LinkStyled.displayName = 'LinkStyled';
 
-export default Link;
+export default LinkStyled;

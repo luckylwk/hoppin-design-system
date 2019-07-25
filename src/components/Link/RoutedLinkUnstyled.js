@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { ALink } from './ALink';
+import LinkUnstyled from './LinkUnstyled';
 
-class RoutedLink extends Component {
+class RoutedLinkUnstyled extends Component {
   static contextTypes = {
     router: PropTypes.shape({}).isRequired,
   };
@@ -35,7 +35,7 @@ class RoutedLink extends Component {
   render() {
     const { href, to, method, onClick, ...rest } = this.props;
     return (
-      <ALink
+      <LinkUnstyled
         {...rest}
         href={to || href}
         disabled={!to && !onClick}
@@ -45,4 +45,4 @@ class RoutedLink extends Component {
   }
 }
 
-export default RoutedLink;
+export default RoutedLinkUnstyled;

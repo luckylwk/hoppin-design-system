@@ -7,56 +7,73 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Paragraph } from '../Paragraph';
 import { Box } from '../Box';
-import { Link, UnstyledALink } from './';
+import { Link, LinkStyled, LinkUnstyled } from './';
 
 # Link
 
-`ALink` and `UnstyledALink` are rendering as `a` tags.
+## Core Components
 
-`ALink` has an underline, where as unstyled link will inherit the styles from it's parent, but also accepts basic styled-system props.
+There are four basic link components:
 
-To trigger navigation within the app, use `RoutedLink` or `UnstyledRoutedLink`.
+`LinkStyled` and `LinkUnstyled` are rendering as standard `a` tags.
+`RoutedLinkStyled` and `RoutedLinkUnstyled` are rendering as `react-router-dom/Link`
 
-`RoutedLink` needs `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app through the react context API.
-This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
+To trigger navigation within the app, use a `RoutedLink`.
 
-All demos here use the un-routed versions because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+`Styled` links have an underline, where as unstyled links will inherit the styles from it's parent, but also accepts basic styled-system props.
+
+> `RoutedLink` and `RoutedLinkUnstyled` need `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app through the react context API.
+> This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
+
+All demos here use the un-routed versions because react-router-dom `<LinkUnstyled/>` can't be rendendered outside a `<Router>` component.
 
 > Routed (internal) Links use react-router-dom-style `to` props, rather than HTML style href.<br/>
-> Unrouted (external) ALinks use `href`, they are simple `a` tags.
+> Unrouted (external) Links use `href`, they are simple `a` tags.
+> All other props are the same between routed and unrouted links.
 
-### Note
+## Magic Links
 
-If using the `<Link>` component internally, set the `to` prop:
+The above core components are great for readability of the code and to make explicit decisions, but can be difficult to work with when you're rendering dynamic links.
+the `<Link />` component is a convenience-wrapper around the four components above and will automagically render the appropriate link.
 
-```
-<Link to='/my/app/route'>
-```
+`<Link to='/my/app/route'>` will render as `<RoutedLinkStyled to='/my/app/route'>`
 
-If using the `<Link>` component externalls with `as="a"`, set the `href` and `target` props:
+`<Link unstyled={true} to='/my/app/route'>` will render as `<RoutedLinkUnstyled to='/my/app/route'>`
 
-```
-<Link href='https://gohoppin.com' target="_blank">
-```
+`<Link to='http://example.com/'>` will render as `<LinkStyled href='http://example.com/'>`
+
+`<Link unstyled={true} to='http://example.com/'>` will render as `<LinkStyled href='http://example.com/'>`
+
+<Playground>
+  <Link to="http://example.com/" target="_blank">
+    Magic Styled Link
+  </Link>
+  <br />
+  <Link unstyled={true} to="http://example.com/" target="_blank">
+    Magic Unstyled Link
+  </Link>
+</Playground>
 
 <Props of={Link} />
 
-## Standard Link (Routed and Unrouted)
+## Styled Link (Routed and Unrouted)
 
 This is your standard link. It can have the same `context` prop as [Button](/components/Button) components.
 
-<Playground>
-  <Link as="a">Click me</Link>
+<Props of={LinkUnstyled} />
 
-  <Link context="hopper">
+<Playground>
+  <LinkStyled>Click me</LinkStyled>
+
+  <LinkStyled context="hopper">
     Hopper
-  </Link>
-  <Link context="host">
+  </LinkStyled>
+  <LinkStyled context="host">
     Host
-  </Link>
-  <Link context="danger">
+  </LinkStyled>
+  <LinkStyled context="danger">
     Danger
-  </Link>
+  </LinkStyled>
 </Playground>
 
 ## Links in context
@@ -69,9 +86,9 @@ Link are displayed as `inline-block` by default, so they nest in to any body cop
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <Link as="a">Click me</Link> vapes stumptown
-    swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
-    Banjo VHS occupy marfa roof party slow-carb.
+    brooklyn bushwick distillery. <LinkStyled>Click me</LinkStyled> vapes
+    stumptown swag glossier small batch gastropub. Taxidermy 90's everyday carry
+    kombucha. Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 </Playground>
 
@@ -79,27 +96,29 @@ Link are displayed as `inline-block` by default, so they nest in to any body cop
 
 Unstyled Links are identical with the normal link components, but remove any stuyling. No underline, no hover state.
 
+<Props of={LinkUnstyled} />
+
 <Playground>
   <Paragraph>
     Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <UnstyledALink href='https://gohoppin.com' target="_blank">Find me, click me</UnstyledALink> vapes stumptown
+    brooklyn bushwick distillery. <LinkUnstyled href='https://gohoppin.com' target="_blank">Find me, click me</LinkUnstyled> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
   <Box padding='large' bg='neutrals.light'>
-  <UnstyledALink href='https://gohoppin.com' target="_blank">
+  <LinkUnstyled href='https://gohoppin.com' target="_blank">
     <Box margin='large' padding='large' bg='white'>
       Clickable Box
     </Box>
-    </UnstyledALink>
+    </LinkUnstyled>
   </Box>
 </Playground>
 
-UnstyledALink takes a `color` prop.
+LinkUnstyled takes a `color` prop.
 It also accepts basic `display` and `flexbox (child)` props and can be used like a `Box` that links to something.
 
 <Playground>
@@ -108,14 +127,14 @@ It also accepts basic `display` and `flexbox (child)` props and can be used like
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <UnstyledALink href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</UnstyledALink> vapes stumptown
+    brooklyn bushwick distillery. <LinkUnstyled href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</LinkUnstyled> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
   <Box padding='large' bg='neutrals.light'>
-    <UnstyledALink href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
+    <LinkUnstyled href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
       Clickable Box
-    </UnstyledALink>
+    </LinkUnstyled>
   </Box>
 </Playground>
