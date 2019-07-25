@@ -24,19 +24,20 @@ containerWidths.normal = containerWidths.base;
 
 var radii = [0, space.xsmall, space.small, space.base, space.large, '100%'];
 
-radii.none = radii[1];
+radii.none = radii[0];
 radii.xsmall = radii[1];
 radii.small = radii[2];
 radii.medium = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
-var zIndexes = [0, 3, 5, 8, 13];
+var zIndexes = [0, 3, 5, 8, 13, 21];
 
-zIndexes.farBack = zIndexes[-3];
-zIndexes.back = zIndexes[-1];
+zIndexes.farBack = -zIndexes[3];
+zIndexes.back = -zIndexes[1];
 zIndexes.base = zIndexes[0];
 zIndexes.front = zIndexes[3];
-zIndexes.overlay = zIndexes[4];
+zIndexes.nav = zIndexes[4];
+zIndexes.overlay = zIndexes[5];
 
 export { space, containerWidths, radii, zIndexes };

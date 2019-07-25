@@ -11,6 +11,7 @@ export { Paragraph } from './components/Paragraph';
 export { Text } from './components/Text';
 export { Caption } from './components/Caption';
 export { Tag } from './components/Tag';
+export { Markdown } from './components/Markdown';
 
 export { Timeline } from './components/Timeline';
 export { Card } from './components/Card';

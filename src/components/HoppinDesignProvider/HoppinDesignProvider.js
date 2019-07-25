@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.secondary};
     color: ${({ theme }) => theme.colors.neutrals.darker};
+    text-align: left;
    }
 
   * {
@@ -61,7 +62,6 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
     ),
   });
 
-  console.log('merged tokensWithContext', tokensWithContext);
   return (
     <ThemeProvider theme={tokensWithContext}>
       <React.Fragment>

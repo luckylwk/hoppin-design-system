@@ -11,6 +11,9 @@ import {
   justifySelf,
   alignSelf,
   order,
+  lineHeight,
+  letterSpacing,
+  textAlign,
 } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
@@ -64,6 +67,9 @@ const Heading = styled('h2')`
   ${justifySelf}
   ${alignSelf}
   ${order}
+  ${lineHeight}
+  ${letterSpacing}
+  ${textAlign}
 
   &:first-child {
     margin-top: 0;
@@ -87,6 +93,8 @@ Heading.defaultProps = {
   as: 'h2',
   marginBottom: 'base',
   marginTop: 'xlarge',
+  lineHeight: 'base',
+  textAlign: 'inherit',
 };
 
 Heading.displayName = 'Heading';
