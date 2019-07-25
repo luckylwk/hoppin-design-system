@@ -7,15 +7,23 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Paragraph } from '../Paragraph';
 import { Box } from '../Box';
-import { Link, LinkUnstyled } from './';
+import { Link, UnstyledALink } from './';
 
 # Link
 
-Link needs `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
+`ALink` and `UnstyledALink` are rendering as `a` tags.
+
+`ALink` has an underline, where as unstyled link will inherit the styles from it's parent, but also accepts basic styled-system props.
+
+To trigger navigation within the app, use `RoutedLink` or `UnstyledRoutedLink`.
+
+`RoutedLink` needs `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app through the react context API.
 This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
 
-Use the `as` prop to replace the react-router-dom `<Link/>` with a standard `<a/>` tag for external links.
-All demos here use`as="a"` because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+All demos here use the un-routed versions because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+
+> Routed (internal) Links use react-router-dom-style `to` props, rather than HTML style href.<br/>
+> Unrouted (external) ALinks use `href`, they are simple `a` tags.
 
 ### Note
 
@@ -28,25 +36,25 @@ If using the `<Link>` component internally, set the `to` prop:
 If using the `<Link>` component externalls with `as="a"`, set the `href` and `target` props:
 
 ```
-<Link as="a" href='https://gohoppin.com' target="_blank">
+<Link href='https://gohoppin.com' target="_blank">
 ```
 
 <Props of={Link} />
 
-## Standard Link
+## Standard Link (Routed and Unrouted)
 
 This is your standard link. It can have the same `context` prop as [Button](/components/Button) components.
 
 <Playground>
   <Link as="a">Click me</Link>
 
-  <Link as="a" context="hopper">
+  <Link context="hopper">
     Hopper
   </Link>
-  <Link as="a" context="host">
+  <Link context="host">
     Host
   </Link>
-  <Link as="a" context="danger">
+  <Link context="danger">
     Danger
   </Link>
 </Playground>
@@ -77,21 +85,21 @@ Unstyled Links are identical with the normal link components, but remove any stu
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">Find me, click me</LinkUnstyled> vapes stumptown
+    brooklyn bushwick distillery. <UnstyledALink href='https://gohoppin.com' target="_blank">Find me, click me</UnstyledALink> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
   <Box padding='large' bg='neutrals.light'>
-  <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">
+  <UnstyledALink href='https://gohoppin.com' target="_blank">
     <Box margin='large' padding='large' bg='white'>
       Clickable Box
     </Box>
-    </LinkUnstyled>
+    </UnstyledALink>
   </Box>
 </Playground>
 
-LinkUnstyled takes a `color` prop.
+UnstyledALink takes a `color` prop.
 It also accepts basic `display` and `flexbox (child)` props and can be used like a `Box` that links to something.
 
 <Playground>
@@ -100,14 +108,14 @@ It also accepts basic `display` and `flexbox (child)` props and can be used like
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</LinkUnstyled> vapes stumptown
+    brooklyn bushwick distillery. <UnstyledALink href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</UnstyledALink> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
   <Box padding='large' bg='neutrals.light'>
-    <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
+    <UnstyledALink href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
       Clickable Box
-    </LinkUnstyled>
+    </UnstyledALink>
   </Box>
 </Playground>
