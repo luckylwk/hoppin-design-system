@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   space,
+  position,
   color,
   textAlign,
   flex,
@@ -20,6 +21,7 @@ const Paragraph = styled('p')`
   line-height: ${({ theme }) => theme.lineHeights.body || '1.4em'};
   ${textAlign}
   ${space}
+  ${position}
   ${color}
   ${flex}
   ${flexGrow}
@@ -32,6 +34,7 @@ const Paragraph = styled('p')`
 
 Paragraph.propTypes = {
   ...propTypes.space,
+  ...propTypes.position,
   ...propTypes.color,
   ...propTypes.textAlign,
   ...propTypes.flex,
@@ -47,7 +50,7 @@ Paragraph.defaultProps = {
   marginTop: 0,
   marginBottom: 3,
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
-  textAlign: 'left',
+  textAlign: 'inherit',
 };
 
 Paragraph.displayName = 'Paragraph';

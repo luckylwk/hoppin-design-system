@@ -14,6 +14,7 @@ import {
   alignSelf,
   order,
   size,
+  position,
 } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
@@ -34,7 +35,8 @@ const Box = styled('div')(
   color,
   border,
   textAlign,
-  size
+  size,
+  position
 );
 
 Box.propTypes = {
@@ -51,6 +53,7 @@ Box.propTypes = {
   ...propTypes.border,
   ...propTypes.textAlign,
   ...propTypes.size,
+  ...propTypes.position,
 };
 
 Box.defaultProps = {
