@@ -58,7 +58,7 @@ const StepBullet = styled(Flex)`
   z-index: ${props => props.index + 1};
   top: ${props => props.theme.space[2]};
   left: 0;
-  margin-top: calc(-${props => props.theme.space[props.bulletSize]} + .75rem);
+  margin-top: calc(-${props => props.theme.space[props.bulletSize]} + .6rem);
   margin-left: calc(-2 * ${props =>
     props.theme.space[props.bulletSize]} - .75rem);
   width: calc(${props => props.theme.space[props.bulletSize]} * 2);

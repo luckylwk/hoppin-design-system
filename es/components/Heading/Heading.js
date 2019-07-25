@@ -1,12 +1,12 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n'], ['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n'], ['\n  /* use styled-system variants defined in tokens/typography */\n  ', '\n  /* get color from theme to get dymanic mode colors (host vs hopper)*/\n  ', '\n  /* allow color override with props */\n  ', '\n  /* other styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:first-child {\n    margin-top: 0;\n  }\n\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
 import React from 'react';
 import styled from 'styled-components';
-import { variant, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
+import { variant, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, lineHeight, letterSpacing, textAlign } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 // using the variants in styled-system, we can set several css styles
@@ -46,14 +46,16 @@ var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {
       break;
   }
   return colorCSS;
-}, color, space, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
+}, color, space, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, lineHeight, letterSpacing, textAlign);
 
 Heading.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order);
 
 Heading.defaultProps = {
   as: 'h2',
   marginBottom: 'base',
-  marginTop: 'xlarge'
+  marginTop: 'xlarge',
+  lineHeight: 'base',
+  textAlign: 'inherit'
 };
 
 Heading.displayName = 'Heading';
