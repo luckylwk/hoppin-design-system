@@ -4,131 +4,131 @@ name: Get Started
 
 # Get Started
 
-tbd
-
-Things like:
-
-- how to use in your app
-- vocabulary and concepts
-  - tokens
-  - components
-- ...
-
 ## The Hoppin Design System is based on:
 
 - Styled-System for token-based theming
 - Styled-Components for CSS-in-JS (see below)
 
-
 ## TODO / Discussion
 
 - styled-components forward all props to the rendered HTML (using a simple whitelist) resulting in lots of warnings in the console and bad HTML.
-    - should we use emotion instead? 
-    - same API when using emotion/styled https://emotion.sh/docs/styled
-    - extra features with babel plugin: https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion
-        - harder to use with create-react-app, as you need to change babel config.
+  - should we use emotion instead?
+  - same API when using emotion/styled https://emotion.sh/docs/styled
+  - extra features with babel plugin: https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion
+    - harder to use with create-react-app, as you need to change babel config.
 - do we want to use something like [Reakit](https://reakit.io/) for accessibility?
 
+## Philosophy
 
-Philosophy
-
-*A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.*
+_A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications._
 
 Goal to be as useful as [Shopify Polaris](https://polaris.shopify.com/components/actions/button#navigation) or [Atlasian AtlasKit](https://atlaskit.atlassian.com/packages/core/button):
 
 - **simple onboarding** (intro, get started, philosophy, tooling, ...)
-   
+
 - **tokens** (variables)
-    - token names reflect intention/meaning, not it's visual style (~min 10 in video)
-        - `hoppinTurquoise` => `brandPrimary`
-        - `red` => `danger`
+
+  - token names reflect intention/meaning, not it's visual style (~min 10 in video)
+    - `hoppinTurquoise` => `brandPrimary`
+    - `red` => `danger`
 
 - **components** with docs on props, usage, best practices
-    - When you need a new component, build it locally in the app first, test it, and if it works well, push it upstream into the design-system.
-    - Flat Component Hierarchies! [https://varun.ca/flattening-deep-hierarchies-of-components/](https://varun.ca/flattening-deep-hierarchies-of-compo)
+  - When you need a new component, build it locally in the app first, test it, and if it works well, push it upstream into the design-system.
+  - Flat Component Hierarchies! [https://varun.ca/flattening-deep-hierarchies-of-components/](https://varun.ca/flattening-deep-hierarchies-of-compo)
 
 Guiding principles for components:
 
 - **Keep layout separate**
-    - Design components to only care about itself, not the layout. So say a box should always fill it's container with `flex-grow: 1`
+
+  - Design components to only care about itself, not the layout. So say a box should always fill it's container with `flex-grow: 1`
 
 - **Respond to context**
-    - e.g. colors not hardcoded, currentColor
-    - for us: don't use pink, turqoise, etc. use brandPrimary, brandAccent, etc.
+
+  - e.g. colors not hardcoded, currentColor
+  - for us: don't use pink, turqoise, etc. use brandPrimary, brandAccent, etc.
 
 - **Document Assumptions**
-    - for us: use PropTypes or TypeScript, add inline doc comments explaining props.
+  - for us: use PropTypes or TypeScript, add inline doc comments explaining props.
 
 ## Setup
+
 - Independent Repo, later npm module
 - All apps depend on design-system module
 - co-locate component and examples?
-    - folder structure like:
-        - `components`
-            - `Button`
-                - `index.js` - all the exports
-                - `Button.js` - component 
-                - `Button.md` or `readme.md` (examples for design-system)
-                    
-    - inline [jsdoc](https://jsdoc.app/) comments for props, etc
+
+  - folder structure like:
+
+    - `components`
+      - `Button`
+        - `index.js` - all the exports
+        - `Button.js` - component
+        - `Button.md` or `readme.md` (examples for design-system)
+
+  - inline [jsdoc](https://jsdoc.app/) comments for props, etc
 
 ## Reading List
 
 Some interesting inputs came form:
 
 - [Dominic McPhee (Shopify)- Building a Design System in React (Talk at NordicJS 2018)](https://www.youtube.com/watch?v=XWetuOvNSk0)
-    - Both Philisophy and implemention in react (with fallback to CSS & HTML!)
-    - Intro to Polaris and it's used [here](https://polaris.shopify.com/components/get-started)
-    - When you need a new component, build it locally in the app first, test it, and if it works well, push it upstream into the design-system.
-    - token names reflect intention/meaning, not it's visual style (~min 10 in video)
-        - `hoppinTurquoise` => `brandPrimary`
-        - `red` => `danger`
+
+  - Both Philisophy and implemention in react (with fallback to CSS & HTML!)
+  - Intro to Polaris and it's used [here](https://polaris.shopify.com/components/get-started)
+  - When you need a new component, build it locally in the app first, test it, and if it works well, push it upstream into the design-system.
+  - token names reflect intention/meaning, not it's visual style (~min 10 in video)
+    - `hoppinTurquoise` => `brandPrimary`
+    - `red` => `danger`
 
 - [Glenn Maddern - The Future of Reusable CSS (Talk at ColdFront16)](https://www.youtube.com/watch?v=XR6eM_5pAb0)
-    - Especially from [minute 17](https://youtu.be/XR6eM_5pAb0?t=1069)
-    - **Keep layout separate**
-        - Design components to only care about itself, not the layout. So say a box should always fill it's container with `flex-grow: 1`
-    
-    - **Respond to context**
-        - e.g. colors not hardcoded, currentColor
-        - for us: don't use pink, turqoise, etc. use brandPrimary, brandAccent, etc.
-    
-    - Document Assumptions
-        - for us: use PropTypes or TypeScript, add inline doc comments explaining props.
-    
-    - Open for modification
-        - for now, fork into local, test, commit to design-system later?
-        - maybe later: [Override Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646) as also used by [Uber Base Web]() and described in [Gergely Nemeth's article on design systems](https://blog.risingstack.com/design-systems-react/)  
-    
-    - Tokens
-        - Sort of invented by Jina Ane
-            - Lead Designer for Salesforce Lightening Design System
-            - [Podcast](https://pca.st/Kdev)
-            - [Slides](https://speakerdeck.com/jina/design-tokens-in-design-systems)
-            - [Theo](https://github.com/salesforce-ux/theo) a library to manage and translate tokens between platforms
-        - For token naming issues, the guys at [system-ui](https://github.com/system-ui/theme-specification) have some good ideas, [discussions]([https://github.com/system-ui/theme-specification/issues)    
+
+  - Especially from [minute 17](https://youtu.be/XR6eM_5pAb0?t=1069)
+  - **Keep layout separate**
+
+    - Design components to only care about itself, not the layout. So say a box should always fill it's container with `flex-grow: 1`
+
+  - **Respond to context**
+
+    - e.g. colors not hardcoded, currentColor
+    - for us: don't use pink, turqoise, etc. use brandPrimary, brandAccent, etc.
+
+  - Document Assumptions
+
+    - for us: use PropTypes or TypeScript, add inline doc comments explaining props.
+
+  - Open for modification
+
+    - for now, fork into local, test, commit to design-system later?
+    - maybe later: [Override Pattern](https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646) as also used by [Uber Base Web]() and described in [Gergely Nemeth's article on design systems](https://blog.risingstack.com/design-systems-react/)
+
+  - Tokens
+    - Sort of invented by Jina Ane
+      - Lead Designer for Salesforce Lightening Design System
+      - [Podcast](https://pca.st/Kdev)
+      - [Slides](https://speakerdeck.com/jina/design-tokens-in-design-systems)
+      - [Theo](https://github.com/salesforce-ux/theo) a library to manage and translate tokens between platforms
+    - For token naming issues, the guys at [system-ui](https://github.com/system-ui/theme-specification) have some good ideas, [discussions]([https://github.com/system-ui/theme-specification/issues)
 
 - **Thinking by Brent Jackson**
-    - [on theming](https://jxnblk.com/blog/iterations-on-a-theme/)
-    - [on styles in react in general](https://jxnblk.com/blog/patterns-for-style-composition-in-react/) which lead to:
+  - [on theming](https://jxnblk.com/blog/iterations-on-a-theme/)
+  - [on styles in react in general](https://jxnblk.com/blog/patterns-for-style-composition-in-react/) which lead to:
 
+* **Styled-System**
 
-- **Styled-System**
-    - **[fantastic article](https://varun.ca/styled-system/) by Varun Vachhar** explaining all the thinking behind it and how it ties together lots of the above thinking.
-    - Alan B Smith from Sendgrid on [Building Better Component Libraries with Styled System](https://medium.com/styled-components/build-better-component-libraries-with-styled-system-4951653d54ee)
-    - note: styled-system calls the object holding all the tokens `theme` other places call it `tokens` or whatnot.
+  - **[fantastic article](https://varun.ca/styled-system/) by Varun Vachhar** explaining all the thinking behind it and how it ties together lots of the above thinking.
+  - Alan B Smith from Sendgrid on [Building Better Component Libraries with Styled System](https://medium.com/styled-components/build-better-component-libraries-with-styled-system-4951653d54ee)
+  - note: styled-system calls the object holding all the tokens `theme` other places call it `tokens` or whatnot.
 
-- [https://www.youtube.com/watch?v=hrbksRbx2Hk&feature=youtu.be&utm_campaign=Design%2BSystems%2BWeekly&utm_medium=web&utm_source=Design_Systems_Weekly_81](https://www.youtube.com/watch?v=hrbksRbx2Hk&feature=youtu.be&utm_campaign=Design%2BSystems%2BWeekly&utm_medium=web&utm_source=Design_Systems_Weekly_81)
-    - Slides: [https://github-ds.now.sh/#3](https://github-ds.now.sh/#3)
-- [https://publication.design.systems/design-systems-are-for-people-a484620b6988](https://publication.design.systems/design-systems-are-for-people-a484620b6988)
-- [https://www.designbetter.co/books](https://www.designbetter.co/books)
-- [https://jxnblk.com/blog/iterations-on-a-theme/](https://jxnblk.com/blog/iterations-on-a-theme/)
-- [https://medium.com/styled-components/component-folder-pattern-ee42df37ec68](https://medium.com/styled-components/component-folder-pattern-ee42df37ec68)
-- Flat Component Hierarchies! [https://varun.ca/flattening-deep-hierarchies-of-components/](https://varun.ca/flattening-deep-hierarchies-of-compo)
-- Chroma.js color helper functions.[https://www.vis4.net/blog/2013/09/mastering-multi-hued-color-scales/](https://www.vis4.net/blog/2013/09/mastering-multi-hued-color-scales/)
-- [https://daneden.me/2018/01/05/subatomic-design-systems/](https://daneden.me/2018/01/05/subatomic-design-systems/)
-- Polaris Design System (Shopify) [https://www.youtube.com/watch?v=XWetuOvNSk0](https://www.youtube.com/watch?v=XWetuOvNSk0)
-- [https://www.freecodecamp.org/news/introducing-the-single-element-pattern-dfbd2c295c5d/](https://www.freecodecamp.org/news/introducing-the-single-element-pattern-dfbd2c295c5d/)
-- [https://www.programmingdesignsystems.com](https://www.programmingdesignsystems.com/)
-- [https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd](https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd) 
-- [https://www.designsystems.com/](https://www.designsystems.com/)
+* [https://www.youtube.com/watch?v=hrbksRbx2Hk&feature=youtu.be&utm_campaign=Design%2BSystems%2BWeekly&utm_medium=web&utm_source=Design_Systems_Weekly_81](https://www.youtube.com/watch?v=hrbksRbx2Hk&feature=youtu.be&utm_campaign=Design%2BSystems%2BWeekly&utm_medium=web&utm_source=Design_Systems_Weekly_81)
+  - Slides: [https://github-ds.now.sh/#3](https://github-ds.now.sh/#3)
+* [https://publication.design.systems/design-systems-are-for-people-a484620b6988](https://publication.design.systems/design-systems-are-for-people-a484620b6988)
+* [https://www.designbetter.co/books](https://www.designbetter.co/books)
+* [https://jxnblk.com/blog/iterations-on-a-theme/](https://jxnblk.com/blog/iterations-on-a-theme/)
+* [https://medium.com/styled-components/component-folder-pattern-ee42df37ec68](https://medium.com/styled-components/component-folder-pattern-ee42df37ec68)
+* Flat Component Hierarchies! [https://varun.ca/flattening-deep-hierarchies-of-components/](https://varun.ca/flattening-deep-hierarchies-of-compo)
+* Chroma.js color helper functions.[https://www.vis4.net/blog/2013/09/mastering-multi-hued-color-scales/](https://www.vis4.net/blog/2013/09/mastering-multi-hued-color-scales/)
+* [https://daneden.me/2018/01/05/subatomic-design-systems/](https://daneden.me/2018/01/05/subatomic-design-systems/)
+* Polaris Design System (Shopify) [https://www.youtube.com/watch?v=XWetuOvNSk0](https://www.youtube.com/watch?v=XWetuOvNSk0)
+* [https://www.freecodecamp.org/news/introducing-the-single-element-pattern-dfbd2c295c5d/](https://www.freecodecamp.org/news/introducing-the-single-element-pattern-dfbd2c295c5d/)
+* [https://www.programmingdesignsystems.com](https://www.programmingdesignsystems.com/)
+* [https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd](https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd)
+* [https://www.designsystems.com/](https://www.designsystems.com/)

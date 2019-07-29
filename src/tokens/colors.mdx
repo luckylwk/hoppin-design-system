@@ -1,0 +1,68 @@
+---
+name: Colors
+route: /tokens/Colors
+menu: Tokens
+---
+
+import Swatches from '../docz-components/Swatches';
+import { Flex } from 'components/Flex';
+import { colors } from './colors';
+
+# Colors
+
+## Primaries
+
+### Contextual Primary colors
+
+Primary colors react to the context that is set in `HoppinDesignProvider`
+Wherever possible use `primary` and set the context in the HoppinDesignProvider that wrappes that part of the app.
+
+<Swatches colors={colors.primary} prefix="primary." />
+
+### Hopper Colors
+
+These colors are assigned to `primary` when `context='hopper'` on the `HoppinDesignProvider`
+
+<Swatches colors={colors.hopper} prefix="hopper." />
+
+### Host Colors
+
+These colors are assigned to `primary` when `context='host'` on the `HoppinDesignProvider`
+
+<Swatches colors={colors.host} prefix="host." />
+
+## Auxiliary colors
+
+These are auxiliary colors, use spairingly. The info palette below is based on `tertiary`.
+
+<Swatches
+  colors={{
+    white: colors.white,
+    black: colors.black,
+    secondary: colors.secondary,
+    tertiary: colors.tertiary,
+  }}
+  prefix=""
+/>
+
+## Neutral colors
+
+Use `neutrals` for body text, backgrounds, etc.
+
+<Swatches colors={colors.neutrals} prefix="neutrals." />
+
+## State Palettes
+
+The following colors are to be used very selectively to highlight a specific state. Errors, warnings, etc.
+
+### Danger
+
+<Swatches colors={colors.danger} prefix="danger." />
+
+### Warning
+
+<Swatches colors={colors.warning} prefix="warning." />
+
+### Info
+
+<Swatches colors={colors.info} prefix="info." />

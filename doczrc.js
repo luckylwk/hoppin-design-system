@@ -12,11 +12,4 @@ export default {
   notUseSpecifiers: true,
   filterComponents: files =>
     files.filter(filepath => /[w-]*.(js|jsx|ts|tsx)$/.test(filepath)),
-
-  // modifyBundlerConfig: config => {
-  //   /* do your magic here */
-  // },
-  // plugins: [
-  //   myCoolPlugin()
-  // ]
 };
