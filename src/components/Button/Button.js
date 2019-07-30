@@ -116,7 +116,7 @@ const Button = styled.button`
   ${buttonSize}
 
   /* icon buttons */
-  ${props => (props.icon === true ? buttonIconSpacing : null)}
+  ${props => props.icon && buttonIconSpacing}
   /* styled-system props */
   ${display}
   ${space}

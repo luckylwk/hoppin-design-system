@@ -70,7 +70,7 @@ var Button = styled.button(_templateObject, function (_ref) {
   var theme = _ref5.theme;
   return theme.space.small;
 }, buttonSize, function (props) {
-  return props.icon === true ? buttonIconSpacing : null;
+  return props.icon && buttonIconSpacing;
 }, display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
 
 Button.propTypes = _extends({
