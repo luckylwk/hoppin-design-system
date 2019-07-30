@@ -8,6 +8,7 @@ import { Props, Playground } from 'docz';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import Button from './Button';
+import { FiArrowLeft } from 'react-icons/fi';
 
 # Button
 
@@ -78,5 +79,25 @@ All variants can come in three sizes.
 <Button display='inline-block' size="small">Small</Button>
 <Button display='inline-block' size="base">Base is default</Button>
 <Button display='inline-block' size="large">Large</Button>
+
+</Playground>
+
+## Icon Buttons
+
+Buttons that contain _just_ an icon automatically adjust padding to become round.
+
+<Playground>
+
+<Button icon={true} display="inline-block" size="small">
+  <FiArrowLeft />
+</Button>
+
+<Button icon={true} display="inline-block">
+  <FiArrowLeft />
+</Button>
+
+<Button icon={true} display="inline-block" size="large">
+  <FiArrowLeft />
+</Button>
 
 </Playground>

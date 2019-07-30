@@ -1,6 +1,6 @@
 import { colors } from './colors';
 import { space, containerWidths, radii, zIndexes } from './space';
-import { buttonSizes } from './buttons';
+import { buttonSizes, buttonIconSpacing } from './buttons';
 import { shadows } from './shadows';
 import {
   fonts,
@@ -22,5 +22,6 @@ export default {
   colors,
   headings,
   buttonSizes,
+  buttonIconSpacing,
   shadows,
 };

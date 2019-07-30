@@ -34,6 +34,13 @@ const buttonSize = variant({
   prop: 'size',
 });
 
+const buttonIconSpacing = variant({
+  // theme key for variant definitions
+  scale: 'buttonIconSpacing',
+  // component prop
+  prop: 'size',
+});
+
 const Button = styled.button`
   font-family: ${({ theme }) => theme.fonts.secondary};
   cursor: pointer;
@@ -44,6 +51,7 @@ const Button = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.5px;
   text-decoration: none;
+  line-height: 1;
 
   outline: none;
 
@@ -106,6 +114,9 @@ const Button = styled.button`
 
   /* our buttonSize variant */
   ${buttonSize}
+
+  /* icon buttons */
+  ${props => (props.icon === true ? buttonIconSpacing : null)}
   /* styled-system props */
   ${display}
   ${space}
