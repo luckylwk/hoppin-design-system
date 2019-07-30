@@ -35,8 +35,28 @@ var colors = {
     darker: '#881B1B',
     darkest: '#601919'
   },
-  warning: 'orange',
-  info: 'blue',
+
+  // colors from https://www.colorbox.io/#steps=6#hue_start=33#hue_end=33#hue_curve=easeInOutSine#sat_start=11#sat_end=100#sat_curve=linear#sat_rate=186#lum_start=100#lum_end=43#lum_curve=easeOutQuad#minor_steps_map=0
+  warning: {
+    lightest: '#ffe8cb',
+    lighter: '#fcd29f',
+    light: '#f9bd73',
+    base: '#ea8e1f',
+    dark: '#ce7100',
+    darker: '#a35a00',
+    darkest: '#6e3c00'
+  },
+
+  // info colors based off of tertiary above https://www.colorbox.io/#steps=6#hue_start=200#hue_end=210#hue_curve=easeInOutSine#sat_start=25#sat_end=78#sat_curve=linear#sat_rate=86#lum_start=100#lum_end=22#lum_curve=linear#lock_hex=038CFA#minor_steps_map=0
+  info: {
+    lightest: '#c8edff',
+    lighter: '#8dd9ff',
+    light: '#4fc1ff',
+    base: '#038cfa',
+    dark: '#166ab9',
+    darker: '#1b4979',
+    darkest: '#122538'
+  },
 
   // shades from https://www.colorbox.io/#steps=6#hue_start=200#hue_end=210#hue_curve=easeInOutSine#sat_start=5#sat_end=78#sat_curve=linear#sat_rate=86#lum_start=100#lum_end=20#lum_curve=linear#lock_hex=243b53#minor_steps_map=0
   // more grey shades generated at: https://www.colorbox.io/#steps=6#hue_start=200#hue_end=201#hue_curve=easeInOutSine#sat_start=27#sat_end=10#sat_curve=easeInOutQuad#sat_rate=51#lum_start=100#lum_end=20#lum_curve=linear#lock_hex=#f8fafb#minor_steps_map=0

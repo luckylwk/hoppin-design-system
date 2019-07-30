@@ -1,16 +1,16 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  font-family: ', ';\n  font-weight: ', ';\n  letter-spacing: 1px;\n  line-height: ', ';\n\n  ', ' + & {\n    margin-top: 0;\n  }\n'], ['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  font-family: ', ';\n  font-weight: ', ';\n  letter-spacing: 1px;\n  line-height: ', ';\n\n  ', ' + & {\n    margin-top: 0;\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  font-family: ', ';\n  font-weight: ', ';\n  letter-spacing: 1px;\n  line-height: ', ';\n\n  ', ' + & {\n    margin-top: 0;\n  }\n'], ['\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  font-family: ', ';\n  font-weight: ', ';\n  letter-spacing: 1px;\n  line-height: ', ';\n\n  ', ' + & {\n    margin-top: 0;\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
 import React from 'react';
 import styled from 'styled-components';
-import { space, color, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
+import { space, color, fontSize, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 import { Heading } from '../Heading';
 
-var Lede = styled('p')(_templateObject, textAlign, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, function (_ref) {
+var Lede = styled('p')(_templateObject, textAlign, space, color, fontSize, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, function (_ref) {
   var theme = _ref.theme;
   return theme.fonts.secondary;
 }, function (_ref2) {

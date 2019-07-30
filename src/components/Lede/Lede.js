@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   space,
   color,
+  fontSize,
   textAlign,
   flex,
   flexGrow,
@@ -19,6 +20,7 @@ const Lede = styled('p')`
   ${textAlign}
   ${space}
   ${color}
+  ${fontSize}
   ${flex}
   ${flexGrow}
   ${flexShrink}
