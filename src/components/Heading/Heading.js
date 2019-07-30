@@ -39,7 +39,7 @@ const Heading = styled('h2')`
         colorCSS = `color: ${theme.colors.primary.base};`;
         break;
       case 'h2':
-        colorCSS = `color: ${theme.colors.primary.darker};`;
+        colorCSS = `color: ${theme.colors.primary.base};`;
         break;
       case 'h3':
         colorCSS = `color: ${theme.colors.neutrals.darker};`;
