@@ -56,19 +56,15 @@ const StepBullet = styled(Flex)`
   align-items: center;
   justify-content: center;
   z-index: ${props => props.index + 1};
-  top: ${props => props.theme.space[2]};
+  top: ${props => props.theme.space[3]};
   left: 0;
-  margin-top: calc(-${props => props.theme.space[props.bulletSize]} + .6rem);
+  margin-top: calc(-${props => props.theme.space[props.bulletSize]} + .1rem);
   margin-left: calc(-2 * ${props =>
     props.theme.space[props.bulletSize]} - .75rem);
   width: calc(${props => props.theme.space[props.bulletSize]} * 2);
   height: calc(${props => props.theme.space[props.bulletSize]} * 2);
   border-radius: 50%;
   border: 2px solid ${props =>
-    props.isActive
-      ? props.theme.colors.primary.base
-      : props.theme.colors.neutrals.light}
-  color: ${props =>
     props.isActive
       ? props.theme.colors.primary.base
       : props.theme.colors.neutrals.light};
@@ -87,8 +83,15 @@ const StepBullet = styled(Flex)`
     }
     return fontSize;
   }}
-  background: ${props => props.theme.colors.white};
+  background: ${props =>
+    props.isActive
+      ? props.theme.colors.primary.base
+      : props.theme.colors.neutrals.light};
   box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);
+
+  & span {
+    color: ${props => props.theme.colors.white};
+  }
 `;
 StepBullet.defaultProps = {
   bullet: '',
@@ -101,13 +104,14 @@ const ActiveStepBox = styled(Box)`
   background: ${props => props.theme.colors.white};
   box-shadow: 0 15px 35px 0 rgba(43, 64, 78, 0.1),
     0 5px 15px 0 rgba(0, 0, 0, 0.05);
-  margin-top: -${props => props.theme.space[2]};
+  margin-top: -${props => props.theme.space[3]};
   overflow: hidden;
 `;
 ActiveStepBox.displayName = 'ActiveStepBox';
 
 const StepContent = styled(Box)`
-  padding: ${props => (props.isActive ? props.theme.space[2] : 0)};
+  padding: ${props =>
+    props.isActive && props.showTrack ? props.theme.space[3] : 0};
 `;
 StepContent.displayName = 'StepContent';
 
@@ -135,19 +139,26 @@ function Step({
   bullet,
   bulletSize,
   interactive,
+  showTrack,
   ...rest
 }) {
-  const ContentWrapper = isActive ? ActiveStepBox : Box;
+  const ContentWrapper = isActive && showTrack ? ActiveStepBox : Box;
   return (
     <StepContainer
       index={index}
       isActive={isActive}
       isLast={isLast}
       bulletSize={bulletSize}
+      showTrack={showTrack}
       {...rest}
     >
-      <StepBullet index={index} isActive={isActive} bulletSize={bulletSize}>
-        {bullet}
+      <StepBullet
+        index={index}
+        isActive={isActive}
+        bulletSize={bulletSize}
+        showTrack={showTrack}
+      >
+        <span>{bullet}</span>
       </StepBullet>
       <ContentWrapper>
         {isActive && image && (
@@ -160,7 +171,7 @@ function Step({
             ]}
           />
         )}
-        <StepContent isActive={isActive}>
+        <StepContent isActive={isActive} showTrack={showTrack}>
           <StepTitle
             as="h3"
             isActive={isActive}
@@ -170,7 +181,10 @@ function Step({
             {title}
           </StepTitle>
           {isActive && (
-            <Text display="block" color="neutrals.darker">
+            <Text
+              display="block"
+              color={showTrack ? 'neutrals.darker' : 'inherit'}
+            >
               {description}
             </Text>
           )}

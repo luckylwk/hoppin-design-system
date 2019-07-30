@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _templateObject = _taggedTemplateLiteralLoose(['\n  display: block;\n  width: 100%;\n  height: 8em;\n  background-image: url(', '); /* there\'s only one image URL */\n  background-size: cover;\n  background-position: center center;\n'], ['\n  display: block;\n  width: 100%;\n  height: 8em;\n  background-image: url(', '); /* there\'s only one image URL */\n  background-size: cover;\n  background-position: center center;\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: relative;\n  flex-grow: 1;\n  flex-direction: column;\n  max-width: 36em;\n  margin-bottom: ', ';\n  margin-left: calc(2 * ', ' + .75rem);\n\n  ', '\n  ', '\n\n  /* "track" on which the bullets sit */\n  ', '\n'], ['\n  position: relative;\n  flex-grow: 1;\n  flex-direction: column;\n  max-width: 36em;\n  margin-bottom: ', ';\n  margin-left: calc(2 * ', ' + .75rem);\n\n  ', '\n  ', '\n\n  /* "track" on which the bullets sit */\n  ', '\n']),
-    _templateObject3 = _taggedTemplateLiteralLoose(['\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  z-index: ', ';\n  top: ', ';\n  left: 0;\n  margin-top: calc(-', ' + .6rem);\n  margin-left: calc(-2 * ', ' - .75rem);\n  width: calc(', ' * 2);\n  height: calc(', ' * 2);\n  border-radius: 50%;\n  border: 2px solid ', '\n  color: ', ';\n  font-weight: ', ';\n  font-size: ', '\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);\n'], ['\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  z-index: ', ';\n  top: ', ';\n  left: 0;\n  margin-top: calc(-', ' + .6rem);\n  margin-left: calc(-2 * ', ' - .75rem);\n  width: calc(', ' * 2);\n  height: calc(', ' * 2);\n  border-radius: 50%;\n  border: 2px solid ', '\n  color: ', ';\n  font-weight: ', ';\n  font-size: ', '\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);\n']),
+    _templateObject3 = _taggedTemplateLiteralLoose(['\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  z-index: ', ';\n  top: ', ';\n  left: 0;\n  margin-top: calc(-', ' + .1rem);\n  margin-left: calc(-2 * ', ' - .75rem);\n  width: calc(', ' * 2);\n  height: calc(', ' * 2);\n  border-radius: 50%;\n  border: 2px solid ', ';\n  font-weight: ', ';\n  font-size: ', '\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);\n\n  & span {\n    color: ', ';\n  }\n'], ['\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  z-index: ', ';\n  top: ', ';\n  left: 0;\n  margin-top: calc(-', ' + .1rem);\n  margin-left: calc(-2 * ', ' - .75rem);\n  width: calc(', ' * 2);\n  height: calc(', ' * 2);\n  border-radius: 50%;\n  border: 2px solid ', ';\n  font-weight: ', ';\n  font-size: ', '\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);\n\n  & span {\n    color: ', ';\n  }\n']),
     _templateObject4 = _taggedTemplateLiteralLoose(['\n  border-radius: 5px;\n  border-top: 4px solid ', ';\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43, 64, 78, 0.1),\n    0 5px 15px 0 rgba(0, 0, 0, 0.05);\n  margin-top: -', ';\n  overflow: hidden;\n'], ['\n  border-radius: 5px;\n  border-top: 4px solid ', ';\n  background: ', ';\n  box-shadow: 0 15px 35px 0 rgba(43, 64, 78, 0.1),\n    0 5px 15px 0 rgba(0, 0, 0, 0.05);\n  margin-top: -', ';\n  overflow: hidden;\n']),
     _templateObject5 = _taggedTemplateLiteralLoose(['\n  padding: ', ';\n'], ['\n  padding: ', ';\n']),
     _templateObject6 = _taggedTemplateLiteralLoose(['\n  color: ', ';\n  ', ';\n\n  ', '\n'], ['\n  color: ', ';\n  ', ';\n\n  ', '\n']);
@@ -43,7 +43,7 @@ StepContainer.displayName = 'StepContainer';
 var StepBullet = styled(Flex)(_templateObject3, function (props) {
   return props.index + 1;
 }, function (props) {
-  return props.theme.space[2];
+  return props.theme.space[3];
 }, function (props) {
   return props.theme.space[props.bulletSize];
 }, function (props) {
@@ -52,8 +52,6 @@ var StepBullet = styled(Flex)(_templateObject3, function (props) {
   return props.theme.space[props.bulletSize];
 }, function (props) {
   return props.theme.space[props.bulletSize];
-}, function (props) {
-  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutrals.light;
 }, function (props) {
   return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutrals.light;
 }, function (props) {
@@ -72,6 +70,8 @@ var StepBullet = styled(Flex)(_templateObject3, function (props) {
   }
   return fontSize;
 }, function (props) {
+  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutrals.light;
+}, function (props) {
   return props.theme.colors.white;
 });
 StepBullet.defaultProps = {
@@ -84,12 +84,12 @@ var ActiveStepBox = styled(Box)(_templateObject4, function (props) {
 }, function (props) {
   return props.theme.colors.white;
 }, function (props) {
-  return props.theme.space[2];
+  return props.theme.space[3];
 });
 ActiveStepBox.displayName = 'ActiveStepBox';
 
 var StepContent = styled(Box)(_templateObject5, function (props) {
-  return props.isActive ? props.theme.space[2] : 0;
+  return props.isActive && props.showTrack ? props.theme.space[3] : 0;
 });
 StepContent.displayName = 'StepContent';
 
@@ -115,21 +115,32 @@ function Step(_ref2) {
       bullet = _ref2.bullet,
       bulletSize = _ref2.bulletSize,
       interactive = _ref2.interactive,
-      rest = _objectWithoutProperties(_ref2, ['title', 'description', 'image', 'index', 'isActive', 'isLast', 'goToStep', 'nextLabel', 'hideStepImageOnDesktop', 'bullet', 'bulletSize', 'interactive']);
+      showTrack = _ref2.showTrack,
+      rest = _objectWithoutProperties(_ref2, ['title', 'description', 'image', 'index', 'isActive', 'isLast', 'goToStep', 'nextLabel', 'hideStepImageOnDesktop', 'bullet', 'bulletSize', 'interactive', 'showTrack']);
 
-  var ContentWrapper = isActive ? ActiveStepBox : Box;
+  var ContentWrapper = isActive && showTrack ? ActiveStepBox : Box;
   return React.createElement(
     StepContainer,
     _extends({
       index: index,
       isActive: isActive,
       isLast: isLast,
-      bulletSize: bulletSize
+      bulletSize: bulletSize,
+      showTrack: showTrack
     }, rest),
     React.createElement(
       StepBullet,
-      { index: index, isActive: isActive, bulletSize: bulletSize },
-      bullet
+      {
+        index: index,
+        isActive: isActive,
+        bulletSize: bulletSize,
+        showTrack: showTrack
+      },
+      React.createElement(
+        'span',
+        null,
+        bullet
+      )
     ),
     React.createElement(
       ContentWrapper,
@@ -140,7 +151,7 @@ function Step(_ref2) {
       }),
       React.createElement(
         StepContent,
-        { isActive: isActive },
+        { isActive: isActive, showTrack: showTrack },
         React.createElement(
           StepTitle,
           {
@@ -155,7 +166,10 @@ function Step(_ref2) {
         ),
         isActive && React.createElement(
           Text,
-          { display: 'block', color: 'neutrals.darker' },
+          {
+            display: 'block',
+            color: showTrack ? 'neutrals.darker' : 'inherit'
+          },
           description
         ),
         interactive && isActive && !isLast && React.createElement(
