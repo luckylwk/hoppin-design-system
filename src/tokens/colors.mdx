@@ -39,8 +39,7 @@ These are auxiliary colors, use spairingly. The info palette below is based on `
   colors={{
     white: colors.white,
     black: colors.black,
-    secondary: colors.secondary,
-    tertiary: colors.tertiary,
+    'secondary (consider using info below)': colors.secondary,
   }}
   prefix=""
 />
@@ -50,6 +49,12 @@ These are auxiliary colors, use spairingly. The info palette below is based on `
 Use `neutrals` for body text, backgrounds, etc.
 
 <Swatches colors={colors.neutrals} prefix="neutrals." />
+
+## Whites
+
+Use `whiteout` for backgrounds. They have a very subtle gold tint to contrast with the blue hue of the neutrals.
+
+<Swatches colors={colors.whiteout} prefix="whiteout." />
 
 ## State Palettes
 

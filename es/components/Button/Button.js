@@ -78,7 +78,7 @@ Button.propTypes = _extends({
 }, systemPropTypes.buttonStyle, systemPropTypes.display, systemPropTypes.space, systemPropTypes.width, systemPropTypes.flex, systemPropTypes.flexGrow, systemPropTypes.flexShrink, systemPropTypes.flexBasis, systemPropTypes.justifySelf, systemPropTypes.alignSelf, systemPropTypes.order, {
   size: propTypes.oneOf(['small', 'base', 'large']),
   variant: propTypes.oneOf(['full', 'outline', 'subtle']),
-  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'danger', 'whiteout'])
+  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'neutrals', 'danger', 'whiteout'])
 });
 
 Button.defaultProps = {
