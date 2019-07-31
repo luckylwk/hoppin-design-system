@@ -14,7 +14,7 @@ var MarkdownImage = function MarkdownImage(_ref) {
     React.createElement('img', { src: src, alt: alt }),
     caption && React.createElement(
       Lede,
-      { fontSize: 'label', color: 'neutrals.light', marginY: 'xsmall' },
+      { fontSize: 'label', color: 'neutral.light', marginY: 'xsmall' },
       caption
     )
   );

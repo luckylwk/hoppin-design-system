@@ -33,16 +33,16 @@ var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {
       colorCSS = 'color: ' + theme.colors.primary.base + ';';
       break;
     case 'h3':
-      colorCSS = 'color: ' + theme.colors.neutrals.darker + ';';
+      colorCSS = 'color: ' + theme.colors.neutral.darker + ';';
       break;
     case 'h4':
-      colorCSS = 'color: ' + theme.colors.neutrals.darker + ';';
+      colorCSS = 'color: ' + theme.colors.neutral.darker + ';';
       break;
     case 'h5':
-      colorCSS = 'color: ' + theme.colors.neutrals.dark + ';';
+      colorCSS = 'color: ' + theme.colors.neutral.dark + ';';
       break;
     case 'h6':
-      colorCSS = 'color: ' + theme.colors.neutrals.dark + ';';
+      colorCSS = 'color: ' + theme.colors.neutral.dark + ';';
       break;
   }
   return colorCSS;

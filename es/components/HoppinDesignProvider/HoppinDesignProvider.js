@@ -11,7 +11,7 @@ import { merge, get } from 'lodash';
 
 var GlobalStyle = createGlobalStyle(_templateObject, tokens.fonts.secondary, function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.neutrals.darker;
+  return theme.colors.neutral.darker;
 });
 
 var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {

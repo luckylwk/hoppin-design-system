@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.secondary};
-    color: ${({ theme }) => theme.colors.neutrals.darker};
+    color: ${({ theme }) => theme.colors.neutral.darker};
     text-align: left;
    }
 

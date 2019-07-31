@@ -157,7 +157,7 @@ Button.propTypes = {
     'tertiary',
     'hopper',
     'host',
-    'neutrals',
+    'neutral',
     'danger',
     'whiteout',
   ]),

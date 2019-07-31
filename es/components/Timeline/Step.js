@@ -53,7 +53,7 @@ var StepBullet = styled(Flex)(_templateObject3, function (props) {
 }, function (props) {
   return props.theme.space[props.bulletSize];
 }, function (props) {
-  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutrals.light;
+  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutral.light;
 }, function (props) {
   return props.theme.fontWeights.bold;
 }, function (props) {
@@ -70,7 +70,7 @@ var StepBullet = styled(Flex)(_templateObject3, function (props) {
   }
   return fontSize;
 }, function (props) {
-  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutrals.light;
+  return props.isActive ? props.theme.colors.primary.base : props.theme.colors.neutral.light;
 }, function (props) {
   return props.theme.colors.white;
 });
@@ -168,7 +168,7 @@ function Step(_ref2) {
           Text,
           {
             display: 'block',
-            color: showTrack ? 'neutrals.darker' : 'inherit'
+            color: showTrack ? 'neutral.darker' : 'inherit'
           },
           description
         ),

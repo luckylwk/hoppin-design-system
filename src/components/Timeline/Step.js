@@ -67,7 +67,7 @@ const StepBullet = styled(Flex)`
   border: 2px solid ${props =>
     props.isActive
       ? props.theme.colors.primary.base
-      : props.theme.colors.neutrals.light};
+      : props.theme.colors.neutral.light};
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => {
     let fontSize;
@@ -86,7 +86,7 @@ const StepBullet = styled(Flex)`
   background: ${props =>
     props.isActive
       ? props.theme.colors.primary.base
-      : props.theme.colors.neutrals.light};
+      : props.theme.colors.neutral.light};
   box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);
 
   & span {
@@ -183,7 +183,7 @@ function Step({
           {isActive && (
             <Text
               display="block"
-              color={showTrack ? 'neutrals.darker' : 'inherit'}
+              color={showTrack ? 'neutral.darker' : 'inherit'}
             >
               {description}
             </Text>

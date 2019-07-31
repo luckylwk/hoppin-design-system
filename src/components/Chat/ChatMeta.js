@@ -17,7 +17,7 @@ ChatMeta.defaultProps = {
   padding: ['xsmall', 'small'],
   marginY: ['xsmall', 'small'],
   flexGrow: 0,
-  color: 'neutrals.lighter',
+  color: 'neutral.lighter',
 };
 
 ChatMeta.displayName = 'ChatMeta';
