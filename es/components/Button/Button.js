@@ -50,7 +50,7 @@ var Button = styled.button(_templateObject, function (_ref) {
 
   // `variant` defines full color (default), outline, or subtle shape
   // `context` defines color default (host/hopper inherited from context), host, hopper, danger
-  var colors = get(theme, 'colors.' + context, '#333');
+  var colors = get(theme, 'colors.' + context, { base: '#333' });
 
   var variantCSS = '';
   switch (variant) {

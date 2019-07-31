@@ -6,9 +6,9 @@ const space = [
   '.5rem', // 8px
   '1rem', // 16px
   '1.5rem', // 24px
-  '3rem', // 48px
+  '2rem', // 32px
   '4rem', // 64px
-  '5rem', // 80px
+  '6rem', // 96px
 ];
 
 space.xsmall = space[1];

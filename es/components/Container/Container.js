@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  max-width: ', ';\n  margin-left: auto;\n  margin-right: auto;\n'], ['\n  max-width: ', ';\n  margin-left: auto;\n  margin-right: auto;\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  width: 100%;\n  max-width: ', ';\n  margin-left: auto;\n  margin-right: auto;\n'], ['\n  width: 100%;\n  max-width: ', ';\n  margin-left: auto;\n  margin-right: auto;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 

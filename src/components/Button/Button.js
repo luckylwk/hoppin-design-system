@@ -70,7 +70,7 @@ const Button = styled.button`
   ${({ theme, variant, context }) => {
     // `variant` defines full color (default), outline, or subtle shape
     // `context` defines color default (host/hopper inherited from context), host, hopper, danger
-    const colors = get(theme, `colors.${context}`, '#333');
+    const colors = get(theme, `colors.${context}`, { base: '#333' });
 
     let variantCSS = '';
     switch (variant) {

@@ -4,9 +4,9 @@ var space = [0, '.25rem', // 4px
 '.5rem', // 8px
 '1rem', // 16px
 '1.5rem', // 24px
-'3rem', // 48px
+'2rem', // 32px
 '4rem', // 64px
-'5rem'];
+'6rem'];
 
 space.xsmall = space[1];
 space.small = space[2];
