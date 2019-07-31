@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
 
 import LinkStyled from './LinkStyled';
 
+// Logic from https://bit.dev/grommet/grommet/routed-button/~code#components/RoutedButton/RoutedButton.js
+
 var RoutedLinkStyled = (_temp2 = _class = function (_Component) {
   _inherits(RoutedLinkStyled, _Component);
 

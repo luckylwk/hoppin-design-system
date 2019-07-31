@@ -32,18 +32,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pluto';
     font-weight: normal;
     font-style: normal;
-    src: url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot');
-    src: url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot')
+    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot');
+    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot')
         format('embedded-opentype'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff2')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff2')
         format('woff2'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff')
         format('woff'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.ttf')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.ttf')
         format('truetype');
   }
 
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
+  @import url('//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
 `;
 
 const HoppinDesignProvider = ({ children, context, theme }) => {

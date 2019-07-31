@@ -57,8 +57,8 @@ const headings = {
   h2: {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h2,
-    letterSpacing: '-1px',
-    fontWeight: fontWeights.bold,
+    letterSpacing: '-2px',
+    fontWeight: fontWeights.normal,
   },
   h3: {
     fontFamily: fonts.secondary,

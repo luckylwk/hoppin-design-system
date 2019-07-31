@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import LinkUnstyled from './LinkUnstyled';
 
+// Logic from https://bit.dev/grommet/grommet/routed-button/~code#components/RoutedButton/RoutedButton.js
+
 class RoutedLinkUnstyled extends Component {
   static contextTypes = {
     router: PropTypes.shape({}).isRequired,
