@@ -2,6 +2,7 @@ import React from 'react';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { Link } from '../Link';
+import { OrderedList, UnorderedList, ListItem } from '../List';
 import MarkdownImage from './MarkdownImage';
 
 /*
@@ -39,6 +40,9 @@ var processor = unified()
       h5: H5,
       h6: H6,
       img: MarkdownImage,
+      ol: OrderedList,
+      ul: UnorderedList,
+      li: ListItem,
     },
   });
 

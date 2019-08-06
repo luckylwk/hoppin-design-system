@@ -8,6 +8,7 @@ export * from './components/Banner';
 export * from './components/Heading';
 export * from './components/Lede';
 export * from './components/Paragraph';
+export * from './components/List';
 export * from './components/Text';
 export * from './components/Caption';
 export * from './components/Tag';

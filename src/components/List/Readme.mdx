@@ -1,0 +1,54 @@
+---
+name: UnorderedList
+route: /components/UnorderedList
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { UnorderedList, OrderedList, ListItem } from 'components/List';
+
+# UnorderedList
+
+The UnorderedList is used to indicate a list of equally important items. It can be turned into a check list by adding props 'checked' or 'unchecked' to the ListItem inside.
+
+## Props
+
+<Props of={UnorderedList} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+The main props to set are:
+
+- **variant** - one of `['bullet', 'checked', 'unchecked']`, defaults to 'bullet'
+
+<Playground>
+  <UnorderedList>
+    <ListItem>Tell me something</ListItem>
+    <ListItem>Make me smile</ListItem>
+    <ListItem>Make me laugh out loud</ListItem>
+  </UnorderedList>
+</Playground>
+
+## Check Lists
+
+Add `variant="checked"` and `variant="unchecked"` to the `ListItem` to turn the list into a checklist.
+You can use `onClick` handlers to change state and make the check list interactive.
+
+<Playground>
+  <UnorderedList>
+    <ListItem variant="checked">Tell me something</ListItem>
+    <ListItem variant="checked">Make me smile</ListItem>
+    <ListItem variant="unchecked">Make me laugh out loud</ListItem>
+  </UnorderedList>
+</Playground>
+
+# OrderedList
+
+Use just as you would use a normal ordered list. Currently OrderedLists will have decimal numerals and always start at 1.
+
+<Playground>
+  <OrderedList>
+    <ListItem>Tell me something</ListItem>
+    <ListItem>Make me smile</ListItem>
+    <ListItem>Make me laugh out loud</ListItem>
+  </OrderedList>
+</Playground>
