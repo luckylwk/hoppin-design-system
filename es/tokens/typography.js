@@ -46,7 +46,7 @@ var headings = {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h1,
     letterSpacing: '-2px',
-    lineHeight: lineHeights.base,
+    lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold,
     marginTop: space.xlarge,
     marginBottom: space.large
@@ -55,27 +55,32 @@ var headings = {
     fontFamily: fonts.primary,
     fontSize: fontSizes.h2,
     letterSpacing: '-2px',
+    lineHeight: lineHeights.small,
     fontWeight: fontWeights.normal
   },
   h3: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h3,
+    lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold
   },
   h4: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h4,
+    lineHeight: lineHeights.base,
     fontWeight: fontWeights.normal
   },
   h5: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h5,
+    lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold
   },
   h6: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes.h6,
     textTransform: 'uppercase',
+    lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold
   }
 };

@@ -54,7 +54,6 @@ Heading.defaultProps = {
   as: 'h2',
   marginBottom: 'base',
   marginTop: 'xlarge',
-  lineHeight: 'base',
   textAlign: 'inherit'
 };
 

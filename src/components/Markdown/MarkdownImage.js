@@ -10,7 +10,7 @@ const MarkdownImage = ({ src, alt }) => {
       : undefined;
   return (
     <Box position="relative">
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} maxWidth="100%" />
       {caption && (
         <Lede fontSize="label" color="neutral.light" marginY="xsmall">
           {caption}

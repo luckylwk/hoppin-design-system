@@ -11,7 +11,7 @@ var MarkdownImage = function MarkdownImage(_ref) {
   return React.createElement(
     Box,
     { position: 'relative' },
-    React.createElement('img', { src: src, alt: alt }),
+    React.createElement('img', { src: src, alt: alt, maxWidth: '100%' }),
     caption && React.createElement(
       Lede,
       { fontSize: 'label', color: 'neutral.light', marginY: 'xsmall' },
