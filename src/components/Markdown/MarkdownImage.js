@@ -1,6 +1,15 @@
 import React from 'react';
 import { Lede } from '../Lede';
-import { Box } from '../Box';
+import styled from 'styled-components';
+
+const ImageWrapper = styled.span`
+  display: inline-block;
+  width: 100%;
+  padding: ${({ theme }) => theme.space.base};
+`;
+const Image = styled.img`
+  max-width: 100%;
+`;
 
 const MarkdownImage = ({ src, alt }) => {
   // only render caption if alt text is prefixed with a !
@@ -9,14 +18,14 @@ const MarkdownImage = ({ src, alt }) => {
       ? alt.substr(1)
       : undefined;
   return (
-    <Box position="relative">
-      <img src={src} alt={alt} maxWidth="100%" />
+    <ImageWrapper>
+      <Image src={src} alt={alt} />
       {caption && (
-        <Lede fontSize="label" color="neutral.light" marginY="xsmall">
+        <Lede as="span" fontSize="label" color="neutral.light" marginY="xsmall">
           {caption}
         </Lede>
       )}
-    </Box>
+    </ImageWrapper>
   );
 };
 
