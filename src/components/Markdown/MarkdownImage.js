@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const ImageWrapper = styled.span`
   display: inline-block;
   width: 100%;
-  padding: ${({ theme }) => theme.space.base};
+  padding: ${({ theme }) => theme.space.base} 0;
 `;
 const Image = styled.img`
   max-width: 100%;

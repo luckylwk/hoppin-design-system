@@ -1,4 +1,4 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n  width: 100%;\n  padding: ', ';\n'], ['\n  display: inline-block;\n  width: 100%;\n  padding: ', ';\n']),
+var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n  width: 100%;\n  padding: ', ' 0;\n'], ['\n  display: inline-block;\n  width: 100%;\n  padding: ', ' 0;\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  max-width: 100%;\n'], ['\n  max-width: 100%;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
