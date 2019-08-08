@@ -3,7 +3,7 @@ import { Lede } from '../Lede';
 import styled from 'styled-components';
 
 const ImageWrapper = styled.span`
-  display: inline-block;
+  display: block;
   width: 100%;
   padding: ${({ theme }) => theme.space.base} 0;
 `;
@@ -20,6 +20,7 @@ const MarkdownImage = ({ src, alt }) => {
   return (
     <ImageWrapper>
       <Image src={src} alt={alt} />
+      <br />
       {caption && (
         <Lede as="span" fontSize="label" color="neutral.light" marginY="xsmall">
           {caption}

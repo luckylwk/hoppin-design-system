@@ -1,4 +1,4 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n  width: 100%;\n  padding: ', ' 0;\n'], ['\n  display: inline-block;\n  width: 100%;\n  padding: ', ' 0;\n']),
+var _templateObject = _taggedTemplateLiteralLoose(['\n  display: block;\n  width: 100%;\n  padding: ', ' 0;\n'], ['\n  display: block;\n  width: 100%;\n  padding: ', ' 0;\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  max-width: 100%;\n'], ['\n  max-width: 100%;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
@@ -23,6 +23,7 @@ var MarkdownImage = function MarkdownImage(_ref2) {
     ImageWrapper,
     null,
     React.createElement(Image, { src: src, alt: alt }),
+    React.createElement('br', null),
     caption && React.createElement(
       Lede,
       { as: 'span', fontSize: 'label', color: 'neutral.light', marginY: 'xsmall' },
