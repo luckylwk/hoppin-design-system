@@ -61,7 +61,7 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
     ),
   });
 
-  console.log('merged tokensWithContext', tokensWithContext);
+  // console.log('merged tokensWithContext', tokensWithContext);
   return (
     <ThemeProvider theme={tokensWithContext}>
       <React.Fragment>
