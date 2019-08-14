@@ -108,9 +108,11 @@ const Button = styled.button`
     return variantCSS;
   }}
 
+  /*
+  // TODO:  Auto-Spacing between buttons. Messes up in Flexbox (wrap)
   & + & {
     margin-left: ${({ theme }) => theme.space.small};
-  }
+  } */
 
   /* our buttonSize variant */
   ${buttonSize}
