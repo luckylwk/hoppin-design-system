@@ -4,7 +4,7 @@ let colors = {
   // shades, uniformly greenish, generated at https://www.colorbox.io/#steps=6#hue_start=175#hue_end=184#hue_curve=easeInOutSine#sat_start=26#sat_end=96#sat_curve=easeInOutQuad#sat_rate=51#lum_start=95#lum_end=21#lum_curve=linear#lock_hex=44E2D6#minor_steps_map=0
   // for more contrast, more blue in the darks, generally closer to current design use values at:
   // https://www.colorbox.io/#steps=6#hue_start=173#hue_end=211#hue_curve=easeInOutQuad#sat_start=18#sat_end=82#sat_curve=easeInOutQuad#sat_rate=51#lum_start=99#lum_end=21#lum_curve=linear#lock_hex=44E2D6#minor_steps_map=0
-  hopper: {
+  shadower: {
     lightest: '#d2f2f0',
     lighter: '#abf3ed',
     light: '#84f4e9',
@@ -84,17 +84,17 @@ let colors = {
   },
 };
 
-// set default "primary" to hopper colors:
-colors.primary = colors.hopper;
+// set default "primary" to shadower colors:
+colors.primary = colors.shadower;
 
-// define color contexts (like dark and light, in our case hopper and host contexts)
+// define color contexts (like dark and light, in our case shadower and host contexts)
 // https://styled-system.com/guides/color-modes (they call it modes, we call it context to keep it consistent with components-level overrrides (see Button))
 colors.contexts = {
   host: {
     primary: colors.host,
   },
-  hopper: {
-    primary: colors.hopper,
+  shadower: {
+    primary: colors.shadower,
   },
 };
 

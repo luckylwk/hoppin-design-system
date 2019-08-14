@@ -49,7 +49,7 @@ var Button = styled.button(_templateObject, function (_ref) {
       context = _ref4.context;
 
   // `variant` defines full color (default), outline, or subtle shape
-  // `context` defines color default (host/hopper inherited from context), host, hopper, danger
+  // `context` defines color default (host/shadower inherited from context), host, shadower, danger
   var colors = get(theme, 'colors.' + context, { base: '#333' });
 
   var variantCSS = '';
@@ -78,7 +78,7 @@ Button.propTypes = _extends({
 }, systemPropTypes.buttonStyle, systemPropTypes.display, systemPropTypes.space, systemPropTypes.width, systemPropTypes.flex, systemPropTypes.flexGrow, systemPropTypes.flexShrink, systemPropTypes.flexBasis, systemPropTypes.justifySelf, systemPropTypes.alignSelf, systemPropTypes.order, {
   size: propTypes.oneOf(['small', 'base', 'large']),
   variant: propTypes.oneOf(['full', 'outline', 'subtle']),
-  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'neutral', 'danger', 'whiteout'])
+  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'shadower', 'host', 'neutral', 'danger', 'whiteout'])
 });
 
 Button.defaultProps = {

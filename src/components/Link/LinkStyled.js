@@ -87,7 +87,7 @@ LinkStyled.propTypes = {
     'primary',
     'secondary',
     'tertiary',
-    'hopper',
+    'shadower',
     'host',
     'danger',
   ]),

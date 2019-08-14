@@ -79,14 +79,14 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
 };
 
 HoppinDesignProvider.propTypes = {
-  /** defaults to hopper, but can set to host to change all decending elements to pink host style */
-  mode: propTypes.oneOf(['hopper', 'host']),
+  /** defaults to shadower, but can set to host to change all decending elements to pink host style */
+  mode: propTypes.oneOf(['shadower', 'host']),
   /** theme is not needed, by  default all the standard tokens get loaded, if extending the theme, set this prop */
   theme: propTypes.object,
 };
 
 HoppinDesignProvider.defaultProps = {
-  mode: 'hopper',
+  mode: 'shadower',
 };
 
 export default HoppinDesignProvider;

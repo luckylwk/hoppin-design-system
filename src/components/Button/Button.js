@@ -69,7 +69,7 @@ const Button = styled.button`
 
   ${({ theme, variant, context }) => {
     // `variant` defines full color (default), outline, or subtle shape
-    // `context` defines color default (host/hopper inherited from context), host, hopper, danger
+    // `context` defines color default (host/shadower inherited from context), host, shadower, danger
     const colors = get(theme, `colors.${context}`, { base: '#333' });
 
     let variantCSS = '';
@@ -155,7 +155,7 @@ Button.propTypes = {
     'primary',
     'secondary',
     'tertiary',
-    'hopper',
+    'shadower',
     'host',
     'neutral',
     'danger',

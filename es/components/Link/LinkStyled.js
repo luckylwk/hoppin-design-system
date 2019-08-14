@@ -46,7 +46,7 @@ LinkStyled.propTypes = _extends({
   disabled: PropTypes.bool
 }, systemPropTypes.buttonStyle, systemPropTypes.display, systemPropTypes.space, systemPropTypes.width, systemPropTypes.flex, systemPropTypes.flexGrow, systemPropTypes.flexShrink, systemPropTypes.flexBasis, systemPropTypes.justifySelf, systemPropTypes.alignSelf, systemPropTypes.order, {
 
-  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'danger'])
+  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'shadower', 'host', 'danger'])
 });
 
 LinkStyled.defaultProps = {

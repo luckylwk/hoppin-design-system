@@ -43,7 +43,7 @@ const fontWeights = {
   bold: 600,
 };
 
-// headings style attributes, all but color, since color is dependent on host/hopper context
+// headings style attributes, all but color, since color is dependent on host/shadower context
 const headings = {
   h1: {
     fontFamily: fonts.primary,
