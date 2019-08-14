@@ -31,7 +31,7 @@ const headingStyles = variant({
 const Heading = styled('h2')`
   /* use styled-system variants defined in tokens/typography */
   ${headingStyles}
-  /* get color from theme to get dymanic mode colors (host vs shadower)*/
+  /* get color from theme to get dymanic context colors (host vs shadower)*/
   ${({ theme, as }) => {
     let colorCSS = '';
     switch (as) {

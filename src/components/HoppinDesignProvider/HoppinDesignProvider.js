@@ -59,7 +59,7 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
   const themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
   const tokensWithOverrides = merge({}, tokens, themeContext, theme);
-  // depending on mode, set the primary colors
+  // depending on context, set the primary colors
   const tokensWithContext = merge({}, tokensWithOverrides, {
     colors: get(
       tokensWithOverrides.colors.contexts,
@@ -80,13 +80,13 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
 
 HoppinDesignProvider.propTypes = {
   /** defaults to shadower, but can set to host to change all decending elements to pink host style */
-  mode: propTypes.oneOf(['shadower', 'host']),
+  context: propTypes.oneOf(['shadower', 'host']),
   /** theme is not needed, by  default all the standard tokens get loaded, if extending the theme, set this prop */
   theme: propTypes.object,
 };
 
 HoppinDesignProvider.defaultProps = {
-  mode: 'shadower',
+  context: 'shadower',
 };
 
 export default HoppinDesignProvider;

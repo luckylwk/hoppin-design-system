@@ -25,7 +25,7 @@ var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
   var themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
   var tokensWithOverrides = merge({}, tokens, themeContext, theme);
-  // depending on mode, set the primary colors
+  // depending on context, set the primary colors
   var tokensWithContext = merge({}, tokensWithOverrides, {
     colors: get(tokensWithOverrides.colors.contexts, context, tokensWithOverrides.colors)
   });
@@ -44,13 +44,13 @@ var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
 
 HoppinDesignProvider.propTypes = process.env.NODE_ENV !== "production" ? {
   /** defaults to shadower, but can set to host to change all decending elements to pink host style */
-  mode: propTypes.oneOf(['shadower', 'host']),
+  context: propTypes.oneOf(['shadower', 'host']),
   /** theme is not needed, by  default all the standard tokens get loaded, if extending the theme, set this prop */
   theme: propTypes.object
 } : {};
 
 HoppinDesignProvider.defaultProps = {
-  mode: 'shadower'
+  context: 'shadower'
 };
 
 export default HoppinDesignProvider;
