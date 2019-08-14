@@ -1,0 +1,38 @@
+---
+name: Textarea
+route: /components/Textarea
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Paragraph } from 'components/Paragraph';
+import { Textarea } from 'components/Textarea';
+
+# Textarea
+
+The Textarea is used to WYSIWYG text editing. It can be configured to allow styling with a subset of Markdown styles.
+
+The Textarea is based on [GetOutline.com's open source editor](https://github.com/outline/rich-markdown-editor), which itself is based on [slate.js](https://github.com/ianstormtaylor/slate).
+
+It outputs a simple MD string, that can be parsed using the Markdown component or transformed with the [unified.js](https://unified.js.org/) family of tools.
+
+## Props
+
+<Props of={Textarea} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Core props:
+
+- `defaultValue`: `md string` - value to initialise the editor with
+- `onChange`: `fb(value)` - fn to call when value changes
+
+<Playground>
+    <Textarea defaultValue={`scenester cornhole trust fund vaporware williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom locavore, kogi everyday carry af tattooed art party asymmetrical cardigan sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen brooklyn bushwick distillery. Vape stumptown swag glossier small batch gastropub. Taxidermy
+
+    - List
+    - Items
+    - Everywhere
+
+    90's everyday carry kombucha. Banjo VHS occupy marfa roof party slow-carb.`} />
+
+</Playground>

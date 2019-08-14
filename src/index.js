@@ -14,6 +14,8 @@ export * from './components/Caption';
 export * from './components/Tag';
 export * from './components/Markdown';
 
+export * from './components/Textarea';
+
 export * from './components/Timeline';
 export * from './components/Card';
 export * from './components/Button';

@@ -14,10 +14,12 @@
   "dependencies": {
     "@styled-system/prop-types": "^5.0.6",
     "color": "^3.1.2",
+    "immutable": "3.8.1",
     "rehype-react": "^4.0.1",
     "remark-github-break": "^0.0.0",
     "remark-parse": "^7.0.0",
     "remark-rehype": "^5.0.0",
+    "rich-markdown-editor": "^9.8.6",
     "styled-components": "^4.3.1",
     "styled-system": "^5.0.6",
     "unified": "^8.3.2"
