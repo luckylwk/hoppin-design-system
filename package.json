@@ -24,6 +24,7 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "exenv": "^1.2.2",
+    "nwb": "0.23.0",
     "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
@@ -46,6 +47,7 @@
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
-    "start": "docz dev"
+    "start": "docz dev",
+    "deploy": "now --target production"
   }
 }
