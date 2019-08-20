@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  position: ', ';\n  top: 0;\n  left: 0;\n  right: 0;\n  height: ', ';\n'], ['\n  position: ', ';\n  top: 0;\n  left: 0;\n  right: 0;\n  height: ', ';\n']),
+var _templateObject = _taggedTemplateLiteralLoose(['\n  position: ', ';\n  ', ';\n  top: 0;\n  left: 0;\n  right: 0;\n  height: ', ';\n'], ['\n  position: ', ';\n  ', ';\n  top: 0;\n  left: 0;\n  right: 0;\n  height: ', ';\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: ', '%;\n  ', ';\n\n  transition: all 400ms;\n'], ['\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: ', '%;\n  ', ';\n\n  transition: all 400ms;\n']);
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -19,20 +19,24 @@ var ProgressBarWrapper = styled(Box)(_templateObject, function (_ref) {
   var alignTo = _ref.alignTo;
   return alignTo === 'page' ? 'fixed' : 'absolute';
 }, function (_ref2) {
-  var theme = _ref2.theme;
+  var alignTo = _ref2.alignTo,
+      theme = _ref2.theme;
+  return alignTo === 'page' ? 'z-index: ' + theme.zIndexes.overlay : null;
+}, function (_ref3) {
+  var theme = _ref3.theme;
   return theme.space.xsmall;
 });
 
-var ProgressBarSlider = styled(Box)(_templateObject2, function (_ref3) {
-  var percent = _ref3.percent;
+var ProgressBarSlider = styled(Box)(_templateObject2, function (_ref4) {
+  var percent = _ref4.percent;
   return percent;
 }, color);
 
-var ProgressBar = function ProgressBar(_ref4) {
-  var theme = _ref4.theme,
-      bg = _ref4.bg,
-      percent = _ref4.percent,
-      rest = _objectWithoutProperties(_ref4, ['theme', 'bg', 'percent']);
+var ProgressBar = function ProgressBar(_ref5) {
+  var theme = _ref5.theme,
+      bg = _ref5.bg,
+      percent = _ref5.percent,
+      rest = _objectWithoutProperties(_ref5, ['theme', 'bg', 'percent']);
 
   return React.createElement(
     ProgressBarWrapper,

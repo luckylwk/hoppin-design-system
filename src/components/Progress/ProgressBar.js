@@ -8,6 +8,8 @@ import { Box } from '../Box';
 
 const ProgressBarWrapper = styled(Box)`
   position: ${({ alignTo }) => (alignTo === 'page' ? 'fixed' : 'absolute')};
+  ${({ alignTo, theme }) =>
+    alignTo === 'page' ? `z-index: ${theme.zIndexes.overlay}` : null};
   top: 0;
   left: 0;
   right: 0;

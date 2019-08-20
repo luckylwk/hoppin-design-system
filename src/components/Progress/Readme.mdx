@@ -17,8 +17,12 @@ ProgressBar allows you to visualise progress in a longer form or process.
 <Props of={ProgressBar} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-<Playground>
-  <ProgressBar percent={50}/>
+Note the two Components in the Playground below:
 
-  <ProgressBar alignTo='component' percent={50}/>
+- `alignTo='page'` (default) => check on top of this page
+- `alignTo='component'` => check on top of this Playground frame.
+
+<Playground>
+  <ProgressBar percent={50} />
+  <ProgressBar alignTo="component" percent={50} />
 </Playground>
