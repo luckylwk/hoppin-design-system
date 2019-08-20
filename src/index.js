@@ -19,6 +19,7 @@ export * from './components/Card';
 export * from './components/Button';
 export * from './components/Link';
 export * from './components/Expandable';
+export * from './components/Progress';
 
 export * from './components/Chat';
 

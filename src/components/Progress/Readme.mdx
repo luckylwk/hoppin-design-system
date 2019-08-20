@@ -1,0 +1,24 @@
+---
+name: Progress
+route: /components/Progress
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { ProgressBar } from 'components/Progress';
+
+# ProgressBar
+
+ProgressBar allows you to visualise progress in a longer form or process.
+(Other forms of progress indicators TBD)
+
+## Props
+
+<Props of={ProgressBar} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <ProgressBar percent={50}/>
+
+  <ProgressBar alignTo='component' percent={50}/>
+</Playground>
