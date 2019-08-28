@@ -26,6 +26,10 @@ const headingStyles = variant({
   scale: 'headings',
   // component prop
   prop: 'as',
+  variants: {
+    // can be blank to enable the new API
+    primary: {},
+  },
 });
 
 const Heading = styled('h2')`

@@ -17,7 +17,11 @@ var headingStyles = variant({
   // theme key for variant definitions
   scale: 'headings',
   // component prop
-  prop: 'as'
+  prop: 'as',
+  variants: {
+    // can be blank to enable the new API
+    primary: {}
+  }
 });
 
 var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {

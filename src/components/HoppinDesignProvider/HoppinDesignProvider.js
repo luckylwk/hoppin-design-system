@@ -24,12 +24,6 @@ const GlobalStyle = createGlobalStyle`
     text-align: left;
    }
 
-  @media screen and (max-width: 480px) {
-    html, body {
-      font-size: 14px;
-    }
-  }
-
   * {
     color: inherit;
   }
