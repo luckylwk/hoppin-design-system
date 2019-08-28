@@ -54,7 +54,7 @@
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
-    "deploy": "now --target production",
+    "deploy": "now --prod",
     "start": "docz dev -p 2000"
   }
 }
