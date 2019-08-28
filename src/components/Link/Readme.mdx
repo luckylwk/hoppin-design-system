@@ -7,48 +7,73 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Paragraph } from '../Paragraph';
 import { Box } from '../Box';
-import { Link, LinkUnstyled } from './';
+import { Link, LinkStyled, LinkUnstyled } from './';
 
 # Link
 
-Link needs `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
-This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
+## Core Components
 
-Use the `as` prop to replace the react-router-dom `<Link/>` with a standard `<a/>` tag for external links.
-All demos here use`as="a"` because react-router-dom `<Link/>` can't be rendendered outside a `<Router>` component.
+There are four basic link components:
 
-### Note
+`LinkStyled` and `LinkUnstyled` are rendering as standard `a` tags.
+`RoutedLinkStyled` and `RoutedLinkUnstyled` are rendering as `react-router-dom/Link`
 
-If using the `<Link>` component internally, set the `to` prop:
+To trigger navigation within the app, use a `RoutedLink`.
 
-```
-<Link to='/my/app/route'>
-```
+`Styled` links have an underline, where as unstyled links will inherit the styles from it's parent, but also accepts basic styled-system props.
 
-If using the `<Link>` component externalls with `as="a"`, set the `href` and `target` props:
+> `RoutedLink` and `RoutedLinkUnstyled` need `react-router-dom` as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app through the react context API.
+> This is to avoid version clashes. Hoppin Design System does not bundle `react-router-dom`, it's up to you to provide it in your app as a dependency.
 
-```
-<Link as="a" href='https://gohoppin.com' target="_blank">
-```
+All demos here use the un-routed versions because react-router-dom `<LinkUnstyled/>` can't be rendendered outside a `<Router>` component.
+
+> Routed (internal) Links use react-router-dom-style `to` props, rather than HTML style href.<br/>
+> Unrouted (external) Links use `href`, they are simple `a` tags.
+> All other props are the same between routed and unrouted links.
+
+## Magic Links
+
+The above core components are great for readability of the code and to make explicit decisions, but can be difficult to work with when you're rendering dynamic links.
+the `<Link />` component is a convenience-wrapper around the four components above and will automagically render the appropriate link.
+
+`<Link to='/my/app/route'>` will render as `<RoutedLinkStyled to='/my/app/route'>`
+
+`<Link unstyled={true} to='/my/app/route'>` will render as `<RoutedLinkUnstyled to='/my/app/route'>`
+
+`<Link to='http://example.com/'>` will render as `<LinkStyled href='http://example.com/'>`
+
+`<Link unstyled={true} to='http://example.com/'>` will render as `<LinkStyled href='http://example.com/'>`
+
+<Playground>
+  <Link to="http://example.com/" target="_blank">
+    Magic Styled Link
+  </Link>
+  <br />
+  <Link unstyled={true} to="http://example.com/" target="_blank">
+    Magic Unstyled Link
+  </Link>
+</Playground>
 
 <Props of={Link} />
 
-## Standard Link
+## Styled Link (Routed and Unrouted)
 
 This is your standard link. It can have the same `context` prop as [Button](/components/Button) components.
 
-<Playground>
-  <Link as="a">Click me</Link>
+<Props of={LinkUnstyled} />
 
-  <Link as="a" context="hopper">
-    Hopper
-  </Link>
-  <Link as="a" context="host">
+<Playground>
+  <LinkStyled>Click me</LinkStyled>
+
+  <LinkStyled context="shadower">
+    shadower
+  </LinkStyled>
+  <LinkStyled context="host">
     Host
-  </Link>
-  <Link as="a" context="danger">
+  </LinkStyled>
+  <LinkStyled context="danger">
     Danger
-  </Link>
+  </LinkStyled>
 </Playground>
 
 ## Links in context
@@ -61,9 +86,9 @@ Link are displayed as `inline-block` by default, so they nest in to any body cop
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <Link as="a">Click me</Link> vapes stumptown
-    swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
-    Banjo VHS occupy marfa roof party slow-carb.
+    brooklyn bushwick distillery. <LinkStyled>Click me</LinkStyled> vapes
+    stumptown swag glossier small batch gastropub. Taxidermy 90's everyday carry
+    kombucha. Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 </Playground>
 
@@ -71,19 +96,21 @@ Link are displayed as `inline-block` by default, so they nest in to any body cop
 
 Unstyled Links are identical with the normal link components, but remove any stuyling. No underline, no hover state.
 
+<Props of={LinkUnstyled} />
+
 <Playground>
   <Paragraph>
     Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">Find me, click me</LinkUnstyled> vapes stumptown
+    brooklyn bushwick distillery. <LinkUnstyled href='https://gohoppin.com' target="_blank">Find me, click me</LinkUnstyled> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
-  <Box padding='large' bg='neutrals.light'>
-  <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank">
+  <Box padding='large' bg='neutral.light'>
+  <LinkUnstyled href='https://gohoppin.com' target="_blank">
     <Box margin='large' padding='large' bg='white'>
       Clickable Box
     </Box>
@@ -100,13 +127,13 @@ It also accepts basic `display` and `flexbox (child)` props and can be used like
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
     locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
-    brooklyn bushwick distillery. <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" color='neutrals.light'>Find me, click me</LinkUnstyled> vapes stumptown
+    brooklyn bushwick distillery. <LinkUnstyled href='https://gohoppin.com' target="_blank" color='neutral.light'>Find me, click me</LinkUnstyled> vapes stumptown
     swag glossier small batch gastropub. Taxidermy 90's everyday carry kombucha.
     Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
 
-  <Box padding='large' bg='neutrals.light'>
-    <LinkUnstyled as="a" href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
+  <Box padding='large' bg='neutral.light'>
+    <LinkUnstyled href='https://gohoppin.com' target="_blank" margin='large' padding='large' bg='white'>
       Clickable Box
     </LinkUnstyled>
   </Box>

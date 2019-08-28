@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Flex } from '../Flex';
@@ -9,6 +9,10 @@ function Timeline({
   nextLabel,
   hideStepImageOnDesktop,
   onStepChange,
+  bulletSize,
+  showTrack,
+  interactive,
+  initAtStep,
   ...rest
 }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -17,10 +21,15 @@ function Timeline({
     setActiveStep(index);
     onStepChange && onStepChange(steps[index]);
   };
+
+  useEffect(() => {
+    if (initAtStep !== undefined && parseInt(initAtStep) !== 'NaN') {
+      setActiveStep(parseInt(initAtStep));
+    }
+  });
+
   return (
     <Flex
-      width="100%"
-      flex="1 0 100%"
       flexDirection="column"
       alignItems="flex-start"
       justifyItems="space-around"
@@ -36,6 +45,9 @@ function Timeline({
           goToStep={goToStep}
           nextLabel={nextLabel}
           hideStepImageOnDesktop={hideStepImageOnDesktop}
+          bulletSize={bulletSize}
+          showTrack={showTrack}
+          interactive={interactive}
           {...step}
         />
       ))}
@@ -58,10 +70,18 @@ Timeline.propTypes = {
     })
   ),
   nextLabel: PropTypes.string,
+  showTrack: PropTypes.bool,
+  bulletSize: PropTypes.string,
+  interactive: PropTypes.bool,
 };
 
 Timeline.defaultProps = {
   nextLabel: 'Next',
+  showTrack: true,
+  bulletSize: 'small',
+  interactive: true,
+  width: '1',
+  flexGrow: 1,
 };
 
 Timeline.displayName = 'Timeline';

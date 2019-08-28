@@ -1,0 +1,94 @@
+---
+name: Markdown
+route: /components/Markdown
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Markdown, MarkdownImage } from 'components/Markdown';
+import { Box } from 'components/Box';
+
+# Markdown
+
+The Markdown Component is used to render markdown content. It uses the components defined in HDS, as far as possible.
+
+## Props
+
+<Props of={Text} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Just has one prop. Children which should be a MD string.
+
+Because this in MD inside JSX inside MD, the demo is more complex than it's actual use. :)
+
+To demo, type some MD below, or copy this bit in:
+
+```
+# Headings
+
+Some lorem ipsum paragraphs, ...
+
+### Smaller heading
+
+#### all of them, actually
+
+You can also [link](/components/Link) things.
+
+![Add Images with standard MD](http://placekitten.com/200/300)
+![!Add Images with a caption, by prefixing the alt text with a !](http://placekitten.com/200/300)
+
+- Lists are fun
+- All the bullets
+- 🎯
+
+1. Give
+1. Me
+1. Numbers 💯
+
+```
+
+<Playground>
+  <Markdown>{`**Type here...** between the backticks if you're using inline MD`}</Markdown>
+</Playground>
+
+You can also pass children as a string:
+
+<Playground>
+{() => {
+  const mdstring = `This is a _great_ way to render content consistently with Hoppin Design.\n\n **Especially** if fetched from a DB.`;
+  return (<div>
+  <Markdown>{mdstring}</Markdown>
+
+or like this:
+
+  <Markdown children={mdstring}/>
+  </div>
+  );
+  }}
+</Playground>
+
+## Images
+
+To allow MD images to have a caption, not only an alt text, we expanded valid markdown slightly.
+The same way an `!` turns a link `[label](url)` into an image`![alt](src)`, you can turn the standard alt text `![alt](src)` into a caption `![!caption](src)`
+
+```
+![Add Images with standard MD](http://placekitten.com/200/200)
+![!Add Images with a caption, by prefixing the alt text with a "!"](http://placekitten.com/200/202)
+```
+
+<Playground>
+  {() => {
+    const altImage = `![Add Images with standard MD](http://placekitten.com/200/200)`;
+    const captionImage = `![!Add Images with a caption, by prefixing the alt text with a "!"](http://placekitten.com/200/202)`;
+    return (
+    <Box textAlign="center">
+      <Markdown>{`${altImage}
+
+      ${captionImage}
+      `}</Markdown>
+    </Box>
+    );
+    }}
+
+</Playground>

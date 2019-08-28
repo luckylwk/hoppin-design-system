@@ -20,8 +20,15 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.secondary};
-    color: ${({ theme }) => theme.colors.neutrals.darker};
+    color: ${({ theme }) => theme.colors.neutral.darker};
+    text-align: left;
    }
+
+  @media screen and (max-width: 480px) {
+    html, body {
+      font-size: 14px;
+    }
+  }
 
   * {
     color: inherit;
@@ -31,18 +38,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pluto';
     font-weight: normal;
     font-style: normal;
-    src: url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot');
-    src: url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot')
+    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot');
+    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot')
         format('embedded-opentype'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff2')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff2')
         format('woff2'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff')
         format('woff'),
-      url('https://storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.ttf')
+      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.ttf')
         format('truetype');
   }
 
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
+  @import url('//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
 `;
 
 const HoppinDesignProvider = ({ children, context, theme }) => {
@@ -52,7 +59,7 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
   const themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
   const tokensWithOverrides = merge({}, tokens, themeContext, theme);
-  // depending on mode, set the primary colors
+  // depending on context, set the primary colors
   const tokensWithContext = merge({}, tokensWithOverrides, {
     colors: get(
       tokensWithOverrides.colors.contexts,
@@ -61,11 +68,10 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
     ),
   });
 
-  // console.log('merged tokensWithContext', tokensWithContext);
   return (
     <ThemeProvider theme={tokensWithContext}>
       <React.Fragment>
-        <GlobalStyle />
+        {themeContext === undefined && <GlobalStyle />}
         {children}
       </React.Fragment>
     </ThemeProvider>
@@ -73,14 +79,14 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
 };
 
 HoppinDesignProvider.propTypes = {
-  /** defaults to hopper, but can set to host to change all decending elements to pink host style */
-  mode: propTypes.oneOf(['hopper', 'host']),
+  /** defaults to shadower, but can set to host to change all decending elements to pink host style */
+  context: propTypes.oneOf(['shadower', 'host']),
   /** theme is not needed, by  default all the standard tokens get loaded, if extending the theme, set this prop */
   theme: propTypes.object,
 };
 
 HoppinDesignProvider.defaultProps = {
-  mode: 'hopper',
+  context: 'shadower',
 };
 
 export default HoppinDesignProvider;

@@ -14,17 +14,13 @@ import {
   color,
 } from 'styled-system';
 
-import { Link as RouterLink } from 'react-router-dom';
 import systemPropTypes from '@styled-system/prop-types';
 
 /**
  * Core LinkUnstyled component.
- * needs react-router-dom as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
- * This is to avoid version clashes. HDS does not bundle react-router-dom.
- * Use the `as` prop to replace the react-router-dom <Link/> with a standard <a/> tag for external links.
  */
 
-const LinkUnstyled = styled(RouterLink)`
+const LinkUnstyled = styled.a`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 1em;
   cursor: pointer;

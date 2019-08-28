@@ -42,7 +42,7 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  color: 'neutrals.light',
+  color: 'neutral.light',
   marginTop: 'small',
   marginBottom: 0,
 };

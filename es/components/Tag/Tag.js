@@ -23,7 +23,7 @@ var Tag = styled('span')(_templateObject, space, color, function (_ref) {
 Tag.propTypes = _extends({}, propTypes.space, propTypes.color);
 
 Tag.defaultProps = {
-  color: 'neutrals.light',
+  color: 'neutral.light',
   marginTop: 'small',
   marginBottom: 0
 };

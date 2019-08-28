@@ -19,7 +19,7 @@ const ChatBubble = styled(Box)`
     width: 2rem;
     height: 2rem;
     border-radius: ${({ theme }) => theme.radii.xlarge};
-    background-color: ${({ theme }) => theme.colors.neutrals.lighter};
+    background-color: ${({ theme }) => theme.colors.neutral.lighter};
     background-size: cover;
     ${({ avatarURL }) =>
       avatarURL ? `background-image: url(${avatarURL});` : ''}
@@ -75,7 +75,7 @@ ChatBubble.defaultProps = {
   padding: 'small',
   marginY: ['xsmall', 'small'],
   flexGrow: 0,
-  color: 'neutrals.darker',
+  color: 'neutral.darker',
 };
 
 ChatBubble.displayName = 'ChatBubble';

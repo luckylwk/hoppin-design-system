@@ -1,104 +1,46 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import {
-  display,
-  space,
-  width,
-  flex,
-  flexGrow,
-  flexShrink,
-  flexBasis,
-  justifySelf,
-  alignSelf,
-  order,
-  get,
-} from 'styled-system';
+import React from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
-import systemPropTypes from '@styled-system/prop-types';
-import propTypes from 'prop-types';
+import LinkStyled from './LinkStyled';
+import LinkUnstyled from './LinkUnstyled';
+import RoutedLinkStyled from './RoutedLinkStyled';
+import RoutedLinkUnstyled from './RoutedLinkUnstyled';
 
-/**
- * Core Link component.
- * needs react-router-dom as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
- * This is to avoid version clashes. HDS does not bundle react-router-dom.
- * Use the `as` prop to replace the react-router-dom <Link/> with a standard <a/> tag for external links.
- */
+const Link = ({ to, unstyled, ...rest }) => {
+  // <Link to='http://somexternalwebsite.com'>
+  // <Link unstyled={true} to='http://somewxternalwebsite.com'>
+  // <Link to='/local/path'>
+  // <Link unstyled={true} to='/local/path'>
 
-const Link = styled(RouterLink)`
-  font-family: ${({ theme }) => theme.fonts.secondary};
-  font-size: 1em;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 0;
+  /* check for protocol
+   * e.g.
+   * - `http:// `
+   * - `ftp://`
+   * - `mailto://`
+   * - `ws://`
+   * - `//`
+   */
+  const isExternalUrl = url =>
+    typeof url === 'string'
+      ? url.indexOf('//') > -1 && url.indexOf('//') < 10 // can we find the protocol // early in the url?
+      : false; // if there's no url, we can't know if it's external
 
-  border: none;
-  border-bottom: 1px solid ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.light;
-  }};
-
-  color: ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.darker;
-  }};
-
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
-  letter-spacing: 0.5px;
-
-  outline: none;
-
-  transition: all 0.5s;
-
-  &:hover {
-    transform: translateY(-1px);
-    text-shadow: ${({ theme }) => theme.shadows.small};
-  }
-
-  & + & {
-    margin-left: ${({ theme }) => theme.space.small};
-  }
-
-  /* styled-system props */
-  ${display}
-  ${space}
-  ${width}
-  ${flex}
-  ${flexGrow}
-  ${flexShrink}
-  ${flexBasis}
-  ${justifySelf}
-  ${alignSelf}
-  ${order}
-`;
-
-Link.propTypes = {
-  disabled: PropTypes.bool,
-  ...systemPropTypes.buttonStyle,
-  ...systemPropTypes.display,
-  ...systemPropTypes.space,
-  ...systemPropTypes.width,
-  ...systemPropTypes.flex,
-  ...systemPropTypes.flexGrow,
-  ...systemPropTypes.flexShrink,
-  ...systemPropTypes.flexBasis,
-  ...systemPropTypes.justifySelf,
-  ...systemPropTypes.alignSelf,
-  ...systemPropTypes.order,
-
-  context: propTypes.oneOf([
-    'primary',
-    'secondary',
-    'tertiary',
-    'hopper',
-    'host',
-    'danger',
-  ]),
+  return isExternalUrl(to) ? (
+    // render unrouted Links for urls with a protocol
+    unstyled ? (
+      <LinkUnstyled href={to} {...rest} />
+    ) : (
+      <LinkStyled href={to} {...rest} />
+    )
+  ) : // render routed Links for relative urls
+  unstyled ? (
+    <RoutedLinkUnstyled to={to} {...rest} />
+  ) : (
+    <RoutedLinkStyled to={to} {...rest} />
+  );
 };
 
 Link.defaultProps = {
-  disabled: false,
-  display: 'inline-block',
+  unstyled: false,
 };
 
 Link.displayName = 'Link';

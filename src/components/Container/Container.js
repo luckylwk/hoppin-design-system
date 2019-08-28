@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled(Flex)`
+  width: 100%;
   max-width: ${({ theme, width, maxWidth }) =>
     maxWidth ? maxWidth : theme.containerWidths[width]};
   margin-left: auto;

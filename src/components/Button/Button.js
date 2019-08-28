@@ -34,6 +34,13 @@ const buttonSize = variant({
   prop: 'size',
 });
 
+const buttonIconSpacing = variant({
+  // theme key for variant definitions
+  scale: 'buttonIconSpacing',
+  // component prop
+  prop: 'size',
+});
+
 const Button = styled.button`
   font-family: ${({ theme }) => theme.fonts.secondary};
   cursor: pointer;
@@ -44,6 +51,7 @@ const Button = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.5px;
   text-decoration: none;
+  line-height: 1;
 
   outline: none;
 
@@ -61,8 +69,8 @@ const Button = styled.button`
 
   ${({ theme, variant, context }) => {
     // `variant` defines full color (default), outline, or subtle shape
-    // `context` defines color default (host/hopper inherited from context), host, hopper, danger
-    const colors = get(theme, `colors.${context}`, '#333');
+    // `context` defines color default (host/shadower inherited from context), host, shadower, danger
+    const colors = get(theme, `colors.${context}`, { base: '#333' });
 
     let variantCSS = '';
     switch (variant) {
@@ -100,12 +108,17 @@ const Button = styled.button`
     return variantCSS;
   }}
 
+  /*
+  // TODO:  Auto-Spacing between buttons. Messes up in Flexbox (wrap)
   & + & {
     margin-left: ${({ theme }) => theme.space.small};
-  }
+  } */
 
   /* our buttonSize variant */
   ${buttonSize}
+
+  /* icon buttons */
+  ${props => props.icon && buttonIconSpacing}
   /* styled-system props */
   ${display}
   ${space}
@@ -144,8 +157,9 @@ Button.propTypes = {
     'primary',
     'secondary',
     'tertiary',
-    'hopper',
+    'shadower',
     'host',
+    'neutral',
     'danger',
     'whiteout',
   ]),

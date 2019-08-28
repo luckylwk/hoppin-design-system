@@ -8,11 +8,12 @@ import { Props, Playground } from 'docz';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
+import { FiArrowLeft } from 'react-icons/fi';
 
 # Button
 
 Buttons are components which signify that an action will occur when a user interacts with them.
-If many Buttons are used immediately next to each other, they automatically have a `small` space between them. Otherwise no spacing is applied.
 
 <Props of={Button} />
 
@@ -21,12 +22,12 @@ If many Buttons are used immediately next to each other, they automatically have
 This is your standard button. They typically trigger one action when interacted with, providing the basis for creating an interactive page. Add additional context to them using the context prop.
 
 <Playground>
-  <Flex>
+  <ButtonGroup>
     <Button>Click me</Button>
-    <Button context="hopper">Hopper</Button>
+    <Button context="shadower">shadower</Button>
     <Button context="host">Host</Button>
     <Button context="danger">Danger</Button>
-  </Flex>
+  </ButtonGroup>
   <Box bg="primary.base" padding="large" marginTop="large">
     <Button context="whiteout">Whiteout</Button>
   </Box>
@@ -37,13 +38,13 @@ This is your standard button. They typically trigger one action when interacted 
 These are our outline buttons. Use them for secondary actions. Most of the time, this will be when used alongside a standard button or primary action.
 
 <Playground>
-<Flex>
+<ButtonGroup>
 
 <Button variant='outline'>Click me</Button>
-<Button variant='outline' context="hopper">Hopper</Button>
+<Button variant='outline' context="shadower">shadower</Button>
 <Button variant='outline' context="host">Host</Button>
 <Button variant='outline' context="danger">Danger</Button>
-</Flex>
+</ButtonGroup>
 <Box bg="primary.base" padding="large" marginTop="large">
   <Button variant="outline" context="whiteout">Whiteout</Button>
 </Box>
@@ -54,14 +55,14 @@ These are our outline buttons. Use them for secondary actions. Most of the time,
 These are our subtle buttons. Use them for when the action is not overly important and should blend into its surroundings.
 
 <Playground>
-<Flex>
+<ButtonGroup>
 
 <Button variant='subtle'>Click me</Button>
-<Button variant='subtle' context="hopper">Hopper</Button>
+<Button variant='subtle' context="shadower">shadower</Button>
 <Button variant='subtle' context="host">Host</Button>
 <Button variant='subtle' context="danger">Danger</Button>
 
-</Flex>
+</ButtonGroup>
 
 <Box bg="primary.base" padding="large" marginTop="large">
   <Button variant="subtle" context="whiteout">Whiteout</Button>
@@ -73,10 +74,62 @@ These are our subtle buttons. Use them for when the action is not overly importa
 All variants can come in three sizes.
 
 <Playground>
+  <ButtonGroup>
+    <Button display="inline-block">Default size</Button>
+    <Button display="inline-block" size="small">
+      Small
+    </Button>
+    <Button display="inline-block" size="base">
+      Base is default
+    </Button>
+    <Button display="inline-block" size="large">
+      Large
+    </Button>
+  </ButtonGroup>
+</Playground>
 
-<Button display='inline-block'>Default size</Button>
-<Button display='inline-block' size="small">Small</Button>
-<Button display='inline-block' size="base">Base is default</Button>
-<Button display='inline-block' size="large">Large</Button>
+## Icon Buttons
 
+Buttons that contain _just_ an icon automatically adjust padding to become round.
+
+<Playground>
+  <ButtonGroup>
+  <Button icon={true} display="inline-block" size="small">
+    <FiArrowLeft />
+  </Button>
+
+<Button icon={true} display="inline-block">
+  <FiArrowLeft />
+</Button>
+
+  <Button icon={true} display="inline-block" size="large">
+    <FiArrowLeft />
+  </Button>
+  </ButtonGroup>
+</Playground>
+
+## Groups of Buttons
+
+Use `<ButtonGroup>` to automatically space out Buttons.
+
+`ButtonGroup` is based on `Flex` and takes all flex props. It defaults to `flex-direction: row` and will automatically apply a `small` space between buttons.
+
+<Playground>
+  <ButtonGroup>
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+  </ButtonGroup>
+</Playground>
+
+Change the layout to be vertical, by applying `flexDirection='column'`
+
+<Playground>
+  <ButtonGroup flexDirection="column">
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+    <Button>Click me</Button>
+  </ButtonGroup>
 </Playground>

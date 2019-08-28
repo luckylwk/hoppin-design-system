@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   space,
   color,
+  fontSize,
   textAlign,
   flex,
   flexGrow,
@@ -19,6 +20,7 @@ const Lede = styled('p')`
   ${textAlign}
   ${space}
   ${color}
+  ${fontSize}
   ${flex}
   ${flexGrow}
   ${flexShrink}
@@ -28,7 +30,6 @@ const Lede = styled('p')`
   ${order}
 
   font-family: ${({ theme }) => theme.fonts.secondary};
-  font-size: ${({ theme }) => theme.fontSizes[4]};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   letter-spacing: 1px;
   line-height: ${({ theme }) => theme.lineHeights.base};
@@ -53,6 +54,7 @@ Lede.propTypes = {
 
 Lede.defaultProps = {
   textAlign: 'inherit',
+  fontSize: 4,
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginX: 0,
   marginY: 'large',

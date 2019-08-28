@@ -16,4 +16,16 @@ const buttonSizes = {
   },
 };
 
-export { buttonSizes };
+const buttonIconSpacing = {
+  small: {
+    padding: `${space[1]}`,
+  },
+  base: {
+    padding: `${space[2]}`,
+  },
+  large: {
+    padding: `${space[3]}`,
+  },
+};
+
+export { buttonSizes, buttonIconSpacing };

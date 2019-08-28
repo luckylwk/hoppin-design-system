@@ -24,14 +24,17 @@ You should not need to import Steps individually.
       title: 'Kick Off',
       description:
       'A 1:1 introductory meeting where the host sets the context for the day.',
+      bullet: '1',
       image: {
-      mobile: 'https://picsum.photos/320/240',
-      desktop: 'https://picsum.photos/1200/800',
+        mobile: 'https://picsum.photos/320/240',
+        desktop: 'https://picsum.photos/1200/800',
       },
   }
   ```
 
-  the image key can also contain a plain string, rather than an object with mobile and desktop keys.
+  - The `image` key can also contain a plain string, rather than an object with mobile and desktop keys.
+  - If no `image` is set, it won't render.
+  - `bullet` is optional and can contain a string or small React Element to be centered in the bullet
 
 - `nextLabel`: Optional string to be used as the label for the "Next" button
 - `minHeight`: Optional. By default the Timeline will be min 500px high and scale to get bigger to fit the content.
@@ -39,6 +42,8 @@ You should not need to import Steps individually.
 - any other prop that `<Flex>` can have (styled-system) will be forwarded to the container Flex
 - `onStepChange`: callback that returns step object, useful to set background of `<Banner>` if used together.
 - `hideStepImageOnDesktop`: hide images in the individual `Step` components on larger screens. To be uses with `onStepChange`, defaults to `false`
+- `bulletSize`: change the size of the bullets, defaults to small. (use any tokens.size)
+- `showTrack`: show the "train track" behind the bullets. Defaults to `true`
 
 ## Usage
 
@@ -101,7 +106,7 @@ You should not need to import Steps individually.
     ];
 
     return (
-    <Container bg='neutrals.base'>
+    <Container bg='neutral.base' color='white'>
       <Timeline
         steps={timelineMockData}
         minHeight={800}
@@ -182,6 +187,7 @@ Timeline plays well with a [Banner](components/Banner) component to create a ful
         <Heading color='white'>What can you expect from the experience?</Heading>
         <Lede>We take pride in facilitating authentic experiences, where every day is different and it varies from industry to industry. Where possible, the hosts aim to ensure the following:</Lede>
         <Timeline
+          color='white'
           steps={timelineMockData}
           nextLabel={`There's more...`}
           onStepChange={(step) => {setImage(step.image)}}
@@ -189,6 +195,179 @@ Timeline plays well with a [Banner](components/Banner) component to create a ful
         />
       </Container>
     </Banner>
+    );
+
+}}
+
+</Playground>
+
+## Custom Bullets, hide track
+
+To customise the timeline you can supply custom bullets in the steps array by setting the bullet key in each step object.
+And to hide the "track" behind the bullets, simply set `showTrack={false}`
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        bullet: '1',
+        title: "How to be a great host",
+        description:
+          "Learn the basics of being the host of a shadowing experience."
+      },
+      {
+        bullet: '2',
+        title: "Build your profile",
+        description:
+          "Build your profile by giving us a information about you and your organization."
+      },
+      {
+        bullet: '3',
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action!"
+      }
+    ];
+
+    return (
+    <Container bg='neutral.base' color='white'>
+      <Timeline
+        steps={timelineMockData}
+        nextLabel={`There's more...`}
+        bulletSize='large'
+        showTrack={false}
+      />
+    </Container>
+    );
+
+}}
+
+</Playground>
+
+## Disable user interactions
+
+Im some cases you might want to show the progress, but don't allow the user to navigate through the steps.
+For example when used together with [SteppedJSONForm](/components/SteppedJSONForm).
+
+You can disable user interactions and hide the next buttons by setting `interactive={false}`
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        bullet: '1',
+        title: "How to be a great host",
+        description:
+          "Learn the basics of being the host of a shadowing experience."
+      },
+      {
+        bullet: '2',
+        title: "Build your profile",
+        description:
+          "Build your profile by giving us a information about you and your organization."
+      },
+      {
+        bullet: '3',
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action!"
+      }
+    ];
+
+    return (
+    <Container bg='neutral.base' color='white'>
+      <Timeline
+        steps={timelineMockData}
+        bulletSize='large'
+        showTrack={false}
+        interactive={false}
+      />
+    </Container>
+    );
+
+}}
+
+</Playground>
+
+## Colors
+
+The inactive step headings inherit the color from the parant components. Set color either on timeline or a parent element to change it.
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        bullet: '1',
+        title: "How to be a great host",
+        description:
+          "Learn the basics of being the host of a shadowing experience."
+      },
+      {
+        bullet: '2',
+        title: "Build your profile",
+        description:
+          "Build your profile by giving us a information about you and your organization."
+      },
+      {
+        bullet: '3',
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action!"
+      }
+    ];
+
+    return (
+    <Container bg='neutral.lightest' color='neutral.dark'>
+      <Timeline
+        steps={timelineMockData}
+        bulletSize='large'
+        showTrack={false}
+        interactive={false}
+      />
+    </Container>
+    );
+
+}}
+
+</Playground>
+
+## Initialise with specific active step
+
+To define which step is active before the user starts to click on things, set `initAtStep` to the array index of the step you want to jump to.
+
+<Playground>
+  {() => {
+    const timelineMockData = [
+      {
+        bullet: '1',
+        title: "How to be a great host",
+        description:
+          "Learn the basics of being the host of a shadowing experience."
+      },
+      {
+        bullet: '2',
+        title: "Build your profile",
+        description:
+          "Build your profile by giving us a information about you and your organization."
+      },
+      {
+        bullet: '3',
+        title: "Meetings",
+        description:
+          "An opportunity to attend meetings, listen in on calls and really see your host in action!"
+      }
+    ];
+
+    return (
+    <Container bg='neutral.lightest' color='neutral.light'>
+      <Timeline
+        steps={timelineMockData}
+        bulletSize='large'
+        showTrack={false}
+        interactive={false}
+        initAtStep={2}
+      />
+    </Container>
     );
 
 }}

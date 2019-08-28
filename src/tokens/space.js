@@ -6,9 +6,9 @@ const space = [
   '.5rem', // 8px
   '1rem', // 16px
   '1.5rem', // 24px
-  '3rem', // 48px
+  '2rem', // 32px
   '4rem', // 64px
-  '5rem', // 80px
+  '6rem', // 96px
 ];
 
 space.xsmall = space[1];
@@ -19,27 +19,28 @@ space.large = space[4];
 space.xlarge = space[5];
 
 const containerWidths = {
-  narrow: '45rem',
-  base: '60rem',
+  narrow: '50rem',
+  base: '70rem',
   full: '100%',
 };
 containerWidths.normal = containerWidths.base;
 
 const radii = [0, space.xsmall, space.small, space.base, space.large, '100%'];
 
-radii.none = radii[1];
+radii.none = radii[0];
 radii.xsmall = radii[1];
 radii.small = radii[2];
 radii.medium = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
-const zIndexes = [0, 3, 5, 8, 13];
+const zIndexes = [0, 3, 5, 8, 13, 21];
 
-zIndexes.farBack = zIndexes[-3];
-zIndexes.back = zIndexes[-1];
+zIndexes.farBack = -zIndexes[3];
+zIndexes.back = -zIndexes[1];
 zIndexes.base = zIndexes[0];
 zIndexes.front = zIndexes[3];
-zIndexes.overlay = zIndexes[4];
+zIndexes.nav = zIndexes[4];
+zIndexes.overlay = zIndexes[5];
 
 export { space, containerWidths, radii, zIndexes };

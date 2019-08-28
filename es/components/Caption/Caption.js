@@ -21,7 +21,7 @@ var Caption = styled('span')(_templateObject, space, color, function (_ref) {
 Caption.propTypes = _extends({}, propTypes.space, propTypes.color);
 
 Caption.defaultProps = {
-  color: 'neutrals.light',
+  color: 'neutral.light',
   marginTop: 'small',
   marginBottom: 0
 };

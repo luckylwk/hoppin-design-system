@@ -23,7 +23,7 @@ var ChatBubble = styled(Box)(_templateObject, function (_ref) {
   return theme.radii.xlarge;
 }, function (_ref5) {
   var theme = _ref5.theme;
-  return theme.colors.neutrals.lighter;
+  return theme.colors.neutral.lighter;
 }, function (_ref6) {
   var avatarURL = _ref6.avatarURL;
   return avatarURL ? 'background-image: url(' + avatarURL + ');' : '';
@@ -58,7 +58,7 @@ ChatBubble.defaultProps = {
   padding: 'small',
   marginY: ['xsmall', 'small'],
   flexGrow: 0,
-  color: 'neutrals.darker'
+  color: 'neutral.darker'
 };
 
 ChatBubble.displayName = 'ChatBubble';

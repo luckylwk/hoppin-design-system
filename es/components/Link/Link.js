@@ -1,60 +1,45 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  font-family: ', ';\n  font-size: 1em;\n  cursor: pointer;\n  text-decoration: none;\n  padding: 0;\n\n  border: none;\n  border-bottom: 1px solid ', ';\n\n  color: ', ';\n\n  font-weight: ', ';\n  letter-spacing: 0.5px;\n\n  outline: none;\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    text-shadow: ', ';\n  }\n\n  & + & {\n    margin-left: ', ';\n  }\n\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  font-family: ', ';\n  font-size: 1em;\n  cursor: pointer;\n  text-decoration: none;\n  padding: 0;\n\n  border: none;\n  border-bottom: 1px solid ', ';\n\n  color: ', ';\n\n  font-weight: ', ';\n  letter-spacing: 0.5px;\n\n  outline: none;\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    text-shadow: ', ';\n  }\n\n  & + & {\n    margin-left: ', ';\n  }\n\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+import React from 'react';
 
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, get } from 'styled-system';
+import LinkStyled from './LinkStyled';
+import LinkUnstyled from './LinkUnstyled';
+import RoutedLinkStyled from './RoutedLinkStyled';
+import RoutedLinkUnstyled from './RoutedLinkUnstyled';
 
-import { Link as RouterLink } from 'react-router-dom';
-import systemPropTypes from '@styled-system/prop-types';
-import propTypes from 'prop-types';
+var Link = function Link(_ref) {
+  var to = _ref.to,
+      unstyled = _ref.unstyled,
+      rest = _objectWithoutProperties(_ref, ['to', 'unstyled']);
 
-/**
- * Core Link component.
- * needs react-router-dom as a peer dependency. So it will pick up withever version of react-router-dom you're using in the app.
- * This is to avoid version clashes. HDS does not bundle react-router-dom.
- * Use the `as` prop to replace the react-router-dom <Link/> with a standard <a/> tag for external links.
- */
+  // <Link to='http://somexternalwebsite.com'>
+  // <Link unstyled={true} to='http://somewxternalwebsite.com'>
+  // <Link to='/local/path'>
+  // <Link unstyled={true} to='/local/path'>
 
-var Link = styled(RouterLink)(_templateObject, function (_ref) {
-  var theme = _ref.theme;
-  return theme.fonts.secondary;
-}, function (_ref2) {
-  var theme = _ref2.theme,
-      context = _ref2.context;
+  /* check for protocol
+   * e.g.
+   * - `http:// `
+   * - `ftp://`
+   * - `mailto://`
+   * - `ws://`
+   * - `//`
+   */
+  var isExternalUrl = function isExternalUrl(url) {
+    return typeof url === 'string' ? url.indexOf('//') > -1 && url.indexOf('//') < 10 // can we find the protocol // early in the url?
+    : false;
+  }; // if there's no url, we can't know if it's external
 
-  var colors = get(theme.colors, context, theme.colors.primary);
-  return colors.light;
-}, function (_ref3) {
-  var theme = _ref3.theme,
-      context = _ref3.context;
-
-  var colors = get(theme.colors, context, theme.colors.primary);
-  return colors.darker;
-}, function (_ref4) {
-  var theme = _ref4.theme;
-  return theme.fontWeights.normal;
-}, function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.shadows.small;
-}, function (_ref6) {
-  var theme = _ref6.theme;
-  return theme.space.small;
-}, display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
-
-Link.propTypes = _extends({
-  disabled: PropTypes.bool
-}, systemPropTypes.buttonStyle, systemPropTypes.display, systemPropTypes.space, systemPropTypes.width, systemPropTypes.flex, systemPropTypes.flexGrow, systemPropTypes.flexShrink, systemPropTypes.flexBasis, systemPropTypes.justifySelf, systemPropTypes.alignSelf, systemPropTypes.order, {
-
-  context: propTypes.oneOf(['primary', 'secondary', 'tertiary', 'hopper', 'host', 'danger'])
-});
+  return isExternalUrl(to) ?
+  // render unrouted Links for urls with a protocol
+  unstyled ? React.createElement(LinkUnstyled, _extends({ href: to }, rest)) : React.createElement(LinkStyled, _extends({ href: to }, rest)) : // render routed Links for relative urls
+  unstyled ? React.createElement(RoutedLinkUnstyled, _extends({ to: to }, rest)) : React.createElement(RoutedLinkStyled, _extends({ to: to }, rest));
+};
 
 Link.defaultProps = {
-  disabled: false,
-  display: 'inline-block'
+  unstyled: false
 };
 
 Link.displayName = 'Link';

@@ -11,6 +11,9 @@ import {
   justifySelf,
   alignSelf,
   order,
+  lineHeight,
+  letterSpacing,
+  textAlign,
 } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
@@ -28,7 +31,7 @@ const headingStyles = variant({
 const Heading = styled('h2')`
   /* use styled-system variants defined in tokens/typography */
   ${headingStyles}
-  /* get color from theme to get dymanic mode colors (host vs hopper)*/
+  /* get color from theme to get dymanic context colors (host vs shadower)*/
   ${({ theme, as }) => {
     let colorCSS = '';
     switch (as) {
@@ -36,19 +39,19 @@ const Heading = styled('h2')`
         colorCSS = `color: ${theme.colors.primary.base};`;
         break;
       case 'h2':
-        colorCSS = `color: ${theme.colors.primary.darker};`;
+        colorCSS = `color: ${theme.colors.primary.base};`;
         break;
       case 'h3':
-        colorCSS = `color: ${theme.colors.neutrals.darker};`;
+        colorCSS = `color: ${theme.colors.neutral.darker};`;
         break;
       case 'h4':
-        colorCSS = `color: ${theme.colors.neutrals.darker};`;
+        colorCSS = `color: ${theme.colors.neutral.darker};`;
         break;
       case 'h5':
-        colorCSS = `color: ${theme.colors.neutrals.dark};`;
+        colorCSS = `color: ${theme.colors.neutral.dark};`;
         break;
       case 'h6':
-        colorCSS = `color: ${theme.colors.neutrals.dark};`;
+        colorCSS = `color: ${theme.colors.neutral.dark};`;
         break;
     }
     return colorCSS;
@@ -64,6 +67,9 @@ const Heading = styled('h2')`
   ${justifySelf}
   ${alignSelf}
   ${order}
+  ${lineHeight}
+  ${letterSpacing}
+  ${textAlign}
 
   &:first-child {
     margin-top: 0;
@@ -87,6 +93,7 @@ Heading.defaultProps = {
   as: 'h2',
   marginBottom: 'base',
   marginTop: 'xlarge',
+  textAlign: 'inherit',
 };
 
 Heading.displayName = 'Heading';
