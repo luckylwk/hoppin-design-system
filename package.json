@@ -1,6 +1,6 @@
 {
   "name": "hoppin-design-system",
-  "version": "0.0.3",
+  "version": "0.2.0",
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -54,6 +54,7 @@
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
-    "deploy": "now --target production"
+    "deploy": "now --target production",
+    "start": "docz dev -p 2000"
   }
 }
