@@ -71,7 +71,7 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
   return (
     <ThemeProvider theme={tokensWithContext}>
       <React.Fragment>
-        <GlobalStyle />
+        {themeContext === undefined && <GlobalStyle />}
         {children}
       </React.Fragment>
     </ThemeProvider>

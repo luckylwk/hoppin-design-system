@@ -33,14 +33,14 @@
     "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "react": "16.x",
-    "react-dom": "16.x",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.1"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-router-dom": "^5.0.1"
   },
   "resolutions": {

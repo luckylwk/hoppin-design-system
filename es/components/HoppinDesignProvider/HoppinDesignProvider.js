@@ -36,7 +36,7 @@ var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
     React.createElement(
       React.Fragment,
       null,
-      React.createElement(GlobalStyle, null),
+      themeContext === undefined && React.createElement(GlobalStyle, null),
       children
     )
   );
