@@ -15,7 +15,7 @@ var Text = styled('span')(typography, space, color
 Text.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.typography);
 
 Text.defaultProps = {
-  fontFamily: 'fonts.secondary',
+  fontFamily: 'secondary',
   fontSize: 'inherit',
   color: 'inherit' // respond to context, if we're white on dark background or dark on light.
 };
