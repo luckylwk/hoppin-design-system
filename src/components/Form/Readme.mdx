@@ -6,8 +6,11 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
-import { Input, Checkbox, Label, Calendar, Errors } from './';
+import { Box } from '../Box';
+import { Input, Checkbox, Label, Calendar, Errors, getSelectStyling } from './';
 import { DateUtils } from 'react-day-picker';
+import Select from 'react-select';
+import { ThemeConsumer } from 'styled-components';
 
 # Form
 
@@ -114,6 +117,39 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
 
 }}
 
+</Playground>
+
+## Select
+
+HDS exports `getSelectStyling(theme)` to be used with [React Select](https://react-select.com)
+
+Invoke `getSelectStyling` by passing it the current theme object, to receive context-accurate `theme` and `styling` objects for all ReactSelect components.
+
+<Playground>
+  <ThemeConsumer>
+    {theme => {
+      console.log(theme);
+      const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+      ];
+      const selectStyling = getSelectStyling(theme);
+      return (
+        <>
+          <Select options={options} {...selectStyling} />
+          <Box padding="small" />
+          <Select
+            defaultValue={[options[2], options[3]]}
+            isMulti
+            name="food"
+            options={options}
+            {...selectStyling}
+          />
+        </>
+      );
+    }}
+  </ThemeConsumer>
 </Playground>
 
 ## Errors
