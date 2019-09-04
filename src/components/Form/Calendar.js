@@ -49,11 +49,16 @@ const Wrapper = styled(Box)`
   }
 `;
 
-const isAvailable = (availableDays, day) => {
-  const availableIndex = availableDays.findIndex(availableDay =>
-    DateUtils.isSameDay(availableDay, day)
+const filterMarkers = (arrayOrFn, day) => {
+  // run the function, if we get one passed as prop
+  if (typeof arrayOrFn === 'function') {
+    return arrayOrFn(day);
+  }
+  // otherwise it's an array of days, then run through the array
+  const index = arrayOrFn.findIndex(currentDay =>
+    DateUtils.isSameDay(currentDay, day)
   );
-  return availableIndex !== -1;
+  return index !== -1;
 };
 
 const Calendar = ({
@@ -66,9 +71,9 @@ const Calendar = ({
   <Wrapper>
     <DayPicker
       initialMonth={initialMonth ? initialMonth : new Date()}
-      selectedDays={selectedDays}
+      selectedDays={filterMarkers.bind(null, selectedDays)}
       onDayClick={onDayClick}
-      modifiers={{ available: isAvailable.bind(null, availableDays) }}
+      modifiers={{ available: filterMarkers.bind(null, availableDays) }}
       disabledDays={[{ before: new Date() }]}
       numberOfMonths={numberOfMonths}
       todayButton="Go to Today"
