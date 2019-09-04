@@ -6,7 +6,7 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
-import { Input, Checkbox, Label, Calendar } from './';
+import { Input, Checkbox, Label, Calendar, Errors } from './';
 import { DateUtils } from 'react-day-picker';
 
 # Form
@@ -117,4 +117,18 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
 
 }}
 
+</Playground>
+
+## Errors
+
+<Props of={Errors} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Errors
+    errors={[
+      { msg: 'Custom errors from the backend' },
+      new Error('And standard errors are supported'),
+    ]}
+  />
 </Playground>

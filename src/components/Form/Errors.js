@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { Text } from '../Text';
 import { Box } from '../Box';
+import { Paragraph } from '../Paragraph';
 
 /**
  * Errors (array) will have the following structure:
@@ -14,16 +15,16 @@ import { Box } from '../Box';
  */
 
 const BoxDanger = styled(Box)`
-  background-color: #edf0f2;
-
-  border-left: 4px solid #dc3030;
+  background-color: ${({ theme }) => theme.colors.danger.lightest};
+  border-left: 4px solid ${({ theme }) => theme.colors.danger.base};
+  border-radius: ${({ theme }) => theme.radii.small};
 `;
 
 const Errors = ({ errors }) => (
   <Box>
     {errors.length > 0 && (
       <BoxDanger mt={2} py={2} px={3}>
-        <Text display="block" style={{ color: '#881B1B' }} data-cy="error">
+        <Text display="block" color="error.darker" data-cy="error">
           {/* <span
             style={{
               background: 'white',
@@ -43,7 +44,9 @@ const Errors = ({ errors }) => (
             />
           </span> */}
 
-          {errors[0].msg}
+          {errors.map(error => (
+            <Paragraph marginBottom={0}>{error.msg || error.message}</Paragraph>
+          ))}
         </Text>
       </BoxDanger>
     )}
@@ -51,6 +54,7 @@ const Errors = ({ errors }) => (
 );
 
 Errors.propTypes = {
+  /** [ { msg: 'Custom errors from the backend' }, new Error("And standard errors are supported") ] */
   errors: PropTypes.array.isRequired,
 };
 
