@@ -23,7 +23,7 @@ var Input = function Input(_ref) {
   );
 };
 Input.propTypes = process.env.NODE_ENV !== "production" ? {
-  /** supply a label prop and the InputField gets wrapped in a Label, obit it to render the InputField alone */
+  /** supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone */
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,

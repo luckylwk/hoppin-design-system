@@ -16,7 +16,7 @@ const Input = ({ label, ...rest }) => {
   );
 };
 Input.propTypes = {
-  /** supply a label prop and the InputField gets wrapped in a Label, obit it to render the InputField alone */
+  /** supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone */
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { color } from 'styled-system';
 import PropTypes from 'prop-types';
-import Checkbox from 'rc-checkbox';
+import RcCheckbox from 'rc-checkbox';
 import CheckboxLabel from './Label';
 
 /**
@@ -24,7 +24,8 @@ const Icon = styled.svg`
 // Hide checkbox visually but remain accessible to screen readers.
 // Source: https://polished.js.org/docs/#hidevisually
 // const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-const HiddenCheckbox = styled(Checkbox)`
+RcCheckbox.displayName = 'RcCheckbox';
+const HiddenCheckbox = styled(RcCheckbox)`
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -36,6 +37,7 @@ const HiddenCheckbox = styled(Checkbox)`
   white-space: nowrap;
   width: 1px;
 `;
+HiddenCheckbox.displayName = 'HiddenCheckbox';
 
 const StyledCheckbox = styled.div`
   display: inline-block;
@@ -63,8 +65,9 @@ const StyledCheckbox = styled.div`
     visibility: ${props => (props.checked ? 'visible' : 'hidden')};
   }
 `;
+StyledCheckbox.displayName = 'StyledCheckbox';
 
-class CheckboxFancy extends Component {
+class Checkbox extends Component {
   onClick = event => {
     event.preventDefault();
     const { checked, onChange } = this.props;
@@ -89,7 +92,7 @@ class CheckboxFancy extends Component {
   }
 }
 
-CheckboxFancy.propTypes = {
+Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -97,6 +100,6 @@ CheckboxFancy.propTypes = {
   label: PropTypes.string,
 };
 
-CheckboxFancy.displayName = 'CheckboxFancy';
+Checkbox.displayName = 'Checkbox';
 
-export default CheckboxFancy;
+export default Checkbox;

@@ -15,7 +15,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { color } from 'styled-system';
 import PropTypes from 'prop-types';
-import Checkbox from 'rc-checkbox';
+import RcCheckbox from 'rc-checkbox';
 import CheckboxLabel from './Label';
 
 /**
@@ -30,7 +30,9 @@ var Icon = styled.svg(_templateObject2);
 // Hide checkbox visually but remain accessible to screen readers.
 // Source: https://polished.js.org/docs/#hidevisually
 // const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-var HiddenCheckbox = styled(Checkbox)(_templateObject3);
+RcCheckbox.displayName = 'RcCheckbox';
+var HiddenCheckbox = styled(RcCheckbox)(_templateObject3);
+HiddenCheckbox.displayName = 'HiddenCheckbox';
 
 var StyledCheckbox = styled.div(_templateObject4, CheckboxLabel, function (_ref) {
   var theme = _ref.theme;
@@ -51,14 +53,15 @@ var StyledCheckbox = styled.div(_templateObject4, CheckboxLabel, function (_ref)
 }, Icon, function (props) {
   return props.checked ? 'visible' : 'hidden';
 });
+StyledCheckbox.displayName = 'StyledCheckbox';
 
-var CheckboxFancy = function (_Component) {
-  _inherits(CheckboxFancy, _Component);
+var Checkbox = function (_Component) {
+  _inherits(Checkbox, _Component);
 
-  function CheckboxFancy() {
+  function Checkbox() {
     var _temp, _this, _ret;
 
-    _classCallCheck(this, CheckboxFancy);
+    _classCallCheck(this, Checkbox);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -74,7 +77,7 @@ var CheckboxFancy = function (_Component) {
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  CheckboxFancy.prototype.render = function render() {
+  Checkbox.prototype.render = function render() {
     var _props = this.props,
         name = _props.name,
         checked = _props.checked,
@@ -100,10 +103,10 @@ var CheckboxFancy = function (_Component) {
     );
   };
 
-  return CheckboxFancy;
+  return Checkbox;
 }(Component);
 
-CheckboxFancy.propTypes = process.env.NODE_ENV !== "production" ? {
+Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -111,6 +114,6 @@ CheckboxFancy.propTypes = process.env.NODE_ENV !== "production" ? {
   label: PropTypes.string
 } : {};
 
-CheckboxFancy.displayName = 'CheckboxFancy';
+Checkbox.displayName = 'Checkbox';
 
-export default CheckboxFancy;
+export default Checkbox;
