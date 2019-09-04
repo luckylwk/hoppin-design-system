@@ -23,10 +23,13 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
 
 <Playground>
   <Input
+    name="first_name"
+    label="Name"
     placeholder="First Name"
     onChange={e => console.log(e.target.name, e.target.value)}
   />
   <Input
+    name="last_name"
     placeholder="Last Name"
     onChange={e => console.log(e.target.name, e.target.value)}
   />

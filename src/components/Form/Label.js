@@ -10,6 +10,8 @@ const Label = styled('label')`
   ${typography}
   ${space}
   ${color}
+  width: 100%;
+  flex: 1 1 100%;
 `;
 
 Label.propTypes = {
