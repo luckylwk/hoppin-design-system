@@ -54,10 +54,11 @@ const getSelectStyles = theme => ({
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
     backgroundColor: theme.colors.neutral.lighter,
+    borderRadius: theme.radii.xsmall,
   }),
   multiValueLabel: (styles, { data }) => ({
     ...styles,
-    fontSize: '16px',
+    fontSize: theme.fontSizes.body,
     color: theme.colors.neutral.dark,
   }),
   multiValueRemove: (styles, { data }) => ({
