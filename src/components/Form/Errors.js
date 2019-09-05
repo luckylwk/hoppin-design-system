@@ -45,7 +45,9 @@ const Errors = ({ errors }) => (
           </span> */}
 
           {errors.map(error => (
-            <Paragraph marginBottom={0}>{error.msg || error.message}</Paragraph>
+            <Paragraph marginBottom={0} key={error.msg || error.message}>
+              {error.msg || error.message}
+            </Paragraph>
           ))}
         </Text>
       </BoxDanger>

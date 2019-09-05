@@ -43,7 +43,7 @@ var Errors = function Errors(_ref4) {
         errors.map(function (error) {
           return React.createElement(
             Paragraph,
-            { marginBottom: 0 },
+            { marginBottom: 0, key: error.msg || error.message },
             error.msg || error.message
           );
         })

@@ -7,7 +7,15 @@ menu: Components
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
 import { Box } from '../Box';
-import { Input, Checkbox, Label, Calendar, Errors, getSelectStyling } from './';
+import {
+  Input,
+  TextareaMd,
+  Checkbox,
+  Label,
+  Calendar,
+  Errors,
+  getSelectStyling,
+} from './';
 import { DateUtils } from 'react-day-picker';
 import Select from 'react-select';
 import { ThemeConsumer } from 'styled-components';
@@ -35,6 +43,23 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     placeholder="Last Name"
     onChange={e => console.log(e.target.name, e.target.value)}
   />
+</Playground>
+
+## TextareaMd
+
+<Props of={TextareaMd} />
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState('Write something **bold**!');
+    return (
+      <TextareaMd
+        onChange={value => console.log(value)}
+        initialValue={value}
+        onChange={setValue}
+      />
+    );
+  }}
 </Playground>
 
 ## Checkbox
