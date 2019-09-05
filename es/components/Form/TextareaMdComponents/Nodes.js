@@ -7,14 +7,22 @@ import { Paragraph } from '../../Paragraph';
 // import { Link } from '../../Link';
 import { UnorderedList, ListItem, OrderedList } from '../../List';
 
-var renderNode = function renderNode(props, _, next) {
-  var attributes = props.attributes,
-      children = props.children,
-      isFocused = props.isFocused,
-      node = props.node;
+function renderNode(_ref, editor, next) {
+  var attributes = _ref.attributes,
+      children = _ref.children,
+      node = _ref.node;
 
+  var hidden = node.data.get('hidden');
+  if (hidden) attributes.style = { display: 'none' };
 
   switch (node.type) {
+    case 'paragraph':
+      return React.createElement(
+        Paragraph,
+        attributes,
+        children
+      );
+
     case 'code':
       return React.createElement(
         'code',
@@ -91,16 +99,9 @@ var renderNode = function renderNode(props, _, next) {
         children
       );
 
-    case 'paragraph':
-      return React.createElement(
-        Paragraph,
-        attributes,
-        children
-      );
-
     default:
       return next();
   }
-};
+}
 
 export default { renderNode: renderNode };

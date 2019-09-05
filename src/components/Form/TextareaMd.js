@@ -28,6 +28,9 @@ import { Value } from 'slate';
 // import { Link } from '../Link';
 import Nodes from './TextareaMdComponents/Nodes';
 import Marks from './TextareaMdComponents/Marks';
+import MarkdownShortcuts from './TextareaMdComponents/MarkdownShortcuts';
+import MarkdownPaste from './TextareaMdComponents/MarkdownPaste';
+import Schema from './TextareaMdComponents/schema';
 
 const DEFAULT_NODE = 'paragraph';
 const EMPTY_VALUE = {
@@ -46,16 +49,6 @@ const EMPTY_VALUE = {
     ],
   },
 };
-
-const SCHEMA = {
-  blocks: {
-    image: {
-      isVoid: true,
-    },
-  },
-};
-
-const plugins = [Nodes, Marks];
 
 /**
  * A rich text editor.
@@ -101,7 +94,7 @@ export default class TextareaMd extends React.Component {
     /**
      * The initial value of the editor.
      */
-    value: proptypes.oneOfType([proptypes.object, proptypes.string]),
+    // value: proptypes.oneOfType([proptypes.object, proptypes.string]),
     initialValue: proptypes.oneOfType([proptypes.object, proptypes.string]),
   };
 
@@ -118,6 +111,13 @@ export default class TextareaMd extends React.Component {
     });
 
     this.markdown = new MarkdownSerializer();
+    this.plugins = [
+      Nodes,
+      Marks,
+      MarkdownShortcuts(),
+      MarkdownPaste(this.markdown),
+    ];
+    this.schema = Schema;
 
     this.state = {
       // Deserialising the value and caching the result, so that other methods
@@ -126,17 +126,14 @@ export default class TextareaMd extends React.Component {
   }
 
   componentDidMount() {
-    const { onSaveRegister, onValidateRegister } = this.props;
-
+    // const { onSaveRegister, onValidateRegister } = this.props;
     this.hotKeys.addListener();
-
-    if (typeof onSaveRegister === 'function') {
-      onSaveRegister(this.handleSave.bind(this));
-    }
-
-    if (typeof onValidateRegister === 'function') {
-      onValidateRegister(this.validate.bind(this));
-    }
+    // if (typeof onSaveRegister === 'function') {
+    //   onSaveRegister(this.handleSave.bind(this));
+    // }
+    // if (typeof onValidateRegister === 'function') {
+    //   onValidateRegister(this.validate.bind(this));
+    // }
   }
 
   componentWillUnmount() {
@@ -162,74 +159,74 @@ export default class TextareaMd extends React.Component {
     onChange && onChange(this.markdown.serialize(value));
   };
 
-  handleToggleBlock = type => {
-    if (type !== 'unordered-list' && type !== 'ordered-list') {
-      const isActive = this.hasBlock(type);
-      const isList = this.hasBlock(list - item);
+  // handleToggleBlock = type => {
+  //   if (type !== 'unordered-list' && type !== 'ordered-list') {
+  //     const isActive = this.hasBlock(type);
+  //     const isList = this.hasBlock('list-item');
 
-      if (isList) {
-        this.editor
-          .setBlocks(isActive ? DEFAULT_NODE : type)
-          .unwrapBlock('unordered-list')
-          .unwrapBlock(ordered - list);
-      } else {
-        this.editor.setBlocks(isActive ? DEFAULT_NODE : type);
-      }
-    } else {
-      const { document } = this.state.value;
-      const isList = this.hasBlock(list - item);
-      const isType = this.state.value.blocks.some(block => {
-        return Boolean(
-          document.getClosest(block.key, parent => parent.type === type)
-        );
-      });
+  //     if (isList) {
+  //       this.editor
+  //         .setBlocks(isActive ? DEFAULT_NODE : type)
+  //         .unwrapBlock('unordered-list')
+  //         .unwrapBlock('ordered-list');
+  //     } else {
+  //       this.editor.setBlocks(isActive ? DEFAULT_NODE : type);
+  //     }
+  //   } else {
+  //     const { document } = this.state.value;
+  //     const isList = this.hasBlock('list-item');
+  //     const isType = this.state.value.blocks.some(block => {
+  //       return Boolean(
+  //         document.getClosest(block.key, parent => parent.type === type)
+  //       );
+  //     });
 
-      if (isList && isType) {
-        this.editor
-          .setBlocks(DEFAULT_NODE)
-          .unwrapBlock('unordered-list')
-          .unwrapBlock(ordered - list);
-      } else if (isList) {
-        const oldListType =
-          type === 'unordered-list' ? 'ordered-list' : 'unordered-list';
+  //     if (isList && isType) {
+  //       this.editor
+  //         .setBlocks(DEFAULT_NODE)
+  //         .unwrapBlock('unordered-list')
+  //         .unwrapBlock('ordered-list');
+  //     } else if (isList) {
+  //       const oldListType =
+  //         type === 'unordered-list' ? 'ordered-list' : 'unordered-list';
 
-        this.editor.unwrapBlock(oldListType).wrapBlock(type);
-      } else {
-        this.editor.setBlocks(list - item).wrapBlock(type);
-      }
-    }
-  };
+  //       this.editor.unwrapBlock(oldListType).wrapBlock(type);
+  //     } else {
+  //       this.editor.setBlocks('list-item').wrapBlock(type);
+  //     }
+  //   }
+  // };
 
-  handleToggleCode = (valueIsCodeBlock, valueIsCodeMark) => {
-    if (valueIsCodeBlock) {
-      return this.editor.setBlocks(DEFAULT_NODE);
-    }
+  // handleToggleCode = (valueIsCodeBlock, valueIsCodeMark) => {
+  //   if (valueIsCodeBlock) {
+  //     return this.editor.setBlocks(DEFAULT_NODE);
+  //   }
 
-    if (valueIsCodeMark) {
-      return this.editor.toggleMark('code');
-    }
+  //   if (valueIsCodeMark) {
+  //     return this.editor.toggleMark('code');
+  //   }
 
-    const { blocks, selection } = this.state.value;
+  //   const { blocks, selection } = this.state.value;
 
-    // If the selection spans across more than one node, we render a code
-    // block.
-    let isBlock = blocks.size > 1;
+  //   // If the selection spans across more than one node, we render a code
+  //   // block.
+  //   let isBlock = blocks.size > 1;
 
-    // We do an additional check to see if the selection corresponds to the
-    // entirety of a node. If it does, we also render a block.
-    if (!isBlock) {
-      const { end, start } = selection;
-      const block = blocks.get(0);
+  //   // We do an additional check to see if the selection corresponds to the
+  //   // entirety of a node. If it does, we also render a block.
+  //   if (!isBlock) {
+  //     const { end, start } = selection;
+  //     const block = blocks.get(0);
 
-      isBlock = start.isAtStartOfNode(block) && end.isAtEndOfNode(block);
-    }
+  //     isBlock = start.isAtStartOfNode(block) && end.isAtEndOfNode(block);
+  //   }
 
-    if (isBlock) {
-      this.editor.wrapBlock('code');
-    } else {
-      this.editor.toggleMark('code');
-    }
-  };
+  //   if (isBlock) {
+  //     this.editor.wrapBlock('code');
+  //   } else {
+  //     this.editor.toggleMark('code');
+  //   }
+  // };
 
   handleToggleMark = type => {
     this.editor.toggleMark(type);
@@ -239,28 +236,28 @@ export default class TextareaMd extends React.Component {
     return this.state.value.blocks.some(block => block.type === type);
   };
 
-  hasInline = type => {
-    return this.state.value.inlines.some(inline => inline.type === type);
-  };
+  // hasInline = type => {
+  //   return this.state.value.inlines.some(inline => inline.type === type);
+  // };
 
   hasMark = type => {
     return this.state.value.activeMarks.some(mark => mark.type === type);
   };
 
-  isListOfType = type => {
-    const { blocks, document } = this.state.value;
+  // isListOfType = type => {
+  //   const { blocks, document } = this.state.value;
 
-    let valueIsInList = this.hasBlock(type);
+  //   let valueIsInList = this.hasBlock(type);
 
-    if (blocks.size > 0) {
-      const parent = document.getParent(blocks.first().key);
+  //   if (blocks.size > 0) {
+  //     const parent = document.getParent(blocks.first().key);
 
-      valueIsInList =
-        this.hasBlock('list-item') && parent && parent.type === type;
-    }
+  //     valueIsInList =
+  //       this.hasBlock('list-item') && parent && parent.type === type;
+  //   }
 
-    return valueIsInList;
-  };
+  //   return valueIsInList;
+  // };
 
   serialise = value => {
     if (Value.isValue(value)) {
@@ -270,17 +267,17 @@ export default class TextareaMd extends React.Component {
     return value;
   };
 
-  validate = ({ validateFn, value }) => {
-    if (Value.isValue(value)) {
-      return Promise.resolve();
-    }
+  // validate = ({ validateFn, value }) => {
+  //   if (Value.isValue(value)) {
+  //     return Promise.resolve();
+  //   }
 
-    return validateFn(value);
-  };
+  //   return validateFn(value);
+  // };
 
   render() {
-    const valueIsCodeBlock = this.hasBlock('code');
-    const valueIsCodeMark = this.hasMark('code');
+    // const valueIsCodeBlock = this.hasBlock('code');
+    // const valueIsCodeMark = this.hasMark('code');
     // const valueIsLink = this.hasInline(link)
 
     return (
@@ -364,9 +361,9 @@ export default class TextareaMd extends React.Component {
           <Editor
             onChange={this.handleChange}
             // renderInline={this.renderInline}
-            plugins={plugins}
+            plugins={this.plugins}
             ref={el => (this.editor = el)}
-            schema={SCHEMA}
+            schema={this.schema}
             value={this.state.value}
           />
         </div>

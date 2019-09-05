@@ -24,8 +24,8 @@
     "remark-github-break": "^0.0.0",
     "remark-parse": "^7.0.0",
     "remark-rehype": "^5.0.0",
-    "slate": "^0.47.8",
-    "slate-react": "^0.22.8",
+    "slate": "^0.45.0",
+    "slate-react": "^0.21.20",
     "styled-components": "^4.3.1",
     "styled-system": "^5.0.6",
     "unified": "^8.3.2"

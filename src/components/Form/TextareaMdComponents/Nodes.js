@@ -5,10 +5,14 @@ import { Paragraph } from '../../Paragraph';
 // import { Link } from '../../Link';
 import { UnorderedList, ListItem, OrderedList } from '../../List';
 
-const renderNode = (props, _, next) => {
-  const { attributes, children, isFocused, node } = props;
+function renderNode({ attributes, children, node }, editor, next) {
+  const hidden = node.data.get('hidden');
+  if (hidden) attributes.style = { display: 'none' };
 
   switch (node.type) {
+    case 'paragraph':
+      return <Paragraph {...attributes}>{children}</Paragraph>;
+
     case 'code':
       return <code {...attributes}>{children}</code>;
 
@@ -65,12 +69,9 @@ const renderNode = (props, _, next) => {
     case 'unordered-list':
       return <UnorderedList {...attributes}>{children}</UnorderedList>;
 
-    case 'paragraph':
-      return <Paragraph {...attributes}>{children}</Paragraph>;
-
     default:
       return next();
   }
-};
+}
 
 export default { renderNode };

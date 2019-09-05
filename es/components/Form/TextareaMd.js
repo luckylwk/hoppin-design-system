@@ -36,6 +36,9 @@ import { Value } from 'slate';
 // import { Link } from '../Link';
 import Nodes from './TextareaMdComponents/Nodes';
 import Marks from './TextareaMdComponents/Marks';
+import MarkdownShortcuts from './TextareaMdComponents/MarkdownShortcuts';
+import MarkdownPaste from './TextareaMdComponents/MarkdownPaste';
+import Schema from './TextareaMdComponents/schema';
 
 var DEFAULT_NODE = 'paragraph';
 var EMPTY_VALUE = {
@@ -50,16 +53,6 @@ var EMPTY_VALUE = {
     }]
   }
 };
-
-var SCHEMA = {
-  blocks: {
-    image: {
-      isVoid: true
-    }
-  }
-};
-
-var plugins = [Nodes, Marks];
 
 /**
  * A rich text editor.
@@ -93,74 +86,6 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
       onChange && onChange(_this.markdown.serialize(value));
     };
 
-    _this.handleToggleBlock = function (type) {
-      if (type !== 'unordered-list' && type !== 'ordered-list') {
-        var isActive = _this.hasBlock(type);
-        var isList = _this.hasBlock(list - item);
-
-        if (isList) {
-          _this.editor.setBlocks(isActive ? DEFAULT_NODE : type).unwrapBlock('unordered-list').unwrapBlock(ordered - list);
-        } else {
-          _this.editor.setBlocks(isActive ? DEFAULT_NODE : type);
-        }
-      } else {
-        var document = _this.state.value.document;
-
-        var _isList = _this.hasBlock(list - item);
-        var isType = _this.state.value.blocks.some(function (block) {
-          return Boolean(document.getClosest(block.key, function (parent) {
-            return parent.type === type;
-          }));
-        });
-
-        if (_isList && isType) {
-          _this.editor.setBlocks(DEFAULT_NODE).unwrapBlock('unordered-list').unwrapBlock(ordered - list);
-        } else if (_isList) {
-          var oldListType = type === 'unordered-list' ? 'ordered-list' : 'unordered-list';
-
-          _this.editor.unwrapBlock(oldListType).wrapBlock(type);
-        } else {
-          _this.editor.setBlocks(list - item).wrapBlock(type);
-        }
-      }
-    };
-
-    _this.handleToggleCode = function (valueIsCodeBlock, valueIsCodeMark) {
-      if (valueIsCodeBlock) {
-        return _this.editor.setBlocks(DEFAULT_NODE);
-      }
-
-      if (valueIsCodeMark) {
-        return _this.editor.toggleMark('code');
-      }
-
-      var _this$state$value = _this.state.value,
-          blocks = _this$state$value.blocks,
-          selection = _this$state$value.selection;
-
-      // If the selection spans across more than one node, we render a code
-      // block.
-
-      var isBlock = blocks.size > 1;
-
-      // We do an additional check to see if the selection corresponds to the
-      // entirety of a node. If it does, we also render a block.
-      if (!isBlock) {
-        var end = selection.end,
-            start = selection.start;
-
-        var block = blocks.get(0);
-
-        isBlock = start.isAtStartOfNode(block) && end.isAtEndOfNode(block);
-      }
-
-      if (isBlock) {
-        _this.editor.wrapBlock('code');
-      } else {
-        _this.editor.toggleMark('code');
-      }
-    };
-
     _this.handleToggleMark = function (type) {
       _this.editor.toggleMark(type);
     };
@@ -171,33 +96,10 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
       });
     };
 
-    _this.hasInline = function (type) {
-      return _this.state.value.inlines.some(function (inline) {
-        return inline.type === type;
-      });
-    };
-
     _this.hasMark = function (type) {
       return _this.state.value.activeMarks.some(function (mark) {
         return mark.type === type;
       });
-    };
-
-    _this.isListOfType = function (type) {
-      var _this$state$value2 = _this.state.value,
-          blocks = _this$state$value2.blocks,
-          document = _this$state$value2.document;
-
-
-      var valueIsInList = _this.hasBlock(type);
-
-      if (blocks.size > 0) {
-        var parent = document.getParent(blocks.first().key);
-
-        valueIsInList = _this.hasBlock('list-item') && parent && parent.type === type;
-      }
-
-      return valueIsInList;
     };
 
     _this.serialise = function (value) {
@@ -208,23 +110,14 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
       return value;
     };
 
-    _this.validate = function (_ref2) {
-      var validateFn = _ref2.validateFn,
-          value = _ref2.value;
-
-      if (Value.isValue(value)) {
-        return Promise.resolve();
-      }
-
-      return validateFn(value);
-    };
-
     _this.hotKeys = new HotKeys({
       'mod+b': _this.handleToggleMark.bind(_this, 'bold'),
       'mod+i': _this.handleToggleMark.bind(_this, 'italic')
     });
 
     _this.markdown = new MarkdownSerializer();
+    _this.plugins = [Nodes, Marks, MarkdownShortcuts(), MarkdownPaste(_this.markdown)];
+    _this.schema = Schema;
 
     _this.state = {
       // Deserialising the value and caching the result, so that other methods
@@ -234,31 +127,121 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
   }
 
   TextareaMd.prototype.componentDidMount = function componentDidMount() {
-    var _props = this.props,
-        onSaveRegister = _props.onSaveRegister,
-        onValidateRegister = _props.onValidateRegister;
-
-
+    // const { onSaveRegister, onValidateRegister } = this.props;
     this.hotKeys.addListener();
-
-    if (typeof onSaveRegister === 'function') {
-      onSaveRegister(this.handleSave.bind(this));
-    }
-
-    if (typeof onValidateRegister === 'function') {
-      onValidateRegister(this.validate.bind(this));
-    }
+    // if (typeof onSaveRegister === 'function') {
+    //   onSaveRegister(this.handleSave.bind(this));
+    // }
+    // if (typeof onValidateRegister === 'function') {
+    //   onValidateRegister(this.validate.bind(this));
+    // }
   };
 
   TextareaMd.prototype.componentWillUnmount = function componentWillUnmount() {
     this.hotKeys.removeListener();
   };
 
+  // handleToggleBlock = type => {
+  //   if (type !== 'unordered-list' && type !== 'ordered-list') {
+  //     const isActive = this.hasBlock(type);
+  //     const isList = this.hasBlock('list-item');
+
+  //     if (isList) {
+  //       this.editor
+  //         .setBlocks(isActive ? DEFAULT_NODE : type)
+  //         .unwrapBlock('unordered-list')
+  //         .unwrapBlock('ordered-list');
+  //     } else {
+  //       this.editor.setBlocks(isActive ? DEFAULT_NODE : type);
+  //     }
+  //   } else {
+  //     const { document } = this.state.value;
+  //     const isList = this.hasBlock('list-item');
+  //     const isType = this.state.value.blocks.some(block => {
+  //       return Boolean(
+  //         document.getClosest(block.key, parent => parent.type === type)
+  //       );
+  //     });
+
+  //     if (isList && isType) {
+  //       this.editor
+  //         .setBlocks(DEFAULT_NODE)
+  //         .unwrapBlock('unordered-list')
+  //         .unwrapBlock('ordered-list');
+  //     } else if (isList) {
+  //       const oldListType =
+  //         type === 'unordered-list' ? 'ordered-list' : 'unordered-list';
+
+  //       this.editor.unwrapBlock(oldListType).wrapBlock(type);
+  //     } else {
+  //       this.editor.setBlocks('list-item').wrapBlock(type);
+  //     }
+  //   }
+  // };
+
+  // handleToggleCode = (valueIsCodeBlock, valueIsCodeMark) => {
+  //   if (valueIsCodeBlock) {
+  //     return this.editor.setBlocks(DEFAULT_NODE);
+  //   }
+
+  //   if (valueIsCodeMark) {
+  //     return this.editor.toggleMark('code');
+  //   }
+
+  //   const { blocks, selection } = this.state.value;
+
+  //   // If the selection spans across more than one node, we render a code
+  //   // block.
+  //   let isBlock = blocks.size > 1;
+
+  //   // We do an additional check to see if the selection corresponds to the
+  //   // entirety of a node. If it does, we also render a block.
+  //   if (!isBlock) {
+  //     const { end, start } = selection;
+  //     const block = blocks.get(0);
+
+  //     isBlock = start.isAtStartOfNode(block) && end.isAtEndOfNode(block);
+  //   }
+
+  //   if (isBlock) {
+  //     this.editor.wrapBlock('code');
+  //   } else {
+  //     this.editor.toggleMark('code');
+  //   }
+  // };
+
+  // hasInline = type => {
+  //   return this.state.value.inlines.some(inline => inline.type === type);
+  // };
+
+  // isListOfType = type => {
+  //   const { blocks, document } = this.state.value;
+
+  //   let valueIsInList = this.hasBlock(type);
+
+  //   if (blocks.size > 0) {
+  //     const parent = document.getParent(blocks.first().key);
+
+  //     valueIsInList =
+  //       this.hasBlock('list-item') && parent && parent.type === type;
+  //   }
+
+  //   return valueIsInList;
+  // };
+
+  // validate = ({ validateFn, value }) => {
+  //   if (Value.isValue(value)) {
+  //     return Promise.resolve();
+  //   }
+
+  //   return validateFn(value);
+  // };
+
   TextareaMd.prototype.render = function render() {
     var _this2 = this;
 
-    var valueIsCodeBlock = this.hasBlock('code');
-    var valueIsCodeMark = this.hasMark('code');
+    // const valueIsCodeBlock = this.hasBlock('code');
+    // const valueIsCodeMark = this.hasMark('code');
     // const valueIsLink = this.hasInline(link)
 
     return React.createElement(
@@ -275,11 +258,11 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
         React.createElement(Editor, {
           onChange: this.handleChange
           // renderInline={this.renderInline}
-          , plugins: plugins,
+          , plugins: this.plugins,
           ref: function ref(el) {
             return _this2.editor = el;
           },
-          schema: SCHEMA,
+          schema: this.schema,
           value: this.state.value
         })
       )
@@ -364,6 +347,6 @@ TextareaMd.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * The initial value of the editor.
    */
-  value: proptypes.oneOfType([proptypes.object, proptypes.string]),
+  // value: proptypes.oneOfType([proptypes.object, proptypes.string]),
   initialValue: proptypes.oneOfType([proptypes.object, proptypes.string])
 } : {};
