@@ -9,13 +9,13 @@ import React from 'react';
 // import DocumentListToolbar from 'components/DocumentListToolbar/DocumentListToolbar'
 import { Editor } from 'slate-react';
 import HotKeys from '../../utils/HotKeys';
-// import IconBold from './icons/bold.svg'
+// import IconBold from './icons/strong.svg'
 // import IconBulletedList from './icons/bulleted-list.svg'
 // import IconCode from './icons/code.svg'
 // import IconFullscreen from './icons/fullscreen.svg'
 // import IconH1 from './icons/header1.svg'
 // import IconH2 from './icons/header2.svg'
-// import IconItalic from './icons/italic.svg'
+// import IconItalic from './icons/'emphasis'.svg'
 // import IconLink from './icons/link.svg'
 // import IconMedia from './icons/image.svg'
 // import IconNumberedList from './icons/numbered-list.svg'
@@ -25,12 +25,9 @@ import MarkdownSerializer from '@edithq/slate-md-serializer';
 
 // import RichEditorLink from './RichEditorLink'
 import { Value } from 'slate';
-
-import { Heading } from '../Heading';
-import { Paragraph } from '../Paragraph';
-import { Text } from '../Text';
 // import { Link } from '../Link';
-import { UnorderedList, ListItem, OrderedList } from '../List';
+import Nodes from './TextareaMdComponents/Nodes';
+import Marks from './TextareaMdComponents/Marks';
 
 const DEFAULT_NODE = 'paragraph';
 const EMPTY_VALUE = {
@@ -49,22 +46,7 @@ const EMPTY_VALUE = {
     ],
   },
 };
-const NODE_BLOCKQUOTE = 'block-quote';
-const NODE_BOLD = 'bold';
-const NODE_CODE = 'code';
-const NODE_HEADING1 = 'heading1';
-const NODE_HEADING2 = 'heading2';
-const NODE_HEADING3 = 'heading3';
-const NODE_HEADING4 = 'heading4';
-const NODE_HEADING5 = 'heading5';
-const NODE_HEADING6 = 'heading6';
-const NODE_PARAGRAPH = 'paragraph';
-const NODE_ITALIC = 'italic';
-// const NODE_IMAGE = 'image';
-// const NODE_LINK = 'link';
-const NODE_BULLETED_LIST = 'bulleted-list';
-const NODE_NUMBERED_LIST = 'ordered-list';
-const NODE_LIST_ITEM = 'list-item';
+
 const SCHEMA = {
   blocks: {
     image: {
@@ -73,10 +55,12 @@ const SCHEMA = {
   },
 };
 
+const plugins = [Nodes, Marks];
+
 /**
  * A rich text editor.
  */
-export default class RichEditor extends React.Component {
+export default class TextareaMd extends React.Component {
   static propTypes = {
     /**
      * The content of the editor.
@@ -129,8 +113,8 @@ export default class RichEditor extends React.Component {
     super(props);
 
     this.hotKeys = new HotKeys({
-      'mod+b': this.handleToggleMark.bind(this, 'bold'),
-      'mod+i': this.handleToggleMark.bind(this, 'italic'),
+      'mod+b': this.handleToggleMark.bind(this, 'strong'),
+      'mod+i': this.handleToggleMark.bind(this, 'emphasis'),
     });
 
     this.markdown = new MarkdownSerializer();
@@ -155,7 +139,7 @@ export default class RichEditor extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.hotKeys.removeListener();
   }
 
@@ -179,21 +163,21 @@ export default class RichEditor extends React.Component {
   };
 
   handleToggleBlock = type => {
-    if (type !== NODE_BULLETED_LIST && type !== NODE_NUMBERED_LIST) {
+    if (type !== 'unordered-list' && type !== 'ordered-list') {
       const isActive = this.hasBlock(type);
-      const isList = this.hasBlock(NODE_LIST_ITEM);
+      const isList = this.hasBlock(list - item);
 
       if (isList) {
         this.editor
           .setBlocks(isActive ? DEFAULT_NODE : type)
-          .unwrapBlock(NODE_BULLETED_LIST)
-          .unwrapBlock(NODE_NUMBERED_LIST);
+          .unwrapBlock('unordered-list')
+          .unwrapBlock(ordered - list);
       } else {
         this.editor.setBlocks(isActive ? DEFAULT_NODE : type);
       }
     } else {
       const { document } = this.state.value;
-      const isList = this.hasBlock(NODE_LIST_ITEM);
+      const isList = this.hasBlock(list - item);
       const isType = this.state.value.blocks.some(block => {
         return Boolean(
           document.getClosest(block.key, parent => parent.type === type)
@@ -203,15 +187,15 @@ export default class RichEditor extends React.Component {
       if (isList && isType) {
         this.editor
           .setBlocks(DEFAULT_NODE)
-          .unwrapBlock(NODE_BULLETED_LIST)
-          .unwrapBlock(NODE_NUMBERED_LIST);
+          .unwrapBlock('unordered-list')
+          .unwrapBlock(ordered - list);
       } else if (isList) {
         const oldListType =
-          type === NODE_BULLETED_LIST ? NODE_NUMBERED_LIST : NODE_BULLETED_LIST;
+          type === 'unordered-list' ? 'ordered-list' : 'unordered-list';
 
         this.editor.unwrapBlock(oldListType).wrapBlock(type);
       } else {
-        this.editor.setBlocks(NODE_LIST_ITEM).wrapBlock(type);
+        this.editor.setBlocks(list - item).wrapBlock(type);
       }
     }
   };
@@ -222,7 +206,7 @@ export default class RichEditor extends React.Component {
     }
 
     if (valueIsCodeMark) {
-      return this.editor.toggleMark(NODE_CODE);
+      return this.editor.toggleMark('code');
     }
 
     const { blocks, selection } = this.state.value;
@@ -241,9 +225,9 @@ export default class RichEditor extends React.Component {
     }
 
     if (isBlock) {
-      this.editor.wrapBlock(NODE_CODE);
+      this.editor.wrapBlock('code');
     } else {
-      this.editor.toggleMark(NODE_CODE);
+      this.editor.toggleMark('code');
     }
   };
 
@@ -272,102 +256,10 @@ export default class RichEditor extends React.Component {
       const parent = document.getParent(blocks.first().key);
 
       valueIsInList =
-        this.hasBlock(NODE_LIST_ITEM) && parent && parent.type === type;
+        this.hasBlock('list-item') && parent && parent.type === type;
     }
 
     return valueIsInList;
-  };
-
-  renderBlock = (props, _, next) => {
-    const { attributes, children, isFocused, node } = props;
-
-    switch (node.type) {
-      case NODE_CODE:
-        return <code {...attributes}>{children}</code>;
-
-      case NODE_BLOCKQUOTE:
-        return <blockquote {...attributes}>{children}</blockquote>;
-
-      case NODE_HEADING1:
-        return (
-          <Heading as="h1" {...attributes}>
-            {children}
-          </Heading>
-        );
-
-      case NODE_HEADING2:
-        return (
-          <Heading as="h2" {...attributes}>
-            {children}
-          </Heading>
-        );
-
-      case NODE_HEADING3:
-        return (
-          <Heading as="h3" {...attributes}>
-            {children}
-          </Heading>
-        );
-
-      case NODE_HEADING4:
-        return (
-          <Heading as="h4" {...attributes}>
-            {children}
-          </Heading>
-        );
-
-      case NODE_HEADING5:
-        return (
-          <Heading as="h5" {...attributes}>
-            {children}
-          </Heading>
-        );
-      case NODE_HEADING6:
-        return (
-          <Heading as="h6" {...attributes}>
-            {children}
-          </Heading>
-        );
-
-      case NODE_LIST_ITEM:
-        return <ListItem {...attributes}>{children}</ListItem>;
-
-      case NODE_NUMBERED_LIST:
-        return <OrderedList {...attributes}>{children}</OrderedList>;
-
-      case NODE_BULLETED_LIST:
-        return <UnorderedList {...attributes}>{children}</UnorderedList>;
-
-      case NODE_PARAGRAPH:
-        return <Paragraph {...attributes}>{children}</Paragraph>;
-
-      default:
-        return next();
-    }
-  };
-
-  renderMark = ({ children, mark, attributes }, _, next) => {
-    switch (mark.type) {
-      case NODE_BOLD:
-        return (
-          <Text fontWeight="bold" {...attributes}>
-            {children}
-          </Text>
-        );
-
-      case NODE_CODE:
-        return <code {...attributes}>{children}</code>;
-
-      case NODE_ITALIC:
-        return (
-          <Text fontStyle="italic" {...attributes}>
-            {children}
-          </Text>
-        );
-
-      default:
-        return next();
-    }
   };
 
   serialise = value => {
@@ -387,66 +279,66 @@ export default class RichEditor extends React.Component {
   };
 
   render() {
-    const valueIsCodeBlock = this.hasBlock(NODE_CODE);
-    const valueIsCodeMark = this.hasMark(NODE_CODE);
-    // const valueIsLink = this.hasInline(NODE_LINK)
+    const valueIsCodeBlock = this.hasBlock('code');
+    const valueIsCodeMark = this.hasMark('code');
+    // const valueIsLink = this.hasInline(link)
 
     return (
       <div>
         {/* <RichEditorToolbar>
           <div>
             <RichEditorToolbarButton
-              action={this.handleToggleMark.bind(this, NODE_BOLD)}
-              active={this.hasMark(NODE_BOLD)}
+              action={this.handleToggleMark.bind(this, 'strong')}
+              active={this.hasMark('strong')}
               disabled={isRawMode}
               icon={IconBold}
               text="Bold"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleMark.bind(this, NODE_ITALIC)}
-              active={this.hasMark(NODE_ITALIC)}
+              action={this.handleToggleMark.bind(this, 'emphasis')}
+              active={this.hasMark('emphasis')}
               disabled={isRawMode}
               icon={IconItalic}
               text="Italic"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleLink.bind(this, valueIsLink)}
+              action={this.handleToggleLink.bind(this, 'valueIsLink')}
               active={valueIsLink}
               disabled={isRawMode}
               icon={IconLink}
               text="Link"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleBlock.bind(this, NODE_HEADING1)}
-              active={this.hasBlock(NODE_HEADING1)}
+              action={this.handleToggleBlock.bind(this, 'heading1')}
+              active={this.hasBlock(heading1)}
               disabled={isRawMode}
               icon={IconH1}
               text="Heading 1"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleBlock.bind(this, NODE_HEADING2)}
-              active={this.hasBlock(NODE_HEADING2)}
+              action={this.handleToggleBlock.bind(this, 'heading2')}
+              active={this.hasBlock(heading2)}
               disabled={isRawMode}
               icon={IconH2}
               text="Heading 2"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleBlock.bind(this, NODE_BLOCKQUOTE)}
-              active={this.hasBlock(NODE_BLOCKQUOTE)}
+              action={this.handleToggleBlock.bind(this, 'block-quote')}
+              active={this.hasBlock('block-quote')}
               disabled={isRawMode}
               icon={IconQuote}
               text="Quote"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleBlock.bind(this, NODE_NUMBERED_LIST)}
-              active={this.isListOfType(NODE_NUMBERED_LIST)}
+              action={this.handleToggleBlock.bind(this, 'ordered-list')}
+              active={this.isListOfType('ordered-list')}
               disabled={isRawMode}
               icon={IconNumberedList}
               text="Numbered list"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleBlock.bind(this, NODE_BULLETED_LIST)}
-              active={this.isListOfType(NODE_BULLETED_LIST)}
+              action={this.handleToggleBlock.bind(this, ''unordered-list'')}
+              active={this.isListOfType(''unordered-list'')}
               disabled={isRawMode}
               icon={IconBulletedList}
               text="Bulleted list"
@@ -463,21 +355,6 @@ export default class RichEditor extends React.Component {
               text="Code block"
             />
           </div>
-
-          <div>
-            <RichEditorToolbarButton
-              action={this.handleToggleRawMode}
-              active={isRawMode}
-              icon={IconText}
-              text="Raw mode"
-            />
-            <RichEditorToolbarButton
-              action={this.handleToggleFullscreen}
-              active={isFullscreen}
-              icon={IconFullscreen}
-              text="Full-screen"
-            />
-          </div>
         </RichEditorToolbar> */}
 
         <div
@@ -486,9 +363,8 @@ export default class RichEditor extends React.Component {
         >
           <Editor
             onChange={this.handleChange}
-            renderBlock={this.renderBlock}
             // renderInline={this.renderInline}
-            renderMark={this.renderMark}
+            plugins={plugins}
             ref={el => (this.editor = el)}
             schema={SCHEMA}
             value={this.state.value}
@@ -500,7 +376,7 @@ export default class RichEditor extends React.Component {
 
   // renderInline({children, node}, _, next) {
   //   switch (node.type) {
-  //     case NODE_LINK: {
+  //     case link: {
   //       const href = node.data.get('href')
 
   //       if (this.isNarrowViewport) {
