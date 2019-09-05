@@ -15,7 +15,7 @@ import HotKeys from '../../utils/HotKeys';
 // import IconFullscreen from './icons/fullscreen.svg'
 // import IconH1 from './icons/header1.svg'
 // import IconH2 from './icons/header2.svg'
-// import IconItalic from './icons/'emphasis'.svg'
+// import IconItalic from './icons/'italic'.svg'
 // import IconLink from './icons/link.svg'
 // import IconMedia from './icons/image.svg'
 // import IconNumberedList from './icons/numbered-list.svg'
@@ -113,8 +113,8 @@ export default class TextareaMd extends React.Component {
     super(props);
 
     this.hotKeys = new HotKeys({
-      'mod+b': this.handleToggleMark.bind(this, 'strong'),
-      'mod+i': this.handleToggleMark.bind(this, 'emphasis'),
+      'mod+b': this.handleToggleMark.bind(this, 'bold'),
+      'mod+i': this.handleToggleMark.bind(this, 'italic'),
     });
 
     this.markdown = new MarkdownSerializer();
@@ -288,15 +288,15 @@ export default class TextareaMd extends React.Component {
         {/* <RichEditorToolbar>
           <div>
             <RichEditorToolbarButton
-              action={this.handleToggleMark.bind(this, 'strong')}
-              active={this.hasMark('strong')}
+              action={this.handleToggleMark.bind(this, 'bold')}
+              active={this.hasMark('bold')}
               disabled={isRawMode}
               icon={IconBold}
               text="Bold"
             />
             <RichEditorToolbarButton
-              action={this.handleToggleMark.bind(this, 'emphasis')}
-              active={this.hasMark('emphasis')}
+              action={this.handleToggleMark.bind(this, 'italic')}
+              active={this.hasMark('italic')}
               disabled={isRawMode}
               icon={IconItalic}
               text="Italic"

@@ -23,7 +23,7 @@ import HotKeys from '../../utils/HotKeys';
 // import IconFullscreen from './icons/fullscreen.svg'
 // import IconH1 from './icons/header1.svg'
 // import IconH2 from './icons/header2.svg'
-// import IconItalic from './icons/'emphasis'.svg'
+// import IconItalic from './icons/'italic'.svg'
 // import IconLink from './icons/link.svg'
 // import IconMedia from './icons/image.svg'
 // import IconNumberedList from './icons/numbered-list.svg'
@@ -220,8 +220,8 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
     };
 
     _this.hotKeys = new HotKeys({
-      'mod+b': _this.handleToggleMark.bind(_this, 'strong'),
-      'mod+i': _this.handleToggleMark.bind(_this, 'emphasis')
+      'mod+b': _this.handleToggleMark.bind(_this, 'bold'),
+      'mod+i': _this.handleToggleMark.bind(_this, 'italic')
     });
 
     _this.markdown = new MarkdownSerializer();
