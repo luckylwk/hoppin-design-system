@@ -10,7 +10,6 @@ var renderMark = function renderMark(_ref, _, next) {
       attributes = _ref.attributes;
 
   switch (mark.type) {
-    case 'strong': // TODO: only one mark
     case 'bold':
       return React.createElement(
         Text,
@@ -25,7 +24,6 @@ var renderMark = function renderMark(_ref, _, next) {
         children
       );
 
-    case 'emphasis': // TODO: only one mark
     case 'italic':
       return React.createElement(
         Text,

@@ -54,9 +54,9 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     const [value, setValue] = useState('Write something **bold**!');
     return (
       <TextareaMd
-        onChange={value => console.log(value)}
         initialValue={value}
         onChange={setValue}
+        onBlur={value => console.log('editor lost focus, last value:', value)}
       />
     );
   }}

@@ -19,7 +19,7 @@ import MarkdownShortcuts from './Plugins/MarkdownShortcuts';
 import MarkdownPaste from './Plugins/MarkdownPaste';
 import KeyboardBehaviour from './Plugins/KeyboardBehaviour';
 import KeyboardShortcuts from './Plugins/KeyboardShortcuts';
-import Schema from './lib/Schema';
+import schema from './lib/schema';
 
 var EMPTY_VALUE = {
   document: {
@@ -61,9 +61,17 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
       var value = _ref.value;
       var onChange = _this.props.onChange;
 
-      _this.setState({ value: value });
-
       onChange && onChange(_this.markdown.serialize(value));
+
+      _this.setState({ value: value });
+    };
+
+    _this.handleBlur = function (event, editor, next) {
+      var onBlur = _this.props.onBlur;
+
+      onBlur && onBlur(_this.markdown.serialize(_this.state.value));
+
+      next();
     };
 
     _this.serialise = function (value) {
@@ -76,7 +84,7 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
 
     _this.markdown = new MarkdownSerializer();
     _this.plugins = [Nodes, Marks, KeyboardBehaviour(), KeyboardShortcuts(), MarkdownShortcuts(), MarkdownPaste(_this.markdown)];
-    _this.schema = Schema;
+    _this.schema = schema;
 
     _this.state = {
       // Deserialising the value and caching the result, so that other methods
@@ -95,6 +103,7 @@ var TextareaMd = (_temp = _class = function (_React$Component) {
         } },
       React.createElement(Editor, {
         onChange: this.handleChange,
+        onBlur: this.handleBlur,
         plugins: this.plugins,
         ref: function ref(el) {
           return _this2.editor = el;

@@ -11,7 +11,7 @@ import MarkdownShortcuts from './Plugins/MarkdownShortcuts';
 import MarkdownPaste from './Plugins/MarkdownPaste';
 import KeyboardBehaviour from './Plugins/KeyboardBehaviour';
 import KeyboardShortcuts from './Plugins/KeyboardShortcuts';
-import Schema from './lib/Schema';
+import schema from './lib/schema';
 
 const EMPTY_VALUE = {
   document: {
@@ -73,7 +73,7 @@ export default class TextareaMd extends React.Component {
       MarkdownShortcuts(),
       MarkdownPaste(this.markdown),
     ];
-    this.schema = Schema;
+    this.schema = schema;
 
     this.state = {
       // Deserialising the value and caching the result, so that other methods
@@ -95,9 +95,16 @@ export default class TextareaMd extends React.Component {
 
   handleChange = ({ value }) => {
     const { onChange } = this.props;
-    this.setState({ value });
-
     onChange && onChange(this.markdown.serialize(value));
+
+    this.setState({ value });
+  };
+
+  handleBlur = (event, editor, next) => {
+    const { onBlur } = this.props;
+    onBlur && onBlur(this.markdown.serialize(this.state.value));
+
+    next();
   };
 
   serialise = value => {
@@ -113,6 +120,7 @@ export default class TextareaMd extends React.Component {
       <div ref={el => (this.container = el)}>
         <Editor
           onChange={this.handleChange}
+          onBlur={this.handleBlur}
           plugins={this.plugins}
           ref={el => (this.editor = el)}
           schema={this.schema}
