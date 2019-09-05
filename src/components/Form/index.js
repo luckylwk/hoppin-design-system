@@ -1,9 +1,4 @@
 export { default as Input } from './Input';
-// export { default as InputFancy } from './InputFancy';
-// export {
-//   default as TextAreaDraftJS,
-//   convertHTMLToText,
-// } from './TextAreaDraftJS';
 // export { default as TagsInput } from './TagsInput';
 export { default as Errors } from './Errors';
 export { default as Label } from './Label';
