@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Heading } from '../../Heading';
-import { Paragraph } from '../../Paragraph';
-// import { Link } from '../../Link';
-import { UnorderedList, ListItem, OrderedList } from '../../List';
+import { Heading } from '../../../Heading';
+import { Paragraph } from '../../../Paragraph';
+// import { Link } from '../../../Link';
+import { UnorderedList, ListItem, OrderedList } from '../../../List';
 
 function renderNode({ attributes, children, node }, editor, next) {
   const hidden = node.data.get('hidden');

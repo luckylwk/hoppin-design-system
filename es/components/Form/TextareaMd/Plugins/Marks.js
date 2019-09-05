@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 import React from 'react';
 
-import { Text } from '../../Text';
+import { Text } from '../../../Text';
 
 var renderMark = function renderMark(_ref, _, next) {
   var children = _ref.children,

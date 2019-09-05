@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text } from '../../Text';
+import { Text } from '../../../Text';
 
 const renderMark = ({ children, mark, attributes }, _, next) => {
   switch (mark.type) {

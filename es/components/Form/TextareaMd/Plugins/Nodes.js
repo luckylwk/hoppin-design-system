@@ -2,10 +2,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 import React from 'react';
 
-import { Heading } from '../../Heading';
-import { Paragraph } from '../../Paragraph';
-// import { Link } from '../../Link';
-import { UnorderedList, ListItem, OrderedList } from '../../List';
+import { Heading } from '../../../Heading';
+import { Paragraph } from '../../../Paragraph';
+// import { Link } from '../../../Link';
+import { UnorderedList, ListItem, OrderedList } from '../../../List';
 
 function renderNode(_ref, editor, next) {
   var attributes = _ref.attributes,
