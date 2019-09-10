@@ -1181,13 +1181,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@edithq/slate-md-serializer@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@edithq/slate-md-serializer/-/slate-md-serializer-1.1.1.tgz#06b625fad9346bf28a7db4803cbe17dea15d821d"
-  integrity sha512-J9/PbURn2Y6NRx6+VdSJ9AwsJ+Fev19v/FsGGTMiyjWLNtFiIs3wTrljZWrY1h8JXhMr09D8sDjFcLJdP0lugA==
-  dependencies:
-    hashtag-regex "^2.0.0"
-
 "@emotion/cache@^10.0.17", "@emotion/cache@^10.0.9":
   version "10.0.17"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.17.tgz#3491a035f62f276620d586677bfc3d4fad0b8472"
@@ -7290,6 +7283,11 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immutable@^4.0.0-rc.12:
+  version "4.0.0-rc.12"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
+  integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -10899,6 +10897,13 @@ react-perfect-scrollbar@^1.5.0:
     perfect-scrollbar "^1.4.0"
     prop-types "^15.6.1"
 
+react-portal@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.2.0.tgz#5400831cdb0ae64dccb8128121cf076089ab1afd"
+  integrity sha512-Zf+vGQ/VEAb5XAy+muKEn48yhdCNYPZaB1BWg1xc8sAZWD8pXTgPtQT4ihBdmWzsfCq8p8/kqf0GWydSBqc+Eg==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-proxy@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
@@ -12055,6 +12060,13 @@ slate-hotkeys@^0.2.9:
   dependencies:
     is-hotkey "0.1.4"
     slate-dev-environment "^0.2.2"
+
+slate-md-serializer@^5.4.3-1:
+  version "5.4.3-1"
+  resolved "https://registry.yarnpkg.com/slate-md-serializer/-/slate-md-serializer-5.4.3-1.tgz#311bf90300230f6f8aeeac464fa8694be3eb88c8"
+  integrity sha512-00jkxy1lp/d44Kkyn8/xlkiJj6WF22259Brvurv/GDYtKwE58dr7LAX0URM1E3wpT+Z6X9+kJJGsO6ECgp6lMw==
+  dependencies:
+    hashtag-regex "^2.0.0"
 
 slate-plain-serializer@^0.7.1:
   version "0.7.10"

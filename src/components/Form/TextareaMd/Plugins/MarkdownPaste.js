@@ -1,5 +1,5 @@
 import { getEventTransfer } from 'slate-react';
-import MarkdownSerializer from '@edithq/slate-md-serializer';
+import MarkdownSerializer from 'slate-md-serializer';
 
 export default function MarkdownPaste(
   MarkdownSerializerInstance = new MarkdownSerializer()

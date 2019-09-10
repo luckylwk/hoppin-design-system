@@ -2,7 +2,7 @@ import proptypes from 'prop-types';
 import React from 'react';
 
 import { Editor } from 'slate-react';
-import MarkdownSerializer from '@edithq/slate-md-serializer';
+import MarkdownSerializer from 'slate-md-serializer';
 
 import { Value } from 'slate';
 import Nodes from './Plugins/Nodes';
@@ -11,7 +11,11 @@ import MarkdownShortcuts from './Plugins/MarkdownShortcuts';
 import MarkdownPaste from './Plugins/MarkdownPaste';
 import KeyboardBehaviour from './Plugins/KeyboardBehaviour';
 import KeyboardShortcuts from './Plugins/KeyboardShortcuts';
+import Ellipsis from './Plugins/Ellipsis';
+import Chrome from './Plugins/Chrome';
+
 import schema from './lib/schema';
+import queries from './lib/queries';
 
 const EMPTY_VALUE = {
   document: {
@@ -59,6 +63,7 @@ export default class TextareaMd extends React.Component {
 
   static defaultProps = {
     initialValue: '',
+    tooltip: 'span',
   };
 
   constructor(props) {
@@ -72,6 +77,8 @@ export default class TextareaMd extends React.Component {
       KeyboardShortcuts(),
       MarkdownShortcuts(),
       MarkdownPaste(this.markdown),
+      Ellipsis(),
+      Chrome(),
     ];
     this.schema = schema;
 
@@ -124,7 +131,9 @@ export default class TextareaMd extends React.Component {
           plugins={this.plugins}
           ref={el => (this.editor = el)}
           schema={this.schema}
+          queries={queries}
           value={this.state.value}
+          tooltip={this.props.tooltip}
         />
       </div>
     );
