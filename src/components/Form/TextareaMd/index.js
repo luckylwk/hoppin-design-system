@@ -43,14 +43,9 @@ const EMPTY_VALUE = {
 export default class TextareaMd extends React.Component {
   static propTypes = {
     /**
-     * The content of the editor.
+     * The initial value of the editor.
      */
-    children: PropTypes.node,
-
-    /**
-     * Callback to be executed when the text loses focus (onBlur event).
-     */
-    onBlur: PropTypes.func,
+    initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 
     /**
      * A callback function that is fired whenever the content changes.
@@ -58,15 +53,50 @@ export default class TextareaMd extends React.Component {
     onChange: PropTypes.func,
 
     /**
-     * The initial value of the editor.
+     * Callback to be executed when the text loses focus (onBlur event).
      */
-    // value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    onBlur: PropTypes.func,
+
+    /**
+     * Supply an array of permissible blocks, disable all others
+     */
+    enableBlocks: PropTypes.array,
+
+    /**
+     * Supply an array of permissible marks, disable all others
+     */
+    enableMarks: PropTypes.array,
+
+    /**
+     * Alternatively supply an array of blocks to disable, keep all others. Only supply either enableBlocks OR disableBlocks. Disable wins in case both are supplied.
+     */
+    disableBlocks: PropTypes.array,
+    /**
+     * Alternatively supply an array of marks to disable, keep all others. Only supply either enableMarks OR disableMarks. Disable wins in case both are supplied.
+     */
+    disableMarks: PropTypes.array,
   };
 
   static defaultProps = {
     initialValue: '',
     tooltip: 'span',
+    enableBlocks: [
+      'paragraph',
+      'heading1',
+      'heading2',
+      'heading3',
+      'heading4',
+      'heading5',
+      'heading6',
+      'code',
+      'block-quote',
+      'list-item',
+      'ordered-list',
+      'unordered-list',
+    ],
+    enableMarks: ['bold', 'italic', 'strikethrough', 'code'],
+    disableBlocks: null,
+    disableMarks: null,
   };
 
   constructor(props) {
@@ -83,13 +113,71 @@ export default class TextareaMd extends React.Component {
       Ellipsis(),
       Chrome(),
     ];
-    this.schema = schema;
+    this.schema = this.makeSchema(props);
 
     this.state = {
       // Deserialising the value and caching the result, so that other methods
       value: this.markdown.deserialize(props.initialValue),
     };
   }
+
+  makeSchema = (props = this.props) => {
+    const { enableBlocks, enableMarks, disableBlocks, disableMarks } = props;
+
+    let customNodes = [];
+    let customMarks = [];
+    // if we have disableBlocks, ignore enableBlocks
+    if (disableBlocks && disableBlocks.length > 0) {
+      // map over all available nodes in schema
+      schema.document.nodes[0].match.map(node => {
+        // pick the ones that are not disabled
+        if (disableBlocks.indexOf(node.type) < 0) {
+          customNodes.push(node);
+        }
+      });
+      // if we have don't have disableBlocks, use enableBlocks if available
+    } else if (enableBlocks && enableBlocks.length > 0) {
+      // map over all available nodes in schema
+      schema.document.nodes[0].match.map(node => {
+        // pick the ones that are not disabled
+        if (enableBlocks.indexOf(node.type) > -1) {
+          customNodes.push(node);
+        }
+      });
+      // default to schema as is
+    } else {
+      customNodes = [...schema.document.nodes[0].match];
+    }
+
+    // if we have disableMarks, ignore enableMarks
+    if (disableMarks && disableMarks.length > 0) {
+      // map over all available marks in schema
+      schema.marks.types.map(node => {
+        // pick the ones that are not disabled
+        if (disableMarks.indexOf(node.type) < 0) {
+          customMarks.push(node);
+        }
+      });
+      // if we have don't have disableMarks, use enableMarks if available
+    } else if (enableMarks && enableMarks.length > 0) {
+      // map over all available marks in schema
+      schema.marks.types.map(node => {
+        // pick the ones that are not disabled
+        if (enableMarks.indexOf(node.type) > -1) {
+          customMarks.push(node);
+        }
+      });
+      // default to schema as is
+    } else {
+      customMarks = [...schema.marks.types];
+    }
+
+    const newSchema = { ...schema };
+    newSchema.document.nodes[0].match = customNodes;
+    newSchema.marks.types = customMarks;
+    // console.log(newSchema);
+    return newSchema;
+  };
 
   deserialize = value => {
     if (Value.isValue(value)) {

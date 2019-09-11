@@ -1,6 +1,16 @@
-function removeInlines(change, error) {
-  if (error.code === 'child_object_invalid') {
-    change.unwrapInlineByKey(error.child.key, error.child.type);
+function customNormalize(editor, error) {
+  // if (error.code === 'child_object_invalid') {
+  //   editor.unwrapInlineByKey(error.child.key, error.child.type);
+  // }
+
+  console.log('normalzing', error);
+  switch (error.code) {
+    case 'child_object_invalid':
+      editor.wrapBlockByKey(error.child.key, 'paragraph');
+      return;
+    case 'child_type_invalid':
+      editor.setNodeByKey(error.child.key, 'paragraph');
+      return;
   }
 }
 
@@ -9,32 +19,32 @@ const schema = {
     heading1: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     heading2: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     heading3: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     heading4: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     heading5: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     heading6: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
-      normalize: removeInlines,
+      normalize: customNormalize,
     },
     code: {
       marks: [''],
@@ -71,6 +81,14 @@ const schema = {
       ],
     },
   },
+  marks: {
+    types: [
+      { type: 'bold' },
+      { type: 'italic' },
+      { type: 'code' },
+      // { type: 'deleted' },
+    ],
+  },
   document: {
     nodes: [
       {
@@ -91,11 +109,12 @@ const schema = {
           { type: 'todo-list' },
           // { type: "block-toolbar" },
           // { type: "table" },
-          { type: 'link' },
+          // { type: 'link' },
         ],
         min: 1,
       },
     ],
+    normalize: customNormalize,
   },
 };
 

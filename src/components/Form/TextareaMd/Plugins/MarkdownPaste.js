@@ -12,7 +12,7 @@ export default function MarkdownPaste(
 
       const fragment = MarkdownSerializerInstance.deserialize(text || '');
 
-      console.log(fragment);
+      console.log('💩', fragment);
       if (!fragment) return;
 
       return editor.insertFragment(fragment.document);
