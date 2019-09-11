@@ -17,7 +17,7 @@ import KeyboardShortcuts from './Plugins/KeyboardShortcuts';
 import Ellipsis from './Plugins/Ellipsis';
 import Chrome from './Plugins/Chrome';
 
-import schema from './lib/schema';
+import Schema from './lib/Schema';
 import queries from './lib/queries';
 
 const EMPTY_VALUE = {
@@ -125,11 +125,10 @@ export default class TextareaMd extends React.Component {
     const { enableBlocks, enableMarks, disableBlocks, disableMarks } = props;
 
     let customNodes = [];
-    let customMarks = [];
     // if we have disableBlocks, ignore enableBlocks
     if (disableBlocks && disableBlocks.length > 0) {
-      // map over all available nodes in schema
-      schema.document.nodes[0].match.map(node => {
+      // map over all available nodes in Schema
+      Schema.document.nodes[0].match.map(node => {
         // pick the ones that are not disabled
         if (disableBlocks.indexOf(node.type) < 0) {
           customNodes.push(node);
@@ -137,45 +136,56 @@ export default class TextareaMd extends React.Component {
       });
       // if we have don't have disableBlocks, use enableBlocks if available
     } else if (enableBlocks && enableBlocks.length > 0) {
-      // map over all available nodes in schema
-      schema.document.nodes[0].match.map(node => {
+      // map over all available nodes in Schema
+      Schema.document.nodes[0].match.map(node => {
         // pick the ones that are not disabled
         if (enableBlocks.indexOf(node.type) > -1) {
           customNodes.push(node);
         }
       });
-      // default to schema as is
+      // default to Schema as is
     } else {
-      customNodes = [...schema.document.nodes[0].match];
+      customNodes = [...Schema.document.nodes[0].match];
     }
 
     // if we have disableMarks, ignore enableMarks
     if (disableMarks && disableMarks.length > 0) {
-      // map over all available marks in schema
-      schema.marks.types.map(node => {
-        // pick the ones that are not disabled
-        if (disableMarks.indexOf(node.type) < 0) {
-          customMarks.push(node);
+      // map over all available marks in Schema
+      Object.keys(Schema.blocks).map(block => {
+        const tempBlockMarks = [];
+        const blockMarks = Schema.blocks[block].marks;
+        if (blockMarks && blockMarks.length > 0) {
+          blockMarks.map(mark => {
+            // pick the ones that are not disabled
+            if (disableMarks.indexOf(mark.type) < 0) {
+              tempBlockMarks.push(mark);
+            }
+          });
+          Schema.blocks[block].marks = tempBlockMarks;
         }
       });
+
       // if we have don't have disableMarks, use enableMarks if available
     } else if (enableMarks && enableMarks.length > 0) {
-      // map over all available marks in schema
-      schema.marks.types.map(node => {
-        // pick the ones that are not disabled
-        if (enableMarks.indexOf(node.type) > -1) {
-          customMarks.push(node);
+      // map over all available marks in Schema
+      Object.keys(Schema.blocks).map(block => {
+        const tempBlockMarks = [];
+        const blockMarks = Schema.blocks[block].marks;
+        if (blockMarks && blockMarks.length > 0) {
+          blockMarks.map(mark => {
+            // pick the ones that are not disabled
+            if (enableMarks.indexOf(mark.type) > -1) {
+              tempBlockMarks.push(mark);
+            }
+          });
+          Schema.blocks[block].marks = tempBlockMarks;
         }
       });
-      // default to schema as is
-    } else {
-      customMarks = [...schema.marks.types];
+      // default to Schema as is
     }
 
-    const newSchema = { ...schema };
+    const newSchema = { ...Schema };
     newSchema.document.nodes[0].match = customNodes;
-    newSchema.marks.types = customMarks;
-    // console.log(newSchema);
     return newSchema;
   };
 

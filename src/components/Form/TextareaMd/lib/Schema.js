@@ -1,9 +1,4 @@
 function customNormalize(editor, error) {
-  // if (error.code === 'child_object_invalid') {
-  //   editor.unwrapInlineByKey(error.child.key, error.child.type);
-  // }
-
-  console.log('normalzing', error);
   switch (error.code) {
     case 'child_object_invalid':
       editor.wrapBlockByKey(error.child.key, 'paragraph');
@@ -16,6 +11,14 @@ function customNormalize(editor, error) {
 
 const schema = {
   blocks: {
+    paragraph: {
+      marks: [
+        { type: 'bold' },
+        { type: 'italic' },
+        { type: 'deleted' },
+        { type: 'code' },
+      ],
+    },
     heading1: {
       nodes: [{ match: { object: 'text' } }],
       marks: [''],
@@ -67,6 +70,12 @@ const schema = {
         { type: 'ordered-list' },
         { type: 'todo-list' },
       ],
+      marks: [
+        { type: 'bold' },
+        { type: 'italic' },
+        { type: 'deleted' },
+        { type: 'code' },
+      ],
       nodes: [
         {
           match: [
@@ -80,14 +89,6 @@ const schema = {
         },
       ],
     },
-  },
-  marks: {
-    types: [
-      { type: 'bold' },
-      { type: 'italic' },
-      { type: 'code' },
-      // { type: 'deleted' },
-    ],
   },
   document: {
     nodes: [

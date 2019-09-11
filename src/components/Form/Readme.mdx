@@ -57,8 +57,8 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
         initialValue={value}
         onChange={setValue}
         onBlur={value => console.log('editor lost focus, last value:', value)}
-        disableBlocks={['heading1']}
-        disableMarks={['bold']}
+        enableBlocks={['paragraph']}
+        disableMarks={['deleted', 'code']}
       />
     );
   }}
