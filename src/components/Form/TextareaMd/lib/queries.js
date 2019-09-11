@@ -11,6 +11,19 @@ const queries = {
     return !!(startBlock && startBlock.type.match(/heading/));
   },
 
+  getBlockMarks(editor) {
+    const {
+      value: { startBlock, anchorBlock },
+      props: { schema },
+    } = editor;
+    const currentBlock = startBlock || anchorBlock || { type: 'paragraph' };
+    return (
+      (schema.blocks[currentBlock.type] &&
+        schema.blocks[currentBlock.type].marks) ||
+      []
+    );
+  },
+
   getLinkInSelection(editor) {
     try {
       const { value } = editor;

@@ -69,40 +69,26 @@ class FormattingToolbar extends React.Component {
     }
   };
 
-  renderMarkButton = (type, IconClass, tooltip) => {
-    const { hiddenToolbarButtons } = this.props.theme;
+  renderMarkButton = type => {
     const Tooltip = this.props.editor.props.tooltip;
 
-    if (
-      hiddenToolbarButtons &&
-      hiddenToolbarButtons.marks &&
-      hiddenToolbarButtons.marks.includes(type)
-    ) {
-      return null;
-    }
+    const buttonLabel = markButtonDetails[type].label;
+    const ButtonIcon = markButtonDetails[type].Icon;
 
     const isActive = this.hasMark(type);
     const onMouseDown = ev => this.onClickMark(ev, type);
 
     return (
       <ToolbarButton onMouseDown={onMouseDown} active={isActive}>
-        <Tooltip tooltip={tooltip} placement="top">
-          <IconClass color={this.props.theme.colors.whiteout.lightest} />
+        <Tooltip tooltip={buttonLabel} placement="top">
+          <ButtonIcon color={this.props.theme.colors.whiteout.lightest} />
         </Tooltip>
       </ToolbarButton>
     );
   };
 
-  renderBlockButton = (type, IconClass, tooltip) => {
-    const { hiddenToolbarButtons } = this.props.theme;
+  renderBlockButton = type => {
     const Tooltip = this.props.editor.props.tooltip;
-
-    if (
-      hiddenToolbarButtons &&
-      hiddenToolbarButtons.blocks &&
-      hiddenToolbarButtons.blocks.includes(type)
-    )
-      return null;
 
     const isActive = this.isBlock(type);
 
@@ -120,18 +106,11 @@ class FormattingToolbar extends React.Component {
 
   render() {
     const { editor } = this.props;
-    const isSelectionInHeading = editor.isSelectionInHeading();
+    const blockMarks = editor.getBlockMarks();
 
     return (
       <React.Fragment>
-        {!isSelectionInHeading && (
-          <React.Fragment>
-            {this.renderMarkButton('bold', FiBold, 'Bold')}
-            {this.renderMarkButton('italic', FiItalic, 'Italic')}
-            {this.renderMarkButton('deleted', FiDelete, 'Strikethrough')}
-            {this.renderMarkButton('code', FiCode, 'Code')}
-          </React.Fragment>
-        )}
+        {blockMarks.map(mark => this.renderMarkButton(mark.type))}
 
         {/*!isSelectionInTable && (
           <React.Fragment>
@@ -156,5 +135,12 @@ class FormattingToolbar extends React.Component {
     );
   }
 }
+
+const markButtonDetails = {
+  bold: { Icon: FiBold, label: 'Bold' },
+  italic: { Icon: FiItalic, label: 'Italic' },
+  deleted: { Icon: FiDelete, label: 'Deleted' },
+  code: { Icon: FiCode, label: 'Code' },
+};
 
 export default withTheme(FormattingToolbar);
