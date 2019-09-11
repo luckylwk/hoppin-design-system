@@ -1,5 +1,8 @@
-import proptypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import styled from 'styled-components';
+import { space } from 'styled-system';
 
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
@@ -42,23 +45,23 @@ export default class TextareaMd extends React.Component {
     /**
      * The content of the editor.
      */
-    children: proptypes.node,
+    children: PropTypes.node,
 
     /**
      * Callback to be executed when the text loses focus (onBlur event).
      */
-    onBlur: proptypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * A callback function that is fired whenever the content changes.
      */
-    onChange: proptypes.func,
+    onChange: PropTypes.func,
 
     /**
      * The initial value of the editor.
      */
-    // value: proptypes.oneOfType([proptypes.object, proptypes.string]),
-    initialValue: proptypes.oneOfType([proptypes.object, proptypes.string]),
+    // value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   };
 
   static defaultProps = {
@@ -124,18 +127,60 @@ export default class TextareaMd extends React.Component {
 
   render() {
     return (
-      <div ref={el => (this.container = el)}>
-        <Editor
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
-          plugins={this.plugins}
-          ref={el => (this.editor = el)}
-          schema={this.schema}
-          queries={queries}
-          value={this.state.value}
-          tooltip={this.props.tooltip}
-        />
-      </div>
+      <StyledEditor
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        plugins={this.plugins}
+        ref={el => (this.editor = el)}
+        schema={this.schema}
+        queries={queries}
+        value={this.state.value}
+        tooltip={this.props.tooltip}
+      />
     );
   }
 }
+
+const StyledEditor = styled(Editor)`
+  box-sizing: border-box;
+  display: block;
+
+  ${space}
+
+  background: ${props => props.theme.colors.whiteout.lighter};
+
+  border: 1px solid transparent;
+  border-color: ${props => {
+    if (props.theme.colors[props.state] !== undefined) {
+      return props.theme.colors[props.state].light;
+    } else {
+      return props.theme.colors.neutral.light;
+    }
+  }};
+  border-radius: ${({ theme }) => theme.radii.small};
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    border-color: ${props => {
+      switch (props.state) {
+        case 'danger':
+          return props.theme.colors.danger.base;
+        case 'neutral':
+        default:
+          return props.theme.colors.primary.base;
+      }
+    }};
+    background: ${props => props.theme.colors.whiteout.base};
+  }
+`;
+
+StyledEditor.defaultProps = {
+  state: 'neutral',
+  marginBottom: 'base',
+  paddingY: 'small',
+  paddingX: 'base',
+};
