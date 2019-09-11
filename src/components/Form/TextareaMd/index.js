@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { space, layout, flexbox } from 'styled-system';
 
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
@@ -224,6 +224,17 @@ export default class TextareaMd extends React.Component {
   };
 
   render() {
+    const {
+      initialValue,
+      onChange,
+      onBlur,
+      enableMarks,
+      enableBlocks,
+      disableMarks,
+      disableBlocks,
+      ...rest
+    } = this.props;
+
     return (
       <StyledEditor
         onChange={this.handleChange}
@@ -234,6 +245,7 @@ export default class TextareaMd extends React.Component {
         queries={queries}
         value={this.state.value}
         tooltip={this.props.tooltip}
+        {...rest}
       />
     );
   }
@@ -244,6 +256,8 @@ const StyledEditor = styled(Editor)`
   display: block;
 
   ${space}
+  ${layout}
+  ${flexbox}
 
   background: ${props => props.theme.colors.whiteout.lighter};
 

@@ -49,6 +49,8 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
 
 <Props of={TextareaMd} />
 
+`TextareaMd` can also accept props for [Styled System: space, layout and flexbox](https://styled-system.com/api).
+
 <Playground>
   {() => {
     const [value, setValue] = useState('Write something **bold**!');
@@ -59,6 +61,8 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
         onBlur={value => console.log('editor lost focus, last value:', value)}
         enableBlocks={['paragraph']}
         disableMarks={['deleted', 'code']}
+        minHeight={150}
+        maxHeight={400}
       />
     );
   }}
