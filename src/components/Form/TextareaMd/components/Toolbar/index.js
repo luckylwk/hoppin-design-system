@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Portal } from 'react-portal';
 import { findDOMNode } from 'slate-react';

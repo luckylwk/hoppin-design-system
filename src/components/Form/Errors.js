@@ -8,12 +8,6 @@ import { Text } from '../Text';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
 
-/**
- * Errors (array) will have the following structure:
- *
- * [ { msg: 'error message 1' }, { msg: 'error message 2' } ]
- */
-
 const BoxDanger = styled(Box)`
   background-color: ${({ theme }) => theme.colors.danger.lightest};
   border-left: 4px solid ${({ theme }) => theme.colors.danger.base};

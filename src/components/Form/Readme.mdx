@@ -7,15 +7,14 @@ menu: Components
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
 import { Box } from '../Box';
-import {
-  Input,
-  TextareaMd,
-  Checkbox,
-  Label,
-  Calendar,
-  Errors,
-  getSelectStyling,
-} from './';
+import Input from './Input';
+import TextareaMd from './TextareaMd';
+import Checkbox from './Checkbox';
+import Label from './Label';
+import Calendar from './Calendar';
+import Errors from './Errors';
+import getSelectStyling from './selectStyling';
+import Fields from './Fields';
 import { DateUtils } from 'react-day-picker';
 import Select from 'react-select';
 import { ThemeConsumer } from 'styled-components';
@@ -59,6 +58,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
     const [value, setValue] = useState('Write something **bold**!');
     return (
       <TextareaMd
+        label="Write something exciting"
         initialValue={value}
         onChange={setValue}
         onBlur={value => console.log('editor lost focus, last value:', value)}
@@ -198,4 +198,123 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
       new Error('And standard errors are supported'),
     ]}
   />
+</Playground>
+
+## Fields
+
+<Props of={Fields} />
+
+To render a complete form (without the form tag) use the `Fields` component.
+
+Provide a config in object format like this:
+
+```
+fields = [
+    {
+      name: 'name',
+      type: 'text',
+      title: 'What is your name?',
+      label: 'Name',
+      required: true
+    },
+    {
+      name: 'pitch',
+      type: 'textarea',
+      title:
+        'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+      label: 'Your Pitch',
+      required: true
+    },
+    {
+      name: 'ready',
+      type: 'checkbox',
+      label: `I'm ready`,
+    },
+    {
+      name: 'favourite_icecream',
+      type: 'select',
+      label:
+        `What's your favourite ice cream flavour?`,
+      options: [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+      ]
+    },
+  ]
+```
+
+<Playground>
+  {() => {
+    const fieldsConfig = [
+      {
+        name: 'name',
+        type: 'text',
+        title: 'What is your name?',
+        label: 'Name',
+        required: true
+      },
+      {
+        name: 'pitch',
+        type: 'textarea',
+        title:
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+        label: 'Your Pitch',
+        required: true
+      },
+      {
+        name: 'ready',
+        type: 'checkbox',
+        label: `I'm ready`,
+      },
+      {
+        name: 'favourite_icecream',
+        type: 'select',
+        label:
+          `What's your favourite ice cream flavour?`,
+        options: [
+          { value: 'chocolate', label: 'Chocolate' },
+          { value: 'strawberry', label: 'Strawberry' },
+          { value: 'vanilla', label: 'Vanilla' },
+        ]
+      },
+    ];
+
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (fieldName, event) => {
+      if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+      }
+
+      if (event && event.target && event.target.value) {
+        newFormData = {
+          ...formData,
+          [fieldName]: event.target.value || event.target.checked
+        }
+      }
+
+      setFormData(newFormData)
+    }
+
+    const fieldsWithData = fieldsConfig.map((field) => {
+        if (field.type === 'group') {
+          let fieldsWithValue = { ...field };
+          if (fieldsWithValue.list) {
+            fieldsWithValue.list = fieldsWithValue.list.map((groupField) => {
+              return { ...groupField, value: formData[groupField.name] };
+            });
+          }
+          return fieldsWithValue;
+        } else {
+          return { ...field, value: formData[field.name] };
+        }
+      });
+
+    return (
+      <Fields fields={fieldsWithData} onChange={handleChange} />
+    );
+
+}}
+
 </Playground>

@@ -27,7 +27,7 @@ import { convertHTMLToText } from 'common/utils';
  * Wrapper for an individual field.
  */
 export const FieldWrapper = styled(Box)`
-  ${(props) =>
+  ${props =>
     !props.isSortable
       ? ''
       : `
@@ -39,7 +39,7 @@ export const FieldWrapper = styled(Box)`
     & > div {
       flex: 1;
     }
-  `} ${(props) =>
+  `} ${props =>
     !props.isDragging
       ? ''
       : `
@@ -121,7 +121,7 @@ const renderField = (field, onChange, type) => {
             return onChange(field.name, { target: { value: '' } });
           }
         }}
-        formatCreateLabel={(userInput) => `Click to add: ${userInput}`}
+        formatCreateLabel={userInput => `Click to add: ${userInput}`}
         options={field.options}
         value={{ label: field.value, value: field.value }}
         styles={SelectStyling}
@@ -141,11 +141,11 @@ const renderField = (field, onChange, type) => {
               target: {
                 value:
                   field.type === 'multi-select'
-                    ? option.map((_option) => _option.value)
+                    ? option.map(_option => _option.value)
                     : option,
                 label:
                   field.type === 'multi-select'
-                    ? option.map((_option) => _option.label)
+                    ? option.map(_option => _option.label)
                     : option,
               },
             });
@@ -257,16 +257,16 @@ const renderField = (field, onChange, type) => {
 };
 
 const DraggableList = styled(Box)`
-  border-radius: ${(props) => props.theme.borders.small};
+  border-radius: ${props => props.theme.borders.small};
 
-  padding: ${(props) => props.theme.space[3]};
-  padding-left: ${(props) => props.theme.space[1]};
+  padding: ${props => props.theme.space[3]};
+  padding-left: ${props => props.theme.space[1]};
 
-  background: ${(props) =>
+  background: ${props =>
     props.isDraggingOver ? props.theme.backgrounds.white_off : 'transparent'};
 
   border: 2px dotted
-    ${(props) =>
+    ${props =>
       props.isDraggingOver ? props.theme.colors.grey_light : 'transparent'};
 `;
 
@@ -286,7 +286,7 @@ export const FieldsWrapper = ({
     in a normal way.
     */}
     {!isSortable &&
-      fields.map((field) => (
+      fields.map(field => (
         <FieldWrapper
           key={field.name}
           mb={has(field, 'marginBottom') ? field.marginBottom : 4}

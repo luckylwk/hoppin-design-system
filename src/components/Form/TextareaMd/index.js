@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 import { space, layout, flexbox } from 'styled-system';
 
+import Label from '../Label';
+
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
-
 import { Value } from 'slate';
 import Nodes from './Plugins/Nodes';
 import Marks from './Plugins/Marks';
@@ -40,65 +41,7 @@ const EMPTY_VALUE = {
 /**
  * A rich text editor.
  */
-export default class TextareaMd extends React.Component {
-  static propTypes = {
-    /**
-     * The initial value of the editor.
-     */
-    initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-
-    /**
-     * A callback function that is fired whenever the content changes.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * Callback to be executed when the text loses focus (onBlur event).
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * Supply an array of permissible blocks, disable all others
-     */
-    enableBlocks: PropTypes.array,
-
-    /**
-     * Supply an array of permissible marks, disable all others
-     */
-    enableMarks: PropTypes.array,
-
-    /**
-     * Alternatively supply an array of blocks to disable, keep all others. Only supply either enableBlocks OR disableBlocks. Disable wins in case both are supplied.
-     */
-    disableBlocks: PropTypes.array,
-    /**
-     * Alternatively supply an array of marks to disable, keep all others. Only supply either enableMarks OR disableMarks. Disable wins in case both are supplied.
-     */
-    disableMarks: PropTypes.array,
-  };
-
-  static defaultProps = {
-    initialValue: '',
-    tooltip: 'span',
-    enableBlocks: [
-      'paragraph',
-      'heading1',
-      'heading2',
-      'heading3',
-      'heading4',
-      'heading5',
-      'heading6',
-      'code',
-      'block-quote',
-      'list-item',
-      'ordered-list',
-      'unordered-list',
-    ],
-    enableMarks: ['bold', 'italic', 'strikethrough', 'code'],
-    disableBlocks: null,
-    disableMarks: null,
-  };
-
+class TextareaMdField extends React.Component {
   constructor(props) {
     super(props);
 
@@ -263,8 +206,8 @@ const StyledEditor = styled(Editor)`
 
   border: 1px solid transparent;
   border-color: ${props => {
-    if (props.theme.colors[props.state] !== undefined) {
-      return props.theme.colors[props.state].light;
+    if (props.theme.colors[props.context] !== undefined) {
+      return props.theme.colors[props.context].light;
     } else {
       return props.theme.colors.neutral.light;
     }
@@ -278,12 +221,13 @@ const StyledEditor = styled(Editor)`
 
   &:focus {
     border-color: ${props => {
-      switch (props.state) {
-        case 'danger':
-          return props.theme.colors.danger.base;
-        case 'neutral':
-        default:
-          return props.theme.colors.primary.base;
+      if (
+        props.context !== 'neutral' &&
+        props.theme.colors[props.context] !== undefined
+      ) {
+        return props.theme.colors[props.context].base;
+      } else {
+        return props.theme.colors.primary.base;
       }
     }};
     background: ${props => props.theme.colors.whiteout.base};
@@ -291,8 +235,91 @@ const StyledEditor = styled(Editor)`
 `;
 
 StyledEditor.defaultProps = {
-  state: 'neutral',
+  context: 'neutral',
   marginBottom: 'base',
   paddingY: 'small',
   paddingX: 'base',
 };
+
+const TextareaMd = ({ label, ...rest }) => {
+  const Wrapper = label ? Label : Fragment;
+  const wrapperProps = label ? { label, htmlFor: rest.name } : {};
+  const inputProps = label ? { marginTop: 'small' } : {};
+  return (
+    <Wrapper {...wrapperProps}>
+      {label}
+      <TextareaMdField {...rest} {...inputProps} />
+    </Wrapper>
+  );
+};
+
+TextareaMd.displayName = 'TextareaMd';
+
+TextareaMd.propTypes = {
+  /**
+   * supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone
+   * */
+  label: PropTypes.string,
+
+  /**
+   * The initial value of the editor.
+   */
+  initialValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+
+  /**
+   * A callback function that is fired whenever the content changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Callback to be executed when the text loses focus (onBlur event).
+   */
+  onBlur: PropTypes.func,
+
+  /**
+   * Supply an array of permissible blocks, disable all others
+   */
+  enableBlocks: PropTypes.array,
+
+  /**
+   * Supply an array of permissible marks, disable all others
+   */
+  enableMarks: PropTypes.array,
+
+  /**
+   * Alternatively supply an array of blocks to disable, keep all others. Only supply either enableBlocks OR disableBlocks. Disable wins in case both are supplied.
+   */
+  disableBlocks: PropTypes.array,
+  /**
+   * Alternatively supply an array of marks to disable, keep all others. Only supply either enableMarks OR disableMarks. Disable wins in case both are supplied.
+   */
+  disableMarks: PropTypes.array,
+  /**
+   * Provide context (any of colors.contexts) to change the outline color
+   */
+  context: PropTypes.string,
+};
+
+TextareaMd.defaultProps = {
+  initialValue: '',
+  tooltip: 'span',
+  enableBlocks: [
+    'paragraph',
+    'heading1',
+    'heading2',
+    'heading3',
+    'heading4',
+    'heading5',
+    'heading6',
+    'code',
+    'block-quote',
+    'list-item',
+    'ordered-list',
+    'unordered-list',
+  ],
+  enableMarks: ['bold', 'italic', 'strikethrough', 'code'],
+  disableBlocks: null,
+  disableMarks: null,
+};
+
+export default TextareaMd;

@@ -1,5 +1,4 @@
-// @flow
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export default styled.button`
   display: inline-block;
@@ -22,5 +21,5 @@ export default styled.button`
     opacity: 1;
   }
 
-  ${({ active }) => active && "opacity: 1;"};
+  ${({ active }) => active && 'opacity: 1;'};
 `;
