@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
@@ -60,7 +60,7 @@ export const renderField = (field, onChange, selectStyling) => {
 
   if (field.type === 'textarea') {
     return (
-      <>
+      <Fragment>
         <TextareaMd
           name={field.name}
           initialValue={field.value}
@@ -75,7 +75,7 @@ export const renderField = (field, onChange, selectStyling) => {
             {field.maxLength} characters.
           </RequiredCharacters>
         )}
-      </>
+      </Fragment>
     );
   }
 
@@ -176,7 +176,7 @@ export const renderField = (field, onChange, selectStyling) => {
   //   );
 
   //   return (
-  //     <>
+  //     <Fragment>
   //       <InputFancy
   //         type={field.type}
   //         value={field.value || ''}
@@ -187,7 +187,7 @@ export const renderField = (field, onChange, selectStyling) => {
   //         renderWidth={field.renderWidth || 'full'}
   //         inlineChildren={inlineChildren}
   //       />
-  //     </>
+  //     </Fragment>
   //   );
   // }
 
@@ -195,7 +195,7 @@ export const renderField = (field, onChange, selectStyling) => {
    * Default is a regular input field.
    */
   return (
-    <>
+    <Fragment>
       <Input
         type={field.type}
         value={field.value || ''}
@@ -212,7 +212,7 @@ export const renderField = (field, onChange, selectStyling) => {
           {field.maxLength} characters.
         </RequiredCharacters>
       )}
-    </>
+    </Fragment>
   );
 };
 
@@ -227,7 +227,7 @@ const Fields = ({ onChange, fields, theme }) => {
           mb={_has(field, 'marginBottom') ? field.marginBottom : 4}
         >
           {field.type === 'group' ? (
-            <>
+            <Fragment>
               {field.title && (
                 <Paragraph m={0} p={0}>
                   {field.title}
@@ -257,9 +257,9 @@ const Fields = ({ onChange, fields, theme }) => {
                     </Box>
                   ))}
               </Flex>
-            </>
+            </Fragment>
           ) : (
-            <>
+            <Fragment>
               {field.title && (
                 <Paragraph m={0} p={0} pt={2} pb={1}>
                   {field.title}
@@ -267,7 +267,7 @@ const Fields = ({ onChange, fields, theme }) => {
                 </Paragraph>
               )}
               {renderField(field, onChange, selectStyling)}
-            </>
+            </Fragment>
           )}
         </Box>
       ))}

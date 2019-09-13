@@ -12,12 +12,6 @@ import { Text } from '../Text';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
 
-/**
- * Errors (array) will have the following structure:
- *
- * [ { msg: 'error message 1' }, { msg: 'error message 2' } ]
- */
-
 var BoxDanger = styled(Box)(_templateObject, function (_ref) {
   var theme = _ref.theme;
   return theme.colors.danger.lightest;

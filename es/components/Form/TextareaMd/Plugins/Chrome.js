@@ -5,17 +5,17 @@ import Toolbar from '../components/Toolbar';
 
 function ChromePlugin() {
   function renderEditor(props, editor, next) {
-    const children = next();
+    var children = next();
 
-    return (
-      <Fragment>
-        {!props.readOnly && <Toolbar value={editor.value} editor={editor} />}
-        {children}
-      </Fragment>
+    return React.createElement(
+      Fragment,
+      null,
+      !props.readOnly && React.createElement(Toolbar, { value: editor.value, editor: editor }),
+      children
     );
   }
 
-  return { renderEditor };
+  return { renderEditor: renderEditor };
 }
 
 export default ChromePlugin;

@@ -1,5 +1,5 @@
 import { getEventTransfer } from 'slate-react';
-import MarkdownSerializer from '@edithq/slate-md-serializer';
+import MarkdownSerializer from 'slate-md-serializer';
 
 export default function MarkdownPaste() {
   var MarkdownSerializerInstance = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new MarkdownSerializer();
@@ -13,7 +13,7 @@ export default function MarkdownPaste() {
 
       var fragment = MarkdownSerializerInstance.deserialize(text || '');
 
-      console.log(fragment);
+      console.log('💩', fragment);
       if (!fragment) return;
 
       return editor.insertFragment(fragment.document);
