@@ -108,7 +108,7 @@ var Checkbox = function (_Component) {
 
 Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
   name: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string

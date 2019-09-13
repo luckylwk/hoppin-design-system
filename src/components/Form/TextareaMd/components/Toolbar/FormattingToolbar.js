@@ -79,7 +79,7 @@ class FormattingToolbar extends React.Component {
     const onMouseDown = ev => this.onClickMark(ev, type);
 
     return (
-      <ToolbarButton onMouseDown={onMouseDown} active={isActive}>
+      <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
         <Tooltip tooltip={buttonLabel} placement="top">
           <ButtonIcon color={this.props.theme.colors.whiteout.lightest} />
         </Tooltip>
@@ -96,7 +96,7 @@ class FormattingToolbar extends React.Component {
       this.onClickBlock(ev, isActive ? 'paragraph' : type);
 
     return (
-      <ToolbarButton onMouseDown={onMouseDown} active={isActive}>
+      <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
         <Tooltip tooltip={tooltip} placement="top">
           <IconClass color={this.props.theme.colors.whiteout.lightest} />
         </Tooltip>

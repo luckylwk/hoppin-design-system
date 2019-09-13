@@ -30,7 +30,7 @@ import { Paragraph } from '../Paragraph';
  * Form fields
  */
 
-var RequiredText = styled.span(_templateObject, function (_ref) {
+export var RequiredText = styled.span(_templateObject, function (_ref) {
   var theme = _ref.theme;
   return theme.colors.primary.base;
 }, function (_ref2) {
@@ -38,7 +38,7 @@ var RequiredText = styled.span(_templateObject, function (_ref) {
   return theme.colors.primary.darker;
 });
 
-var RequiredCharacters = styled.p(_templateObject2, function (_ref3) {
+export var RequiredCharacters = styled.p(_templateObject2, function (_ref3) {
   var theme = _ref3.theme;
   return theme.fonts.secondary;
 }, function (_ref4) {
@@ -295,7 +295,13 @@ var Fields = function Fields(_ref8) {
 
 Fields.displayName = 'fields';
 Fields.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * callback to be called when a field updates fn(fieldName, event)
+   */
   onChange: PropTypes.func,
+  /**
+   * fields config array
+   */
   fields: PropTypes.array
 } : {};
 

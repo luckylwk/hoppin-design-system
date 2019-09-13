@@ -94,7 +94,7 @@ class Checkbox extends Component {
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string,

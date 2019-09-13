@@ -85,7 +85,7 @@ var FormattingToolbar = function (_React$Component) {
 
       return React.createElement(
         ToolbarButton,
-        { onMouseDown: onMouseDown, active: isActive },
+        { onMouseDown: onMouseDown, active: isActive, key: type },
         React.createElement(
           Tooltip,
           { tooltip: buttonLabel, placement: 'top' },
@@ -103,7 +103,7 @@ var FormattingToolbar = function (_React$Component) {
 
       return React.createElement(
         ToolbarButton,
-        { onMouseDown: onMouseDown, active: isActive },
+        { onMouseDown: onMouseDown, active: isActive, key: type },
         React.createElement(
           Tooltip,
           { tooltip: tooltip, placement: 'top' },

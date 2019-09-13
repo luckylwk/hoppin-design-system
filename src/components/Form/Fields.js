@@ -23,7 +23,7 @@ import { Paragraph } from '../Paragraph';
  * Form fields
  */
 
-const RequiredText = styled.span`
+export const RequiredText = styled.span`
   display: inline-block;
 
   margin-left: 6px;
@@ -36,7 +36,7 @@ const RequiredText = styled.span`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.darker};
 `;
 
-const RequiredCharacters = styled.p`
+export const RequiredCharacters = styled.p`
   font-family: ${({ theme }) => theme.fonts.secondary};
   margin: 0;
   padding: 3px;
@@ -277,7 +277,13 @@ const Fields = ({ onChange, fields, theme }) => {
 
 Fields.displayName = 'fields';
 Fields.propTypes = {
+  /**
+   * callback to be called when a field updates fn(fieldName, event)
+   */
   onChange: PropTypes.func,
+  /**
+   * fields config array
+   */
   fields: PropTypes.array,
 };
 
