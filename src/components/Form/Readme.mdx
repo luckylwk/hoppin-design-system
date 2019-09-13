@@ -352,6 +352,8 @@ fields = [
 
 `FieldsSortable` behaves just like `Fields` with the only difference that it doesn't support grouped fields. It adds drag handles to each field and allows them to be ordered.
 
+The drag and drop functionality is added by [react beautiful dnd](https://github.com/atlassian/react-beautiful-dnd), but `FieldsSortable` doesn't expose it's API, it'll take care of sorting the fields array and passes the sorted array back when it calls `onSort`.
+
 <Playground>
   {() => {
     const [fieldsConfig, setFieldsConfig] = useState([
