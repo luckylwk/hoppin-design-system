@@ -1,0 +1,255 @@
+---
+name: SteppedForm
+route: /components/SteppedForm
+menu: Components
+---
+
+import { useState } from 'react';
+import { Props, Playground } from 'docz';
+import { SteppedForm } from '../SteppedForm';
+
+# Stepped Form
+
+> TODO:
+>
+> - Turn into mdx file once moved to HDS, turn code fences into `<Playground/>`
+> - add info on different slide types
+> - explain custom slide creation
+
+The `SteppedForm` allows you to configure a multi-page form with a simple JS object. That object can either be hard-coded, fetched from an API, or generated on the fly.
+
+## Slide config
+
+The config file will look something like this:
+
+```
+const STEPS = [
+  {
+    slug: 'hello',
+    title: 'Hello!',
+    type: 'md',
+    actions: [{ label: 'Get started', navigate: 'next' }],
+    lede:
+      "We're excited to hear about you, your work and the shadowing experience you could host on Hoppin.  \n\n You will shortly start creating your host profile, then you’ll submit it to the Hoppin team for review.",
+    body:
+      '![excited welcome from the office dog](https://media.giphy.com/media/BpS6k9mXoDiZa/giphy.gif)',
+  },
+  ...
+];
+```
+
+Each object in the array will render one slide/page in the form process.
+
+## Common props for slides
+
+There are different kinds of slides possible, but all share some common props:
+
+- `slug` - the slug for the url, but also for internal data handling. Must be unique in the form.
+- `title` - the heading of the slide. String.
+- `lede` - the lede under the title, keep it short. Markdown String
+- `isSaving` - disable the action buttons until save is completed (while `isSaving===true`)
+- `actions` - an array of buttons to render at the bottom of the page
+  each action button object has these props:
+  - `label` - label on the button (omitted for the back button)
+  - `navigate` - what happens on click (ignored if onClick is set)
+    - `next` - navigate to the next slide in the array
+    - `back` - navigate to the previous slide
+    - `external` - open an external link (also set `url` and `target` props)
+    - `custom`- do something
+  - `url` and `target` - set these if using `navigate: "external"`
+  - `callback` - set if using `navigate: "custom"`)
+    `(formData) => {navigate: slideSlug}`
+    funcion receives all `formData` and should return an object with the key `navigate` and the value of the slideSlug of the slide you want to navigate to. Return null if you don't want to change slides.
+
+## Props for SteppedForm
+
+- displayMode: 'fullscreen' or 'flex' - fullscreen will position it absolute, flex will fill any space in a flex container.
+
+```<Playground>
+ {() => {
+
+  const steps = [
+    {
+      slug: 'overview',
+      type: 'timeline',
+      title: `What's next`,
+      lede: `Here is the overview of the process:`,
+      steps: [
+        {
+          bullet: '1',
+          title: 'Learn more',
+          description: 'Learn the basics of being a great shadowing host.',
+        },
+        {
+          bullet: '2',
+          title: 'Build your profile',
+          description:
+            'Build your profile by sharing information about you and your organization.',
+        },
+        {
+          bullet: '3',
+          title: 'Submit for review',
+          description: 'We’ll notify you when your profile is live!',
+        },
+      ],
+      options: {
+        initAtStep: 0,
+        bulletSize: 'large',
+        showTrack: false,
+        interactive: false,
+        color: 'neutral.lightest',
+      },
+      bg: 'neutral.darkest',
+      color: 'neutral.lightest',
+      actions: [
+        { label: 'Continue', navigate: 'next' },
+        { label: 'Back', navigate: 'back' },
+      ],
+    },
+    {
+      slug: 'what_is_a_hoppin_experience',
+      type: 'md',
+      title: 'What is a Hoppin shadowing experience? ',
+      lede: `- It’s an opportunity for you to share your expertise and showcase your brand to a lucky individual, a shadower, who has chosen YOU to spend time with.\n\n- It’s a set amount of time (decided by you) in which you will be accompanied by a shadower while you go about the activities of your typical working day.\n\n- It’s a chance for you to help another person learn about your role, organization and industry, and potentially inspire them to make important decisions about their existing or future roles.\n\n- It’s an enjoyable time to network and connect with another professional, while also making some cash for your organization.`,
+      actions: [
+        { label: 'Find out more', navigate: 'next' },
+        { label: 'Back', navigate: 'back' },
+      ],
+    },
+    {
+      slug: 'how_to_host',
+      type: 'md',
+      title: 'What should a host do on the day?',
+      lede: `- Do a meet & greet. 🤝\n\n- Set some guidelines for the day. 🤓\n\n- Introduce them to your team. 🤝\n\n- Get them involved in any activities you’re doing. 👩‍💻\n\n- Debrief and wrap up. ✍️`,
+      actions: [
+        {
+          label: 'FAQs',
+          navigate: 'external',
+          url: 'https://gohoppin.com/host#faq',
+        },
+        { label: 'Got it', navigate: 'next' },
+        { label: 'Back', navigate: 'back' },
+      ],
+    },
+    {
+      slug: 'start_building',
+      type: 'timeline',
+      title: 'Awesome!',
+      lede: 'Now you can start building your profile.',
+      steps: [
+        {
+          bullet: '1',
+          title: 'How to be a great host',
+          description:
+            'Learn the basics of being the host of a shadowing experience.',
+        },
+        {
+          bullet: '2',
+          title: 'Build your profile',
+          description:
+            'Build your profile by sharing information about you and your organization.',
+        },
+        {
+          bullet: '3',
+          title: 'Submit for review',
+          description: 'We’ll notify you when your profile is live!',
+        },
+      ],
+      options: {
+        initAtStep: 1,
+        bulletSize: 'large',
+        showTrack: false,
+        interactive: false,
+        color: 'neutral.lightest',
+      },
+      bg: 'neutral.darkest',
+      color: 'neutral.lightest',
+      actions: [
+        { label: 'Continue', navigate: 'next' },
+        { label: 'Back', navigate: 'back' },
+      ],
+    },
+    {
+      slug: 'name',
+      type: 'form',
+      title: '👋 Help us get to know you!',
+      lede: '',
+      actions: [
+        { label: 'Continue', navigate: 'next' },
+        { label: 'Back', navigate: 'back' },
+      ],
+      fields: [
+        {
+          name: 'time',
+          type: 'group',
+          list: [
+            {
+              title: 'First name',
+              label: '_',
+              name: 'first_name',
+              type: 'text',
+              required: true,
+            },
+            {
+              title: 'Last name',
+              label: '_',
+              name: 'last_name',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+        {
+          label: '_',
+          name: 'email',
+          required: true,
+          validate: function(email) {
+            /* eslint-disable-next-line no-useless-escape */
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)\*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\$/;
+            return re.test(String(email).toLowerCase())
+              ? null
+              : { msg: 'Please enter a valid email address.' };
+          },
+          type: 'text',
+          title: 'The best email address to get in touch',
+        },
+        {
+          title: 'A phone number',
+          label: '_',
+          validate: function(phone) {
+            return phone.length < 8
+              ? { msg: 'Please enter a valid phone number' }
+              : null;
+          },
+          name: 'phone',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+  ];
+
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (fieldName, event) => {
+      if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+      }
+      if (event && event.target && event.target.value) {
+        newFormData = {
+          ...formData,
+          [fieldName]: event.target.value || event.target.checked
+        }
+      }
+      setFormData(newFormData)
+    }
+
+    return (
+
+      <SteppedForm steps={steps} onChange={handleChange} formData={formData}/>
+      );
+
+    }}
+
+</Playground>
+```

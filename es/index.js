@@ -22,5 +22,8 @@ export * from './components/Expandable';
 export * from './components/Progress';
 
 export * from './components/Chat';
+export * from './components/Form';
+export * from './components/SteppedForm';
+export * from './components/Loader';
 
 export { default as tokens } from './tokens';
