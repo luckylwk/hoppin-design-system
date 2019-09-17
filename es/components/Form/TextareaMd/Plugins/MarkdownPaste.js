@@ -12,8 +12,6 @@ export default function MarkdownPaste() {
       if (transfer.type !== 'text' && transfer.type !== 'html') return next();
 
       var fragment = MarkdownSerializerInstance.deserialize(text || '');
-
-      console.log('💩', fragment);
       if (!fragment) return;
 
       return editor.insertFragment(fragment.document);

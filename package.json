@@ -41,6 +41,7 @@
     "docz-theme-default": "^1.2.0",
     "exenv": "^1.2.2",
     "husky": "^3.0.5",
+    "lint-staged": ">=8",
     "nwb": "0.23.0",
     "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
@@ -71,7 +72,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run build:nwb:es"
+      "pre-commit": "lint-staged && yarn run build:nwb:es"
     }
+  },
+  "lint-staged": {
+    "src/*.{js,jsx,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
