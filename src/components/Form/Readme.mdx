@@ -19,6 +19,7 @@ import FieldsSortable from './FieldsSortable';
 import { DateUtils } from 'react-day-picker';
 import Select from 'react-select';
 import { ThemeConsumer } from 'styled-components';
+import { FiLinkedin, FiPhone } from 'react-icons/fi';
 
 # Form
 
@@ -43,12 +44,28 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     placeholder="Last Name"
     onChange={e => console.log(e.target.name, e.target.value)}
   />
+  <Input
+    name="linkedin"
+    placeholder="LinkedIn Profile URL"
+    onChange={e => console.log(e.target.name, e.target.value)}
+    icon={<FiLinkedin />}
+    label="LinkedIn Profile URL"
+  />
+  <Input
+    name="phone"
+    type="tel"
+    placeholder="Phone number"
+    onChange={e => console.log(e.target.name, e.target.value)}
+    icon={<FiPhone />}
+    label="Phone Number"
+    context="danger"
+  />
 </Playground>
 
 ## TextareaMd
 
-`TextareaMd` is based on [Slate.js](https://docs.slatejs.org) heavily borrowing from [Outline's](http://getoutline.com) [Rich Markdown Editor](https://github.com/outline/rich-markdown-editor) with a lot of cusomizations.
-It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the moment and there are a lot of plugins availaabale for v0.44.
+`TextareaMd` is based on [Slate.js](https://docs.slatejs.org) heavily borrowing from [Outline's](http://getoutline.com) [Rich Markdown Editor](https://github.com/outline/rich-markdown-editor) with a lot of customizations.
+It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the moment and there are a lot of plugins availaabale for v0.45.
 
 <Props of={TextareaMd} />
 
@@ -61,8 +78,10 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
       <TextareaMd
         label="Write something exciting"
         initialValue={value}
-        onChange={setValue}
-        onBlur={value => console.log('editor lost focus, last value:', value)}
+        onChange={e => setValue(e.target.value)}
+        onBlur={e =>
+          console.log('editor lost focus, last value:', e.target.value)
+        }
         enableBlocks={['paragraph']}
         disableMarks={['deleted', 'code']}
         minHeight={150}
@@ -305,6 +324,14 @@ fields = [
           { value: 'vanilla', label: 'Vanilla' },
         ]
       },
+      {
+        name: 'message',
+        type: 'inline-submit',
+        placeholder: 'Type your message...',
+        title: 'Chat with your host:',
+        label: 'Message',
+        submitText: 'Send',
+      }
     ];
 
     const [formData, setFormData] = useState({});
@@ -314,14 +341,13 @@ fields = [
         event.preventDefault();
       }
 
-      if (event && event.target && event.target.value) {
-        newFormData = {
+      if (event && event.target) {
+        let newFormData = {
           ...formData,
           [fieldName]: event.target.value || event.target.checked
         }
+        setFormData(newFormData)
       }
-
-      setFormData(newFormData)
     }
 
     const fieldsWithData = fieldsConfig.map((field) => {
@@ -333,6 +359,8 @@ fields = [
             });
           }
           return fieldsWithValue;
+        } else if(field.type === 'checkbox') {
+          return { ...field, checked: formData[field.name] || false };
         } else {
           return { ...field, value: formData[field.name] };
         }
@@ -403,7 +431,9 @@ The drag and drop functionality is added by [react beautiful dnd](https://github
     }
 
     const fieldsWithData = fieldsConfig.map((field) => {
-          return { ...field, value: formData[field.name] };
+        return field.type === 'checkbox'
+         ? { ...field, checked: formData[field.name] }
+         : { ...field, value: formData[field.name] };
       });
 
     return (

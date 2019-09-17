@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { space, color, typography } from 'styled-system';
+import { space, color, typography, position } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 const Label = styled('label')`
@@ -10,6 +9,7 @@ const Label = styled('label')`
   ${typography}
   ${space}
   ${color}
+  ${position}
   width: 100%;
   flex: 1 1 100%;
 `;
@@ -25,6 +25,7 @@ Label.defaultProps = {
   fontSize: 'label',
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginRight: 'large',
+  position: 'relative',
 };
 
 Label.displayName = 'Label';

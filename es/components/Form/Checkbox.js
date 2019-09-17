@@ -3,17 +3,10 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n
     _templateObject3 = _taggedTemplateLiteralLoose(['\n  border: 0;\n  clip: rect(0 0 0 0);\n  clippath: inset(50%);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n'], ['\n  border: 0;\n  clip: rect(0 0 0 0);\n  clippath: inset(50%);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n']),
     _templateObject4 = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n  vertical-align: text-top;\n\n  width: 18px;\n  height: 18px;\n  ', ' & {\n    margin-right: ', ';\n  }\n\n  background: ', ';\n  border: 1px solid ', ';\n\n  border-radius: ', ';\n\n  transition: all 150ms;\n\n  ', ':focus + & {\n    box-shadow: ', ';\n  }\n\n  ', ' {\n    visibility: ', ';\n  }\n'], ['\n  display: inline-block;\n  vertical-align: text-top;\n\n  width: 18px;\n  height: 18px;\n  ', ' & {\n    margin-right: ', ';\n  }\n\n  background: ', ';\n  border: 1px solid ', ';\n\n  border-radius: ', ';\n\n  transition: all 150ms;\n\n  ', ':focus + & {\n    box-shadow: ', ';\n  }\n\n  ', ' {\n    visibility: ', ';\n  }\n']);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { color } from 'styled-system';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
 import CheckboxLabel from './Label';
@@ -55,56 +48,35 @@ var StyledCheckbox = styled.div(_templateObject4, CheckboxLabel, function (_ref)
 });
 StyledCheckbox.displayName = 'StyledCheckbox';
 
-var Checkbox = function (_Component) {
-  _inherits(Checkbox, _Component);
+var Checkbox = function Checkbox(_ref6) {
+  var name = _ref6.name,
+      checked = _ref6.checked,
+      type = _ref6.type,
+      label = _ref6.label,
+      onChange = _ref6.onChange;
 
-  function Checkbox() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Checkbox);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.onClick = function (event) {
-      event.preventDefault();
-      var _this$props = _this.props,
-          checked = _this$props.checked,
-          onChange = _this$props.onChange;
-
-      onChange({ target: { checked: !checked } });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  Checkbox.prototype.render = function render() {
-    var _props = this.props,
-        name = _props.name,
-        checked = _props.checked,
-        type = _props.type,
-        label = _props.label;
-
-
-    var CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
-    return React.createElement(
-      CheckBoxWrapper,
-      { onClick: this.onClick, htmlFor: name },
-      React.createElement(HiddenCheckbox, { checked: checked, name: name }),
-      React.createElement(
-        StyledCheckbox,
-        { checked: checked, type: type },
-        React.createElement(
-          Icon,
-          { viewBox: '0 0 24 24' },
-          React.createElement('polyline', { points: '20 6 9 17 4 12' })
-        )
-      ),
-      label
-    );
+  var onClick = function onClick(event) {
+    event.preventDefault();
+    onChange({ target: { checked: !checked } });
   };
 
-  return Checkbox;
-}(Component);
+  var CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+  return React.createElement(
+    CheckBoxWrapper,
+    { onClick: onClick, htmlFor: name },
+    React.createElement(HiddenCheckbox, { checked: checked, name: name }),
+    React.createElement(
+      StyledCheckbox,
+      { checked: checked, type: type },
+      React.createElement(
+        Icon,
+        { viewBox: '0 0 24 24' },
+        React.createElement('polyline', { points: '20 6 9 17 4 12' })
+      )
+    ),
+    label
+  );
+};
 
 Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
   name: PropTypes.string.isRequired,
@@ -113,6 +85,10 @@ Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string
 } : {};
+
+Checkbox.defaultProps = {
+  checked: false
+};
 
 Checkbox.displayName = 'Checkbox';
 

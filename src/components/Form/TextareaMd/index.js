@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import { space, layout, flexbox } from 'styled-system';
+import { space, layout, flexbox, fontSize } from 'styled-system';
 
 import Label from '../Label';
 
@@ -146,14 +146,26 @@ class TextareaMdField extends React.Component {
 
   handleChange = ({ value }) => {
     const { onChange } = this.props;
-    onChange && onChange(this.markdown.serialize(value));
+    onChange &&
+      onChange({
+        target: {
+          name: this.props.name,
+          value: this.markdown.serialize(value),
+        },
+      });
 
     this.setState({ value });
   };
 
   handleBlur = (event, editor, next) => {
     const { onBlur } = this.props;
-    onBlur && onBlur(this.markdown.serialize(this.state.value));
+    onBlur &&
+      onBlur({
+        target: {
+          name: this.props.name,
+          value: this.markdown.serialize(this.state.value),
+        },
+      });
 
     next();
   };
@@ -201,6 +213,7 @@ const StyledEditor = styled(Editor)`
   ${space}
   ${layout}
   ${flexbox}
+  ${fontSize}
 
   background: ${props => props.theme.colors.whiteout.lighter};
 
@@ -230,7 +243,10 @@ const StyledEditor = styled(Editor)`
         return props.theme.colors.primary.base;
       }
     }};
-    background: ${props => props.theme.colors.whiteout.base};
+    background: ${props =>
+      props.initialValue && props.initialValue.length > 0
+        ? props.theme.colors.whiteout.base
+        : props.theme.colors.whiteout.light};
   }
 `;
 
@@ -239,6 +255,7 @@ StyledEditor.defaultProps = {
   marginBottom: 'base',
   paddingY: 'small',
   paddingX: 'base',
+  fontSize: 'body',
 };
 
 const TextareaMd = ({ label, ...rest }) => {

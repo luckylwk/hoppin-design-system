@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n\n  border-bottom: 1px solid ', ';\n'], ['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n\n  border-bottom: 1px solid ', ';\n']),
+var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n'], ['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  font-family: ', ';\n  margin: 0;\n  padding: 3px;\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n'], ['\n  font-family: ', ';\n  margin: 0;\n  padding: 3px;\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
@@ -19,12 +19,12 @@ import getSelectStyling from './selectStyling';
 import Checkbox from './Checkbox';
 // import Calendar from './Calendar';
 import Input from './Input';
+import Label from './Label';
 import TextareaMd from './TextareaMd';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
-// import { Button } from '../Button';
-import { Paragraph } from '../Paragraph';
+import { Button } from '../Button';
 
 /**
  * Form fields
@@ -33,16 +33,13 @@ import { Paragraph } from '../Paragraph';
 export var RequiredText = styled.span(_templateObject, function (_ref) {
   var theme = _ref.theme;
   return theme.colors.primary.base;
-}, function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.colors.primary.darker;
 });
 
-export var RequiredCharacters = styled.p(_templateObject2, function (_ref3) {
-  var theme = _ref3.theme;
+export var RequiredCharacters = styled.p(_templateObject2, function (_ref2) {
+  var theme = _ref2.theme;
   return theme.fonts.secondary;
-}, function (_ref4) {
-  var theme = _ref4.theme;
+}, function (_ref3) {
+  var theme = _ref3.theme;
   return theme.colors.neutral.light;
 });
 
@@ -85,8 +82,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       clearValue: function clearValue() {
         return _onChange(field.name, { target: { value: '' } });
       },
-      onChange: function onChange(option, _ref5) {
-        var action = _ref5.action;
+      onChange: function onChange(option, _ref4) {
+        var action = _ref4.action;
 
         if (action === 'select-option' || action === 'create-option') {
           return _onChange(field.name, { target: { value: option.value } });
@@ -108,8 +105,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       isMulti: field.type === 'multi-select',
       isClearable: field.type === 'multi-select',
       value: field.value,
-      onChange: function onChange(option, _ref6) {
-        var action = _ref6.action;
+      onChange: function onChange(option, _ref5) {
+        var action = _ref5.action;
 
         if (action === 'select-option' || action === 'remove-value') {
           return _onChange(field.name, {
@@ -138,8 +135,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     return React.createElement(Async, _extends({
       cacheOptions: false,
       value: field.value,
-      onChange: function onChange(option, _ref7) {
-        var action = _ref7.action;
+      onChange: function onChange(option, _ref6) {
+        var action = _ref6.action;
 
         if (action === 'select-option') {
           return _onChange(field.name, {
@@ -167,28 +164,38 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     });
   }
 
-  // if (field.type === 'inline-text') {
-  //   const inlineChildren = (
-  //     <Button type="primary" py={3} my={2} disabled={field.isSubmitDisabled}>
-  //       {field.submitText || 'Submit'}
-  //     </Button>
-  //   );
+  if (field.type === 'inline-submit') {
+    // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
+    var LabelOrFragment = field.label ? Label : Fragment;
+    var labelProps = field.label ? { label: field.title ? undefined : field.label, htmlFor: field.name } : {};
+    var flexProps = field.label ? { marginTop: 'small', marginBottom: 'base' } : {};
+    var inputProps = field.label ? { marginTop: 'none', marginBottom: 'none' } : {};
 
-  //   return (
-  //     <Fragment>
-  //       <InputFancy
-  //         type={field.type}
-  //         value={field.value || ''}
-  //         name={field.name}
-  //         label={field.label ? field.label : field.title}
-  //         handleOnChange={onChange.bind(null, field.name)}
-  //         renderType={type || 'primary'}
-  //         renderWidth={field.renderWidth || 'full'}
-  //         inlineChildren={inlineChildren}
-  //       />
-  //     </Fragment>
-  //   );
-  // }
+    return React.createElement(
+      LabelOrFragment,
+      labelProps,
+      React.createElement(
+        Flex,
+        flexProps,
+        React.createElement(Input, _extends({
+          type: field.type,
+          value: field.value || '',
+          name: field.name,
+          onChange: _onChange.bind(null, field.name),
+          context: field.context
+        }, inputProps)),
+        React.createElement(
+          Button,
+          {
+            type: 'primary',
+            marginLeft: 'small',
+            disabled: field.isSubmitDisabled
+          },
+          field.submitText || 'Submit'
+        )
+      )
+    );
+  }
 
   /**
    * Default is a regular input field.
@@ -217,10 +224,10 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
   );
 };
 
-var Fields = function Fields(_ref8) {
-  var onChange = _ref8.onChange,
-      fields = _ref8.fields,
-      theme = _ref8.theme;
+var Fields = function Fields(_ref7) {
+  var onChange = _ref7.onChange,
+      fields = _ref7.fields,
+      theme = _ref7.theme;
 
   var selectStyling = getSelectStyling(theme);
 
@@ -238,13 +245,13 @@ var Fields = function Fields(_ref8) {
           Fragment,
           null,
           field.title && React.createElement(
-            Paragraph,
-            { m: 0, p: 0 },
+            Label,
+            null,
             field.title,
             field.required && React.createElement(
               RequiredText,
               null,
-              'required'
+              '*required'
             )
           ),
           React.createElement(
@@ -260,13 +267,13 @@ var Fields = function Fields(_ref8) {
                   ml: ix === 0 ? 0 : 1
                 },
                 groupedField.type && groupedField.title && React.createElement(
-                  Paragraph,
-                  { m: 0, p: 0 },
+                  Label,
+                  null,
                   groupedField.title,
                   groupedField.required && React.createElement(
                     RequiredText,
                     null,
-                    'required'
+                    '*required'
                   )
                 ),
                 groupedField.type ? renderField(groupedField, onChange, selectStyling) : null
@@ -277,13 +284,13 @@ var Fields = function Fields(_ref8) {
           Fragment,
           null,
           field.title && React.createElement(
-            Paragraph,
-            { m: 0, p: 0, pt: 2, pb: 1 },
+            Label,
+            { paddingTop: 'small', paddingBottom: 'xsmall' },
             field.title,
             field.required && React.createElement(
               RequiredText,
               null,
-              'required'
+              '*required'
             )
           ),
           renderField(field, onChange, selectStyling)

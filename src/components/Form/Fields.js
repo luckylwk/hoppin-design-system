@@ -12,12 +12,12 @@ import getSelectStyling from './selectStyling';
 import Checkbox from './Checkbox';
 // import Calendar from './Calendar';
 import Input from './Input';
+import Label from './Label';
 import TextareaMd from './TextareaMd';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
-// import { Button } from '../Button';
-import { Paragraph } from '../Paragraph';
+import { Button } from '../Button';
 
 /**
  * Form fields
@@ -32,8 +32,6 @@ export const RequiredText = styled.span`
   line-height: 10px;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.base};
-
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primary.darker};
 `;
 
 export const RequiredCharacters = styled.p`
@@ -168,28 +166,41 @@ export const renderField = (field, onChange, selectStyling) => {
     );
   }
 
-  // if (field.type === 'inline-text') {
-  //   const inlineChildren = (
-  //     <Button type="primary" py={3} my={2} disabled={field.isSubmitDisabled}>
-  //       {field.submitText || 'Submit'}
-  //     </Button>
-  //   );
+  if (field.type === 'inline-submit') {
+    // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.title ? undefined : field.label, htmlFor: field.name }
+      : {};
+    const flexProps = field.label
+      ? { marginTop: 'small', marginBottom: 'base' }
+      : {};
+    const inputProps = field.label
+      ? { marginTop: 'none', marginBottom: 'none' }
+      : {};
 
-  //   return (
-  //     <Fragment>
-  //       <InputFancy
-  //         type={field.type}
-  //         value={field.value || ''}
-  //         name={field.name}
-  //         label={field.label ? field.label : field.title}
-  //         handleOnChange={onChange.bind(null, field.name)}
-  //         renderType={type || 'primary'}
-  //         renderWidth={field.renderWidth || 'full'}
-  //         inlineChildren={inlineChildren}
-  //       />
-  //     </Fragment>
-  //   );
-  // }
+    return (
+      <LabelOrFragment {...labelProps}>
+        <Flex {...flexProps}>
+          <Input
+            type={field.type}
+            value={field.value || ''}
+            name={field.name}
+            onChange={onChange.bind(null, field.name)}
+            context={field.context}
+            {...inputProps}
+          />
+          <Button
+            type="primary"
+            marginLeft="small"
+            disabled={field.isSubmitDisabled}
+          >
+            {field.submitText || 'Submit'}
+          </Button>
+        </Flex>
+      </LabelOrFragment>
+    );
+  }
 
   /**
    * Default is a regular input field.
@@ -229,10 +240,10 @@ const Fields = ({ onChange, fields, theme }) => {
           {field.type === 'group' ? (
             <Fragment>
               {field.title && (
-                <Paragraph m={0} p={0}>
+                <Label>
                   {field.title}
-                  {field.required && <RequiredText>required</RequiredText>}
-                </Paragraph>
+                  {field.required && <RequiredText>*required</RequiredText>}
+                </Label>
               )}
               <Flex>
                 {field.list.length > 0 &&
@@ -244,12 +255,12 @@ const Fields = ({ onChange, fields, theme }) => {
                       ml={ix === 0 ? 0 : 1}
                     >
                       {groupedField.type && groupedField.title && (
-                        <Paragraph m={0} p={0}>
+                        <Label>
                           {groupedField.title}
                           {groupedField.required && (
-                            <RequiredText>required</RequiredText>
+                            <RequiredText>*required</RequiredText>
                           )}
-                        </Paragraph>
+                        </Label>
                       )}
                       {groupedField.type
                         ? renderField(groupedField, onChange, selectStyling)
@@ -261,10 +272,10 @@ const Fields = ({ onChange, fields, theme }) => {
           ) : (
             <Fragment>
               {field.title && (
-                <Paragraph m={0} p={0} pt={2} pb={1}>
+                <Label paddingTop="small" paddingBottom="xsmall">
                   {field.title}
-                  {field.required && <RequiredText>required</RequiredText>}
-                </Paragraph>
+                  {field.required && <RequiredText>*required</RequiredText>}
+                </Label>
               )}
               {renderField(field, onChange, selectStyling)}
             </Fragment>

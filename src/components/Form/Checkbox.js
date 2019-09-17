@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { color } from 'styled-system';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
 import CheckboxLabel from './Label';
@@ -67,30 +66,25 @@ const StyledCheckbox = styled.div`
 `;
 StyledCheckbox.displayName = 'StyledCheckbox';
 
-class Checkbox extends Component {
-  onClick = event => {
+const Checkbox = ({ name, checked, type, label, onChange }) => {
+  const onClick = event => {
     event.preventDefault();
-    const { checked, onChange } = this.props;
     onChange({ target: { checked: !checked } });
   };
 
-  render() {
-    const { name, checked, type, label } = this.props;
-
-    const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
-    return (
-      <CheckBoxWrapper onClick={this.onClick} htmlFor={name}>
-        <HiddenCheckbox checked={checked} name={name} />
-        <StyledCheckbox checked={checked} type={type}>
-          <Icon viewBox="0 0 24 24">
-            <polyline points="20 6 9 17 4 12" />
-          </Icon>
-        </StyledCheckbox>
-        {label}
-      </CheckBoxWrapper>
-    );
-  }
-}
+  const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+  return (
+    <CheckBoxWrapper onClick={onClick} htmlFor={name}>
+      <HiddenCheckbox checked={checked} name={name} />
+      <StyledCheckbox checked={checked} type={type}>
+        <Icon viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12" />
+        </Icon>
+      </StyledCheckbox>
+      {label}
+    </CheckBoxWrapper>
+  );
+};
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
@@ -98,6 +92,10 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string,
+};
+
+Checkbox.defaultProps = {
+  checked: false,
 };
 
 Checkbox.displayName = 'Checkbox';

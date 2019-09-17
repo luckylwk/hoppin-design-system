@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme, css } from 'styled-components';
 import { typography, space } from 'styled-system';
 import Label from './Label';
+import { Box } from '../Box';
 
 const InputField = styled.input`
   box-sizing: border-box;
@@ -11,8 +12,21 @@ const InputField = styled.input`
   ${typography}
   ${space}
 
+  ${({ theme, icon, iconPosition }) => {
+    const padding = {
+      top: theme.space.small,
+      right: theme.space.base,
+      bottom: theme.space.small,
+      left: theme.space.base,
+    };
+    if (icon !== undefined) {
+      padding[iconPosition] = '2.7rem';
+    }
+    return `padding: ${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`;
+  }};
+
   background: ${props =>
-    props.isFocused || !props.isEmpty
+    props.isFocused || (props.value && props.value.length > 0)
       ? props.theme.colors.whiteout.base
       : props.theme.colors.whiteout.lighter};
 
@@ -72,22 +86,39 @@ InputField.defaultProps = {
   fontFamily: 'secondary',
   fontWeight: 'normal',
   marginBottom: 'base',
-  paddingY: 'small',
-  paddingX: 'base',
   color: 'neutral.base',
 };
 
 InputField.displayName = 'InputField';
 
-const Input = ({ label, ...rest }) => {
-  const Wrapper = label ? Label : Fragment;
-  const wrapperProps = label ? { label, htmlFor: rest.name } : {};
+const Input = ({ label, theme, ...rest }) => {
+  const { icon, iconPosition } = rest;
+  // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
+  const LabelOrFragment = label ? Label : Fragment;
+  const labelProps = label ? { label, htmlFor: rest.name } : {};
   const inputProps = label ? { marginTop: 'small' } : {};
+  // if we have an icon, we need to have a box gto position the icon
+  const WrapperOrFragment = icon ? Box : Fragment;
+  const wrapperProps = icon ? { position: 'relative' } : {};
+  const iconProps = {
+    style: {
+      position: 'absolute',
+      top: '0.7em',
+      [iconPosition]: theme.space.base,
+    },
+    color:
+      (theme.colors[rest.context] && theme.colors[rest.context].base) ||
+      theme.colors.neutral.base,
+  };
+
   return (
-    <Wrapper {...wrapperProps}>
+    <LabelOrFragment {...labelProps}>
       {label}
-      <InputField {...rest} {...inputProps} />
-    </Wrapper>
+      <WrapperOrFragment {...wrapperProps}>
+        <InputField {...rest} {...inputProps} />
+        {icon && React.cloneElement(icon, iconProps)}
+      </WrapperOrFragment>
+    </LabelOrFragment>
   );
 };
 Input.propTypes = {
@@ -101,14 +132,20 @@ Input.propTypes = {
    * Provide context (any of colors.contexts) to change the outline color
    */
   context: PropTypes.string,
+  /**
+   * Provide icon to be rendered in the input field (optional)
+   */
+  icon: PropTypes.node,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
 };
 
 Input.defaultProps = {
   disabled: false,
   type: 'text',
   context: 'neutral',
+  iconPosition: 'left',
 };
 
 Input.displayName = 'Input';
 
-export default Input;
+export default withTheme(Input);

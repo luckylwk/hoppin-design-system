@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class, _temp, _initialiseProps;
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -18,7 +18,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import { space, layout, flexbox } from 'styled-system';
+import { space, layout, flexbox, fontSize } from 'styled-system';
 
 import Label from '../Label';
 
@@ -194,7 +194,12 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
     var value = _ref.value;
     var onChange = _this3.props.onChange;
 
-    onChange && onChange(_this3.markdown.serialize(value));
+    onChange && onChange({
+      target: {
+        name: _this3.props.name,
+        value: _this3.markdown.serialize(value)
+      }
+    });
 
     _this3.setState({ value: value });
   };
@@ -202,7 +207,12 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
   this.handleBlur = function (event, editor, next) {
     var onBlur = _this3.props.onBlur;
 
-    onBlur && onBlur(_this3.markdown.serialize(_this3.state.value));
+    onBlur && onBlur({
+      target: {
+        name: _this3.props.name,
+        value: _this3.markdown.serialize(_this3.state.value)
+      }
+    });
 
     next();
   };
@@ -217,7 +227,7 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
 }, _temp);
 
 
-var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, function (props) {
+var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontSize, function (props) {
   return props.theme.colors.whiteout.lighter;
 }, function (props) {
   if (props.theme.colors[props.context] !== undefined) {
@@ -235,14 +245,15 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, funct
     return props.theme.colors.primary.base;
   }
 }, function (props) {
-  return props.theme.colors.whiteout.base;
+  return props.initialValue && props.initialValue.length > 0 ? props.theme.colors.whiteout.base : props.theme.colors.whiteout.light;
 });
 
 StyledEditor.defaultProps = {
   context: 'neutral',
   marginBottom: 'base',
   paddingY: 'small',
-  paddingX: 'base'
+  paddingX: 'base',
+  fontSize: 'body'
 };
 
 var TextareaMd = function TextareaMd(_ref3) {
