@@ -40,6 +40,7 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "exenv": "^1.2.2",
+    "husky": "^3.0.5",
     "nwb": "0.23.0",
     "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
@@ -67,5 +68,10 @@
     "build:docz": "docz build",
     "deploy": "now --prod",
     "start": "docz dev -p 2000"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run build:nwb:es"
+    }
   }
 }
