@@ -275,6 +275,16 @@ fields = [
   ]
 ```
 
+Field objects need to have a key `type` with one of the following values:
+
+- `textarea` - renders a TextareaMd
+- `creatable-select` - renders a [react-select Creatable](https://react-select.com/creatable) with HDS styling
+- `select` or `multi-select` - renders a [react-select Select](https://react-select.com/home) with HDS styling (and `isMulti` prop)
+- `async-select` - renders a [react-select Async](https://react-select.com/async) with HDS styling
+- `group` - renderes adjecent fields, use the same field type for best layout, pass in grouped children fields in `list` key.
+- any other type renders an [Input](#input) field and passes on the type as a prop
+- **deprecated** `inline-submit` - renders an input field with an adjecent Seumut button (used in chat only, doesn't work well in conjuction with other fields.)
+
 <Playground>
   {() => {
     const fieldsConfig = [
