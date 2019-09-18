@@ -1,0 +1,455 @@
+---
+name: Form
+route: /components/Form
+menu: Components
+---
+
+import { useState } from 'react';
+import { Props, Playground } from 'docz';
+import { Box } from '../Box';
+import Input from './Input';
+import TextareaMd from './TextareaMd';
+import Checkbox from './Checkbox';
+import Label from './Label';
+import Calendar from './Calendar';
+import Errors from './Errors';
+import getSelectStyling from './selectStyling';
+import Fields from './Fields';
+import FieldsSortable from './FieldsSortable';
+import { DateUtils } from 'react-day-picker';
+import Select from 'react-select';
+import { ThemeConsumer } from 'styled-components';
+import { FiLinkedin, FiPhone } from 'react-icons/fi';
+
+# Form
+
+Form exports both individual field components for all the major form field types,
+as well as FieldsWrapper which takes a JSON config object and renders the whole set of fields, linked up to onChange handlers.
+
+> _Note:_ FieldsWrapper does not render a `<form>` around the fields, that's up to you to add around it if needed.
+
+## Input
+
+<Props of={Input} />
+
+<Playground>
+  <Input
+    name="first_name"
+    label="Name"
+    placeholder="First Name"
+    onChange={e => console.log(e.target.name, e.target.value)}
+  />
+  <Input
+    name="last_name"
+    placeholder="Last Name"
+    onChange={e => console.log(e.target.name, e.target.value)}
+  />
+  <Input
+    name="linkedin"
+    placeholder="LinkedIn Profile URL"
+    onChange={e => console.log(e.target.name, e.target.value)}
+    icon={<FiLinkedin />}
+    label="LinkedIn Profile URL"
+  />
+  <Input
+    name="phone"
+    type="tel"
+    placeholder="Phone number"
+    onChange={e => console.log(e.target.name, e.target.value)}
+    icon={<FiPhone />}
+    label="Phone Number"
+    context="danger"
+  />
+</Playground>
+
+## TextareaMd
+
+`TextareaMd` is based on [Slate.js](https://docs.slatejs.org) heavily borrowing from [Outline's](http://getoutline.com) [Rich Markdown Editor](https://github.com/outline/rich-markdown-editor) with a lot of customizations.
+It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the moment and there are a lot of plugins availaabale for v0.45.
+
+<Props of={TextareaMd} />
+
+`TextareaMd` can also accept props for [Styled System: space, layout and flexbox](https://styled-system.com/api).
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState('Write something **bold**!');
+    return (
+      <TextareaMd
+        label="Write something exciting"
+        initialValue={value}
+        onChange={e => setValue(e.target.value)}
+        onBlur={e =>
+          console.log('editor lost focus, last value:', e.target.value)
+        }
+        enableBlocks={['paragraph']}
+        disableMarks={['deleted', 'code']}
+        minHeight={150}
+        maxHeight={400}
+      />
+    );
+  }}
+</Playground>
+
+## Checkbox
+
+Checkbox uses [rc-checkbox](https://github.com/react-component/checkbox) under the hood to handle events.
+
+<Props of={Checkbox} />
+
+<Playground>
+  {() => {
+    const [isVegan, setIsVegan] = useState(false);
+    const [isDogPerson, setIsDogPerson] = useState(false);
+
+    return (
+      <>
+          <Checkbox
+            name="isVegan"
+            checked={isVegan}
+            onChange={e => setIsVegan(e.target.checked)}
+            label={`I'm vegan`}
+          />
+          <Checkbox
+            name="isDogPerson"
+            checked={isDogPerson}
+            onChange={e => setIsDogPerson(e.target.checked)}
+            label={`I'm a dog person`}
+          />
+      </>
+    );
+
+}}
+
+</Playground>
+
+## Calendar
+
+Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
+
+<Props of={Calendar} />
+
+<Playground>
+  {() => {
+    const [selectedDays, setSelectedDays] = useState([]);
+    const today = new Date()
+    const availableDays = [
+      new Date(today.getFullYear(), today.getDate() <28 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 1 : 1),
+      new Date(today.getFullYear(), today.getDate() <26 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 3 : 3),
+      new Date(today.getFullYear(), today.getDate() <24 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 5 : 5)
+    ];
+
+    const isSelected = (day) => {
+      const selectedIndex = selectedDays.findIndex(selectedDay =>
+        DateUtils.isSameDay(selectedDay, day)
+      );
+      return selectedIndex !== -1;
+    };
+
+    const handleDayClick = (day, {selected}) => {
+      const updatedDays = [...selectedDays]
+      const selectedIndex = selectedDays.findIndex(selectedDay => {
+          return DateUtils.isSameDay(selectedDay, day)
+      });
+      if (selectedIndex > -1) {
+        updatedDays.splice(selectedIndex, 1);
+      } else {
+        updatedDays.push(day);
+      }
+      setSelectedDays(updatedDays)
+    }
+
+    return (
+      <Calendar
+        placeholder="First Name"
+        availableDays={availableDays}
+        selectedDays={isSelected}
+        onDayClick={handleDayClick}
+        onChange={e => console.log(e.target.name, e.target.value)}
+      />
+    )
+
+}}
+
+</Playground>
+
+## Select
+
+HDS exports `getSelectStyling(theme)` to be used with [React Select](https://react-select.com)
+
+Invoke `getSelectStyling` by passing it the current theme object, to receive context-accurate `theme` and `styling` objects for all ReactSelect components.
+
+<Playground>
+  <ThemeConsumer>
+    {theme => {
+      console.log(theme);
+      const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+      ];
+      const selectStyling = getSelectStyling(theme);
+      return (
+        <>
+          <Select options={options} {...selectStyling} />
+          <Box padding="small" />
+          <Select
+            defaultValue={[options[2], options[3]]}
+            isMulti
+            name="food"
+            options={options}
+            {...selectStyling}
+          />
+        </>
+      );
+    }}
+  </ThemeConsumer>
+</Playground>
+
+## Errors
+
+<Props of={Errors} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Errors
+    errors={[
+      { msg: 'Custom errors from the backend' },
+      new Error('And standard errors are supported'),
+    ]}
+  />
+</Playground>
+
+## Fields
+
+<Props of={Fields} />
+
+To render a complete form (without the form tag) use the `Fields` component.
+
+Provide a config in object format like this:
+
+```
+fields = [
+    {
+      name: 'name',
+      type: 'group',
+      list: [
+        {
+          name: 'first_name',
+          type: 'text',
+          label: 'First Name',
+          renderWidth: 'full',
+        },
+        {
+          name: 'last_name',
+          type: 'time',
+          label: 'Last Name',
+          renderWidth: 'full',
+        },
+      ],
+    }
+    {
+      name: 'pitch',
+      type: 'textarea',
+      title:
+        'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+      label: 'Your Pitch',
+      required: true
+    },
+    {
+      name: 'ready',
+      type: 'checkbox',
+      label: `I'm ready`,
+    },
+    {
+      name: 'favourite_icecream',
+      type: 'select',
+      label:
+        `What's your favourite ice cream flavour?`,
+      options: [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+      ]
+    },
+  ]
+```
+
+Field objects need to have a key `type` with one of the following values:
+
+- `textarea` - renders a TextareaMd
+- `creatable-select` - renders a [react-select Creatable](https://react-select.com/creatable) with HDS styling
+- `select` or `multi-select` - renders a [react-select Select](https://react-select.com/home) with HDS styling (and `isMulti` prop)
+- `async-select` - renders a [react-select Async](https://react-select.com/async) with HDS styling
+- `group` - renderes adjecent fields, use the same field type for best layout, pass in grouped children fields in `list` key.
+- any other type renders an [Input](#input) field and passes on the type as a prop
+- **deprecated** `inline-submit` - renders an input field with an adjecent Seumut button (used in chat only, doesn't work well in conjuction with other fields.)
+
+<Playground>
+  {() => {
+    const fieldsConfig = [
+      {
+        name: 'name',
+        type: 'group',
+        list: [
+          {
+            name: 'first_name',
+            type: 'text',
+            title: 'First Name',
+            label: 'First Name',
+            required: true,
+            renderWidth: 'full',
+          },
+          {
+            name: 'last_name',
+            type: 'text',
+            title: 'Last Name',
+            label: 'Last Name',
+            required: true,
+            renderWidth: 'full',
+          },
+        ],
+      },
+      {
+        name: 'pitch',
+        type: 'textarea',
+        title:
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+        label: 'Your Pitch',
+        required: true
+      },
+      {
+        name: 'ready',
+        type: 'checkbox',
+        label: `I'm ready`,
+      },
+      {
+        name: 'favourite_icecream',
+        type: 'select',
+        label:
+          `What's your favourite ice cream flavour?`,
+        options: [
+          { value: 'chocolate', label: 'Chocolate' },
+          { value: 'strawberry', label: 'Strawberry' },
+          { value: 'vanilla', label: 'Vanilla' },
+        ]
+      },
+      {
+        name: 'message',
+        type: 'inline-submit',
+        placeholder: 'Type your message...',
+        title: 'Chat with your host:',
+        label: 'Message',
+        submitText: 'Send',
+      }
+    ];
+
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (fieldName, event) => {
+      if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+      }
+
+      if (event && event.target) {
+        let newFormData = {
+          ...formData,
+          [fieldName]: event.target.value || event.target.checked
+        }
+        setFormData(newFormData)
+      }
+    }
+
+    const fieldsWithData = fieldsConfig.map((field) => {
+        if (field.type === 'group') {
+          let fieldsWithValue = { ...field };
+          if (fieldsWithValue.list) {
+            fieldsWithValue.list = fieldsWithValue.list.map((groupField) => {
+              return { ...groupField, value: formData[groupField.name] };
+            });
+          }
+          return fieldsWithValue;
+        } else if(field.type === 'checkbox') {
+          return { ...field, checked: formData[field.name] || false };
+        } else {
+          return { ...field, value: formData[field.name] };
+        }
+      });
+
+    return (
+      <Fields fields={fieldsWithData} onChange={handleChange} />
+    );
+
+}}
+
+</Playground>
+
+## Sortable Drag&Drop Fields
+
+<Props of={FieldsSortable} />
+
+`FieldsSortable` behaves just like `Fields` with the only difference that it doesn't support grouped fields. It adds drag handles to each field and allows them to be ordered.
+
+The drag and drop functionality is added by [react beautiful dnd](https://github.com/atlassian/react-beautiful-dnd), but `FieldsSortable` doesn't expose it's API, it'll take care of sorting the fields array and passes the sorted array back when it calls `onSort`.
+
+<Playground>
+  {() => {
+    const [fieldsConfig, setFieldsConfig] = useState([
+      {
+        name: 'thing1',
+        type: 'text',
+        label: 'First thing',
+      },
+      {
+        name: 'thing2',
+        type: 'text',
+        label: 'Second thing',
+      },
+      {
+        name: 'thing3',
+        type: 'text',
+        label: 'Third thing',
+      },
+      {
+        name: 'thing4',
+        type: 'text',
+        label: 'Fourth thing',
+      },
+    ]);
+
+    const [formData, setFormData] = useState({});
+
+    const handleChange = (fieldName, event) => {
+      if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+      }
+
+      if (event && event.target && event.target.value) {
+        newFormData = {
+          ...formData,
+          [fieldName]: event.target.value || event.target.checked
+        }
+      }
+
+      setFormData(newFormData)
+    }
+
+    const handleSort = (newFieldsConfig) => {
+      console.log(newFieldsConfig)
+
+      setFieldsConfig(newFieldsConfig)
+    }
+
+    const fieldsWithData = fieldsConfig.map((field) => {
+        return field.type === 'checkbox'
+         ? { ...field, checked: formData[field.name] }
+         : { ...field, value: formData[field.name] };
+      });
+
+    return (
+      <FieldsSortable fields={fieldsWithData} onChange={handleChange} onSort={handleSort}/>
+    );
+
+}}
+
+</Playground>

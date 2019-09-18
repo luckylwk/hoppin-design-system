@@ -12,25 +12,35 @@ const fontSizes = [
   '.5rem', // 8px
   '.625rem', // 10px
   '.875rem', // 14px
-  '1em', // 16px
+  '1rem', // 16px
   '1.25rem', // 20px
   '1.75rem', // 28px
   '2.5rem', // 40px
-  '3em', // 48px
-  '4em', // 64px
+  '3rem', // 48px
+  '4rem', // 64px
   '5rem', // 80px
 ];
 
 // shortcuts, so we don't have to remember array indices.
 fontSizes.body = fontSizes[3];
-fontSizes.huge = [fontSizes[7], null, fontSizes[8]];
-fontSizes.h1 = [fontSizes[6], null, fontSizes[7]];
-fontSizes.h2 = [fontSizes[5], null, fontSizes[6]];
-fontSizes.h3 = [fontSizes[4], null, fontSizes[5]];
-fontSizes.h4 = [fontSizes[3], null, fontSizes[5]];
-fontSizes.h5 = [fontSizes[3], null, fontSizes[4]];
-fontSizes.h6 = [fontSizes[3], null, fontSizes[3]];
-fontSizes.label = [fontSizes[2], null, fontSizes[2]];
+fontSizes.label = fontSizes[2];
+fontSizes.huge = fontSizes[8];
+fontSizes.h1 = fontSizes[7];
+fontSizes.h2 = fontSizes[6];
+fontSizes.h3 = fontSizes[5];
+fontSizes.h4 = fontSizes[5];
+fontSizes.h5 = fontSizes[4];
+fontSizes.h6 = fontSizes[3];
+fontSizes.small = fontSizes[2];
+
+const headingSizes = [];
+headingSizes.huge = [fontSizes[7], null, fontSizes[8]];
+headingSizes.h1 = [fontSizes[6], null, fontSizes[7]];
+headingSizes.h2 = [fontSizes[5], null, fontSizes[6]];
+headingSizes.h3 = [fontSizes[4], null, fontSizes[5]];
+headingSizes.h4 = [fontSizes[3], null, fontSizes[5]];
+headingSizes.h5 = [fontSizes[3], null, fontSizes[4]];
+headingSizes.h6 = [fontSizes[3], null, fontSizes[3]];
 
 const lineHeights = [1, 1.4, 1.8];
 lineHeights.small = lineHeights[0];
@@ -47,7 +57,7 @@ const fontWeights = {
 const headings = {
   h1: {
     fontFamily: fonts.primary,
-    fontSize: fontSizes.h1,
+    fontSize: headingSizes.h1,
     letterSpacing: '-2px',
     lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold,
@@ -56,32 +66,32 @@ const headings = {
   },
   h2: {
     fontFamily: fonts.primary,
-    fontSize: fontSizes.h2,
+    fontSize: headingSizes.h2,
     letterSpacing: '-2px',
     lineHeight: lineHeights.small,
     fontWeight: fontWeights.normal,
   },
   h3: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes.h3,
+    fontSize: headingSizes.h3,
     lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold,
   },
   h4: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes.h4,
+    fontSize: headingSizes.h4,
     lineHeight: lineHeights.base,
     fontWeight: fontWeights.normal,
   },
   h5: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes.h5,
+    fontSize: headingSizes.h5,
     lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold,
   },
   h6: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes.h6,
+    fontSize: headingSizes.h6,
     textTransform: 'uppercase',
     lineHeight: lineHeights.base,
     fontWeight: fontWeights.bold,

@@ -1,6 +1,6 @@
 {
   "name": "hoppin-design-system",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -14,10 +14,19 @@
   "dependencies": {
     "@styled-system/prop-types": "^5.0.6",
     "color": "^3.1.2",
+    "immutable": "^4.0.0-rc.12",
+    "rc-checkbox": "^2.1.7",
+    "react-beautiful-dnd": "^11.0.5",
+    "react-day-picker": "^7.3.2",
+    "react-portal": "^4.2.0",
+    "react-transition-group": "^4.3.0",
     "rehype-react": "^4.0.1",
     "remark-github-break": "^0.0.0",
     "remark-parse": "^7.0.0",
     "remark-rehype": "^5.0.0",
+    "slate": "^0.45.0",
+    "slate-md-serializer": "^5.4.3-1",
+    "slate-react": "^0.21.20",
     "styled-components": "^4.3.1",
     "styled-system": "^5.0.6",
     "unified": "^8.3.2"
@@ -27,9 +36,12 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "css-loader": "^3.2.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "exenv": "^1.2.2",
+    "husky": "^3.0.5",
+    "lint-staged": ">=8",
     "nwb": "0.23.0",
     "object-fit-images": "^3.2.4",
     "prettier": "^1.18.2",
@@ -37,7 +49,8 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-icons": "^3.7.0",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.0.1",
+    "react-select": "^3.0.4"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -56,5 +69,16 @@
     "build:docz": "docz build",
     "deploy": "now --prod",
     "start": "docz dev -p 2000"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn run build:nwb:es"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,jsx,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

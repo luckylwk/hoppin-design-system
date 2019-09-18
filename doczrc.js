@@ -12,4 +12,12 @@ export default {
   notUseSpecifiers: true,
   filterComponents: files =>
     files.filter(filepath => /[w-]*.(js|jsx|ts|tsx)$/.test(filepath)),
+  modifyBundlerConfig: config => {
+    config.module.rules &&
+      config.module.rules.push({
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      });
+    return config;
+  },
 };
