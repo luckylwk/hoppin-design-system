@@ -8,7 +8,7 @@ import Select from 'react-select';
 import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
-import getSelectStyling from './selectStyling';
+import getSelectStyling from './SelectStyling';
 import Checkbox from './Checkbox';
 // import Calendar from './Calendar';
 import Input from './Input';
