@@ -48,13 +48,14 @@ const StepForm = ({
     );
   };
 
-  const containerProps = displayMode === 'flex' ? { padding: 0 } : {};
+  const containerProps = displayMode === 'flex' ? { padding: 'small' } : {};
   return (
     <Container
       as="form"
       height="100%"
       width="narrow"
-      overflow="scroll"
+      overflowX="hidden"
+      overflowY="scroll"
       {...containerProps}
     >
       <StepHeader title={title} lede={lede} />

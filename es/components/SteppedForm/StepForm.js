@@ -43,14 +43,15 @@ var StepForm = function StepForm(_ref) {
     });
   };
 
-  var containerProps = displayMode === 'flex' ? { padding: 0 } : {};
+  var containerProps = displayMode === 'flex' ? { padding: 'small' } : {};
   return React.createElement(
     Container,
     _extends({
       as: 'form',
       height: '100%',
       width: 'narrow',
-      overflow: 'scroll'
+      overflowX: 'hidden',
+      overflowY: 'scroll'
     }, containerProps),
     React.createElement(StepHeader, { title: title, lede: lede }),
     React.createElement(Fields, {

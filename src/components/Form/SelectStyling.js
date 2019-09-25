@@ -22,7 +22,7 @@ const getSelectStyles = theme => ({
     minHeight: '2rem',
     lineHeight: 1,
   }),
-  option: (styles, { data, isDisabled, isSelected }) => ({
+  option: (styles, { isDisabled, isSelected }) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
@@ -56,25 +56,37 @@ const getSelectStyles = theme => ({
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
-  multiValue: (styles, { data }) => ({
+  multiValue: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
     backgroundColor: theme.colors.neutral.lighter,
     borderRadius: theme.radii.xsmall,
   }),
-  multiValueLabel: (styles, { data }) => ({
+  multiValueLabel: styles => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     color: theme.colors.neutral.dark,
   }),
-  multiValueRemove: (styles, { data }) => ({
+  multiValueRemove: styles => ({
     ...styles,
     color: theme.colors.neutral.dark,
     ':hover': {
       backgroundColor: theme.colors.neutral.lighter,
       color: theme.colors.neutral.dark,
     },
+  }),
+  loadingMessage: styles => ({
+    ...styles,
+    fontFamily: theme.fonts.secondary,
+  }),
+  noOptionsMessage: styles => ({
+    ...styles,
+    fontFamily: theme.fonts.secondary,
+  }),
+  menu: styles => ({
+    ...styles,
+    boxShadow: theme.shadows.small,
   }),
 });
 
