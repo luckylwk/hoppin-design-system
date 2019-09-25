@@ -5,15 +5,22 @@
 const getSelectStyles = theme => ({
   control: (styles, { isFocused }) => ({
     ...styles,
-    marginTop: '3px',
-    padding: '3px 8px',
+    marginTop: '4px',
+    padding: '1px 8px',
     backgroundColor: 'white',
     borderWidth: 1,
     borderRadius: theme.radii.small,
     borderColor: isFocused
       ? theme.colors.primary.base
       : theme.colors.neutral.light,
+    ':hover': {
+      borderColor: isFocused
+        ? theme.colors.primary.base
+        : theme.colors.neutral.light,
+    },
     boxShadow: null,
+    minHeight: '2rem',
+    lineHeight: 1,
   }),
   option: (styles, { data, isDisabled, isSelected }) => ({
     ...styles,

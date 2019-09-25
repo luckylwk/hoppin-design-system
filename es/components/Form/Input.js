@@ -66,7 +66,7 @@ InputField.defaultProps = {
   disabled: false,
   type: 'text',
   context: 'neutral',
-  fontSize: 'inherit',
+  fontSize: 'body',
   fontFamily: 'secondary',
   fontWeight: 'normal',
   marginBottom: 'base',
