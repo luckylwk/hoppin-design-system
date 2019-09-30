@@ -10,7 +10,7 @@ const inlineShortcuts = [
   { mark: 'deleted', shortcut: '~~' },
 ];
 
-export default function MarkdownShortcuts() {
+export default function MarkdownShortcuts(enableBlocks, enableMarks) {
   function onKeyDown(ev, editor, next) {
     const { value } = editor;
     const { startBlock } = value;
@@ -43,7 +43,10 @@ export default function MarkdownShortcuts() {
     const chars = startBlock.text.slice(0, selection.start.offset).trim();
     const type = getType(chars);
 
-    if (type /*&& !editor.isSelectionInTable()*/) {
+    if (
+      type &&
+      enableBlocks.indexOf(type) > 0 /*&& !editor.isSelectionInTable()*/
+    ) {
       // only shortcuts to change heading size should work in headings
       if (startBlock.type.match(/heading/) && !type.match(/heading/)) {
         return next();
@@ -131,7 +134,7 @@ export default function MarkdownShortcuts() {
     if (selection.isExpanded) return next();
 
     if (startBlock.type.match(/heading/)) return next();
-    if (editor.isSelectionInTable()) return next();
+    // if (editor.isSelectionInTable()) return next();
 
     const chars = startBlock.text
       .slice(0, selection.start.offset)

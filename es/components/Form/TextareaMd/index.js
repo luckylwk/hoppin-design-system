@@ -64,7 +64,7 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
     _initialiseProps.call(_this);
 
     _this.markdown = new MarkdownSerializer();
-    _this.plugins = [Nodes, Marks, KeyboardBehaviour(), KeyboardShortcuts(), MarkdownShortcuts(), MarkdownPaste(_this.markdown), Ellipsis(), Chrome()];
+    _this.plugins = [Nodes, Marks, KeyboardBehaviour(), KeyboardShortcuts(), MarkdownShortcuts(props.enableBlocks, props.enableMarks), MarkdownPaste(_this.markdown), Ellipsis(), Chrome()];
     _this.schema = _this.makeSchema(props);
 
     _this.state = {

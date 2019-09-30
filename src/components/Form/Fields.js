@@ -65,6 +65,7 @@ export const renderField = (field, onChange, selectStyling) => {
           label={field.title ? undefined : field.label}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
+          {...field.props}
         />
         {field.maxLength && (
           <RequiredCharacters>

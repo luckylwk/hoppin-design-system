@@ -2,7 +2,7 @@
 
 var inlineShortcuts = [{ mark: 'bold', shortcut: '**' }, { mark: 'bold', shortcut: '__' }, { mark: 'italic', shortcut: '*' }, { mark: 'italic', shortcut: '_' }, { mark: 'code', shortcut: '`' }, { mark: 'inserted', shortcut: '++' }, { mark: 'deleted', shortcut: '~~' }];
 
-export default function MarkdownShortcuts() {
+export default function MarkdownShortcuts(enableBlocks, enableMarks) {
   function onKeyDown(ev, editor, next) {
     var value = editor.value;
     var startBlock = value.startBlock;
@@ -38,7 +38,8 @@ export default function MarkdownShortcuts() {
     var chars = startBlock.text.slice(0, selection.start.offset).trim();
     var type = getType(chars);
 
-    if (type /*&& !editor.isSelectionInTable()*/) {
+    if (type && enableBlocks.indexOf(type) > 0 /*&& !editor.isSelectionInTable()*/
+    ) {
         // only shortcuts to change heading size should work in headings
         if (startBlock.type.match(/heading/) && !type.match(/heading/)) {
           return next();
@@ -130,7 +131,7 @@ export default function MarkdownShortcuts() {
     if (selection.isExpanded) return next();
 
     if (startBlock.type.match(/heading/)) return next();
-    if (editor.isSelectionInTable()) return next();
+    // if (editor.isSelectionInTable()) return next();
 
     var chars = startBlock.text.slice(0, selection.start.offset).replace(/\s*/g, '');
 

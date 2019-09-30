@@ -57,13 +57,13 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     return React.createElement(
       Fragment,
       null,
-      React.createElement(TextareaMd, {
+      React.createElement(TextareaMd, _extends({
         name: field.name,
         initialValue: field.value,
         label: field.title ? undefined : field.label,
         onChange: _onChange.bind(null, field.name),
         context: field.context
-      }),
+      }, field.props)),
       field.maxLength && React.createElement(
         RequiredCharacters,
         null,

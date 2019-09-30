@@ -51,7 +51,7 @@ class TextareaMdField extends React.Component {
       Marks,
       KeyboardBehaviour(),
       KeyboardShortcuts(),
-      MarkdownShortcuts(),
+      MarkdownShortcuts(props.enableBlocks, props.enableMarks),
       MarkdownPaste(this.markdown),
       Ellipsis(),
       Chrome(),
