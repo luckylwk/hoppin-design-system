@@ -1,0 +1,40 @@
+---
+name: Spacing
+route: /tokens/Spacing
+menu: Tokens
+---
+
+import { SpaceSwatches, RadiusSwatches } from '../docz-components/Swatches';
+import { Flex } from 'components/Flex';
+import { space, containerWidths, radii, zIndexes } from './space';
+
+# Spacing
+
+## Space
+
+The space key contains a scale to be used for `margin` and `padding` [styled-system props](https://styled-system.com/api#space).
+
+The examples use `padding` in dark to demonstrate the space scale.
+
+<SpaceSwatches space={space} />
+
+## Radii
+
+The radii key contains a scale to be used for the `borderRadius` prop.
+
+<RadiusSwatches radii={radii} />
+
+## zIndexes
+
+To minimize random problems with z-index clashes, please set the z-indexes with the prop shorthand:
+
+- `zIndex="farBack"` - very far in the background, e.g. background images
+- `zIndex="back"` - just behind the normal content
+- `zIndex="base"` - main page content
+- `zIndex="front"` - slightly above the content, e.g. a highlighted Box,...
+- `zIndex="nav"` - navigation bar, etc that should stay visible on scrolling
+- `zIndex="overlay"` - modals, things that block the rest of the app.
+
+## ContainerWidths
+
+Only to be used with [Container](/components/Container). See the docs for the component.

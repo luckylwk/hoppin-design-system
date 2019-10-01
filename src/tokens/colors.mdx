@@ -4,7 +4,7 @@ route: /tokens/Colors
 menu: Tokens
 ---
 
-import Swatches from '../docz-components/Swatches';
+import { ColorSwatches } from '../docz-components/Swatches';
 import { Flex } from 'components/Flex';
 import { colors } from './colors';
 
@@ -17,44 +17,31 @@ import { colors } from './colors';
 Primary colors react to the context that is set in `HoppinDesignProvider`
 Wherever possible use `primary` and set the context in the HoppinDesignProvider that wrappes that part of the app.
 
-<Swatches colors={colors.primary} prefix="primary." />
+<ColorSwatches colors={colors} context="primary" />
 
 ### Shadower Colors
 
 These colors are assigned to `primary` when `context='shadower'` on the `HoppinDesignProvider`
 
-<Swatches colors={colors.shadower} prefix="shadower." />
+<ColorSwatches colors={colors} context="shadower" />
 
 ### Host Colors
 
 These colors are assigned to `primary` when `context='host'` on the `HoppinDesignProvider`
 
-<Swatches colors={colors.host} prefix="host." />
-
-## Auxiliary colors
-
-These are auxiliary colors, use spairingly.
-
-<Swatches
-  colors={{
-    white: colors.white,
-    black: colors.black,
-    secondary: colors.secondary,
-  }}
-  prefix=""
-/>
+<ColorSwatches colors={colors} context="host" />
 
 ## Neutral colors
 
 Use `neutral` for body text, backgrounds, etc.
 
-<Swatches colors={colors.neutral} prefix="neutral." />
+<ColorSwatches colors={colors} context="neutral" />
 
 ## Whites
 
 Use `whiteout` for backgrounds. They have a very subtle gold tint to contrast with the blue hue of the neutral.
 
-<Swatches colors={colors.whiteout} prefix="whiteout." />
+<ColorSwatches colors={colors} context="whiteout" />
 
 ## State Palettes
 
@@ -62,12 +49,12 @@ The following colors are to be used very selectively to highlight a specific sta
 
 ### Danger
 
-<Swatches colors={colors.danger} prefix="danger." />
+<ColorSwatches colors={colors} context="danger" />
 
 ### Warning
 
-<Swatches colors={colors.warning} prefix="warning." />
+<ColorSwatches colors={colors} context="warning" />
 
 ### Info
 
-<Swatches colors={colors.info} prefix="info." />
+<ColorSwatches colors={colors} context="info" />

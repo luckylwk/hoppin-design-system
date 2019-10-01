@@ -12,7 +12,11 @@ const Container = styled(Flex)`
 `;
 
 Container.propTypes = {
-  ...Flex.propTypes,
+  // ...Flex.propTypes,
+  /** Set `width="narrow"` for to optimize body text width, set it to `base` for a wider layout, `full` to fill any available space. */
+  width: PropTypes.oneOf(['narrow', 'base', 'full']),
+  /** Only set `maxWidth` if absolutely necessary and you cant use narrow/base widths. */
+  maxWidth: PropTypes.string,
 };
 
 Container.defaultProps = {

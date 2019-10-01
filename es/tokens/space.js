@@ -8,6 +8,7 @@ var space = [0, '.25rem', // 4px
 '4rem', // 64px
 '6rem'];
 
+space.none = space[0];
 space.xsmall = space[1];
 space.small = space[2];
 space.base = space[3];
@@ -28,6 +29,7 @@ radii.none = radii[0];
 radii.xsmall = radii[1];
 radii.small = radii[2];
 radii.medium = radii[3];
+radii.base = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
