@@ -40,7 +40,7 @@ NavCenter.defaultProps = {
   justifyContent: 'center',
   alignItems: 'center',
 };
-NavCenter.displayName = 'NavLeft';
+NavCenter.displayName = 'NavCenter';
 
 const NavRight = styled(Flex)``;
 NavRight.defaultProps = {
@@ -48,7 +48,7 @@ NavRight.defaultProps = {
   justifyContent: 'flex-end',
   alignItems: 'center',
 };
-NavRight.displayName = 'NavLeft';
+NavRight.displayName = 'NavRight';
 
 export { NavLeft, NavCenter, NavRight };
 

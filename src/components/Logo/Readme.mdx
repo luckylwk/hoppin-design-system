@@ -1,0 +1,52 @@
+---
+name: Logo
+route: /components/Logo
+menu: Components
+---
+
+import { Box } from 'components/Box';
+import Logo from './Logo';
+import LogoResponsive from './LogoResponsive';
+import { Props, Playground } from 'docz';
+
+# Logo
+
+The Logo is the basic building block of most elements in the Hoppin Design System.
+
+## Props
+
+<Props of={Logo} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Logo margin='xlarge' />
+  <Logo context='shadower' margin='xlarge' />
+  <Logo context='host' margin='xlarge' />
+
+  <Box bg='primary.base' padding='large'>
+    <Logo context='whiteout' margin='xlarge' />
+  </Box>
+</Playground>
+
+Add prop `size='icon'` to render the hop icon only.
+
+<Playground>
+  <Logo size="icon" margin="xlarge" />
+  <Logo size="icon" context="shadower" margin="xlarge" />
+  <Logo size="icon" context="host" margin="xlarge" />
+</Playground>
+
+# LogoResponsive
+
+The LogoResponsive will render the Logo in icon size for mobile devices and full logo size on larger screens.
+
+## Props
+
+<Props of={LogoResponsive} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <LogoResponsive margin="xlarge" />
+  <LogoResponsive context="shadower" margin="xlarge" />
+  <LogoResponsive context="host" margin="xlarge" />
+</Playground>

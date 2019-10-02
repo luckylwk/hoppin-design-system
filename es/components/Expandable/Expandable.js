@@ -1,4 +1,4 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  cursor: pointer;\n'], ['\n  cursor: pointer;\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  cursor: pointer;\n  flex-grow: 0;\n'], ['\n  cursor: pointer;\n  flex-grow: 0;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -33,7 +33,7 @@ var Expandable = function Expandable(_ref) {
   );
 };
 
-var ToggleBox = styled(Box)(_templateObject);
+var ToggleBox = styled('Box')(_templateObject);
 var ExpandableToggle = function ExpandableToggle(_ref2) {
   var children = _ref2.children;
 

@@ -23,8 +23,9 @@ const Expandable = ({ children, initExpanded, onToggle }) => {
   );
 };
 
-const ToggleBox = styled(Box)`
+const ToggleBox = styled('Box')`
   cursor: pointer;
+  flex-grow: 0;
 `;
 const ExpandableToggle = ({ children }) => {
   const { toggleExpanded } = useContext(ExpandableContext);

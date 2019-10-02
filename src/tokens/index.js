@@ -9,6 +9,7 @@ import {
   fontWeights,
   headings,
 } from './typography';
+import { logo, icon } from './logos';
 
 export default {
   space,
@@ -24,4 +25,6 @@ export default {
   buttonSizes,
   buttonIconSpacing,
   shadows,
+  logo,
+  icon,
 };

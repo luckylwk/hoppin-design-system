@@ -25,9 +25,15 @@ var HoppinDesignProvider = function HoppinDesignProvider(_ref2) {
   var themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
   var tokensWithOverrides = merge({}, tokens, themeContext, theme);
-  // depending on context, set the primary colors
+  // depending on context, set the primary colors, logo and icon
   var tokensWithContext = merge({}, tokensWithOverrides, {
-    colors: get(tokensWithOverrides.colors.contexts, context, tokensWithOverrides.colors)
+    colors: get(tokensWithOverrides.colors.contexts, context, tokensWithOverrides.colors),
+    logo: {
+      default: get(tokensWithOverrides.logo, context, tokensWithOverrides.logo.primary)
+    },
+    icon: {
+      default: get(tokensWithOverrides.icon, context, tokensWithOverrides.icon.primary)
+    }
   });
 
   return React.createElement(

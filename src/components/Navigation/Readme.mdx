@@ -5,17 +5,32 @@ menu: Components
 ---
 
 import NavigationBar, { NavLeft, NavCenter, NavRight } from './NavigationBar';
+import Navigation, { NavToggle } from './Navigation';
+import { MenuToggle, MenuSheet, MenuButton } from './Menu';
+import { Button } from '../Button';
+import { FiMenu, FiX } from 'react-icons/fi';
 import { Box } from 'components/Box';
+import { Logo, LogoResponsive } from 'components/Logo';
 import { Props, Playground } from 'docz';
 
-# NavigationBar
+# Navigation Components
+
+HDS exports several components to build nav bars into your app.
+
+- [NavigationBar](#navigationbar) just renders the nav bar on top of the page
+- [Navigation](#navigation) wrapps `NavigationBar` and provides the event listeners to toggle a (mobile) nav sheet
+- [Menu](#navigaton-with-menu) provides some convenience components to style a default menu.
+
+If in doubt, you'll probably want to look at the [Navigation with Menu](#navigaton-with-menu) examples at the bottom.
+
+## NavigationBar
 
 NavigationBar renders the default navigation bar at the top of the page.
-It has three optional child components, `NavigationBar.NavLeft`, `NavigationBar.NavCenter` and `NavigationBar.NavRight`.
+It has three optional child components, `NavLeft`, `NavCenter` and `NavRight`.
 
 NavigationBar doesn't come with a mobile nav or toggle, it'll just render the bar on top of the page and align items nicely.
 
-## Props
+### Props
 
 <Props of={NavigationBar} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
@@ -27,4 +42,99 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
     <NavCenter>Center</NavCenter>
     <NavRight>Right</NavRight>
   </NavigationBar>
+</Playground>
+
+## Navigation
+
+Navigation renders the default navigation bar at the top of the page and comes with a mobile nav or toggle setup.
+
+Pass in the chlidren to render in the `NavBar` (`NavLeft`, `NavCenter`, `NavRight`) and make sure you render `NavToggle` somewhere in the children.
+
+Pass a prop `menuContent` to pass in a component with the contents of the toggled menu.
+By default the toggled menu is underlaid with an opaque overlay. To disable the overlay, pass a prop `withOverlay=false`
+
+### Props
+
+<Props of={Navigation} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  {/* position prop just for docs*/}
+  <Navigation
+    position="absolute"
+    menuContent={
+      <Box
+        width="80%"
+        height="100%"
+        bg="danger.light"
+        position="absolute"
+        right={0}
+        padding="large"
+      >
+        <NavToggle>
+          <Button
+            variant="subtle"
+            context="whiteout"
+            padding={['xsmall', null, 'small']}
+          >
+            <FiX />
+          </Button>
+        </NavToggle>
+      </Box>
+    }
+  >
+    <NavLeft>Left</NavLeft>
+    <NavCenter>Center</NavCenter>
+    <NavRight>
+      <NavToggle>
+        <Button variant="subtle">
+          <FiMenu />
+        </Button>
+      </NavToggle>
+    </NavRight>
+  </Navigation>
+</Playground>
+
+## Navigation with Menu
+
+For convenience there are three extra components to render a standard hamburger menu: `MenuToggle`, `MenuSheet` and `MenuButton`.
+
+<Playground>
+  {() => {
+    /*
+    It's good practice to define menuContent in a variable outside
+    and pass it in to Navigation as a prop
+    */
+    const menuContent = (<MenuSheet>
+    {/*
+      MenuButtons are just buttons with some props pre-set
+      Use them the same way as you would use a Button
+      Or use a button directly, look at the React Inspector,
+      and you see it renders Buttons all along.
+      */}
+      <MenuButton children="Item one" />
+      <MenuButton>Item two</MenuButton>
+      <Button
+        variant="subtle"
+        context="whiteout"
+        size="large"
+        children="Item three"
+        paddingLeft={0}
+      />
+    </MenuSheet>);
+
+    /* position prop just for docs */
+    return (
+      <Navigation menuContent={menuContent} position="absolute">
+        <NavLeft>
+          <LogoResponsive />
+        </NavLeft>
+        <NavRight>
+          <MenuToggle />
+        </NavRight>
+      </Navigation>
+    );;
+
+}}
+
 </Playground>

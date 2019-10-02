@@ -3,6 +3,7 @@ import { space, containerWidths, radii, zIndices } from './space';
 import { buttonSizes, buttonIconSpacing } from './buttons';
 import { shadows } from './shadows';
 import { fonts, fontSizes, lineHeights, fontWeights, headings } from './typography';
+import { logo, icon } from './logos';
 
 export default {
   space: space,
@@ -17,5 +18,7 @@ export default {
   headings: headings,
   buttonSizes: buttonSizes,
   buttonIconSpacing: buttonIconSpacing,
-  shadows: shadows
+  shadows: shadows,
+  logo: logo,
+  icon: icon
 };
