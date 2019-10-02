@@ -36,13 +36,13 @@ radii.base = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
-const zIndexes = [0, 3, 5, 8, 13, 21];
+const zIndices = [0, 15, 150, 1500, 15000, 50000];
 
-zIndexes.farBack = -zIndexes[3];
-zIndexes.back = -zIndexes[1];
-zIndexes.base = zIndexes[0];
-zIndexes.front = zIndexes[3];
-zIndexes.nav = zIndexes[4];
-zIndexes.overlay = zIndexes[5];
+zIndices.farBack = -zIndices[3];
+zIndices.back = -zIndices[1];
+zIndices.base = zIndices[0];
+zIndices.front = zIndices[3];
+zIndices.nav = zIndices[4];
+zIndices.overlay = zIndices[5];
 
-export { space, containerWidths, radii, zIndexes };
+export { space, containerWidths, radii, zIndices };

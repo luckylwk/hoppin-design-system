@@ -12,7 +12,7 @@ var FullScreenStepWrapper = styled(Box)(_templateObject, function (_ref) {
 }, function (_ref2) {
   var theme = _ref2.theme;
 
-  return theme.zIndexes[1];
+  return theme.zIndices[1];
 });
 
 FullScreenStepWrapper.displayName = 'FullScreenStepWrapper';

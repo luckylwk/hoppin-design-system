@@ -21,7 +21,7 @@ var ProgressBarWrapper = styled(Box)(_templateObject, function (_ref) {
 }, function (_ref2) {
   var alignTo = _ref2.alignTo,
       theme = _ref2.theme;
-  return alignTo === 'page' ? 'z-index: ' + theme.zIndexes.overlay : null;
+  return alignTo === 'page' ? 'z-index: ' + theme.zIndices.overlay : null;
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.space.xsmall;

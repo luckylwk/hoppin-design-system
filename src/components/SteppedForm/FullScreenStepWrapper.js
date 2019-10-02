@@ -21,7 +21,7 @@ const FullScreenStepWrapper = styled(Box)`
     opacity: 0;
     transform: translate(2%, 0);
     z-index: ${({ theme }) => {
-      return theme.zIndexes[1];
+      return theme.zIndices[1];
     }};
   }
 

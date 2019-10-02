@@ -167,7 +167,7 @@ export const Menu = styled.div`
   padding: 8px 16px;
   position: absolute;
   z-index: ${props => {
-    return props.theme.zIndexes.overlay;
+    return props.theme.zIndices.overlay;
   }};
   top: -10000px;
   left: -10000px;

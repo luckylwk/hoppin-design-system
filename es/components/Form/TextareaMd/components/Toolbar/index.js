@@ -183,7 +183,7 @@ export { Toolbar as default };
 
 
 export var Menu = styled.div(_templateObject, function (props) {
-  return props.theme.zIndexes.overlay;
+  return props.theme.zIndices.overlay;
 }, function (props) {
   return props.theme.colors.neutral.darker;
 }, function (props) {

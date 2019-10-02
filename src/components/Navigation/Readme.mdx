@@ -1,0 +1,30 @@
+---
+name: Navigation
+route: /components/Navigation
+menu: Components
+---
+
+import NavigationBar, { NavLeft, NavCenter, NavRight } from './NavigationBar';
+import { Box } from 'components/Box';
+import { Props, Playground } from 'docz';
+
+# NavigationBar
+
+NavigationBar renders the default navigation bar at the top of the page.
+It has three optional child components, `NavigationBar.NavLeft`, `NavigationBar.NavCenter` and `NavigationBar.NavRight`.
+
+NavigationBar doesn't come with a mobile nav or toggle, it'll just render the bar on top of the page and align items nicely.
+
+## Props
+
+<Props of={NavigationBar} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  {/* position prop just for docs*/}
+  <NavigationBar position="absolute">
+    <NavLeft>Left</NavLeft>
+    <NavCenter>Center</NavCenter>
+    <NavRight>Right</NavRight>
+  </NavigationBar>
+</Playground>
