@@ -4,5 +4,5 @@ export {
   NavCenter,
   NavRight,
 } from './NavigationBar';
-export { default as Navigatoin, NavToggle } from './Navigation';
+export { default as Navigation, NavToggle } from './Navigation';
 export * from './Menu';
