@@ -6,7 +6,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { NavToggle } from './Navigation';
 import { Button } from '../Button';
@@ -14,6 +15,7 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Logo } from '../Logo';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { ExpandableContext } from '../Expandable';
 
 var MenuToggle = function MenuToggle() {
   return React.createElement(
@@ -41,8 +43,18 @@ var MenuSheet = function MenuSheet(_ref) {
   var children = _ref.children,
       _ref$context = _ref.context,
       context = _ref$context === undefined ? 'primary' : _ref$context,
-      rest = _objectWithoutProperties(_ref, ['children', 'context']);
+      _ref$onLogoClick = _ref.onLogoClick,
+      onLogoClick = _ref$onLogoClick === undefined ? function () {} : _ref$onLogoClick,
+      rest = _objectWithoutProperties(_ref, ['children', 'context', 'onLogoClick']);
 
+  var _useContext = useContext(ExpandableContext),
+      toggleExpanded = _useContext.toggleExpanded;
+
+  var handleLogoClick = function handleLogoClick(e) {
+    e.preventDefault();
+    toggleExpanded();
+    onLogoClick();
+  };
   return React.createElement(
     Flex,
     {
@@ -59,7 +71,7 @@ var MenuSheet = function MenuSheet(_ref) {
       null,
       React.createElement(
         Box,
-        { objectFit: 'contain' },
+        { objectFit: 'contain', onClick: handleLogoClick },
         React.createElement(Logo, { context: 'whiteout' })
       ),
       React.createElement(
@@ -90,6 +102,12 @@ var MenuSheet = function MenuSheet(_ref) {
   );
 };
 
+MenuSheet.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** Works best with MenuButtons */
+  children: PropTypes.any,
+  /** Callback for click on Logo, use to link up to your router implementation. */
+  onLogoClick: PropTypes.func
+} : {};
 MenuSheet.displayName = 'MenuSheet';
 
 export { MenuToggle, MenuSheet, MenuButton };
