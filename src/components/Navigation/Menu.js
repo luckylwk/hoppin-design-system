@@ -27,27 +27,37 @@ MenuButton.defaultProps = {
   paddingLeft: 0,
 };
 
+const MenuSheetWrapper = styled(Flex)`
+  transition: margin-right 0.5s;
+
+  ${({ isExpanded }) => (isExpanded ? 'margin-right: 0' : '')}
+`;
+
 const MenuSheet = ({
   children,
   context = 'primary',
   onLogoClick = () => {},
   ...rest
 }) => {
-  const { toggleExpanded } = useContext(ExpandableContext);
+  const { toggleExpanded, isExpanded } = useContext(ExpandableContext);
+
   const handleLogoClick = e => {
     e.preventDefault();
     toggleExpanded();
     onLogoClick();
   };
+
   return (
-    <Flex
+    <MenuSheetWrapper
       width={['85%', null, '50%']}
+      marginRight={['-85%', null, '-50%']}
       height="100%"
       bg={`${context}.base`}
       position="absolute"
       right={0}
       padding="large"
       flexDirection="column"
+      isExpanded={isExpanded}
     >
       <Flex>
         <Box objectFit="contain" onClick={handleLogoClick}>
@@ -73,7 +83,7 @@ const MenuSheet = ({
       >
         {children}
       </Flex>
-    </Flex>
+    </MenuSheetWrapper>
   );
 };
 

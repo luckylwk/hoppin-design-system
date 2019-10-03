@@ -1,5 +1,5 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  z-index: ', ';\n\n  background-color: ', ';\n'], ['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  z-index: ', ';\n\n  background-color: ', ';\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  z-index: ', ';\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n'], ['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  z-index: ', ';\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s;\n\n  z-index: ', ';\n\n  background-color: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n  }\n'], ['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s;\n\n  z-index: ', ';\n\n  background-color: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n  }\n']),
+    _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s, transform 0.01s 0.5s;\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity 0.5s, transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n'], ['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s, transform 0.01s 0.5s;\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity 0.5s, transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -7,7 +7,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import React, { useContext } from 'react';
 import NavigationBar from './NavigationBar';
-import { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from '../Expandable';
+import { Expandable, ExpandableToggle, ExpandableContext } from '../Expandable';
 import { Box } from '../Box';
 import styled from 'styled-components';
 import Color from 'color';
@@ -40,18 +40,21 @@ var NavMenu = function NavMenu(_ref2) {
       withOverlay = _ref2.withOverlay;
 
   var _useContext = useContext(ExpandableContext),
+      isExpanded = _useContext.isExpanded,
       toggleExpanded = _useContext.toggleExpanded;
 
+  var className = isExpanded ? 'isExpanded' : '';
   return React.createElement(
-    ExpandableBody,
+    React.Fragment,
     null,
     React.createElement(NavOverlay, {
       withOverlay: withOverlay,
-      onClick: toggleExpanded
+      onClick: toggleExpanded,
+      className: className
     }),
     React.createElement(
       NavMenuContent,
-      null,
+      { className: className },
       children
     )
   );
@@ -68,7 +71,7 @@ var NavOverlay = styled(Box)(_templateObject, function (_ref3) {
 var NavMenuContent = styled(Box)(_templateObject2, function (_ref5) {
   var theme = _ref5.theme;
   return theme.zIndices.overlay - 1;
-}, '' /* ignore clicks on container */, '' /* but enable clicks on content */);
+}, '' /*  */, '' /* ignore clicks on container */, '' /* but enable clicks on content */);
 
 NavOverlay.displayName = 'NavOverlay';
 

@@ -1,6 +1,7 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose([''], ['']);
+var _templateObject = _taggedTemplateLiteralLoose([''], ['']),
+    _templateObject2 = _taggedTemplateLiteralLoose(['\n  transition: margin-right 0.5s;\n\n  ', '\n'], ['\n  transition: margin-right 0.5s;\n\n  ', '\n']);
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -39,32 +40,41 @@ MenuButton.defaultProps = {
   paddingLeft: 0
 };
 
-var MenuSheet = function MenuSheet(_ref) {
-  var children = _ref.children,
-      _ref$context = _ref.context,
-      context = _ref$context === undefined ? 'primary' : _ref$context,
-      _ref$onLogoClick = _ref.onLogoClick,
-      onLogoClick = _ref$onLogoClick === undefined ? function () {} : _ref$onLogoClick,
-      rest = _objectWithoutProperties(_ref, ['children', 'context', 'onLogoClick']);
+var MenuSheetWrapper = styled(Flex)(_templateObject2, function (_ref) {
+  var isExpanded = _ref.isExpanded;
+  return isExpanded ? 'margin-right: 0' : '';
+});
+
+var MenuSheet = function MenuSheet(_ref2) {
+  var children = _ref2.children,
+      _ref2$context = _ref2.context,
+      context = _ref2$context === undefined ? 'primary' : _ref2$context,
+      _ref2$onLogoClick = _ref2.onLogoClick,
+      onLogoClick = _ref2$onLogoClick === undefined ? function () {} : _ref2$onLogoClick,
+      rest = _objectWithoutProperties(_ref2, ['children', 'context', 'onLogoClick']);
 
   var _useContext = useContext(ExpandableContext),
-      toggleExpanded = _useContext.toggleExpanded;
+      toggleExpanded = _useContext.toggleExpanded,
+      isExpanded = _useContext.isExpanded;
 
   var handleLogoClick = function handleLogoClick(e) {
     e.preventDefault();
     toggleExpanded();
     onLogoClick();
   };
+
   return React.createElement(
-    Flex,
+    MenuSheetWrapper,
     {
       width: ['85%', null, '50%'],
+      marginRight: ['-85%', null, '-50%'],
       height: '100%',
       bg: context + '.base',
       position: 'absolute',
       right: 0,
       padding: 'large',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      isExpanded: isExpanded
     },
     React.createElement(
       Flex,

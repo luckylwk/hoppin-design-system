@@ -3,7 +3,7 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  cursor: pointer;\n  flex
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
 import React, { createContext, useContext, useState } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 import { Box } from '../Box';
@@ -33,7 +33,7 @@ var Expandable = function Expandable(_ref) {
   );
 };
 
-var ToggleBox = styled('Box')(_templateObject);
+var ToggleBox = styled(Box)(_templateObject);
 var ExpandableToggle = function ExpandableToggle(_ref2) {
   var children = _ref2.children;
 
@@ -55,7 +55,7 @@ var ExpandableBody = function ExpandableBody(_ref3) {
 
   return React.createElement(
     Box,
-    { display: isExpanded ? 'block' : 'none' },
+    { display: isExpanded ? 'block' : toggleDisplay ? 'none' : 'block' },
     children
   );
 };
@@ -63,15 +63,18 @@ var ExpandableBody = function ExpandableBody(_ref3) {
 Expandable.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
   /* TODO: figrue out how to code that in propTypes */
-  children: propTypes.any,
+  children: PropTypes.any,
   /** Set the initial state, expanded or not. */
-  initExpanded: propTypes.bool,
+  initExpanded: PropTypes.bool,
   /** provide a custom callback on click, it reveives the new state of the Expandable*/
-  onToggle: propTypes.func
+  onToggle: PropTypes.func,
+  /** set toggleDisplay to false if you're animating the transitions */
+  toggleDisplay: PropTypes.bool
 } : {};
 
 Expandable.defaultProps = {
-  initExpanded: false
+  initExpanded: false,
+  toggleDisplay: true
 };
 
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };
