@@ -30,7 +30,9 @@ MenuButton.defaultProps = {
 const MenuSheetWrapper = styled(Flex)`
   transition: margin-right 0.5s;
 
-  ${({ isExpanded }) => (isExpanded ? 'margin-right: 0' : '')}
+  .isExpanded & {
+    margin-right: 0;
+  }
 `;
 
 const MenuSheet = ({
