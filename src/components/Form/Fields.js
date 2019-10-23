@@ -216,6 +216,7 @@ export const renderField = (field, onChange, selectStyling) => {
         onChange={onChange.bind(null, field.name)}
         context={field.context}
         renderWidth={field.renderWidth || 'full'}
+        icon={field.icon}
       />
       {field.maxLength && (
         <RequiredCharacters>

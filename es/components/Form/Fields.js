@@ -210,7 +210,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       label: field.title ? undefined : field.label,
       onChange: _onChange.bind(null, field.name),
       context: field.context,
-      renderWidth: field.renderWidth || 'full'
+      renderWidth: field.renderWidth || 'full',
+      icon: field.icon
     }),
     field.maxLength && React.createElement(
       RequiredCharacters,
