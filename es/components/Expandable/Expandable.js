@@ -68,7 +68,6 @@ var ExpandableBody = function ExpandableBody(_ref3) {
   var _useContext2 = useContext(ExpandableContext),
       isExpanded = _useContext2.isExpanded;
 
-  console.log('in body', isExpanded);
   return React.createElement(
     Box,
     { display: isExpanded ? 'block' : toggleDisplay ? 'none' : 'block' },

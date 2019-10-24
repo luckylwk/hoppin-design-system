@@ -49,7 +49,6 @@ const ExpandableToggle = ({ children }) => {
 
 const ExpandableBody = ({ children, toggleDisplay }) => {
   const { isExpanded } = useContext(ExpandableContext);
-  console.log('in body', isExpanded);
   return (
     <Box display={isExpanded ? 'block' : toggleDisplay ? 'none' : 'block'}>
       {children}
