@@ -23,6 +23,20 @@ const Expandable = ({ children, initExpanded, onToggle }) => {
   );
 };
 
+Expandable.propTypes = {
+  /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
+  /* TODO: figrue out how to code that in propTypes */
+  children: PropTypes.any,
+  /** Set the initial state, expanded or not. */
+  initExpanded: PropTypes.bool,
+  /** provide a custom callback on click, it reveives the new state of the Expandable*/
+  onToggle: PropTypes.func,
+};
+
+Expandable.defaultProps = {
+  initExpanded: false,
+};
+
 const ToggleBox = styled(Box)`
   cursor: pointer;
   flex-grow: 0;
@@ -33,8 +47,9 @@ const ExpandableToggle = ({ children }) => {
   return <ToggleBox onClick={toggleExpanded}>{children}</ToggleBox>;
 };
 
-const ExpandableBody = ({ children }) => {
+const ExpandableBody = ({ children, toggleDisplay }) => {
   const { isExpanded } = useContext(ExpandableContext);
+  console.log('in body', isExpanded);
   return (
     <Box display={isExpanded ? 'block' : toggleDisplay ? 'none' : 'block'}>
       {children}
@@ -42,21 +57,15 @@ const ExpandableBody = ({ children }) => {
   );
 };
 
-Expandable.propTypes = {
-  /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
-  /* TODO: figrue out how to code that in propTypes */
+ExpandableBody.propTypes = {
   children: PropTypes.any,
-  /** Set the initial state, expanded or not. */
-  initExpanded: PropTypes.bool,
-  /** provide a custom callback on click, it reveives the new state of the Expandable*/
-  onToggle: PropTypes.func,
   /** set toggleDisplay to false if you're animating the transitions */
   toggleDisplay: PropTypes.bool,
 };
 
-Expandable.defaultProps = {
-  initExpanded: false,
+ExpandableBody.defaultProps = {
   toggleDisplay: true,
 };
+ExpandableBody.displayName = 'ExpandableBody';
 
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };

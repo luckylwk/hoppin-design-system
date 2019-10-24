@@ -33,6 +33,20 @@ var Expandable = function Expandable(_ref) {
   );
 };
 
+Expandable.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
+  /* TODO: figrue out how to code that in propTypes */
+  children: PropTypes.any,
+  /** Set the initial state, expanded or not. */
+  initExpanded: PropTypes.bool,
+  /** provide a custom callback on click, it reveives the new state of the Expandable*/
+  onToggle: PropTypes.func
+} : {};
+
+Expandable.defaultProps = {
+  initExpanded: false
+};
+
 var ToggleBox = styled(Box)(_templateObject);
 var ExpandableToggle = function ExpandableToggle(_ref2) {
   var children = _ref2.children;
@@ -48,11 +62,13 @@ var ExpandableToggle = function ExpandableToggle(_ref2) {
 };
 
 var ExpandableBody = function ExpandableBody(_ref3) {
-  var children = _ref3.children;
+  var children = _ref3.children,
+      toggleDisplay = _ref3.toggleDisplay;
 
   var _useContext2 = useContext(ExpandableContext),
       isExpanded = _useContext2.isExpanded;
 
+  console.log('in body', isExpanded);
   return React.createElement(
     Box,
     { display: isExpanded ? 'block' : toggleDisplay ? 'none' : 'block' },
@@ -60,21 +76,15 @@ var ExpandableBody = function ExpandableBody(_ref3) {
   );
 };
 
-Expandable.propTypes = process.env.NODE_ENV !== "production" ? {
-  /** Expandable needs exactly one instance of ExpandableToggle and one instance of ExpandableBody */
-  /* TODO: figrue out how to code that in propTypes */
+ExpandableBody.propTypes = process.env.NODE_ENV !== "production" ? {
   children: PropTypes.any,
-  /** Set the initial state, expanded or not. */
-  initExpanded: PropTypes.bool,
-  /** provide a custom callback on click, it reveives the new state of the Expandable*/
-  onToggle: PropTypes.func,
   /** set toggleDisplay to false if you're animating the transitions */
   toggleDisplay: PropTypes.bool
 } : {};
 
-Expandable.defaultProps = {
-  initExpanded: false,
+ExpandableBody.defaultProps = {
   toggleDisplay: true
 };
+ExpandableBody.displayName = 'ExpandableBody';
 
 export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };
