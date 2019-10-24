@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from '../Box';
 
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+
 // context allows us to pass down the  toggle state to children without needing to manually set props.
 const ExpandableContext = createContext();
 
@@ -46,6 +48,14 @@ const ExpandableToggle = ({ children }) => {
 
   return <ToggleBox onClick={toggleExpanded}>{children}</ToggleBox>;
 };
+ExpandableToggle.displayName = 'ExpandableToggle';
+
+const ExpandableToggleIcon = props => {
+  const { isExpanded } = useContext(ExpandableContext);
+
+  return isExpanded ? <FiChevronUp {...props} /> : <FiChevronDown {...props} />;
+};
+ExpandableToggleIcon.displayName = 'ToggleIcon';
 
 const ExpandableBody = ({ children, toggleDisplay }) => {
   const { isExpanded } = useContext(ExpandableContext);
@@ -67,4 +77,10 @@ ExpandableBody.defaultProps = {
 };
 ExpandableBody.displayName = 'ExpandableBody';
 
-export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext };
+export {
+  Expandable,
+  ExpandableToggle,
+  ExpandableToggleIcon,
+  ExpandableBody,
+  ExpandableContext,
+};

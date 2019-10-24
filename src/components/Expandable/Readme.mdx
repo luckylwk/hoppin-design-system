@@ -8,6 +8,7 @@ import { Props, Playground } from 'docz';
 import {
   Expandable,
   ExpandableToggle,
+  ExpandableToggleIcon,
   ExpandableBody,
   ExpandableContext,
 } from './';
@@ -101,15 +102,25 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
       );
     };
 
-    return (
-      <Expandable>
-        <ExpandableToggle>
-          <CustomToggle />
-        </ExpandableToggle>
-        <ExpandableBody>
-          <Paragraph>And you can read so much more. It's a miracle</Paragraph>
-        </ExpandableBody>
-      </Expandable>
+    return (<React.Fragment>
+        <Expandable>
+          <ExpandableToggle>
+            <CustomToggle />
+          </ExpandableToggle>
+          <ExpandableBody>
+            <Paragraph>And you can read so much more. It's a miracle</Paragraph>
+          </ExpandableBody>
+        </Expandable>
+
+        <Expandable>
+          <ExpandableToggle>
+            <Heading as="h4">Add ExpandableToggleIcon to indicate toggle state <ExpandableToggleIcon /></Heading>
+          </ExpandableToggle>
+          <ExpandableBody>
+            <Paragraph>And you can read so much more. It's a miracle</Paragraph>
+          </ExpandableBody>
+        </Expandable>
+      </React.Fragment>
     );
 
 }}

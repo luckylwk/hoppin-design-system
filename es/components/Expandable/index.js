@@ -1,1 +1,1 @@
-export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from './Expandable';
+export { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext, ExpandableToggleIcon } from './Expandable';

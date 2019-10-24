@@ -3,4 +3,5 @@ export {
   ExpandableToggle,
   ExpandableBody,
   ExpandableContext,
+  ExpandableToggleIcon,
 } from './Expandable';
