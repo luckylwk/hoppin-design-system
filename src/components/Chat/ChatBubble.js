@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '../Box';
 import styled from 'styled-components';
+import { typography } from 'styled-system';
 import propTypes from 'prop-types';
 
 const ChatBubble = styled(Box)`
@@ -9,6 +10,7 @@ const ChatBubble = styled(Box)`
   border-radius: ${({ theme }) => theme.radii.medium};
   box-shadow: ${({ theme }) => theme.shadows[2]};
   overflow: visible;
+  ${typography}
 
   &:before {
     content: '';
@@ -76,6 +78,8 @@ ChatBubble.defaultProps = {
   marginY: ['xsmall', 'small'],
   flexGrow: 0,
   color: 'neutral.darker',
+  fontFamily: 'secondary',
+  fontSize: 'body',
 };
 
 ChatBubble.displayName = 'ChatBubble';
