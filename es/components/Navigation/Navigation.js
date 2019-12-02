@@ -7,10 +7,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import React, { useContext } from 'react';
 import NavigationBar from './NavigationBar';
+import styled from 'styled-components';
+
+import Color from 'color';
 import { Expandable, ExpandableToggle, ExpandableContext } from '../Expandable';
 import { Box } from '../Box';
-import styled from 'styled-components';
-import Color from 'color';
 
 var Navigation = function Navigation(_ref) {
   var children = _ref.children,
