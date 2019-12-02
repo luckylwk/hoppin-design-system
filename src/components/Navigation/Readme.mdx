@@ -6,6 +6,7 @@ menu: Components
 
 import NavigationBar, { NavLeft, NavCenter, NavRight } from './NavigationBar';
 import Navigation, { NavToggle } from './Navigation';
+import UserNavigationBar from './UserNavigationBar';
 import { MenuToggle, MenuSheet, MenuButton } from './Menu';
 import { Button } from '../Button';
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -133,8 +134,32 @@ For convenience there are three extra components to render a standard hamburger 
           <MenuToggle />
         </NavRight>
       </Navigation>
-    );;
+    );
+  }}
+</Playground>
 
-}}
+## User navigation
 
+<Playground>
+  {() => {
+    const user = { 
+      profile: { 
+        first_name: 'James', 
+        last_name: 'Dean', 
+        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg' 
+      }
+    }
+    return (
+      <UserNavigationBar 
+        user={user}
+        onExpandDetails={() => null}
+        detailsExpanded={true}
+        labelDefault="Details"
+        labelExpanded="Expanded"
+        // ...Rest
+        display={['flex', null, 'flex']}
+        position="absolute"
+      />
+    );
+  }}
 </Playground>

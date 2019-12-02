@@ -1,0 +1,31 @@
+---
+name: Image
+route: /components/Image
+menu: Components
+---
+
+import Avatar from './Avatar';
+import { Box } from 'components/Box';
+import { Props, Playground } from 'docz';
+
+# Image Components
+
+- [Avatar](#avatar) Basic avatar
+
+## Avatar
+
+Lipsum
+
+### Props
+
+<Props of={Avatar} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  {/* position prop just for docs*/}
+  <Box width="200px" height="100px" bg="orange">
+    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" />
+    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" squared />
+    <Avatar size="icon" src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" />
+  </Box>
+</Playground>
