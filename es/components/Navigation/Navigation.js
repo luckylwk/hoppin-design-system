@@ -6,12 +6,13 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import React, { useContext } from 'react';
-import NavigationBar from './NavigationBar';
 import styled from 'styled-components';
 
-import Color from 'color';
+import NavigationBar from './NavigationBar';
 import { Expandable, ExpandableToggle, ExpandableContext } from '../Expandable';
 import { Box } from '../Box';
+
+import Color from 'color';
 
 var Navigation = function Navigation(_ref) {
   var children = _ref.children,
