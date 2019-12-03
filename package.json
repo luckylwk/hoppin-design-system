@@ -44,7 +44,7 @@
     "lint-staged": ">=8",
     "nwb": "0.23.0",
     "object-fit-images": "^3.2.4",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -61,6 +61,8 @@
     "webpack": "4.28.4"
   },
   "scripts": {
+    "prettier:all": "prettier --write 'src/**/*.{js,jsx}'",
+    "prettier:check": "prettier --check 'src/**/*.{js,jsx}'",
     "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
     "now-build": "yarn run build:docz",
     "build:nwb:es": "nwb build-react-component",
