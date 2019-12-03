@@ -6,9 +6,10 @@ menu: Components
 
 import NavigationBar, { NavLeft, NavCenter, NavRight } from './NavigationBar';
 import Navigation, { NavToggle } from './Navigation';
+import NavigationUser from './NavigationUser';
 import { MenuToggle, MenuSheet, MenuButton } from './Menu';
 import { Button } from '../Button';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiChevronUp } from 'react-icons/fi';
 import { Box } from 'components/Box';
 import { Logo, LogoResponsive } from 'components/Logo';
 import { Props, Playground } from 'docz';
@@ -133,8 +134,56 @@ For convenience there are three extra components to render a standard hamburger 
           <MenuToggle />
         </NavRight>
       </Navigation>
-    );;
+    );
+  }}
+</Playground>
 
-}}
+## NavigationUser
 
+Component to render the user avatar and name for use in a navigation bar.
+
+NavigationUser has a
+- Required prop for `user` that needs the `profile` object (containing `first_name`, `last_name`, `image_url`)
+
+<Playground>
+  {() => {
+    const user = { 
+      profile: { 
+        first_name: 'James', 
+        last_name: 'Dean', 
+        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg' 
+      }
+    }
+    return (
+      <NavigationUser user={user} />
+    );
+  }}
+</Playground>
+
+## Composed User Navigation
+
+<Playground>
+  {() => {
+    const user = { 
+      profile: { 
+        first_name: 'James', 
+        last_name: 'Dean', 
+        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg' 
+      }
+    }
+    return (
+      <Box>
+        <NavigationBar position="absolute" display="flex">
+          <NavLeft>
+            <NavigationUser user={user} />
+          </NavLeft>
+          <NavRight>
+          <Button variant="outline">
+            <FiChevronUp size={12} /> Details
+          </Button>
+          </NavRight>
+        </NavigationBar>
+      </Box>
+    );
+  }}
 </Playground>

@@ -1,8 +1,7 @@
-import React from 'react';
-import { Flex } from '../Flex';
 import styled from 'styled-components';
 import { shadow } from 'styled-system';
-import propTypes from '@styled-system/prop-types';
+
+import { Flex } from '../Flex';
 
 const NavigationBar = styled(Flex)`
   ${shadow}

@@ -5,11 +5,10 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n'], ['\n  ', '\n']
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
-import { Flex } from '../Flex';
 import styled from 'styled-components';
 import { shadow } from 'styled-system';
-import propTypes from '@styled-system/prop-types';
+
+import { Flex } from '../Flex';
 
 var NavigationBar = styled(Flex)(_templateObject, shadow);
 

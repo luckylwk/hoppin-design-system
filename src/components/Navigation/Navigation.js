@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
+
 import NavigationBar from './NavigationBar';
 import { Expandable, ExpandableToggle, ExpandableContext } from '../Expandable';
 import { Box } from '../Box';
-import styled from 'styled-components';
+
 import Color from 'color';
 
 const Navigation = ({ children, menuContent, withOverlay = true, ...rest }) => {

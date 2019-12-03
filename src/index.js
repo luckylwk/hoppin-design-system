@@ -21,7 +21,9 @@ export * from './components/Link';
 export * from './components/Expandable';
 export * from './components/Progress';
 export * from './components/Navigation';
+
 export * from './components/Logo';
+export * from './components/Image';
 
 export * from './components/Chat';
 export * from './components/Form';
