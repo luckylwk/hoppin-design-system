@@ -27,7 +27,7 @@ Underneath it uses the [Box](/components/Box) component.
 
 Tile has a
 - Required prop for `src` that needs the image URL
-- Optional prop `variant` that can take `'1/1'`, `'3/2'` or `'4/3'` currently. It defaults to `'1/1'`
+- Optional prop `ratio` that can take `'1/1'`, `'3/2'` or `'4/3'` currently. It defaults to `'1/1'`
 - Optional prop `borderRadius` that defaults to `'3px'`
 
 The width will adjust to the width of the parent container (100%) and then determine the height accordingly.
@@ -42,10 +42,10 @@ The width will adjust to the width of the parent container (100%) and then deter
           <Tile src={src} />
         </Box>
         <Box width="300px" marginTop="large" padding="base" bg="primary.lighter">
-          <Tile src={card} variant="3/2" />
+          <Tile src={card} ratio="3/2" />
         </Box>
         <Box width="500px" marginTop="large" padding="base" bg="primary.lighter">
-          <Tile src={card} variant="4/3" borderRadius="20px" />
+          <Tile src={card} ratio="4/3" borderRadius="20px" />
         </Box>
       </Box>
     );
@@ -65,7 +65,7 @@ Underneath it uses the [Box](/components/Box) component.
 
 Avatar has a
 - Required prop for `src` that needs the image URL
-- Optional prop `variant` that defaults to `'base'`
+- Optional prop `size` that defaults to `'base'`
 - Optional prop `squared` flag that defaults to `false`
 
 <Playground>
@@ -75,7 +75,7 @@ Avatar has a
       <Box width="400px" height="150px" padding="base" bg="primary.lighter">
         <Avatar src={src} paddingRight="base" />
         <Avatar src={src} paddingRight="small" squared />
-        <Avatar src={src} variant="icon" alignSelf="flex-start" />
+        <Avatar src={src} size="icon" alignSelf="flex-start" />
       </Box>
     );
   }}

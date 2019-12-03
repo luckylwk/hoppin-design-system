@@ -11,7 +11,7 @@ const NavigationUser = ({ user }) => (
     <Box flexGrow={0}>
       {user.profile.image_url && user.profile.image_url !== '' && (
         <Avatar
-          variant="icon"
+          size="icon"
           src={user.profile.image_url}
           display="inline-block"
         />

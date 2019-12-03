@@ -12,6 +12,7 @@ const Tile = styled(Box)`
   width: 100%;
 
   ${variant({
+    prop: 'ratio',
     variants: {
       '1/1': { paddingTop: '100%' },
       '3/2': { paddingTop: '66%' },
@@ -29,12 +30,12 @@ const Tile = styled(Box)`
 
 Tile.propTypes = {
   src: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  ratio: PropTypes.string,
   borderRadius: PropTypes.string,
 };
 
 Tile.defaultProps = {
-  variant: '1/1',
+  ratio: '1/1',
   borderRadius: '3px',
   bg: 'neutral.dark',
 };

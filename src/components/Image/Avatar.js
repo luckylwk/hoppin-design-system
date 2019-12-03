@@ -8,6 +8,7 @@ import Tile from './Tile';
 
 const Wrapper = styled(Box)`
   ${variant({
+    prop: 'size',
     variants: {
       small: { width: '24px', height: '24px' },
       icon: { width: '32px', height: '32px' },
@@ -18,18 +19,18 @@ const Wrapper = styled(Box)`
 
 const Avatar = ({ src, size, squared, ...rest }) => (
   <Wrapper size={size} {...rest}>
-    <Tile src={src} variant="1/1" borderRadius={squared ? '12px' : '50%'} />
+    <Tile src={src} ratio="1/1" borderRadius={squared ? '12px' : '50%'} />
   </Wrapper>
 );
 
 Avatar.propTypes = {
   src: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  size: PropTypes.string,
   squared: PropTypes.bool,
 };
 
 Avatar.defaultProps = {
-  variant: 'default',
+  size: 'base',
   squared: false,
   display: 'inline-block',
 };
