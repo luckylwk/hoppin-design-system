@@ -4,28 +4,65 @@ route: /components/Image
 menu: Components
 ---
 
+import Tile from './Tile';
 import Avatar from './Avatar';
 import { Box } from 'components/Box';
 import { Props, Playground } from 'docz';
 
 # Image Components
 
+- [Tile](#tile) Image tile
 - [Avatar](#avatar) Basic avatar
+
+## Tile
+
+This image was specifically designed for the experience cards (3/2 aspect ratio), but can be applied to more aspect ratios now.
+
+### Props
+
+<Props of={Tile} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Underneath it uses the [Box](/components/Box) component.
+
+Tile has a
+- Required prop for `src` that needs the image URL
+- Optional prop `ratio` that can take `'1/1'`, `'3/2'` or `'4/3'` currently. It defaults to `'1/1'`
+- Optional prop `borderRadius` that defaults to `'3px'`
+
+The width will adjust to the width of the parent container (100%) and then determine the height accordingly.
+
+<Playground>
+  {/* position prop just for docs*/}
+  <Box width="200px" padding="base" bg="primary.lighter">
+    <Tile src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" />
+  </Box>
+  <Box width="200px" marginTop="large" padding="base" bg="primary.lighter">
+    <Tile src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" ratio="3/2" borderRadius="20px" />
+  </Box>
+</Playground>
 
 ## Avatar
 
-Lipsum
+Component created specifically for rendering an avatar. Underneath it uses the Box and [Tile](#tile) components
 
 ### Props
 
 <Props of={Avatar} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
+Underneath it uses the [Box](/components/Box) component.
+
+Avatar has a
+- Required prop for `src` that needs the image URL
+- Optional prop `size` that defaults to `'base'`
+- Optional prop `squared` flag that defaults to `false`
+
 <Playground>
   {/* position prop just for docs*/}
-  <Box width="200px" height="100px" bg="orange">
-    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" />
-    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" squared />
+  <Box width="400px" height="150px" padding="base" bg="primary.lighter">
+    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" paddingRight="base" />
+    <Avatar src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" paddingRight="small" squared />
     <Avatar size="icon" src="https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg" />
   </Box>
 </Playground>

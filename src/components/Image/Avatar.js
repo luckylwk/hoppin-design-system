@@ -1,53 +1,38 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { layout } from 'styled-system';
-import systemPropTypes from '@styled-system/prop-types';
 
 import { Box } from '../Box';
+import Tile from './Tile';
 
-const determineSize = ({ size }) => {
-  switch (size) {
-    case 'small':
-      return '24px';
-    case 'icon':
-      return '32px';
-    case 'base':
-    default:
-      return '96px';
-  }
-}
+const SIZES = {
+  small: '24px',
+  icon: '32px',
+  base: '96px',
+};
 
-const Avatar = styled(Box)`
-  ${layout}
-
-  background-image: url(${({ src }) => src});
-  background-size: cover;
-  background-position: center;
-
-  border-radius: ${({ squared }) => {
-    switch (squared) {
-      case true:
-        return '12px';
-      case false:
-      default:
-        return '50%';
-    }
-  }};
-
-  width: ${determineSize};
-  height: ${determineSize};
+const Wrapper = styled(Box)`
+  width: ${({ size }) => (SIZES[size] ? SIZES[size] : SIZES['base'])};
+  height: ${({ size }) => (SIZES[size] ? SIZES[size] : SIZES['base'])};
 `;
 
+const Avatar = ({ src, size, squared, ...rest }) => (
+  <Wrapper size={size} {...rest}>
+    <Tile src={src} ratio="1/1" borderRadius={squared ? '12px' : '50%'} />
+  </Wrapper>
+);
+
 Avatar.propTypes = {
-  ...systemPropTypes.layout,
+  src: PropTypes.string.isRequired,
   size: PropTypes.string,
   squared: PropTypes.bool,
+  display: PropTypes.string,
 };
 
 Avatar.defaultProps = {
-  display: 'inline-block',
   size: 'default',
   squared: false,
+  display: 'inline-block',
 };
 
 Avatar.displayName = 'Avatar';
