@@ -15,7 +15,7 @@ var NavigationUser = function NavigationUser(_ref) {
       Box,
       { flexGrow: 0 },
       user.profile.image_url && user.profile.image_url !== '' && React.createElement(Avatar, {
-        variant: 'icon',
+        size: 'icon',
         src: user.profile.image_url,
         display: 'inline-block'
       })

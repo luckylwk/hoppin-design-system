@@ -15,6 +15,7 @@ import { Box } from '../Box';
 import Tile from './Tile';
 
 var Wrapper = styled(Box)(_templateObject, variant({
+  prop: 'size',
   variants: {
     small: { width: '24px', height: '24px' },
     icon: { width: '32px', height: '32px' },
@@ -31,18 +32,18 @@ var Avatar = function Avatar(_ref) {
   return React.createElement(
     Wrapper,
     _extends({ size: size }, rest),
-    React.createElement(Tile, { src: src, variant: '1/1', borderRadius: squared ? '12px' : '50%' })
+    React.createElement(Tile, { src: src, ratio: '1/1', borderRadius: squared ? '12px' : '50%' })
   );
 };
 
 Avatar.propTypes = process.env.NODE_ENV !== "production" ? {
   src: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  size: PropTypes.string,
   squared: PropTypes.bool
 } : {};
 
 Avatar.defaultProps = {
-  variant: 'default',
+  size: 'base',
   squared: false,
   display: 'inline-block'
 };
