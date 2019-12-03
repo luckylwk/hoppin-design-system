@@ -101,7 +101,7 @@ export const FieldsSortable = ({ onSort, onChange, fields, theme }) => (
   </Box>
 );
 
-FieldsSortable.displayName = 'fields';
+FieldsSortable.displayName = 'FieldsSortable';
 FieldsSortable.propTypes = {
   /**
    * callback to be called when a field updates fn(fieldName, event)

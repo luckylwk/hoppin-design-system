@@ -85,7 +85,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       onChange: function onChange(option, _ref4) {
         var action = _ref4.action;
 
-        if (action === 'select-option' || action === 'create-option') {
+        if (action === 'select-option' || action === 'create-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, { target: { value: option.value } });
         }
         if (action === 'clear') {
@@ -108,7 +108,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       onChange: function onChange(option, _ref5) {
         var action = _ref5.action;
 
-        if (action === 'select-option' || action === 'remove-value') {
+        if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, {
             target: {
               value: field.type === 'multi-select' ? option.map(function (_option) {
@@ -138,10 +138,16 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       onChange: function onChange(option, _ref6) {
         var action = _ref6.action;
 
-        if (action === 'select-option') {
+        if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, {
             target: {
               value: option
+            }
+          });
+        } else if (action === 'clear') {
+          return _onChange(field.name, {
+            target: {
+              value: {}
             }
           });
         }
@@ -301,7 +307,7 @@ var Fields = function Fields(_ref7) {
   );
 };
 
-Fields.displayName = 'fields';
+Fields.displayName = 'Fields';
 Fields.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * callback to be called when a field updates fn(fieldName, event)
