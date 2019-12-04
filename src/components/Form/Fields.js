@@ -84,7 +84,12 @@ export const renderField = (field, onChange, selectStyling) => {
         isClearable
         clearValue={() => onChange(field.name, { target: { value: '' } })}
         onChange={(option, { action }) => {
-          if (action === 'select-option' || action === 'create-option') {
+          if (
+            action === 'select-option' ||
+            action === 'create-option' ||
+            action === 'remove-value' ||
+            action === 'pop-value'
+          ) {
             return onChange(field.name, { target: { value: option.value } });
           }
           if (action === 'clear') {
@@ -106,7 +111,11 @@ export const renderField = (field, onChange, selectStyling) => {
         isClearable={field.type === 'multi-select'}
         value={field.value}
         onChange={(option, { action }) => {
-          if (action === 'select-option' || action === 'remove-value') {
+          if (
+            action === 'select-option' ||
+            action === 'remove-value' ||
+            action === 'pop-value'
+          ) {
             return onChange(field.name, {
               target: {
                 value:
@@ -139,10 +148,20 @@ export const renderField = (field, onChange, selectStyling) => {
         cacheOptions={false}
         value={field.value}
         onChange={(option, { action }) => {
-          if (action === 'select-option') {
+          if (
+            action === 'select-option' ||
+            action === 'remove-value' ||
+            action === 'pop-value'
+          ) {
             return onChange(field.name, {
               target: {
                 value: option,
+              },
+            });
+          } else if (action === 'clear') {
+            return onChange(field.name, {
+              target: {
+                value: {},
               },
             });
           }
@@ -288,7 +307,7 @@ const Fields = ({ onChange, fields, theme }) => {
   );
 };
 
-Fields.displayName = 'fields';
+Fields.displayName = 'Fields';
 Fields.propTypes = {
   /**
    * callback to be called when a field updates fn(fieldName, event)

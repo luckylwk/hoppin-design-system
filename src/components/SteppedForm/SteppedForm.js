@@ -231,6 +231,7 @@ class SteppedForm extends Component {
   };
 
   handleFieldChange = (fieldName, event) => {
+    console.log('onChange', fieldName, event);
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
     }

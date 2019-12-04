@@ -109,7 +109,7 @@ export var FieldsSortable = function FieldsSortable(_ref) {
   );
 };
 
-FieldsSortable.displayName = 'fields';
+FieldsSortable.displayName = 'FieldsSortable';
 FieldsSortable.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * callback to be called when a field updates fn(fieldName, event)

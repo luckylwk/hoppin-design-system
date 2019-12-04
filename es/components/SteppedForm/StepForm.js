@@ -4,6 +4,8 @@ import React from 'react';
 import { Box } from '../Box';
 import { Container } from '../Container';
 import { Fields, Errors } from '../Form';
+import _isEmpty from 'lodash/isEmpty';
+import _isArrayLike from 'lodash/isArrayLike';
 
 import { ActionButtons, StepHeader } from './index';
 
@@ -33,7 +35,7 @@ var StepForm = function StepForm(_ref) {
         });
       } else {
         // normal fields are easy to check
-        fieldHasValue = !field.required || field.value && field.value.length > 0 || field.checked === 'checked';
+        fieldHasValue = !field.required || _isArrayLike(field.value) && field.value.length > 0 || !_isEmpty(field.value) || field.checked === 'checked';
       }
       return fieldHasValue;
     })
