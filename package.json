@@ -18,7 +18,9 @@
     "rc-checkbox": "^2.1.7",
     "react-beautiful-dnd": "^11.0.5",
     "react-day-picker": "^7.3.2",
+    "react-icons": "^3.8.0",
     "react-portal": "^4.2.0",
+    "react-select": "^3.0.8",
     "react-transition-group": "^4.3.0",
     "rehype-react": "^4.0.1",
     "remark-github-break": "^0.0.0",
@@ -48,9 +50,7 @@
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-icons": "^3.7.0",
-    "react-router-dom": "^5.0.1",
-    "react-select": "^3.0.4"
+    "react-router-dom": "^5.0.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
