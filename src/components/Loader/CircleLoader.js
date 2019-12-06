@@ -11,8 +11,8 @@ const CircleKeyFrames = keyframes`
 const Circle = styled.div`
   background: transparent !important;
 
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: ${({size}) => size}px;
+  height: ${({size}) => size}px;
 
   border-radius: 100%;
   border: 2px solid;
@@ -27,8 +27,8 @@ const Circle = styled.div`
   animation-fill-mode: both;
 `;
 
-const CircleLoader = ({ type, size }) => {
-  return <Circle type={type} size={size} />;
+const CircleLoader = ({ size, context }) => {
+  return <Circle size={size} context={context} />;
 };
 
 CircleLoader.propTypes = {

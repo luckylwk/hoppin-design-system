@@ -1,0 +1,102 @@
+---
+name: Loader
+route: /components/Loader
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Flex } from 'components/Flex';
+import { Box } from 'components/Box';
+import { Loader, CircleLoader, BounceLoader, HeartLoader } from 'components/Loader';
+
+# Loaders
+
+Various types of loaders
+
+## Loader
+
+<Props of={Loader} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Loader has a
+- Optional prop for `size` that defaults to `12` (px)
+
+<Playground>
+  <Flex alignItems="center" justifyContent="center">
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <Loader size={14} />
+    </Box>
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center" >
+      <Loader size={14} context="shadower" />
+    </Box>
+    <Box paddingY="large" bg="whiteout.base" textAlign="center" >
+      <Loader size={14} context="host" />
+    </Box>
+  </Flex>
+</Playground>
+
+## CircleLoader
+
+<Props of={CircleLoader} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+CircleLoader has a
+- Optional prop for `size` that defaults to `60` (px)
+
+<Playground>
+  <Flex alignItems="center" justifyContent="center">
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <CircleLoader size={20} />
+    </Box>
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center">
+      <CircleLoader size={40} context="shadower" />
+    </Box>
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <CircleLoader context="host" />
+    </Box>
+  </Flex>
+</Playground>
+
+## BounceLoader
+
+<Props of={BounceLoader} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+BounceLoader has a
+- Optional prop for `size` that defaults to `60` (px)
+
+<Playground>
+  <Flex alignItems="center" justifyContent="center">
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <BounceLoader size={20} />
+    </Box>
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center">
+      <BounceLoader size={40} context="shadower" />
+    </Box>
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <BounceLoader context="host" />
+    </Box>
+  </Flex>
+</Playground>
+
+## HeartLoader
+
+<Props of={HeartLoader} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+HeartLoader has a
+- Optional prop for `size` that defaults to `32` (px)
+
+<Playground>
+  <Flex alignItems="center" justifyContent="center">
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <HeartLoader size={20} />
+    </Box>
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center">
+      <HeartLoader size={40} context="shadower" />
+    </Box>
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
+      <HeartLoader context="host" />
+    </Box>
+  </Flex>
+</Playground>

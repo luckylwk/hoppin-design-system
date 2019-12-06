@@ -44,12 +44,12 @@ const Dot = styled.div`
   animation-delay: ${({ delay }) => delay};
 `;
 
-const Loader = ({ type, size }) => {
+const Loader = ({ size, context }) => {
   return (
     <Wrapper>
-      <Dot delay="-0.32s" type={type} size={size} />
-      <Dot delay="-0.16s" type={type} size={size} />
-      <Dot delay="0.0s" type={type} size={size} />
+      <Dot delay="-0.32s" size={size} context={context} />
+      <Dot delay="-0.16s" size={size} context={context} />
+      <Dot delay="0.0s" size={size} context={context} />
     </Wrapper>
   );
 };
