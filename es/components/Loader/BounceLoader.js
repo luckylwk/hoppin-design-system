@@ -10,33 +10,38 @@ import styled, { keyframes } from 'styled-components';
 
 var BounceKeyFrame = keyframes(_templateObject);
 
-var BounceWrapper = styled.div(_templateObject2, function (props) {
-  return props.size;
+var BounceWrapper = styled.div(_templateObject2, function (_ref) {
+  var size = _ref.size;
+  return size;
 });
 
-var Bounce = styled.div(_templateObject3, function (props) {
-  return props.size;
-}, function (props) {
-  return props.size;
-}, function (props) {
-  return parseInt(0.5 * props.size);
-}, function (_ref) {
-  var theme = _ref.theme,
-      context = _ref.context;
+var Bounce = styled.div(_templateObject3, function (_ref2) {
+  var size = _ref2.size;
+  return size;
+}, function (_ref3) {
+  var size = _ref3.size;
+  return size;
+}, function (_ref4) {
+  var size = _ref4.size;
+  return parseInt(0.5 * size);
+}, function (_ref5) {
+  var theme = _ref5.theme,
+      context = _ref5.context;
   return theme.colors[context] !== undefined ? theme.colors[context].light : theme.colors.neutral.light;
-}, BounceKeyFrame, BounceKeyFrame, BounceKeyFrame, function (props) {
-  return props.delay;
+}, BounceKeyFrame, BounceKeyFrame, BounceKeyFrame, function (_ref6) {
+  var delay = _ref6.delay;
+  return delay;
 });
 
-var BounceLoader = function BounceLoader(_ref2) {
-  var type = _ref2.type,
-      size = _ref2.size;
+var BounceLoader = function BounceLoader(_ref7) {
+  var size = _ref7.size,
+      context = _ref7.context;
 
   return React.createElement(
     BounceWrapper,
     { size: size },
-    React.createElement(Bounce, { delay: '0s', type: type, size: size }),
-    React.createElement(Bounce, { delay: '-1s', type: type, size: size })
+    React.createElement(Bounce, { delay: '0s', size: size, context: context }),
+    React.createElement(Bounce, { delay: '-1s', size: size, context: context })
   );
 };
 

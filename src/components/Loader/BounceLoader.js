@@ -17,7 +17,7 @@ const BounceWrapper = styled.div`
   position: relative;
 
   width: auto;
-  min-height: ${props => props.size}px;
+  min-height: ${({ size }) => size}px;
 
   margin: 0 auto;
 
@@ -28,10 +28,10 @@ const Bounce = styled.div`
   display: inline-block;
   position: absolute;
 
-  height: ${props => props.size}px;
-  width: ${props => props.size}px;
+  height: ${({ size }) => size}px;
+  width: ${({ size }) => size}px;
   top: 0;
-  left: -${props => parseInt(0.5 * props.size)}px;
+  left: -${({ size }) => parseInt(0.5 * size)}px;
 
   background-color: ${({ theme, context }) =>
     theme.colors[context] !== undefined
@@ -45,14 +45,14 @@ const Bounce = styled.div`
   -webkit-animation: ${BounceKeyFrame} 2.1s infinite ease-in-out;
   -moz-animation: ${BounceKeyFrame} 2.1s infinite ease-in-out;
   animation: ${BounceKeyFrame} 2.1s infinite ease-in-out;
-  animation-delay: ${props => props.delay};
+  animation-delay: ${({ delay }) => delay};
 `;
 
-const BounceLoader = ({ type, size }) => {
+const BounceLoader = ({ size, context }) => {
   return (
     <BounceWrapper size={size}>
-      <Bounce delay="0s" type={type} size={size} />
-      <Bounce delay="-1s" type={type} size={size} />
+      <Bounce delay="0s" size={size} context={context} />
+      <Bounce delay="-1s" size={size} context={context} />
     </BounceWrapper>
   );
 };

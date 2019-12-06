@@ -28,15 +28,15 @@ var Dot = styled.div(_templateObject3, function (_ref) {
 });
 
 var Loader = function Loader(_ref5) {
-  var type = _ref5.type,
-      size = _ref5.size;
+  var size = _ref5.size,
+      context = _ref5.context;
 
   return React.createElement(
     Wrapper,
     null,
-    React.createElement(Dot, { delay: '-0.32s', type: type, size: size }),
-    React.createElement(Dot, { delay: '-0.16s', type: type, size: size }),
-    React.createElement(Dot, { delay: '0.0s', type: type, size: size })
+    React.createElement(Dot, { delay: '-0.32s', size: size, context: context }),
+    React.createElement(Dot, { delay: '-0.16s', size: size, context: context }),
+    React.createElement(Dot, { delay: '0.0s', size: size, context: context })
   );
 };
 
