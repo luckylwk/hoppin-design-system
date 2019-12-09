@@ -7,7 +7,7 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Flex } from 'components/Flex';
 import { Box } from 'components/Box';
-import { Loader, CircleLoader, BounceLoader, HeartLoader, LoadingTile } from 'components/Loader';
+import { Loader, CircleLoader, BounceLoader, HeartLoader, Skeleton } from 'components/Loader';
 
 # Loaders
 
@@ -101,12 +101,12 @@ HeartLoader has a
   </Flex>
 </Playground>
 
-## LoadingTile
+## Skeleton
 
-<Props of={LoadingTile} />
+<Props of={Skeleton} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-LoadingTile has a
+Skeleton has a
 - Optional prop for `ratio` that defaults to `3/2`
 - Optional prop for `borderRadius` that defaults to `3px`
 - Optional prop for `width` that defaults to `100%`
@@ -119,10 +119,10 @@ LoadingTile has a
       bg="neutral.light" 
       width="240px"
     >
-      <LoadingTile ratio="3/2" />
-      <Box position="static" marginTop="small">
-        <LoadingTile ratio="title" borderRadius="0" width="90%"/>
-        <LoadingTile marginTop="small" ratio="text" width="75%" />
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Skeleton ratio="title" borderRadius="0" width="90%"/>
+        <Skeleton marginTop="small" ratio="text" width="75%" />
       </Box>
     </Box>
     <Box 
@@ -131,10 +131,19 @@ LoadingTile has a
       padding="base" 
       width="240px"
     >
-      <LoadingTile ratio="3/2" />
-      <Box position="static" marginTop="small">
-        <LoadingTile ratio="title" borderRadius="0" width="90%"/>
-        <LoadingTile marginTop="small" ratio="text" width="75%" />
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Box display="inline-block" width="26px">
+          <Skeleton ratio="1/1" borderRadius="50%" />
+        </Box>
+        <Skeleton 
+          display="inline-block" 
+          marginLeft="small"
+          ratio="title" 
+          borderRadius="3px" 
+          width="80%"
+        />
+        <Skeleton marginTop="small" ratio="text" width="75%" />
       </Box>
     </Box>
   </Flex>

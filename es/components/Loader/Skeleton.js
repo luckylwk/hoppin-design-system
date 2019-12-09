@@ -23,11 +23,12 @@ var LoadingTile = styled(Box)(_templateObject2, function (_ref) {
 }, variant({
   prop: 'ratio',
   variants: {
+    '4/5': { paddingTop: '125%' },
     '1/1': { paddingTop: '100%' },
     '3/2': { paddingTop: '66%' },
     '4/3': { paddingTop: '75%' },
-    text: { paddingTop: '16px' },
-    title: { paddingTop: '22px' }
+    text: { paddingTop: '20px' },
+    title: { paddingTop: '26px' }
   }
 }), loading);
 
