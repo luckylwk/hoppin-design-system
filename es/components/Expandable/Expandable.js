@@ -10,7 +10,7 @@ import { Box } from '../Box';
 
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
-// context allows us to pass down the  toggle state to children without needing to manually set props.
+// context allows us to pass down the toggle state to children without needing to manually set props.
 var ExpandableContext = createContext();
 
 // Expandable is the parent component that holds  state and passes it down through context.
@@ -28,6 +28,7 @@ var Expandable = function Expandable(_ref) {
     setExpanded(newState);
     onToggle && onToggle(newState);
   };
+
   return React.createElement(
     ExpandableContext.Provider,
     { value: { isExpanded: isExpanded, toggleExpanded: toggleExpanded } },

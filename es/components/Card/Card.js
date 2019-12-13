@@ -4,11 +4,10 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  border: 0px;\n  border-t
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
-import { Box } from '../Box';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
+import { Box } from '../Box';
 
 var Card = styled(Box)(_templateObject, function (_ref) {
   var theme = _ref.theme;
@@ -23,6 +22,7 @@ var Card = styled(Box)(_templateObject, function (_ref) {
 }, flexbox);
 
 Card.propTypes = _extends({}, Box.propTypes, propTypes.flexbox);
+
 Card.defaultProps = {
   display: 'flex',
   flexDirection: 'column',
@@ -33,4 +33,5 @@ Card.defaultProps = {
 };
 
 Card.displayName = 'Card';
+
 export default Card;

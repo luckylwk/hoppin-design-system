@@ -9,14 +9,14 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
+import styled from 'styled-components';
+import { FiMenu, FiX } from 'react-icons/fi';
 import { NavToggle } from './Navigation';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Logo } from '../Logo';
-import { FiMenu, FiX } from 'react-icons/fi';
 import { ExpandableContext } from '../Expandable';
 
 var MenuToggle = function MenuToggle() {
@@ -34,6 +34,7 @@ var MenuToggle = function MenuToggle() {
 MenuToggle.displayName = 'MenuToggle';
 
 var MenuButton = styled(Button)(_templateObject);
+
 MenuButton.defaultProps = {
   variant: 'subtle',
   context: 'whiteout',
@@ -116,6 +117,7 @@ MenuSheet.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Callback for click on Logo, use to link up to your router implementation. */
   onLogoClick: PropTypes.func
 } : {};
+
 MenuSheet.displayName = 'MenuSheet';
 
 export { MenuToggle, MenuSheet, MenuButton };

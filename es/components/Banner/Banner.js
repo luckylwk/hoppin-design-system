@@ -4,11 +4,11 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n\n  background-pos
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
+import PropTypes from 'prop-types';
+
+import styled from 'styled-components';
 import { Flex } from '../Flex';
 import { Container } from '../Container';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 var Banner = styled(Flex)(_templateObject, function (props) {
   // switch shadow direction depending on shadow prop.
@@ -64,4 +64,5 @@ Banner.defaultProps = {
 };
 
 Banner.displayName = 'Banner';
+
 export default Banner;
