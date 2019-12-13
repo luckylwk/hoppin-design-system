@@ -32,7 +32,7 @@ const LoadingTile = styled(Box)`
       '3/2': { paddingTop: '66%' },
       '4/3': { paddingTop: '75%' },
       text: { paddingTop: '20px' },
-      title: { paddingTop: '26px' }
+      title: { paddingTop: '26px' },
     },
   })}
 

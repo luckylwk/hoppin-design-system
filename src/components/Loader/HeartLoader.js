@@ -34,7 +34,8 @@ const Wrapper = styled.div`
   height: ${({ size }) => Math.round(2 * size)}px;
 
   transform: rotate(45deg);
-  transform-origin: ${({ size }) => Math.round(0.66 * size)}px; ${({ size }) => Math.round(0.66 * size)}px;
+  transform-origin: ${({ size }) => Math.round(0.66 * size)}px;
+  ${({ size }) => Math.round(0.66 * size)}px;
 `;
 
 const Heart = styled.div`

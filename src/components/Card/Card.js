@@ -1,8 +1,7 @@
-import React from 'react';
-import { Box } from '../Box';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
+import { Box } from '../Box';
 
 const Card = styled(Box)`
   border: 0px;
@@ -17,6 +16,7 @@ Card.propTypes = {
   ...Box.propTypes,
   ...propTypes.flexbox,
 };
+
 Card.defaultProps = {
   display: 'flex',
   flexDirection: 'column',
@@ -27,4 +27,5 @@ Card.defaultProps = {
 };
 
 Card.displayName = 'Card';
+
 export default Card;
