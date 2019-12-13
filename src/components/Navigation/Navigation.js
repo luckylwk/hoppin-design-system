@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
+import React, { Fragment, useContext } from 'react';
 
+import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 import { Expandable, ExpandableToggle, ExpandableContext } from '../Expandable';
 import { Box } from '../Box';
+import { NavOverlay } from '../Overlay';
 
-import Color from 'color';
+// ---------------------------
 
 const Navigation = ({ children, menuContent, withOverlay = true, ...rest }) => {
   return (
@@ -16,47 +17,24 @@ const Navigation = ({ children, menuContent, withOverlay = true, ...rest }) => {
   );
 };
 
+// ---------------------------
+
 const NavMenu = ({ children, withOverlay }) => {
   const { isExpanded, toggleExpanded } = useContext(ExpandableContext);
   const className = isExpanded ? 'isExpanded' : '';
   return (
-    <React.Fragment>
+    <Fragment>
       <NavOverlay
         withOverlay={withOverlay}
         onClick={toggleExpanded}
         className={className}
-      ></NavOverlay>
+      />
       <NavMenuContent className={className}>{children}</NavMenuContent>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
-const NavOverlay = styled(Box)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  height: 100vh;
-  width: 100vw;
-
-  transform: translate3d(-100vw, 0, 0);
-  opacity: 0;
-  transition: opacity 0.5s;
-
-  z-index: ${({ theme }) => theme.zIndices.overlay - 1};
-
-  background-color: ${({ theme }) =>
-    Color(theme.colors.whiteout.lightest)
-      .alpha(0.9)
-      .string()};
-
-  &.isExpanded {
-    transform: translate3d(0vw, 0, 0);
-    opacity: 1;
-  }
-`;
+// ---------------------------
 
 const NavMenuContent = styled(Box)`
   position: fixed;
@@ -89,7 +67,8 @@ const NavMenuContent = styled(Box)`
   }
 `;
 
-NavOverlay.displayName = 'NavOverlay';
+// ---------------------------
 
 export default Navigation;
+
 export { ExpandableToggle as NavToggle };
