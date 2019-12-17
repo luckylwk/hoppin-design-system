@@ -7,7 +7,13 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
-import { Loader, CircleLoader, BounceLoader, HeartLoader } from '../Loader';
+import {
+  Loader,
+  CircleLoader,
+  BounceLoader,
+  HeartLoader,
+  Skeleton,
+} from '../Loader';
 
 # Loaders
 
@@ -19,6 +25,7 @@ Various types of loaders
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
 Loader has a
+
 - Optional prop for `size` that defaults to `12` (px)
 
 <Playground>
@@ -26,10 +33,10 @@ Loader has a
     <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <Loader size={14} />
     </Box>
-    <Box paddingY="large" bg="whiteout.dark" textAlign="center" >
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center">
       <Loader size={14} context="shadower" />
     </Box>
-    <Box paddingY="large" bg="whiteout.base" textAlign="center" >
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <Loader size={14} context="host" />
     </Box>
   </Flex>
@@ -41,6 +48,7 @@ Loader has a
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
 CircleLoader has a
+
 - Optional prop for `size` that defaults to `60` (px)
 
 <Playground>
@@ -63,6 +71,7 @@ CircleLoader has a
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
 BounceLoader has a
+
 - Optional prop for `size` that defaults to `60` (px)
 
 <Playground>
@@ -85,6 +94,7 @@ BounceLoader has a
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
 HeartLoader has a
+
 - Optional prop for `size` that defaults to `32` (px)
 
 <Playground>
@@ -97,6 +107,45 @@ HeartLoader has a
     </Box>
     <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <HeartLoader context="host" />
+    </Box>
+  </Flex>
+</Playground>
+
+## Skeleton
+
+<Props of={Skeleton} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+Skeleton has a
+
+- Optional prop for `ratio` that defaults to `3/2`
+- Optional prop for `borderRadius` that defaults to `3px`
+- Optional prop for `width` that defaults to `100%`
+
+<Playground>
+  <Flex>
+    <Box margin="none" padding="base" bg="neutral.light" width="240px">
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Skeleton ratio="title" borderRadius="0" width="90%" />
+        <Skeleton marginTop="small" ratio="text" width="75%" />
+      </Box>
+    </Box>
+    <Box margin="none" marginLeft="base" padding="base" width="240px">
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Box display="inline-block" width="26px">
+          <Skeleton ratio="1/1" borderRadius="50%" />
+        </Box>
+        <Skeleton
+          display="inline-block"
+          marginLeft="small"
+          ratio="title"
+          borderRadius="3px"
+          width="80%"
+        />
+        <Skeleton marginTop="small" ratio="text" width="75%" />
+      </Box>
     </Box>
   </Flex>
 </Playground>

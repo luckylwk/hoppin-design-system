@@ -1,4 +1,4 @@
-.PHONY: install pretty test/pretty dev start deploy/now
+.PHONY: install pretty test/pretty build dev start deploy/now
 
 install:
 	yarn install
@@ -9,11 +9,14 @@ pretty:
 test/pretty:
 	yarn prettier:check
 
+dev:
+	yarn start
+
 start:
 	yarn start
 
-dev:
-	yarn start
+make build:
+	yarn build
 
 deploy/now:
 	yarn build
