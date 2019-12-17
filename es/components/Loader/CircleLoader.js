@@ -7,7 +7,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 var CircleKeyFrames = keyframes(_templateObject);
+
+// ---------------------------
 
 var Circle = styled.div(_templateObject2, function (_ref) {
   var size = _ref.size;
@@ -20,6 +24,8 @@ var Circle = styled.div(_templateObject2, function (_ref) {
       context = _ref3.context;
   return theme.colors[context] !== undefined ? theme.colors[context].light : theme.colors.neutral.light;
 }, CircleKeyFrames);
+
+// ---------------------------
 
 var CircleLoader = function CircleLoader(_ref4) {
   var size = _ref4.size,

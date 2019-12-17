@@ -10,7 +10,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 var HeartKeyFrames = keyframes(_templateObject);
+
+// ---------------------------
 
 var Wrapper = styled.div(_templateObject2, function (_ref) {
   var size = _ref.size;
@@ -25,6 +29,8 @@ var Wrapper = styled.div(_templateObject2, function (_ref) {
   var size = _ref4.size;
   return Math.round(0.66 * size);
 });
+
+// ---------------------------
 
 var Heart = styled.div(_templateObject3, function (_ref5) {
   var size = _ref5.size;
@@ -62,6 +68,8 @@ var Heart = styled.div(_templateObject3, function (_ref5) {
   var size = _ref15.size;
   return Math.round(0.5 * size);
 });
+
+// ---------------------------
 
 var HeartLoader = function HeartLoader(_ref16) {
   var size = _ref16.size,

@@ -38,8 +38,6 @@ NavigationUser.propTypes = process.env.NODE_ENV !== "production" ? {
   user: PropTypes.object.isRequired
 } : {};
 
-NavigationUser.defaultProps = {};
-
 NavigationUser.displayName = 'NavigationUser';
 
 export default NavigationUser;

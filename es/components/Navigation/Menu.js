@@ -19,6 +19,8 @@ import { Logo } from '../Logo';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { ExpandableContext } from '../Expandable';
 
+// ---------------------------
+
 var MenuToggle = function MenuToggle() {
   return React.createElement(
     NavToggle,
@@ -33,7 +35,10 @@ var MenuToggle = function MenuToggle() {
 
 MenuToggle.displayName = 'MenuToggle';
 
+// ---------------------------
+
 var MenuButton = styled(Button)(_templateObject);
+
 MenuButton.defaultProps = {
   variant: 'subtle',
   context: 'whiteout',
@@ -41,7 +46,13 @@ MenuButton.defaultProps = {
   paddingLeft: 0
 };
 
+MenuButton.displayName = 'MenuButton';
+
+// ---------------------------
+
 var MenuSheetWrapper = styled(Flex)(_templateObject2);
+
+// ---------------------------
 
 var MenuSheet = function MenuSheet(_ref) {
   var children = _ref.children,
@@ -116,6 +127,7 @@ MenuSheet.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Callback for click on Logo, use to link up to your router implementation. */
   onLogoClick: PropTypes.func
 } : {};
+
 MenuSheet.displayName = 'MenuSheet';
 
 export { MenuToggle, MenuSheet, MenuButton };
