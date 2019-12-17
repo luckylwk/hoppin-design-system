@@ -10,6 +10,8 @@ import { Logo } from '../Logo';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { ExpandableContext } from '../Expandable';
 
+// ---------------------------
+
 const MenuToggle = () => (
   <NavToggle>
     <Button variant="subtle">
@@ -20,13 +22,20 @@ const MenuToggle = () => (
 
 MenuToggle.displayName = 'MenuToggle';
 
+// ---------------------------
+
 const MenuButton = styled(Button)``;
+
 MenuButton.defaultProps = {
   variant: 'subtle',
   context: 'whiteout',
   size: 'large',
   paddingLeft: 0,
 };
+
+MenuButton.displayName = 'MenuButton';
+
+// ---------------------------
 
 const MenuSheetWrapper = styled(Flex)`
   transition: margin-right 0.5s;
@@ -35,6 +44,8 @@ const MenuSheetWrapper = styled(Flex)`
     margin-right: 0;
   }
 `;
+
+// ---------------------------
 
 const MenuSheet = ({
   children,
@@ -96,6 +107,7 @@ MenuSheet.propTypes = {
   /** Callback for click on Logo, use to link up to your router implementation. */
   onLogoClick: PropTypes.func,
 };
+
 MenuSheet.displayName = 'MenuSheet';
 
 export { MenuToggle, MenuSheet, MenuButton };

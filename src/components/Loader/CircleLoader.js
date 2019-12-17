@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 const CircleKeyFrames = keyframes`
   0% {transform: rotate(0deg) scale(1)}
   50% {transform: rotate(180deg) scale(1)}
   100% {transform: rotate(360deg) scale(1)}
 `;
+
+// ---------------------------
 
 const Circle = styled.div`
   background: transparent !important;
@@ -26,6 +30,8 @@ const Circle = styled.div`
   animation: ${CircleKeyFrames} 0.75s 0s infinite linear;
   animation-fill-mode: both;
 `;
+
+// ---------------------------
 
 const CircleLoader = ({ size, context }) => {
   return <Circle size={size} context={context} />;

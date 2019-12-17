@@ -8,12 +8,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 var BounceKeyFrame = keyframes(_templateObject);
+
+// ---------------------------
 
 var BounceWrapper = styled.div(_templateObject2, function (_ref) {
   var size = _ref.size;
   return size;
 });
+
+// ---------------------------
 
 var Bounce = styled.div(_templateObject3, function (_ref2) {
   var size = _ref2.size;
@@ -32,6 +38,8 @@ var Bounce = styled.div(_templateObject3, function (_ref2) {
   var delay = _ref6.delay;
   return delay;
 });
+
+// ---------------------------
 
 var BounceLoader = function BounceLoader(_ref7) {
   var size = _ref7.size,

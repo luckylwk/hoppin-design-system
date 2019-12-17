@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 const DotKeyframes = keyframes`
   0%, 80%, 100% {
     -webkit-transform: scale(0);
@@ -13,6 +15,8 @@ const DotKeyframes = keyframes`
   }
 `;
 
+// ---------------------------
+
 const Wrapper = styled.div`
   display: inline-block;
   margin: 0 auto;
@@ -20,6 +24,8 @@ const Wrapper = styled.div`
 
   text-align: center;
 `;
+
+// ---------------------------
 
 const Dot = styled.div`
   display: inline-block;
@@ -44,6 +50,8 @@ const Dot = styled.div`
   animation-delay: ${({ delay }) => delay};
 `;
 
+// ---------------------------
+
 const Loader = ({ size, context }) => {
   return (
     <Wrapper>
@@ -64,6 +72,6 @@ Loader.defaultProps = {
   size: 16,
 };
 
-Loader.displayName = 'Loader';
+Loader.displayName = 'DotLoader';
 
 export default Loader;

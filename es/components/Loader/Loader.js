@@ -8,9 +8,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 var DotKeyframes = keyframes(_templateObject);
 
+// ---------------------------
+
 var Wrapper = styled.div(_templateObject2);
+
+// ---------------------------
 
 var Dot = styled.div(_templateObject3, function (_ref) {
   var size = _ref.size;
@@ -26,6 +32,8 @@ var Dot = styled.div(_templateObject3, function (_ref) {
   var delay = _ref4.delay;
   return delay;
 });
+
+// ---------------------------
 
 var Loader = function Loader(_ref5) {
   var size = _ref5.size,
@@ -50,6 +58,6 @@ Loader.defaultProps = {
   size: 16
 };
 
-Loader.displayName = 'Loader';
+Loader.displayName = 'DotLoader';
 
 export default Loader;
