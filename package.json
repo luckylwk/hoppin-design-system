@@ -1,26 +1,31 @@
 {
   "name": "hoppin-design-system",
-  "version": "0.4.16",
+  "version": "1.0.0-rc2",
+  "private": true,
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
+    "src",
+    "package.json",
     "es",
     "lib"
   ],
   "repository": "git@github.com:luckylwk/hoppin-design-system.git",
   "author": "jonashaefele <hello@jonashaefele.com>",
-  "license": "MIT",
   "dependencies": {
     "@styled-system/prop-types": "^5.0.6",
     "color": "^3.1.2",
+    "docz": "^2.2.0",
     "immutable": "^4.0.0-rc.12",
+    "object-fit-images": "^3.2.4",
     "rc-checkbox": "^2.1.7",
     "react-beautiful-dnd": "^11.0.5",
     "react-day-picker": "^7.3.2",
-    "react-icons": "^3.8.0",
+    "react-icons": "^3.7.0",
     "react-portal": "^4.2.0",
-    "react-select": "^3.0.8",
+    "react-router-dom": "^5.0.1",
+    "react-select": "^3.0.4",
     "react-transition-group": "^4.3.0",
     "rehype-react": "^4.0.1",
     "remark-github-break": "^0.0.0",
@@ -34,35 +39,20 @@
     "unified": "^8.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "css-loader": "^3.2.0",
-    "docz": "^1.2.0",
-    "docz-theme-default": "^1.2.0",
     "exenv": "^1.2.2",
     "husky": "^3.0.5",
     "lint-staged": ">=8",
     "nwb": "0.23.0",
-    "object-fit-images": "^3.2.4",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-router-dom": "^5.0.1"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-router-dom": ">=5.0.1"
-  },
-  "resolutions": {
-    "webpack": "4.28.4"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "scripts": {
-    "prettier:all": "prettier --write 'src/**/*.{js,jsx}'",
-    "prettier:check": "prettier --check 'src/**/*.{js,jsx}'",
     "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
     "now-build": "yarn run build:docz",
     "build:nwb:es": "nwb build-react-component",
@@ -70,7 +60,9 @@
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
     "deploy": "now --prod",
-    "start": "docz dev -p 2000"
+    "start": "docz dev",
+    "prettier:all": "prettier --write 'src/**/*.{js,jsx,css,json}'",
+    "prettier:check": "prettier --check 'src/**/*.{js,jsx,css,json}'"
   },
   "husky": {
     "hooks": {
@@ -78,7 +70,7 @@
     }
   },
   "lint-staged": {
-    "src/*.{js,jsx,css,json,md}": [
+    "src/*.{js,jsx,css,json}": [
       "prettier --write",
       "git add"
     ]

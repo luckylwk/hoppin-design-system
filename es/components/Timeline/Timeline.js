@@ -32,7 +32,7 @@ function Timeline(_ref) {
     if (initAtStep !== undefined && parseInt(initAtStep) !== 'NaN') {
       setActiveStep(parseInt(initAtStep));
     }
-  });
+  }, [initAtStep]);
 
   return React.createElement(
     Flex,

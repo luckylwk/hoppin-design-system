@@ -6,6 +6,8 @@ function customNormalize(editor, error) {
     case 'child_type_invalid':
       editor.setNodeByKey(error.child.key, 'paragraph');
       return;
+    default:
+      return;
   }
 }
 

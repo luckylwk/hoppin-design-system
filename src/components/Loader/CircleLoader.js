@@ -11,8 +11,8 @@ const CircleKeyFrames = keyframes`
 const Circle = styled.div`
   background: transparent !important;
 
-  width: ${({size}) => size}px;
-  height: ${({size}) => size}px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
 
   border-radius: 100%;
   border: 2px solid;

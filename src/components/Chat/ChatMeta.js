@@ -1,8 +1,6 @@
-import React from 'react';
 import { Box } from '../Box';
 import styled from 'styled-components';
 import { typography } from 'styled-system';
-import propTypes from 'prop-types';
 
 const ChatMeta = styled(Box)`
   align-self: center;

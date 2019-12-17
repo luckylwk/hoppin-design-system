@@ -2,13 +2,10 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n'], ['\n  ', '\n']
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Flex } from '../Flex';
 import Button from './Button';
-
-// import propTypes from 'prop-types';
 
 /**
  * ButtonGroup component. Helps arrange groups of buttons

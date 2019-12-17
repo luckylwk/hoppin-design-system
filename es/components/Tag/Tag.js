@@ -4,7 +4,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import styled from 'styled-components';
 import { space, color, get } from 'styled-system';
 import propTypes from '@styled-system/prop-types';

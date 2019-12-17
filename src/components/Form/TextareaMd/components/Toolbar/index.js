@@ -58,7 +58,7 @@ export default class Toolbar extends React.Component {
   // };
 
   update = () => {
-    const { value, editor } = this.props;
+    const { value /*, editor */ } = this.props;
     // const link = editor.getLinkInSelection();
     const link = false;
     const selection = window.getSelection();

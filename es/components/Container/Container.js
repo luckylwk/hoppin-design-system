@@ -2,7 +2,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  width: 100%;\n  max-widt
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import { Flex } from '../Flex';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

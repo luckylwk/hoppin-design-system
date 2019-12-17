@@ -4,7 +4,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  position: relative;\n  b
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import { Box } from '../Box';
 import styled from 'styled-components';
 import { typography } from 'styled-system';

@@ -40,22 +40,24 @@ var ALink = function ALink(props) {
   return React.createElement(Link, _extends({ as: 'a' }, props));
 };
 
+export var componentsMap = {
+  a: ALink,
+  p: Paragraph,
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  img: MarkdownImage,
+  ol: OrderedList,
+  ul: UnorderedList,
+  li: ListItem
+};
+
 var processor = unified().use(markdown).use(githubBreak).use(remark2rehype).use(rehype2react, {
   createElement: React.createElement,
-  components: {
-    a: ALink,
-    p: Paragraph,
-    h1: H1,
-    h2: H2,
-    h3: H3,
-    h4: H4,
-    h5: H5,
-    h6: H6,
-    img: MarkdownImage,
-    ol: OrderedList,
-    ul: UnorderedList,
-    li: ListItem
-  }
+  components: componentsMap
 });
 
 var Markdown = function Markdown(_ref) {

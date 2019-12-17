@@ -4,11 +4,9 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  font-size: ', ';\n  font
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import styled from 'styled-components';
 import { space, position, color, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
 import systemPropTypes from '@styled-system/prop-types';
-import propTypes from 'prop-types';
 
 var OrderedList = styled('ul')(_templateObject, function (_ref) {
   var theme = _ref.theme;

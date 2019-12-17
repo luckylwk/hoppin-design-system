@@ -5,7 +5,7 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';

@@ -5,11 +5,11 @@ menu: Components
 ---
 
 import { Playground } from 'docz';
-import { Timeline } from 'components/Timeline';
-import { Banner } from 'components/Banner';
-import { Container } from 'components/Container';
-import { Heading } from 'components/Heading';
-import { Lede } from 'components/Lede';
+import { Timeline } from '../Timeline';
+import { Banner } from '../Banner';
+import { Container } from '../Container';
+import { Heading } from '../Heading';
+import { Lede } from '../Lede';
 
 # Timeline
 
@@ -104,7 +104,6 @@ You should not need to import Steps individually.
         image: "https://picsum.photos/320/241"
       }
     ];
-
     return (
     <Container bg='neutral.base' color='white'>
       <Timeline
@@ -114,9 +113,7 @@ You should not need to import Steps individually.
       />
     </Container>
     );
-
 }}
-
 </Playground>
 
 ## Usage inside Banner
@@ -178,9 +175,7 @@ Timeline plays well with a [Banner](components/Banner) component to create a ful
         image: "https://picsum.photos/320/241"
       }
     ];
-
     const [image, setImage ] = React.useState(timelineMockData[0].image)
-
     return (
     <Banner height='auto' shadow='top' backgroundImage={image.desktop && image.mobile ? image.desktop : image}>
       <Container>
@@ -196,9 +191,7 @@ Timeline plays well with a [Banner](components/Banner) component to create a ful
       </Container>
     </Banner>
     );
-
 }}
-
 </Playground>
 
 ## Custom Bullets, hide track
@@ -228,7 +221,6 @@ And to hide the "track" behind the bullets, simply set `showTrack={false}`
           "An opportunity to attend meetings, listen in on calls and really see your host in action!"
       }
     ];
-
     return (
     <Container bg='neutral.base' color='white'>
       <Timeline
@@ -239,9 +231,7 @@ And to hide the "track" behind the bullets, simply set `showTrack={false}`
       />
     </Container>
     );
-
 }}
-
 </Playground>
 
 ## Disable user interactions
@@ -273,7 +263,6 @@ You can disable user interactions and hide the next buttons by setting `interact
           "An opportunity to attend meetings, listen in on calls and really see your host in action!"
       }
     ];
-
     return (
     <Container bg='neutral.base' color='white'>
       <Timeline
@@ -284,9 +273,7 @@ You can disable user interactions and hide the next buttons by setting `interact
       />
     </Container>
     );
-
 }}
-
 </Playground>
 
 ## Colors
@@ -315,7 +302,6 @@ The inactive step headings inherit the color from the parant components. Set col
           "An opportunity to attend meetings, listen in on calls and really see your host in action!"
       }
     ];
-
     return (
     <Container bg='neutral.lightest' color='neutral.dark'>
       <Timeline
@@ -326,9 +312,7 @@ The inactive step headings inherit the color from the parant components. Set col
       />
     </Container>
     );
-
 }}
-
 </Playground>
 
 ## Initialise with specific active step
@@ -357,7 +341,6 @@ To define which step is active before the user starts to click on things, set `i
           "An opportunity to attend meetings, listen in on calls and really see your host in action!"
       }
     ];
-
     return (
     <Container bg='neutral.lightest' color='neutral.light'>
       <Timeline
@@ -369,7 +352,5 @@ To define which step is active before the user starts to click on things, set `i
       />
     </Container>
     );
-
 }}
-
 </Playground>

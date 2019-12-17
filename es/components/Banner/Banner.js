@@ -4,7 +4,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n\n  background-pos
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import { Flex } from '../Flex';
 import { Container } from '../Container';
 import styled from 'styled-components';

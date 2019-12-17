@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
   space,
@@ -23,7 +22,7 @@ const Paragraph = styled('p')`
   &:last-child {
     margin-bottom: 0;
   }
-  
+
   ${textAlign}
   ${space}
   ${position}

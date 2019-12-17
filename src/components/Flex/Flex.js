@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '../Box';
 import styled from 'styled-components';
 import { flexbox } from 'styled-system';

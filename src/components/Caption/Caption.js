@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { space, color } from 'styled-system';
 import propTypes from '@styled-system/prop-types';

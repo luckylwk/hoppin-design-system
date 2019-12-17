@@ -93,23 +93,22 @@ var FormattingToolbar = function (_React$Component) {
         )
       );
     }, _this.renderBlockButton = function (type) {
-      var Tooltip = _this.props.editor.props.tooltip;
+      // TODO: add block buttons. needs tooltop label and Icon (see above for mark buttons)
+      // const Tooltip = this.props.editor.props.tooltip;
+      //
+      // const isActive = this.isBlock(type);
+      //
+      // const onMouseDown = ev =>
+      //   this.onClickBlock(ev, isActive ? "paragraph" : type);
 
-      var isActive = _this.isBlock(type);
-
-      var onMouseDown = function onMouseDown(ev) {
-        return _this.onClickBlock(ev, isActive ? 'paragraph' : type);
-      };
-
-      return React.createElement(
-        ToolbarButton,
-        { onMouseDown: onMouseDown, active: isActive, key: type },
-        React.createElement(
-          Tooltip,
-          { tooltip: tooltip, placement: 'top' },
-          React.createElement(IconClass, { color: _this.props.theme.colors.whiteout.lightest })
-        )
-      );
+      // return (
+      //   <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
+      //     <Tooltip tooltip={tooltip} placement="top">
+      //       <IconClass color={this.props.theme.colors.whiteout.lightest} />
+      //     </Tooltip>
+      //   </ToolbarButton>
+      // );
+      return React.createElement(React.Fragment, null);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
   /**

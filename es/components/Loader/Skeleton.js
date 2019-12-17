@@ -17,7 +17,7 @@ import { Box } from '../Box';
 
 var loading = keyframes(_templateObject);
 
-var LoadingTile = styled(Box)(_templateObject2, function (_ref) {
+var Skeleton = styled(Box)(_templateObject2, function (_ref) {
   var width = _ref.width;
   return width;
 }, variant({
@@ -32,18 +32,18 @@ var LoadingTile = styled(Box)(_templateObject2, function (_ref) {
   }
 }), loading);
 
-LoadingTile.propTypes = {
+Skeleton.propTypes = {
   ratio: PropTypes.string,
   borderRadius: PropTypes.string,
   width: PropTypes.string
 };
 
-LoadingTile.defaultProps = {
+Skeleton.defaultProps = {
   ratio: '3/2',
   borderRadius: '3px',
   width: '100%'
 };
 
-LoadingTile.displayName = 'LoadingTile';
+Skeleton.displayName = 'Skeleton';
 
-export default LoadingTile;
+export default Skeleton;

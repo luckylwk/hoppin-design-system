@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
   variant,
@@ -56,6 +55,9 @@ const Heading = styled('h2')`
         break;
       case 'h6':
         colorCSS = `color: ${theme.colors.neutral.dark};`;
+        break;
+      default:
+        colorCSS = `color: ${theme.colors.primary.base};`;
         break;
     }
     return colorCSS;

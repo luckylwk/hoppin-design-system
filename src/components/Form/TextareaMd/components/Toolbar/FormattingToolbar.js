@@ -88,20 +88,22 @@ class FormattingToolbar extends React.Component {
   };
 
   renderBlockButton = type => {
-    const Tooltip = this.props.editor.props.tooltip;
+    // TODO: add block buttons. needs tooltop label and Icon (see above for mark buttons)
+    // const Tooltip = this.props.editor.props.tooltip;
+    //
+    // const isActive = this.isBlock(type);
+    //
+    // const onMouseDown = ev =>
+    //   this.onClickBlock(ev, isActive ? "paragraph" : type);
 
-    const isActive = this.isBlock(type);
-
-    const onMouseDown = ev =>
-      this.onClickBlock(ev, isActive ? 'paragraph' : type);
-
-    return (
-      <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
-        <Tooltip tooltip={tooltip} placement="top">
-          <IconClass color={this.props.theme.colors.whiteout.lightest} />
-        </Tooltip>
-      </ToolbarButton>
-    );
+    // return (
+    //   <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
+    //     <Tooltip tooltip={tooltip} placement="top">
+    //       <IconClass color={this.props.theme.colors.whiteout.lightest} />
+    //     </Tooltip>
+    //   </ToolbarButton>
+    // );
+    return <React.Fragment></React.Fragment>;
   };
 
   render() {

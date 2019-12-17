@@ -16,7 +16,7 @@ const loading = keyframes`
   }
 `;
 
-const LoadingTile = styled(Box)`
+const Skeleton = styled(Box)`
   box-sizing: border-box;
   position: relative;
 
@@ -32,7 +32,7 @@ const LoadingTile = styled(Box)`
       '3/2': { paddingTop: '66%' },
       '4/3': { paddingTop: '75%' },
       text: { paddingTop: '20px' },
-      title: { paddingTop: '26px' }
+      title: { paddingTop: '26px' },
     },
   })}
 
@@ -61,18 +61,18 @@ const LoadingTile = styled(Box)`
   }
 `;
 
-LoadingTile.propTypes = {
+Skeleton.propTypes = {
   ratio: PropTypes.string,
   borderRadius: PropTypes.string,
   width: PropTypes.string,
 };
 
-LoadingTile.defaultProps = {
+Skeleton.defaultProps = {
   ratio: '3/2',
   borderRadius: '3px',
   width: '100%',
 };
 
-LoadingTile.displayName = 'LoadingTile';
+Skeleton.displayName = 'Skeleton';
 
-export default LoadingTile;
+export default Skeleton;

@@ -76,6 +76,7 @@ class TextareaMdField extends React.Component {
         if (disableBlocks.indexOf(node.type) < 0) {
           customNodes.push(node);
         }
+        return true;
       });
       // if we have don't have disableBlocks, use enableBlocks if available
     } else if (enableBlocks && enableBlocks.length > 0) {
@@ -85,6 +86,7 @@ class TextareaMdField extends React.Component {
         if (enableBlocks.indexOf(node.type) > -1) {
           customNodes.push(node);
         }
+        return true;
       });
       // default to Schema as is
     } else {
@@ -103,9 +105,11 @@ class TextareaMdField extends React.Component {
             if (disableMarks.indexOf(mark.type) < 0) {
               tempBlockMarks.push(mark);
             }
+            return true;
           });
           Schema.blocks[block].marks = tempBlockMarks;
         }
+        return true;
       });
 
       // if we have don't have disableMarks, use enableMarks if available
@@ -120,9 +124,11 @@ class TextareaMdField extends React.Component {
             if (enableMarks.indexOf(mark.type) > -1) {
               tempBlockMarks.push(mark);
             }
+            return true;
           });
           Schema.blocks[block].marks = tempBlockMarks;
         }
+        return true;
       });
       // default to Schema as is
     }

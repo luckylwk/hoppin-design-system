@@ -5,9 +5,9 @@ menu: Components
 ---
 
 import { Props, Playground } from 'docz';
-import { Flex } from 'components/Flex';
-import { Box } from 'components/Box';
-import { Loader, CircleLoader, BounceLoader, HeartLoader, Skeleton } from 'components/Loader';
+import { Flex } from '../Flex';
+import { Box } from '../Box';
+import { Loader, CircleLoader, BounceLoader, HeartLoader, Skeleton } from '.';
 
 # Loaders
 
@@ -16,21 +16,59 @@ Various types of loaders
 ## Loader
 
 <Props of={Loader} />
-Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-Loader has a
-- Optional prop for `size` that defaults to `12` (px)
+A simple "typing" style loader... Use this for generic loading screens, where you can't use [Skeleton](#skeleton)
 
 <Playground>
   <Flex alignItems="center" justifyContent="center">
     <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <Loader size={14} />
     </Box>
-    <Box paddingY="large" bg="whiteout.dark" textAlign="center" >
+    <Box paddingY="large" bg="whiteout.dark" textAlign="center">
       <Loader size={14} context="shadower" />
     </Box>
-    <Box paddingY="large" bg="whiteout.base" textAlign="center" >
+    <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <Loader size={14} context="host" />
+    </Box>
+  </Flex>
+</Playground>
+
+## Skeleton
+
+<Props of={Skeleton} />
+
+Fantastic to show that actual **content** is being loaded. Use wherever possible.
+
+Skeleton has a
+
+- Optional prop for `ratio` that defaults to `3/2`
+- Optional prop for `borderRadius` that defaults to `3px`
+- Optional prop for `width` that defaults to `100%`
+
+<Playground>
+  <Flex>
+    <Box margin="none" padding="base" bg="neutral.light" width="240px">
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Skeleton ratio="title" borderRadius="0" width="90%" />
+        <Skeleton marginTop="small" ratio="text" width="75%" />
+      </Box>
+    </Box>
+    <Box margin="none" marginLeft="base" padding="base" width="240px">
+      <Skeleton ratio="3/2" />
+      <Box marginTop="small">
+        <Box display="inline-block" width="26px">
+          <Skeleton ratio="1/1" borderRadius="50%" />
+        </Box>
+        <Skeleton
+          display="inline-block"
+          marginLeft="small"
+          ratio="title"
+          borderRadius="3px"
+          width="80%"
+        />
+        <Skeleton marginTop="small" ratio="text" width="75%" />
+      </Box>
     </Box>
   </Flex>
 </Playground>
@@ -38,10 +76,8 @@ Loader has a
 ## CircleLoader
 
 <Props of={CircleLoader} />
-Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-CircleLoader has a
-- Optional prop for `size` that defaults to `60` (px)
+Use this only when suggesting longer load times. Processing rather than loading.
 
 <Playground>
   <Flex alignItems="center" justifyContent="center">
@@ -60,10 +96,8 @@ CircleLoader has a
 ## BounceLoader
 
 <Props of={BounceLoader} />
-Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-BounceLoader has a
-- Optional prop for `size` that defaults to `60` (px)
+Use when you need to spice up things, default to [Skeleton](#skeleton) or [Loader](#loader).
 
 <Playground>
   <Flex alignItems="center" justifyContent="center">
@@ -82,10 +116,8 @@ BounceLoader has a
 ## HeartLoader
 
 <Props of={HeartLoader} />
-Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
-HeartLoader has a
-- Optional prop for `size` that defaults to `32` (px)
+Use when you need to spice up things, default to [Skeleton](#skeleton) or [Loader](#loader).
 
 <Playground>
   <Flex alignItems="center" justifyContent="center">
@@ -97,54 +129,6 @@ HeartLoader has a
     </Box>
     <Box paddingY="large" bg="whiteout.base" textAlign="center">
       <HeartLoader context="host" />
-    </Box>
-  </Flex>
-</Playground>
-
-## Skeleton
-
-<Props of={Skeleton} />
-Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
-
-Skeleton has a
-- Optional prop for `ratio` that defaults to `3/2`
-- Optional prop for `borderRadius` that defaults to `3px`
-- Optional prop for `width` that defaults to `100%`
-
-<Playground>
-  <Flex>
-    <Box 
-      margin="none" 
-      padding="base" 
-      bg="neutral.light" 
-      width="240px"
-    >
-      <Skeleton ratio="3/2" />
-      <Box marginTop="small">
-        <Skeleton ratio="title" borderRadius="0" width="90%"/>
-        <Skeleton marginTop="small" ratio="text" width="75%" />
-      </Box>
-    </Box>
-    <Box 
-      margin="none" 
-      marginLeft="base"
-      padding="base" 
-      width="240px"
-    >
-      <Skeleton ratio="3/2" />
-      <Box marginTop="small">
-        <Box display="inline-block" width="26px">
-          <Skeleton ratio="1/1" borderRadius="50%" />
-        </Box>
-        <Skeleton 
-          display="inline-block" 
-          marginLeft="small"
-          ratio="title" 
-          borderRadius="3px" 
-          width="80%"
-        />
-        <Skeleton marginTop="small" ratio="text" width="75%" />
-      </Box>
     </Box>
   </Flex>
 </Playground>
