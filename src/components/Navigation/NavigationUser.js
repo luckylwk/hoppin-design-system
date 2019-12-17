@@ -29,8 +29,6 @@ NavigationUser.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
-NavigationUser.defaultProps = {};
-
 NavigationUser.displayName = 'NavigationUser';
 
 export default NavigationUser;

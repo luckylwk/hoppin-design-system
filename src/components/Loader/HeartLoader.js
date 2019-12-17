@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 const HeartKeyFrames = keyframes`
   0% {
     transform: scale(0.95);
@@ -25,6 +27,8 @@ const HeartKeyFrames = keyframes`
   }
 `;
 
+// ---------------------------
+
 const Wrapper = styled.div`
   display: inline-block;
 
@@ -37,6 +41,8 @@ const Wrapper = styled.div`
   transform-origin: ${({ size }) => Math.round(0.66 * size)}px;
   ${({ size }) => Math.round(0.66 * size)}px;
 `;
+
+// ---------------------------
 
 const Heart = styled.div`
   display: block;
@@ -79,6 +85,8 @@ const Heart = styled.div`
     border-radius: 50% 50% 0 0;
   }
 `;
+
+// ---------------------------
 
 const HeartLoader = ({ size, context }) => (
   <Wrapper size={size}>

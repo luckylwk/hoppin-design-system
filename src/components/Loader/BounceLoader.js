@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+// ---------------------------
+
 const BounceKeyFrame = keyframes`
   0%, 100% {
     transform: scale(0)
@@ -9,6 +11,8 @@ const BounceKeyFrame = keyframes`
     transform: scale(1.0)
   }
 `;
+
+// ---------------------------
 
 const BounceWrapper = styled.div`
   box-sizing: border-box;
@@ -23,6 +27,8 @@ const BounceWrapper = styled.div`
 
   text-align: center;
 `;
+
+// ---------------------------
 
 const Bounce = styled.div`
   display: inline-block;
@@ -47,6 +53,8 @@ const Bounce = styled.div`
   animation: ${BounceKeyFrame} 2.1s infinite ease-in-out;
   animation-delay: ${({ delay }) => delay};
 `;
+
+// ---------------------------
 
 const BounceLoader = ({ size, context }) => {
   return (

@@ -3,6 +3,8 @@ import { shadow } from 'styled-system';
 
 import { Flex } from '../Flex';
 
+// ---------------------------
+
 const NavigationBar = styled(Flex)`
   ${shadow}
 `;
@@ -10,6 +12,7 @@ const NavigationBar = styled(Flex)`
 NavigationBar.propTypes = {
   ...Flex.propTypes,
 };
+
 NavigationBar.defaultProps = {
   bg: 'whiteout.lightest',
   padding: 'base',
@@ -25,29 +28,43 @@ NavigationBar.defaultProps = {
 
 NavigationBar.displayName = 'NavigationBar';
 
+// ---------------------------
+
 const NavLeft = styled(Flex)``;
+
 NavLeft.defaultProps = {
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
 };
+
 NavLeft.displayName = 'NavLeft';
 
+// ---------------------------
+
 const NavCenter = styled(Flex)``;
+
 NavCenter.defaultProps = {
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
 };
+
 NavCenter.displayName = 'NavCenter';
 
+// ---------------------------
+
 const NavRight = styled(Flex)``;
+
 NavRight.defaultProps = {
   flexDirection: 'row',
   justifyContent: 'flex-end',
   alignItems: 'center',
 };
+
 NavRight.displayName = 'NavRight';
+
+// ---------------------------
 
 export { NavLeft, NavCenter, NavRight };
 

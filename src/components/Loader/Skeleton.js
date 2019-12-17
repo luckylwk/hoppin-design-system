@@ -4,17 +4,15 @@ import { variant } from 'styled-system';
 
 import { Box } from '../Box';
 
-/**
- * The card just renders the overall card. For the
- * actual usage it will be wrapped in a box allow for
- * a router link and a favorite icon.
- */
+// ---------------------------
 
-const loading = keyframes`
+const loadingKeyframes = keyframes`
   100% {
     transform: translateX(100%);
   }
 `;
+
+// ---------------------------
 
 const Skeleton = styled(Box)`
   box-sizing: border-box;
@@ -57,7 +55,7 @@ const Skeleton = styled(Box)`
       transparent
     );
 
-    animation: ${loading} 1.5s infinite;
+    animation: ${loadingKeyframes} ${({delay}) => delay} infinite;
   }
 `;
 
@@ -65,12 +63,14 @@ Skeleton.propTypes = {
   ratio: PropTypes.string,
   borderRadius: PropTypes.string,
   width: PropTypes.string,
+  delay: PropTypes.string
 };
 
 Skeleton.defaultProps = {
   ratio: '3/2',
   borderRadius: '3px',
   width: '100%',
+  delay: '1.5s'
 };
 
 Skeleton.displayName = 'Skeleton';
