@@ -16,7 +16,7 @@
   "dependencies": {
     "@styled-system/prop-types": "^5.0.6",
     "color": "^3.1.2",
-    "docz": "^2.1.1",
+    "docz": "^2.2.0",
     "immutable": "^4.0.0-rc.12",
     "object-fit-images": "^3.2.4",
     "rc-checkbox": "^2.1.7",
@@ -43,7 +43,7 @@
     "husky": "^3.0.5",
     "lint-staged": ">=8",
     "nwb": "0.23.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
@@ -60,9 +60,9 @@
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
     "deploy": "now --prod",
-    "start": "docz dev -p 2000",
-    "prettier:all": "prettier --write 'src/**/*.{js,jsx,css}'",
-    "prettier:check": "prettier --check 'src/**/*.{js,jsx,css}'"
+    "start": "docz dev",
+    "prettier:all": "prettier --write 'src/**/*.{js,jsx,css,json,md,mdx}'",
+    "prettier:check": "prettier --check 'src/**/*.{js,jsx,css,json,md,mdx}'"
   },
   "husky": {
     "hooks": {
@@ -70,7 +70,7 @@
     }
   },
   "lint-staged": {
-    "src/*.{js,jsx,css,json,md}": [
+    "src/*.{js,jsx,css,json,md,mdx}": [
       "prettier --write",
       "git add"
     ]

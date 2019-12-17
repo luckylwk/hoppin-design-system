@@ -11,7 +11,7 @@ import {
   ExpandableToggleIcon,
   ExpandableBody,
   ExpandableContext,
-} from './';
+} from '.';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { useContext } from 'react';
@@ -25,9 +25,10 @@ It doesn't style the expandable content, that's left up to you when you build th
 Make sure `Expandable` has exactly one instance of `ExpandableToggle` and one instance of `ExpandableBody`
 
 ## Props
-
+### Expandable
 <Props of={Expandable} />
 
+### ExpandableBody
 <Props of={ExpandableBody} />
 
 For an example how to use `toggleDisplay` on `ExpandableBody` to disable automatic toggling of `display: block` to `display: none` when using animations, check out [Navigation](/comoponents/Navigation)
@@ -84,7 +85,7 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
 
 <Playground>
   {() => {
-    // import {Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from 'hoppin-design-system'
+    // import { Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from 'hoppin-design-system'
     // import { useContext } from 'react'
     const CustomToggle = () => {
       const { isExpanded } = useContext(ExpandableContext);

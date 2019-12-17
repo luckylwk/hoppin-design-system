@@ -1,6 +1,7 @@
 export default {
   title: 'Hoppin Design System',
   description: 'Getting consistent design at Hoppin',
+  port: 2000,
   src: './src',
   files: '**/*.{md,markdown,mdx}',
   themeConfig: {
