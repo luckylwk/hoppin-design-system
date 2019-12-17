@@ -12,8 +12,8 @@ import {
   ExpandableBody,
   ExpandableContext,
 } from './';
-import { Heading } from 'components/Heading';
-import { Paragraph } from 'components/Paragraph';
+import { Heading } from '../Heading';
+import { Paragraph } from '../Paragraph';
 import { useContext } from 'react';
 
 # Expandable
@@ -36,15 +36,12 @@ For an example how to use `toggleDisplay` on `ExpandableBody` to disable automat
 
 <Playground>
   <Expandable>
-
     <ExpandableToggle>
       <Heading as='h4'>Click to expand</Heading>
     </ExpandableToggle>
-
     <ExpandableBody>
       <Paragraph>And you can read so much more. It's a miracle</Paragraph>
     </ExpandableBody>
-
   </Expandable>
 </Playground>
 
@@ -63,7 +60,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
       <Paragraph>And you can read so much more. It's a miracle</Paragraph>
     </ExpandableBody>
   </Expandable>
-
 <Expandable initExpanded={true}>
   <ExpandableToggle>
     <Heading as="h4">Starting expanded</Heading>
@@ -72,7 +68,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
     <Paragraph>And you can read so much more. It's a miracle</Paragraph>
   </ExpandableBody>
 </Expandable>
-
 <Expandable>
   <ExpandableToggle>
     <Heading as="h4">Click to expand</Heading>
@@ -81,7 +76,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
     <Paragraph>And you can read so much more. It's a miracle</Paragraph>
   </ExpandableBody>
 </Expandable>
-
 </Playground>
 
 ## Indicate expanded/collapsed state
@@ -92,7 +86,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
   {() => {
     // import {Expandable, ExpandableToggle, ExpandableBody, ExpandableContext } from 'hoppin-design-system'
     // import { useContext } from 'react'
-
     const CustomToggle = () => {
       const { isExpanded } = useContext(ExpandableContext);
       return (
@@ -101,7 +94,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
         </Heading>
       );
     };
-
     return (<React.Fragment>
         <Expandable>
           <ExpandableToggle>
@@ -111,7 +103,6 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
             <Paragraph>And you can read so much more. It's a miracle</Paragraph>
           </ExpandableBody>
         </Expandable>
-
         <Expandable>
           <ExpandableToggle>
             <Heading as="h4">Add ExpandableToggleIcon to indicate toggle state <ExpandableToggleIcon /></Heading>
@@ -122,7 +113,5 @@ Set prop `initExpanded={true}` to initialise the component in an extended state.
         </Expandable>
       </React.Fragment>
     );
-
 }}
-
 </Playground>

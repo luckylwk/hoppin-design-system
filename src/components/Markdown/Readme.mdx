@@ -5,8 +5,8 @@ menu: Components
 ---
 
 import { Props, Playground } from 'docz';
-import { Markdown, MarkdownImage } from 'components/Markdown';
-import { Box } from 'components/Box';
+import { Markdown } from '.';
+import { Box } from '../Box';
 
 # Markdown
 
@@ -14,7 +14,7 @@ The Markdown Component is used to render markdown content. It uses the component
 
 ## Props
 
-<Props of={Text} />
+<Props of={Markdown} />
 Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
 
 Just has one prop. Children which should be a MD string.
@@ -54,16 +54,15 @@ You can also [link](/components/Link) things.
 You can also pass children as a string:
 
 <Playground>
-{() => {
-  const mdstring = `This is a _great_ way to render content consistently with Hoppin Design.\n\n **Especially** if fetched from a DB.`;
-  return (<div>
-  <Markdown>{mdstring}</Markdown>
-
-or like this:
-
-  <Markdown children={mdstring}/>
-  </div>
-  );
+  {() => {
+    const mdstring = `This is a _great_ way to render content consistently with Hoppin Design.\n\n **Especially** if fetched from a DB.`;
+    return (
+      <div>
+        <Markdown>{mdstring}</Markdown>
+        or like this:
+        <Markdown children={mdstring} />
+      </div>
+    );
   }}
 </Playground>
 
@@ -82,13 +81,11 @@ The same way an `!` turns a link `[label](url)` into an image`![alt](src)`, you 
     const altImage = `![Add Images with standard MD](http://placekitten.com/200/200)`;
     const captionImage = `![!Add Images with a caption, by prefixing the alt text with a "!"](http://placekitten.com/200/202)`;
     return (
-    <Box textAlign="center">
-      <Markdown>{`${altImage}
-
+      <Box textAlign="center">
+        <Markdown>{`${altImage}
       ${captionImage}
       `}</Markdown>
-    </Box>
+      </Box>
     );
-    }}
-
+  }}
 </Playground>

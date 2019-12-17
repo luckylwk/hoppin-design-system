@@ -4,7 +4,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  ', '\n  ', '\n  ', '\n  
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import styled from 'styled-components';
 import { space, color, fontSize, textAlign, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order } from 'styled-system';
 import propTypes from '@styled-system/prop-types';

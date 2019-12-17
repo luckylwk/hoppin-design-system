@@ -4,11 +4,9 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  align-self: center;\n  t
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import { Box } from '../Box';
 import styled from 'styled-components';
 import { typography } from 'styled-system';
-import propTypes from 'prop-types';
 
 var ChatMeta = styled(Box)(_templateObject, typography);
 

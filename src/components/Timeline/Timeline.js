@@ -26,7 +26,7 @@ function Timeline({
     if (initAtStep !== undefined && parseInt(initAtStep) !== 'NaN') {
       setActiveStep(parseInt(initAtStep));
     }
-  });
+  }, [initAtStep]);
 
   return (
     <Flex

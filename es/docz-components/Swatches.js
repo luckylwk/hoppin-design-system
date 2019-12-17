@@ -6,9 +6,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Color from 'color';
 
-import { Card } from 'components/Card';
-import { Box } from 'components/Box';
-import { Flex } from 'components/Flex';
+import { Card } from '../components/Card';
+import { Box } from '../components/Box';
+import { Flex } from '../components/Flex';
 
 var spaceScale = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge'];
 

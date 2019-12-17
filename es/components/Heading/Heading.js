@@ -4,7 +4,6 @@ var _templateObject = _taggedTemplateLiteralLoose(['\n  /* use styled-system var
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React from 'react';
 import styled from 'styled-components';
 import { variant, space, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order, lineHeight, letterSpacing, textAlign } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
@@ -47,6 +46,9 @@ var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {
       break;
     case 'h6':
       colorCSS = 'color: ' + theme.colors.neutral.dark + ';';
+      break;
+    default:
+      colorCSS = 'color: ' + theme.colors.primary.base + ';';
       break;
   }
   return colorCSS;

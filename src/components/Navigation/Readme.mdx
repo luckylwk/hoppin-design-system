@@ -10,8 +10,8 @@ import NavigationUser from './NavigationUser';
 import { MenuToggle, MenuSheet, MenuButton } from './Menu';
 import { Button } from '../Button';
 import { FiMenu, FiX, FiChevronUp } from 'react-icons/fi';
-import { Box } from 'components/Box';
-import { Logo, LogoResponsive } from 'components/Logo';
+import { Box } from '../Box';
+import { Logo, LogoResponsive } from '../Logo';
 import { Props, Playground } from 'docz';
 
 # Navigation Components
@@ -123,7 +123,6 @@ For convenience there are three extra components to render a standard hamburger 
         paddingLeft={0}
       />
     </MenuSheet>);
-
     /* position prop just for docs */
     return (
       <Navigation menuContent={menuContent} position="absolute">
@@ -147,11 +146,11 @@ NavigationUser has a
 
 <Playground>
   {() => {
-    const user = { 
-      profile: { 
-        first_name: 'James', 
-        last_name: 'Dean', 
-        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg' 
+    const user = {
+      profile: {
+        first_name: 'James',
+        last_name: 'Dean',
+        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg'
       }
     }
     return (
@@ -164,11 +163,11 @@ NavigationUser has a
 
 <Playground>
   {() => {
-    const user = { 
-      profile: { 
-        first_name: 'James', 
-        last_name: 'Dean', 
-        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg' 
+    const user = {
+      profile: {
+        first_name: 'James',
+        last_name: 'Dean',
+        image_url: 'https://storage.googleapis.com/hoppin-platform-avatars/usr-5bd7570e081c0e3b0d036917/1563490774170000_avatar_600x600.jpeg'
       }
     }
     return (

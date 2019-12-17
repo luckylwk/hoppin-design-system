@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import 'react-day-picker/lib/style.css';
 
 import { Box } from '../Box';
-import { DATEISO_FORMAT } from '../../tokens/constants';
+// import { DATEISO_FORMAT } from '../../tokens/constants';
 
 /**
  * Calendar component. See documentation at

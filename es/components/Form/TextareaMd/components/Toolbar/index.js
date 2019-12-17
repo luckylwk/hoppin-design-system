@@ -54,9 +54,7 @@ var Toolbar = function (_React$Component) {
       _this.setState({ mouseDown: false });
       _this.update();
     }, _this.update = function () {
-      var _this$props = _this.props,
-          value = _this$props.value,
-          editor = _this$props.editor;
+      var value = _this.props.value;
       // const link = editor.getLinkInSelection();
 
       var link = false;

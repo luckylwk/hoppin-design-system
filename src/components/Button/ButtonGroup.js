@@ -1,10 +1,7 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Flex } from '../Flex';
 import Button from './Button';
-
-// import propTypes from 'prop-types';
 
 /**
  * ButtonGroup component. Helps arrange groups of buttons

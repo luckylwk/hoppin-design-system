@@ -1,4 +1,3 @@
-import React from 'react';
 import { Flex } from '../Flex';
 import { Container } from '../Container';
 import styled from 'styled-components';

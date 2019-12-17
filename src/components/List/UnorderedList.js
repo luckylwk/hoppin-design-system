@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
   space,
@@ -14,7 +13,6 @@ import {
   order,
 } from 'styled-system';
 import systemPropTypes from '@styled-system/prop-types';
-import propTypes from 'prop-types';
 
 const UnorderedList = styled('ul')`
   font-size: ${({ theme }) => theme.fontSizes.body || '1em'};
