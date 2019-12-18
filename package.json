@@ -1,6 +1,6 @@
 {
   "name": "hoppin-design-system",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
@@ -16,7 +16,6 @@
   "dependencies": {
     "@styled-system/prop-types": "^5.0.6",
     "color": "^3.1.2",
-    "docz": "^2.2.0",
     "immutable": "^4.0.0-rc.12",
     "object-fit-images": "^3.2.4",
     "rc-checkbox": "^2.1.7",
@@ -39,6 +38,7 @@
     "unified": "^8.3.2"
   },
   "devDependencies": {
+    "docz": "^2.2.0",
     "exenv": "^1.2.2",
     "husky": "^3.0.5",
     "lint-staged": ">=8",
@@ -49,8 +49,8 @@
     "react-dom": "^16.12.0"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "scripts": {
     "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
