@@ -55,7 +55,7 @@ const Skeleton = styled(Box)`
       transparent
     );
 
-    animation: ${loadingKeyframes} ${({delay}) => delay} infinite;
+    animation: ${loadingKeyframes} ${({ delay }) => delay} infinite;
   }
 `;
 
@@ -63,14 +63,14 @@ Skeleton.propTypes = {
   ratio: PropTypes.string,
   borderRadius: PropTypes.string,
   width: PropTypes.string,
-  delay: PropTypes.string
+  delay: PropTypes.string,
 };
 
 Skeleton.defaultProps = {
   ratio: '3/2',
   borderRadius: '3px',
   width: '100%',
-  delay: '1.5s'
+  delay: '1.5s',
 };
 
 Skeleton.displayName = 'Skeleton';
