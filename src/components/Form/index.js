@@ -6,6 +6,7 @@ export { default as Errors } from './Errors';
 
 export { default as Calendar } from './Calendar';
 export { default as Checkbox } from './Checkbox';
+export { default as RangeSlider } from './RangeSlider';
 export { default as getSelectStyling } from './SelectStyling';
 
 export { default as Fields } from './Fields';

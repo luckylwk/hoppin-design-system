@@ -16,6 +16,7 @@ import Checkbox from './Checkbox';
 import Label from './Label';
 import Calendar from './Calendar';
 import Errors from './Errors';
+import RangeSlider from './RangeSlider';
 import getSelectStyling from './SelectStyling';
 import Fields from './Fields';
 import FieldsSortable from './FieldsSortable';
@@ -170,12 +171,8 @@ Checkbox will expose an `event.target` with
     const [formData, setFormData] = useState({});
     const [lastEvent, setLastEvent] = useState({});
     const onChange = (e) => {
-      setLastEvent(e.target);
-      const { name, value, type, checked } = e.target;
-      setFormData({
-        ...formData,
-        [name]: value
-      })
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value })
     }
     return (
       <Flex>
@@ -193,14 +190,14 @@ Checkbox will expose an `event.target` with
               name="sendMarketing"
               checked={formData.sendMarketing || false}
               onChange={onChange}
-              label={`Send me marketing junk`}
+              label="Send me marketing junk"
             />
           </Box>
           <Checkbox
             name="acceptTandC"
             checked={formData.acceptTandC || false}
             onChange={onChange}
-            label={`I accept the Terms and Conditions`}
+            label="I accept the Terms and Conditions"
           />
         </Box>
         <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
@@ -309,6 +306,56 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
       );
     }}
   </ThemeConsumer>
+</Playground>
+
+## RangeSlider
+
+<Props of={RangeSlider} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({});
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value })
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+          <Box bg="neutral.lighter">
+            <RangeSlider
+              name="engagement"
+              value={formData.engagement}
+              onChange={onChange}
+              label="Engagement score?"
+            />
+          </Box>
+        </Box>
+        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {lastEvent.value}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    )
+  }}
 </Playground>
 
 ## Errors
