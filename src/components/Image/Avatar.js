@@ -10,8 +10,7 @@ const Wrapper = styled(Box)`
   ${variant({
     prop: 'size',
     variants: {
-      xsmall: { width: '12px', height: '12px' },
-      smaller: { width: '16px', height: '16px' },
+      xsmall: { width: '16px', height: '16px' },
       small: { width: '24px', height: '24px' },
       icon: { width: '32px', height: '32px' },
       base: { width: '96px', height: '96px' },

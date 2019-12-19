@@ -42,21 +42,19 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     const [lastEvent, setLastEvent] = useState({});
     const onChange = (e) => {
       setLastEvent(e.target);
-      const { name, value } = e.target;
-      setFormData({...formData, [name]: value})
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
     }
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="400px">
-          <Box bg="neutral.lighter">
-            <Input
-              name="name"
-              label="Name (with default marginBottom)"
-              placeholder="Name"
-              onChange={onChange}
-              value={formData.name || ''}
-            />
-          </Box>
+          <Input
+            name="name"
+            label="Name (with default marginBottom)"
+            placeholder="Name"
+            onChange={onChange}
+            value={formData.name || ''}
+          />
           <Input
             name="email"
             label="Email address"
@@ -65,14 +63,12 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
             icon={<FiMail />}
             value={formData.email || ''}
           />
-          <Box bg="neutral.light">
-            <Input
-              name="no_label"
-              placeholder="No label"
-              onChange={onChange}
-              value={formData.no_label || ''}
-            />
-          </Box>
+          <Input
+            name="no_label"
+            placeholder="No label"
+            onChange={onChange}
+            value={formData.no_label || ''}
+          />
           <Input
             name="linkedin"
             placeholder="LinkedIn Profile URL"
@@ -81,21 +77,26 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
             icon={<FiLinkedin />}
             label="LinkedIn Profile URL"
           />
-          <Box bg="neutral.lighter">
-            <Input
-              marginBottom="none"
-              name="phone"
-              type="tel"
-              placeholder="Phone number"
-              onChange={onChange}
-              value={formData.phone || ''}
-              icon={<FiPhone />}
-              label="Phone Number (no marginBottom)"
-              context="danger"
-            />
-          </Box>
+          <Input
+            marginBottom="none"
+            name="phone"
+            type="tel"
+            placeholder="Phone number"
+            onChange={onChange}
+            value={formData.phone || ''}
+            icon={<FiPhone />}
+            label="Phone Number (no marginBottom)"
+            context="danger"
+          />
         </Box>
-        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
           <Paragraph>
             Last event
           </Paragraph>
@@ -107,13 +108,7 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
               name: {lastEvent.name}
             </ListItem>
             <ListItem>
-              value: {
-                lastEvent.type !== 'checkbox' 
-                  ? lastEvent.value 
-                  : lastEvent.value 
-                    ? 'true' 
-                    : 'false'
-              }
+              value: {lastEvent.value}
             </ListItem>
             <ListItem>
               checked: {lastEvent.checked ? 'true': 'false' }
@@ -166,13 +161,16 @@ Checkbox will expose an `event.target` with
 * `value` as a boolean indicating the `checked` value
 * `checked` as a boolean indicating the `checked` value
 
+Checkboxes need to be positioned with a `Box` for `margin` and `padding`
+
 <Playground>
   {() => {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ sendMarketing: true });
     const [lastEvent, setLastEvent] = useState({});
     const onChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value })
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
     }
     return (
       <Flex>
@@ -185,7 +183,7 @@ Checkbox will expose an `event.target` with
             icon={<FiMail />}
             value={formData.email || ''}
           />
-          <Box bg="neutral.lighter">
+          <Box marginY="small">
             <Checkbox
               name="sendMarketing"
               checked={formData.sendMarketing || false}
@@ -193,14 +191,23 @@ Checkbox will expose an `event.target` with
               label="Send me marketing junk"
             />
           </Box>
-          <Checkbox
-            name="acceptTandC"
-            checked={formData.acceptTandC || false}
-            onChange={onChange}
-            label="I accept the Terms and Conditions"
-          />
+          <Box marginY="small">
+            <Checkbox
+              name="acceptTandC"
+              checked={formData.acceptTandC || false}
+              onChange={onChange}
+              label="I accept the Terms and Conditions"
+            />
+          </Box>
         </Box>
-        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
           <Paragraph>
             Last event
           </Paragraph>
@@ -212,13 +219,7 @@ Checkbox will expose an `event.target` with
               name: {lastEvent.name}
             </ListItem>
             <ListItem>
-              value: {
-                lastEvent.type !== 'checkbox' 
-                  ? lastEvent.value 
-                  : lastEvent.value 
-                    ? 'true' 
-                    : 'false'
-              }
+              value: {lastEvent.value}
             </ListItem>
             <ListItem>
               checked: {lastEvent.checked ? 'true': 'false' }
@@ -330,11 +331,17 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
               name="engagement"
               value={formData.engagement}
               onChange={onChange}
-              label="Engagement score?"
             />
           </Box>
         </Box>
-        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
           <Paragraph>
             Last event
           </Paragraph>
