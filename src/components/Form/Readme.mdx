@@ -6,7 +6,10 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
+import { Flex } from '../Flex';
 import { Box } from '../Box';
+import { Paragraph } from '../Paragraph';
+import { UnorderedList, ListItem } from '../List';
 import Input from './Input';
 import TextareaMd from './TextareaMd';
 import Checkbox from './Checkbox';
@@ -19,7 +22,7 @@ import FieldsSortable from './FieldsSortable';
 import { DateUtils } from 'react-day-picker';
 import Select from 'react-select';
 import { ThemeConsumer } from 'styled-components';
-import { FiLinkedin, FiPhone } from 'react-icons/fi';
+import { FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
 
 # Form
 
@@ -33,33 +36,92 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
 <Props of={Input} />
 
 <Playground>
-  <Input
-    name="first_name"
-    label="Name"
-    placeholder="First Name"
-    onChange={e => console.log(e.target.name, e.target.value)}
-  />
-  <Input
-    name="last_name"
-    placeholder="Last Name"
-    onChange={e => console.log(e.target.name, e.target.value)}
-  />
-  <Input
-    name="linkedin"
-    placeholder="LinkedIn Profile URL"
-    onChange={e => console.log(e.target.name, e.target.value)}
-    icon={<FiLinkedin />}
-    label="LinkedIn Profile URL"
-  />
-  <Input
-    name="phone"
-    type="tel"
-    placeholder="Phone number"
-    onChange={e => console.log(e.target.name, e.target.value)}
-    icon={<FiPhone />}
-    label="Phone Number"
-    context="danger"
-  />
+  {() => {
+    const [formData, setFormData] = useState({});
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value } = e.target;
+      setFormData({...formData, [name]: value})
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+          <Box bg="neutral.lighter">
+            <Input
+              name="name"
+              label="Name (with default marginBottom)"
+              placeholder="Name"
+              onChange={onChange}
+              value={formData.name || ''}
+            />
+          </Box>
+          <Input
+            name="email"
+            label="Email address"
+            placeholder="Email"
+            onChange={onChange}
+            icon={<FiMail />}
+            value={formData.email || ''}
+          />
+          <Box bg="neutral.light">
+            <Input
+              name="no_label"
+              placeholder="No label"
+              onChange={onChange}
+              value={formData.no_label || ''}
+            />
+          </Box>
+          <Input
+            name="linkedin"
+            placeholder="LinkedIn Profile URL"
+            onChange={onChange}
+            value={formData.linkedin || ''}
+            icon={<FiLinkedin />}
+            label="LinkedIn Profile URL"
+          />
+          <Box bg="neutral.lighter">
+            <Input
+              marginBottom="none"
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
+              onChange={onChange}
+              value={formData.phone || ''}
+              icon={<FiPhone />}
+              label="Phone Number (no marginBottom)"
+              context="danger"
+            />
+          </Box>
+        </Box>
+        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {
+                lastEvent.type !== 'checkbox' 
+                  ? lastEvent.value 
+                  : lastEvent.value 
+                    ? 'true' 
+                    : 'false'
+              }
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    )
+  }}
 </Playground>
 
 ## TextareaMd
@@ -97,27 +159,78 @@ Checkbox uses [rc-checkbox](https://github.com/react-component/checkbox) under t
 
 <Props of={Checkbox} />
 
+Checkbox will expose an `event.target` with
+* `name`
+* `type` as `checkbox`
+* `value` as a boolean indicating the `checked` value
+* `checked` as a boolean indicating the `checked` value
+
 <Playground>
   {() => {
-    const [isVegan, setIsVegan] = useState(false);
-    const [isDogPerson, setIsDogPerson] = useState(false);
+    const [formData, setFormData] = useState({});
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value
+      })
+    }
     return (
-      <>
-          <Checkbox
-            name="isVegan"
-            checked={isVegan}
-            onChange={e => setIsVegan(e.target.checked)}
-            label={`I'm vegan`}
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+        <Input
+            name="email"
+            label="Email address"
+            placeholder="Email"
+            onChange={onChange}
+            icon={<FiMail />}
+            value={formData.email || ''}
           />
+          <Box bg="neutral.lighter">
+            <Checkbox
+              name="sendMarketing"
+              checked={formData.sendMarketing || false}
+              onChange={onChange}
+              label={`Send me marketing junk`}
+            />
+          </Box>
           <Checkbox
-            name="isDogPerson"
-            checked={isDogPerson}
-            onChange={e => setIsDogPerson(e.target.checked)}
-            label={`I'm a dog person`}
+            name="acceptTandC"
+            checked={formData.acceptTandC || false}
+            onChange={onChange}
+            label={`I accept the Terms and Conditions`}
           />
-      </>
-    );
-}}
+        </Box>
+        <Box margin="base" padding="base" maxWidth="300px" bg="neutral.lighter">
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {
+                lastEvent.type !== 'checkbox' 
+                  ? lastEvent.value 
+                  : lastEvent.value 
+                    ? 'true' 
+                    : 'false'
+              }
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    )
+  }}
 </Playground>
 
 ## Calendar

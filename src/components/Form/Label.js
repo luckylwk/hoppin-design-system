@@ -10,6 +10,7 @@ const Label = styled('label')`
   ${space}
   ${color}
   ${position}
+
   width: 100%;
   flex: 1 1 100%;
 `;
@@ -19,14 +20,17 @@ Label.propTypes = {
   ...propTypes.color,
   ...propTypes.typography,
 };
+
 Label.defaultProps = {
   lineHeight: 0,
   fontFamily: 'secondary',
   fontSize: 'label',
+  fontWeight: 'bold',
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginRight: 'large',
   position: 'relative',
 };
 
 Label.displayName = 'Label';
+
 export default Label;

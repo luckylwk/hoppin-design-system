@@ -9,10 +9,14 @@ import CheckboxLabel from './Label';
  * https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
  */
 
+// ---------------------------
+
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
 `;
+
+// ---------------------------
 
 const Icon = styled.svg`
   fill: none;
@@ -20,10 +24,15 @@ const Icon = styled.svg`
   stroke-width: 4px;
 `;
 
+// ---------------------------
+
 // Hide checkbox visually but remain accessible to screen readers.
 // Source: https://polished.js.org/docs/#hidevisually
 // const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 RcCheckbox.displayName = 'RcCheckbox';
+
+// ---------------------------
+
 const HiddenCheckbox = styled(RcCheckbox)`
   border: 0;
   clip: rect(0 0 0 0);
@@ -36,7 +45,10 @@ const HiddenCheckbox = styled(RcCheckbox)`
   white-space: nowrap;
   width: 1px;
 `;
+
 HiddenCheckbox.displayName = 'HiddenCheckbox';
+
+// ---------------------------
 
 const StyledCheckbox = styled.div`
   display: inline-block;
@@ -61,22 +73,27 @@ const StyledCheckbox = styled.div`
   }
 
   ${Icon} {
-    visibility: ${props => (props.checked ? 'visible' : 'hidden')};
+    visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
   }
 `;
+
 StyledCheckbox.displayName = 'StyledCheckbox';
 
-const Checkbox = ({ name, checked, type, label, onChange }) => {
+// ---------------------------
+
+const Checkbox = ({ name, checked, label, onChange }) => {
   const onClick = event => {
     event.preventDefault();
-    onChange({ target: { checked: !checked } });
+    onChange({
+      target: { type: 'checkbox', name, value: !checked, checked: !checked },
+    });
   };
-
   const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+
   return (
     <CheckBoxWrapper onClick={onClick} htmlFor={name}>
       <HiddenCheckbox checked={checked} name={name} />
-      <StyledCheckbox checked={checked} type={type}>
+      <StyledCheckbox checked={checked}>
         <Icon viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12" />
         </Icon>

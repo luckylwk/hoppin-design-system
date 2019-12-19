@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import 'react-day-picker/lib/style.css';
 
 import { Box } from '../Box';
-// import { DATEISO_FORMAT } from '../../tokens/constants';
 
 /**
  * Calendar component. See documentation at
@@ -17,6 +16,8 @@ import { Box } from '../Box';
  *  - Selected days
  *  - A function to handle the onClick.
  */
+
+// ---------------------------
 
 const Wrapper = styled(Box)`
   display: inline-block;
@@ -49,6 +50,8 @@ const Wrapper = styled(Box)`
   }
 `;
 
+// ---------------------------
+
 const filterMarkers = (arrayOrFn, day) => {
   // run the function, if we get one passed as prop
   if (typeof arrayOrFn === 'function') {
@@ -60,6 +63,8 @@ const filterMarkers = (arrayOrFn, day) => {
   );
   return index !== -1;
 };
+
+// ---------------------------
 
 const Calendar = ({
   initialMonth,
