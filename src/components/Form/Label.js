@@ -13,6 +13,10 @@ const Label = styled('label')`
 
   width: 100%;
   flex: 1 1 100%;
+
+  & * {
+    font-weight: initial;
+  }
 `;
 
 Label.propTypes = {
