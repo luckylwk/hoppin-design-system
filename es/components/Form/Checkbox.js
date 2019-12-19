@@ -16,16 +16,28 @@ import CheckboxLabel from './Label';
  * https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
  */
 
+// ---------------------------
+
 var CheckboxContainer = styled.div(_templateObject);
 
+// ---------------------------
+
 var Icon = styled.svg(_templateObject2);
+
+// ---------------------------
 
 // Hide checkbox visually but remain accessible to screen readers.
 // Source: https://polished.js.org/docs/#hidevisually
 // const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 RcCheckbox.displayName = 'RcCheckbox';
+
+// ---------------------------
+
 var HiddenCheckbox = styled(RcCheckbox)(_templateObject3);
+
 HiddenCheckbox.displayName = 'HiddenCheckbox';
+
+// ---------------------------
 
 var StyledCheckbox = styled.div(_templateObject4, CheckboxLabel, function (_ref) {
   var theme = _ref.theme;
@@ -43,31 +55,36 @@ var StyledCheckbox = styled.div(_templateObject4, CheckboxLabel, function (_ref)
 }, HiddenCheckbox, function (_ref5) {
   var theme = _ref5.theme;
   return theme.shadows.xsmall;
-}, Icon, function (props) {
-  return props.checked ? 'visible' : 'hidden';
+}, Icon, function (_ref6) {
+  var checked = _ref6.checked;
+  return checked ? 'visible' : 'hidden';
 });
+
 StyledCheckbox.displayName = 'StyledCheckbox';
 
-var Checkbox = function Checkbox(_ref6) {
-  var name = _ref6.name,
-      checked = _ref6.checked,
-      type = _ref6.type,
-      label = _ref6.label,
-      onChange = _ref6.onChange;
+// ---------------------------
+
+var Checkbox = function Checkbox(_ref7) {
+  var name = _ref7.name,
+      checked = _ref7.checked,
+      label = _ref7.label,
+      onChange = _ref7.onChange;
 
   var onClick = function onClick(event) {
     event.preventDefault();
-    onChange({ target: { checked: !checked } });
+    onChange({
+      target: { type: 'checkbox', name: name, value: !checked, checked: !checked }
+    });
   };
-
   var CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+
   return React.createElement(
     CheckBoxWrapper,
     { onClick: onClick, htmlFor: name },
     React.createElement(HiddenCheckbox, { checked: checked, name: name }),
     React.createElement(
       StyledCheckbox,
-      { checked: checked, type: type },
+      { checked: checked },
       React.createElement(
         Icon,
         { viewBox: '0 0 24 24' },

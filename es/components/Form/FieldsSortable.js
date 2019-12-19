@@ -11,18 +11,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-// Input components...
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FiMove } from 'react-icons/fi';
 import { Box } from '../Box';
 import { renderField } from './Fields';
 
-/**
- * Wrapper for an individual field.
- */
+// ---------------------------
+
 export var FieldWrapper = styled(Box)(_templateObject, function (props) {
   return !props.isDragging ? '' : '\n    width: 100%;\n  ';
 });
+
+// ---------------------------
 
 var DraggableList = styled(Box)(_templateObject2, function (props) {
   return props.theme.radii.small;
@@ -36,9 +36,7 @@ var DraggableList = styled(Box)(_templateObject2, function (props) {
   return props.isDraggingOver ? props.theme.colors.neutral.lighter : 'transparent';
 });
 
-/**
- *
- */
+// ---------------------------
 
 var sortFields = function sortFields(fields, onSort, dropResult) {
   var newFields = [].concat(fields);
@@ -46,6 +44,8 @@ var sortFields = function sortFields(fields, onSort, dropResult) {
   newFields.splice(dropResult.destination.index, 0, movedField);
   onSort(newFields);
 };
+
+// ---------------------------
 
 export var FieldsSortable = function FieldsSortable(_ref) {
   var onSort = _ref.onSort,
@@ -110,6 +110,7 @@ export var FieldsSortable = function FieldsSortable(_ref) {
 };
 
 FieldsSortable.displayName = 'FieldsSortable';
+
 FieldsSortable.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * callback to be called when a field updates fn(fieldName, event)

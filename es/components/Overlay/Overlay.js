@@ -21,7 +21,7 @@ Overlay.propTypes = {
 Overlay.defaultProps = {
   position: 'fixed',
   opacity: '0.97',
-  bg: "whiteout.lightest"
+  bg: 'whiteout.lightest'
 };
 
 Overlay.displayName = 'Overlay';

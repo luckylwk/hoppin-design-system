@@ -96,6 +96,8 @@ var getSelectStyles = function getSelectStyles(theme) {
   };
 };
 
+// ---------------------------
+
 var getSelectTheme = function getSelectTheme(theme) {
   var colors = {
     primary: theme.colors.primary.base,
