@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-// Input components...
 import Select from 'react-select';
 import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
@@ -19,9 +18,7 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 
-/**
- * Form fields
- */
+// ---------------------------
 
 export const RequiredText = styled.span`
   display: inline-block;
@@ -34,6 +31,8 @@ export const RequiredText = styled.span`
   color: ${({ theme }) => theme.colors.primary.base};
 `;
 
+// ---------------------------
+
 export const RequiredCharacters = styled.p`
   font-family: ${({ theme }) => theme.fonts.secondary};
   margin: 0;
@@ -45,6 +44,8 @@ export const RequiredCharacters = styled.p`
 
   text-align: right;
 `;
+
+// ---------------------------
 
 /**
  * @param {object} field - object that holds the field details.
@@ -248,6 +249,8 @@ export const renderField = (field, onChange, selectStyling) => {
   );
 };
 
+// ---------------------------
+
 const Fields = ({ onChange, fields, theme }) => {
   const selectStyling = getSelectStyling(theme);
 
@@ -308,6 +311,7 @@ const Fields = ({ onChange, fields, theme }) => {
 };
 
 Fields.displayName = 'Fields';
+
 Fields.propTypes = {
   /**
    * callback to be called when a field updates fn(fieldName, event)

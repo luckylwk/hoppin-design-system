@@ -45,7 +45,7 @@ const NavOverlay = styled(Overlay)`
   transform: translate3d(-100vw, 0, 0);
   opacity: 0;
   transition: opacity 0.5s;
-  
+
   &.isExpanded {
     transform: translate3d(0vw, 0, 0);
     opacity: 1;

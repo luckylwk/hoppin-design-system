@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-// Input components...
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FiMove } from 'react-icons/fi';
 import { Box } from '../Box';
 import { renderField } from './Fields';
 
-/**
- * Wrapper for an individual field.
- */
+// ---------------------------
+
 export const FieldWrapper = styled(Box)`
   user-select: 'none';
   display: flex;
@@ -29,6 +27,8 @@ export const FieldWrapper = styled(Box)`
   `};
 `;
 
+// ---------------------------
+
 const DraggableList = styled(Box)`
   border-radius: ${props => props.theme.radii.small};
 
@@ -45,9 +45,7 @@ const DraggableList = styled(Box)`
         : 'transparent'};
 `;
 
-/**
- *
- */
+// ---------------------------
 
 const sortFields = (fields, onSort, dropResult) => {
   let newFields = [...fields];
@@ -55,6 +53,8 @@ const sortFields = (fields, onSort, dropResult) => {
   newFields.splice(dropResult.destination.index, 0, movedField);
   onSort(newFields);
 };
+
+// ---------------------------
 
 export const FieldsSortable = ({ onSort, onChange, fields, theme }) => (
   <Box>
@@ -102,6 +102,7 @@ export const FieldsSortable = ({ onSort, onChange, fields, theme }) => (
 );
 
 FieldsSortable.displayName = 'FieldsSortable';
+
 FieldsSortable.propTypes = {
   /**
    * callback to be called when a field updates fn(fieldName, event)

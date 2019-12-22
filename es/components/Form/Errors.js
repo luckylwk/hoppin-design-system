@@ -6,11 +6,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// import AlertIcon from 'react-feather/dist/icons/alert-triangle';
-
 import { Text } from '../Text';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
+
+// ---------------------------
 
 var BoxDanger = styled(Box)(_templateObject, function (_ref) {
   var theme = _ref.theme;
@@ -22,6 +22,8 @@ var BoxDanger = styled(Box)(_templateObject, function (_ref) {
   var theme = _ref3.theme;
   return theme.radii.small;
 });
+
+// ---------------------------
 
 var Errors = function Errors(_ref4) {
   var errors = _ref4.errors;

@@ -2,8 +2,11 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { typography, space } from 'styled-system';
+
 import Label from './Label';
 import { Box } from '../Box';
+
+// ---------------------------
 
 const InputField = styled.input`
   box-sizing: border-box;
@@ -25,17 +28,17 @@ const InputField = styled.input`
     return `padding: ${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`;
   }};
 
-  background: ${props =>
-    props.isFocused || (props.value && props.value.length > 0)
-      ? props.theme.colors.whiteout.base
-      : props.theme.colors.whiteout.lighter};
+  background: ${({ isFocused, value, theme }) =>
+    isFocused || (value && value.length > 0)
+      ? theme.colors.whiteout.base
+      : theme.colors.whiteout.lighter};
 
   border: 1px solid transparent;
-  border-color: ${props => {
-    if (props.theme.colors[props.context] !== undefined) {
-      return props.theme.colors[props.context].light;
+  border-color: ${({ theme, context }) => {
+    if (theme.colors[context] !== undefined) {
+      return theme.colors[context].light;
     } else {
-      return props.theme.colors.neutral.light;
+      return theme.colors.neutral.light;
     }
   }};
   border-radius: ${({ theme }) => theme.radii.small};
@@ -46,13 +49,13 @@ const InputField = styled.input`
   }
 
   &:focus {
-    border-color: ${props => {
-      switch (props.context) {
+    border-color: ${({ theme, context }) => {
+      switch (context) {
         case 'danger':
-          return props.theme.colors.danger.base;
+          return theme.colors.danger.base;
         case 'neutral':
         default:
-          return props.theme.colors.primary.base;
+          return theme.colors.primary.base;
       }
     }};
   }
@@ -92,6 +95,8 @@ InputField.defaultProps = {
 
 InputField.displayName = 'InputField';
 
+// ---------------------------
+
 const Input = ({ label, theme, ...rest }) => {
   const { icon, iconPosition } = rest;
   // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
@@ -104,7 +109,7 @@ const Input = ({ label, theme, ...rest }) => {
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.75em',
+      top: '0.85em',
       [iconPosition]: theme.space.base,
     },
     color:
@@ -122,6 +127,7 @@ const Input = ({ label, theme, ...rest }) => {
     </LabelOrFragment>
   );
 };
+
 Input.propTypes = {
   /** supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone */
   label: PropTypes.string,

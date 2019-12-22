@@ -90,6 +90,8 @@ const getSelectStyles = theme => ({
   }),
 });
 
+// ---------------------------
+
 const getSelectTheme = theme => {
   const colors = {
     primary: theme.colors.primary.base,

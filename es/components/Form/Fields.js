@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-// Input components...
 import Select from 'react-select';
 import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
@@ -26,14 +25,14 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 
-/**
- * Form fields
- */
+// ---------------------------
 
 export var RequiredText = styled.span(_templateObject, function (_ref) {
   var theme = _ref.theme;
   return theme.colors.primary.base;
 });
+
+// ---------------------------
 
 export var RequiredCharacters = styled.p(_templateObject2, function (_ref2) {
   var theme = _ref2.theme;
@@ -42,6 +41,8 @@ export var RequiredCharacters = styled.p(_templateObject2, function (_ref2) {
   var theme = _ref3.theme;
   return theme.colors.neutral.light;
 });
+
+// ---------------------------
 
 /**
  * @param {object} field - object that holds the field details.
@@ -231,6 +232,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
   );
 };
 
+// ---------------------------
+
 var Fields = function Fields(_ref7) {
   var onChange = _ref7.onChange,
       fields = _ref7.fields,
@@ -308,6 +311,7 @@ var Fields = function Fields(_ref7) {
 };
 
 Fields.displayName = 'Fields';
+
 Fields.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * callback to be called when a field updates fn(fieldName, event)

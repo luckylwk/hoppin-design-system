@@ -10,8 +10,11 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { typography, space } from 'styled-system';
+
 import Label from './Label';
 import { Box } from '../Box';
+
+// ---------------------------
 
 var InputField = styled.input(_templateObject, typography, space, function (_ref) {
   var theme = _ref.theme,
@@ -28,30 +31,39 @@ var InputField = styled.input(_templateObject, typography, space, function (_ref
     padding[iconPosition] = '2.7rem';
   }
   return 'padding: ' + padding.top + ' ' + padding.right + ' ' + padding.bottom + ' ' + padding.left;
-}, function (props) {
-  return props.isFocused || props.value && props.value.length > 0 ? props.theme.colors.whiteout.base : props.theme.colors.whiteout.lighter;
-}, function (props) {
-  if (props.theme.colors[props.context] !== undefined) {
-    return props.theme.colors[props.context].light;
-  } else {
-    return props.theme.colors.neutral.light;
-  }
 }, function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.radii.small;
-}, function (props) {
-  switch (props.context) {
-    case 'danger':
-      return props.theme.colors.danger.base;
-    case 'neutral':
-    default:
-      return props.theme.colors.primary.base;
-  }
+  var isFocused = _ref2.isFocused,
+      value = _ref2.value,
+      theme = _ref2.theme;
+  return isFocused || value && value.length > 0 ? theme.colors.whiteout.base : theme.colors.whiteout.lighter;
 }, function (_ref3) {
-  var theme = _ref3.theme;
-  return theme.fonts.secondary;
+  var theme = _ref3.theme,
+      context = _ref3.context;
+
+  if (theme.colors[context] !== undefined) {
+    return theme.colors[context].light;
+  } else {
+    return theme.colors.neutral.light;
+  }
 }, function (_ref4) {
   var theme = _ref4.theme;
+  return theme.radii.small;
+}, function (_ref5) {
+  var theme = _ref5.theme,
+      context = _ref5.context;
+
+  switch (context) {
+    case 'danger':
+      return theme.colors.danger.base;
+    case 'neutral':
+    default:
+      return theme.colors.primary.base;
+  }
+}, function (_ref6) {
+  var theme = _ref6.theme;
+  return theme.fonts.secondary;
+}, function (_ref7) {
+  var theme = _ref7.theme;
   return theme.colors.neutral.light;
 });
 
@@ -76,12 +88,14 @@ InputField.defaultProps = {
 
 InputField.displayName = 'InputField';
 
-var Input = function Input(_ref5) {
+// ---------------------------
+
+var Input = function Input(_ref8) {
   var _style;
 
-  var label = _ref5.label,
-      theme = _ref5.theme,
-      rest = _objectWithoutProperties(_ref5, ['label', 'theme']);
+  var label = _ref8.label,
+      theme = _ref8.theme,
+      rest = _objectWithoutProperties(_ref8, ['label', 'theme']);
 
   var icon = rest.icon,
       iconPosition = rest.iconPosition;
@@ -96,7 +110,7 @@ var Input = function Input(_ref5) {
   var iconProps = {
     style: (_style = {
       position: 'absolute',
-      top: '0.75em'
+      top: '0.85em'
     }, _style[iconPosition] = theme.space.base, _style),
     color: theme.colors[rest.context] && theme.colors[rest.context].base || theme.colors.neutral.base
   };
@@ -113,6 +127,7 @@ var Input = function Input(_ref5) {
     )
   );
 };
+
 Input.propTypes = process.env.NODE_ENV !== "production" ? {
   /** supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone */
   label: PropTypes.string,
