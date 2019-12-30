@@ -7,6 +7,8 @@ export * from './components/Flex';
 export * from './components/Container';
 export * from './components/Banner';
 
+export * from './components/Overlay';
+
 export * from './components/Heading';
 export * from './components/Lede';
 export * from './components/Paragraph';
