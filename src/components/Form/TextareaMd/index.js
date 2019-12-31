@@ -38,6 +38,8 @@ const EMPTY_VALUE = {
   },
 };
 
+// ---------------------------
+
 /**
  * A rich text editor.
  */
@@ -212,6 +214,8 @@ class TextareaMdField extends React.Component {
   }
 }
 
+// ---------------------------
+
 const StyledEditor = styled(Editor)`
   box-sizing: border-box;
   display: block;
@@ -221,14 +225,14 @@ const StyledEditor = styled(Editor)`
   ${flexbox}
   ${fontSize}
 
-  background: ${props => props.theme.colors.whiteout.lighter};
+  background: ${({ theme }) => theme.colors.whiteout.lighter};
 
   border: 1px solid transparent;
-  border-color: ${props => {
-    if (props.theme.colors[props.context] !== undefined) {
-      return props.theme.colors[props.context].light;
+  border-color: ${({ theme, context }) => {
+    if (theme.colors[context] !== undefined) {
+      return theme.colors[context].light;
     } else {
-      return props.theme.colors.neutral.light;
+      return theme.colors.neutral.light;
     }
   }};
   border-radius: ${({ theme }) => theme.radii.small};
@@ -239,20 +243,17 @@ const StyledEditor = styled(Editor)`
   }
 
   &:focus {
-    border-color: ${props => {
-      if (
-        props.context !== 'neutral' &&
-        props.theme.colors[props.context] !== undefined
-      ) {
-        return props.theme.colors[props.context].base;
+    border-color: ${({ theme, context }) => {
+      if (context !== 'neutral' && theme.colors[context] !== undefined) {
+        return theme.colors[context].base;
       } else {
-        return props.theme.colors.primary.base;
+        return theme.colors.primary.base;
       }
     }};
-    background: ${props =>
-      props.initialValue && props.initialValue.length > 0
-        ? props.theme.colors.whiteout.base
-        : props.theme.colors.whiteout.light};
+    background: ${({ theme, initialValue }) =>
+      initialValue && initialValue.length > 0
+        ? theme.colors.whiteout.base
+        : theme.colors.whiteout.light};
   }
 `;
 
@@ -263,6 +264,8 @@ StyledEditor.defaultProps = {
   paddingX: 'base',
   fontSize: 'body',
 };
+
+// ---------------------------
 
 const TextareaMd = ({ label, ...rest }) => {
   const Wrapper = label ? Label : Fragment;

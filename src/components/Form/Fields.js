@@ -52,9 +52,6 @@ export const RequiredCharacters = styled.p`
  * @param {func}   onChange
  */
 export const renderField = (field, onChange, selectStyling) => {
-  // const charsLeft = plainTextValue
-  //   ? field.maxLength - plainTextValue.length
-  //   : field.maxLength;
   const charsUsed = field.value ? field.value.length : 0;
 
   if (field.type === 'textarea') {

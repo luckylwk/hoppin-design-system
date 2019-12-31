@@ -419,7 +419,9 @@ fields = [
       title:
         'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
       label: 'Your Pitch',
-      required: true
+      required: true,
+      maxLength: 300,
+      props: { minHeight: '150px' }
     },
     {
       name: 'ready',
@@ -487,7 +489,9 @@ Field objects need to have a key `type` with one of the following values:
         title:
           'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
         label: 'Your Pitch',
-        required: true
+        required: true,
+        maxLength: 300,
+        props: { minHeight: '100px' }
       },
       {
         name: 'ready',

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
 
+// ---------------------------
+
 const StyledSlider = styled(Slider)`
   &.rangeslider {
     margin: ${({ theme }) => `${theme.space.large} 0 ${theme.space[6]}`};
@@ -202,6 +204,8 @@ const StyledSlider = styled(Slider)`
     }
   }
 `;
+
+// ---------------------------
 
 const RangeSlider = ({ name, value, onChange, ...rest }) => {
   const onChangeHandler = newValue => {
