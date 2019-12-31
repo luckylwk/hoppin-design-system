@@ -34,9 +34,10 @@ export const RequiredText = styled.span`
 // ---------------------------
 
 export const RequiredCharacters = styled.p`
-  font-family: ${({ theme }) => theme.fonts.secondary};
   margin: 0;
   padding: 3px;
+
+  font-family: ${({ theme }) => theme.fonts.secondary};
 
   font-size: 12px;
   line-height: 12px;

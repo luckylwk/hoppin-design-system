@@ -57,25 +57,10 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
           />
           <Input
             name="email"
-            label="Email address"
-            placeholder="Email"
+            placeholder="Email (no label)"
             onChange={onChange}
             icon={<FiMail />}
             value={formData.email || ''}
-          />
-          <Input
-            name="no_label"
-            placeholder="No label"
-            onChange={onChange}
-            value={formData.no_label || ''}
-          />
-          <Input
-            name="linkedin"
-            placeholder="LinkedIn Profile URL"
-            onChange={onChange}
-            value={formData.linkedin || ''}
-            icon={<FiLinkedin />}
-            label="LinkedIn Profile URL"
           />
           <Input
             marginBottom="none"
@@ -131,20 +116,57 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
 
 <Playground>
   {() => {
-    const [value, setValue] = useState('Write something **bold**!');
+    const [formData, setFormData] = useState({ veryRichText: 'Write something **bold**!' });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
+    }
     return (
-      <TextareaMd
-        label="Write something exciting"
-        initialValue={value}
-        onChange={e => setValue(e.target.value)}
-        onBlur={e =>
-          console.log('editor lost focus, last value:', e.target.value)
-        }
-        enableBlocks={['paragraph']}
-        disableMarks={['deleted', 'code']}
-        minHeight={150}
-        maxHeight={400}
-      />
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px">
+          <TextareaMd
+            name="veryRichText"
+            label="Write something exciting"
+            initialValue={formData.veryRichText || ''}
+            onChange={onChange}
+            onBlur={e =>
+              console.log('editor lost focus, last value:', e.target.value)
+            }
+            enableBlocks={['paragraph']}
+            disableMarks={['deleted', 'code']}
+            minHeight={150}
+            maxHeight={400}
+          />
+        </Box>
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {lastEvent.value}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
     );
   }}
 </Playground>

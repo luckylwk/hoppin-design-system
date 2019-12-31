@@ -157,6 +157,7 @@ class TextareaMdField extends React.Component {
     onChange &&
       onChange({
         target: {
+          type: 'textarea',
           name: this.props.name,
           value: this.markdown.serialize(value),
         },
@@ -170,6 +171,7 @@ class TextareaMdField extends React.Component {
     onBlur &&
       onBlur({
         target: {
+          type: 'textarea',
           name: this.props.name,
           value: this.markdown.serialize(this.state.value),
         },

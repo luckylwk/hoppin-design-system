@@ -109,7 +109,7 @@ const Input = ({ label, theme, ...rest }) => {
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.85em',
+      top: '0.79em',
       [iconPosition]: theme.space.base,
     },
     color:
