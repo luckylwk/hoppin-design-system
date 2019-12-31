@@ -50,6 +50,8 @@ var EMPTY_VALUE = {
   }
 };
 
+// ---------------------------
+
 /**
  * A rich text editor.
  */
@@ -232,26 +234,36 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
   };
 }, _temp);
 
+// ---------------------------
 
-var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontSize, function (props) {
-  return props.theme.colors.whiteout.lighter;
-}, function (props) {
-  if (props.theme.colors[props.context] !== undefined) {
-    return props.theme.colors[props.context].light;
-  } else {
-    return props.theme.colors.neutral.light;
-  }
-}, function (_ref2) {
+var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontSize, function (_ref2) {
   var theme = _ref2.theme;
-  return theme.radii.small;
-}, function (props) {
-  if (props.context !== 'neutral' && props.theme.colors[props.context] !== undefined) {
-    return props.theme.colors[props.context].base;
+  return theme.colors.whiteout.lighter;
+}, function (_ref3) {
+  var theme = _ref3.theme,
+      context = _ref3.context;
+
+  if (theme.colors[context] !== undefined) {
+    return theme.colors[context].light;
   } else {
-    return props.theme.colors.primary.base;
+    return theme.colors.neutral.light;
   }
-}, function (props) {
-  return props.initialValue && props.initialValue.length > 0 ? props.theme.colors.whiteout.base : props.theme.colors.whiteout.light;
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.radii.small;
+}, function (_ref5) {
+  var theme = _ref5.theme,
+      context = _ref5.context;
+
+  if (context !== 'neutral' && theme.colors[context] !== undefined) {
+    return theme.colors[context].base;
+  } else {
+    return theme.colors.primary.base;
+  }
+}, function (_ref6) {
+  var theme = _ref6.theme,
+      initialValue = _ref6.initialValue;
+  return initialValue && initialValue.length > 0 ? theme.colors.whiteout.base : theme.colors.whiteout.light;
 });
 
 StyledEditor.defaultProps = {
@@ -262,9 +274,11 @@ StyledEditor.defaultProps = {
   fontSize: 'body'
 };
 
-var TextareaMd = function TextareaMd(_ref3) {
-  var label = _ref3.label,
-      rest = _objectWithoutProperties(_ref3, ['label']);
+// ---------------------------
+
+var TextareaMd = function TextareaMd(_ref7) {
+  var label = _ref7.label,
+      rest = _objectWithoutProperties(_ref7, ['label']);
 
   var Wrapper = label ? Label : Fragment;
   var wrapperProps = label ? { label: label, htmlFor: rest.name } : {};

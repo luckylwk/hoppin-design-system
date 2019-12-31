@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
 
+// ---------------------------
+
 var StyledSlider = styled(Slider)(_templateObject, function (_ref) {
   var theme = _ref.theme;
   return theme.space.large + ' 0 ' + theme.space[6];
@@ -36,6 +38,8 @@ var StyledSlider = styled(Slider)(_templateObject, function (_ref) {
   var theme = _ref8.theme;
   return theme.fontSizes.label;
 });
+
+// ---------------------------
 
 var RangeSlider = function RangeSlider(_ref9) {
   var name = _ref9.name,
