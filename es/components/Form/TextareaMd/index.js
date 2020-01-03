@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space, layout, flexbox, fontSize } from 'styled-system';
 
-import Label from '../Label';
+import { Label, RequiredText } from '../.';
 
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
@@ -204,6 +204,7 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
 
     onChange && onChange({
       target: {
+        type: 'textarea',
         name: _this3.props.name,
         value: _this3.markdown.serialize(value)
       }
@@ -217,6 +218,7 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
 
     onBlur && onBlur({
       target: {
+        type: 'textarea',
         name: _this3.props.name,
         value: _this3.markdown.serialize(_this3.state.value)
       }
@@ -278,16 +280,22 @@ StyledEditor.defaultProps = {
 
 var TextareaMd = function TextareaMd(_ref7) {
   var label = _ref7.label,
-      rest = _objectWithoutProperties(_ref7, ['label']);
+      required = _ref7.required,
+      rest = _objectWithoutProperties(_ref7, ['label', 'required']);
 
-  var Wrapper = label ? Label : Fragment;
-  var wrapperProps = label ? { label: label, htmlFor: rest.name } : {};
-  var inputProps = label ? { marginTop: 'small' } : {};
+  var LabelOrFragment = label ? Label : Fragment;
+  var labelProps = label ? { label: label, htmlFor: rest.name } : {};
+  var textareaProps = label ? { marginTop: 'small' } : {};
   return React.createElement(
-    Wrapper,
-    wrapperProps,
+    LabelOrFragment,
+    labelProps,
     label,
-    React.createElement(TextareaMdField, _extends({}, rest, inputProps))
+    label && required && React.createElement(
+      RequiredText,
+      null,
+      '*required'
+    ),
+    React.createElement(TextareaMdField, _extends({}, rest, textareaProps))
   );
 };
 

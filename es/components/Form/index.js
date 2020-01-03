@@ -10,3 +10,5 @@ export { default as RangeSlider } from './RangeSlider';
 export { default as getSelectStyling } from './SelectStyling';
 
 export { default as Fields } from './Fields';
+
+export { default as RequiredText } from './RequiredText';

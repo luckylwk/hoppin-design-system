@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { typography, space } from 'styled-system';
 
-import Label from './Label';
 import { Box } from '../Box';
+import { Label, RequiredText } from '.';
 
 // ---------------------------
 
@@ -94,8 +94,9 @@ var Input = function Input(_ref8) {
   var _style;
 
   var label = _ref8.label,
+      required = _ref8.required,
       theme = _ref8.theme,
-      rest = _objectWithoutProperties(_ref8, ['label', 'theme']);
+      rest = _objectWithoutProperties(_ref8, ['label', 'required', 'theme']);
 
   var icon = rest.icon,
       iconPosition = rest.iconPosition;
@@ -103,22 +104,26 @@ var Input = function Input(_ref8) {
 
   var LabelOrFragment = label ? Label : Fragment;
   var labelProps = label ? { label: label, htmlFor: rest.name } : {};
-  var inputProps = label ? { marginTop: 'small' } : {};
+  var inputProps = _extends({}, label && { marginTop: 'small' });
   // if we have an icon, we need to have a box gto position the icon
   var WrapperOrFragment = icon ? Box : Fragment;
   var wrapperProps = icon ? { position: 'relative' } : {};
   var iconProps = {
     style: (_style = {
       position: 'absolute',
-      top: '0.85em'
+      top: '0.79em'
     }, _style[iconPosition] = theme.space.base, _style),
     color: theme.colors[rest.context] && theme.colors[rest.context].base || theme.colors.neutral.base
   };
-
   return React.createElement(
     LabelOrFragment,
     labelProps,
     label,
+    label && required && React.createElement(
+      RequiredText,
+      null,
+      '*required'
+    ),
     React.createElement(
       WrapperOrFragment,
       wrapperProps,
