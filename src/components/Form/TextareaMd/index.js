@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space, layout, flexbox, fontSize } from 'styled-system';
 
-import Label from '../Label';
+import { Label, RequiredText } from '../.';
 
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
@@ -269,15 +269,16 @@ StyledEditor.defaultProps = {
 
 // ---------------------------
 
-const TextareaMd = ({ label, ...rest }) => {
-  const Wrapper = label ? Label : Fragment;
-  const wrapperProps = label ? { label, htmlFor: rest.name } : {};
-  const inputProps = label ? { marginTop: 'small' } : {};
+const TextareaMd = ({ label, required, ...rest }) => {
+  const LabelOrFragment = label ? Label : Fragment;
+  const labelProps = label ? { label, htmlFor: rest.name } : {};
+  const textareaProps = label ? { marginTop: 'small' } : {};
   return (
-    <Wrapper {...wrapperProps}>
+    <LabelOrFragment {...labelProps}>
       {label}
-      <TextareaMdField {...rest} {...inputProps} />
-    </Wrapper>
+      {label && required && <RequiredText>*required</RequiredText>}
+      <TextareaMdField {...rest} {...textareaProps} />
+    </LabelOrFragment>
   );
 };
 

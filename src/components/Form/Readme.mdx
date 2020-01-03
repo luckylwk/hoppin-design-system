@@ -6,6 +6,11 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
+import { DateUtils } from 'react-day-picker';
+import Select from 'react-select';
+import { ThemeConsumer } from 'styled-components';
+import { FiLinkedin, FiInstagram, FiMail, FiPhone } from 'react-icons/fi';
+
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
@@ -20,10 +25,6 @@ import RangeSlider from './RangeSlider';
 import getSelectStyling from './SelectStyling';
 import Fields from './Fields';
 import FieldsSortable from './FieldsSortable';
-import { DateUtils } from 'react-day-picker';
-import Select from 'react-select';
-import { ThemeConsumer } from 'styled-components';
-import { FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
 
 # Form
 
@@ -66,12 +67,13 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
             marginBottom="none"
             name="phone"
             type="tel"
-            placeholder="Phone number"
+            placeholder="Phone number (no marginBottom)"
             onChange={onChange}
             value={formData.phone || ''}
             icon={<FiPhone />}
-            label="Phone Number (no marginBottom)"
+            label="Phone Number "
             context="danger"
+            required
           />
         </Box>
         <Box 
@@ -138,6 +140,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
             disableMarks={['deleted', 'code']}
             minHeight={150}
             maxHeight={400}
+            required
           />
         </Box>
         <Box 
@@ -414,6 +417,7 @@ fields = [
     {
       name: 'name',
       type: 'group',
+      title: 'So, what is your name?',
       list: [
         {
           name: 'first_name',
@@ -428,12 +432,6 @@ fields = [
           renderWidth: 'full',
         },
       ],
-    },
-    {
-      name: 'linkedin',
-      type: 'text',
-      label: 'LinkedIn Profile URL',
-      icon: <FiLinkedin />
     },
     {
       name: 'pitch',
@@ -480,30 +478,46 @@ Field objects need to have a key `type` with one of the following values:
       {
         name: 'name',
         type: 'group',
+        title: 'So, what is your name?',
+        required: true,
         list: [
           {
             name: 'first_name',
             type: 'text',
-            title: 'First Name',
-            label: 'First Name',
+            label: 'Your first name',
+            placeholder: 'First name',
             required: true,
             renderWidth: 'full',
           },
           {
             name: 'last_name',
             type: 'text',
-            title: 'Last Name',
-            label: 'Last Name',
+            label: 'Your surname',
+            placeholder: 'Last Name',
             required: true,
             renderWidth: 'full',
           },
         ],
       },
       {
-        name: 'linkedin',
-        type: 'text',
-        label: 'LinkedIn Profile URL',
-        icon: <FiLinkedin />
+      name: 'name',
+      type: 'group',
+      title: 'Socials...',
+      list: [
+          {
+            name: 'instagram',
+            type: 'text',
+            label: 'Instagram',
+            required: true,
+            icon: <FiInstagram />
+          },
+          {
+            name: 'linkedin',
+            type: 'text',
+            label: 'LinkedIn Profile URL',
+            icon: <FiLinkedin />
+          },
+        ],
       },
       {
         name: 'pitch',

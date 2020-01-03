@@ -8,28 +8,12 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import Checkbox from './Checkbox';
-// import Calendar from './Calendar';
-import Input from './Input';
-import Label from './Label';
-import TextareaMd from './TextareaMd';
+import { Checkbox, Input, Label, TextareaMd, RequiredText } from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
-
-// ---------------------------
-
-export const RequiredText = styled.span`
-  display: inline-block;
-
-  margin-left: 6px;
-
-  font-size: 12px;
-  line-height: 10px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.base};
-`;
+import { Paragraph } from '../Paragraph';
 
 // ---------------------------
 
@@ -66,7 +50,8 @@ export const renderField = (field, onChange, selectStyling) => {
         <TextareaMd
           name={field.name}
           initialValue={field.value}
-          label={field.title ? undefined : field.label}
+          label={field.label}
+          placeholder={field.placeholder}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
           {...field.props}
@@ -235,6 +220,7 @@ export const renderField = (field, onChange, selectStyling) => {
         type={field.type}
         value={field.value || ''}
         name={field.name}
+        placeholder={field.placeholder}
         label={field.title ? undefined : field.label}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
@@ -263,33 +249,22 @@ const Fields = ({ onChange, fields, theme }) => {
       {fields.map(field => (
         <Box
           key={field.name}
-          mb={_has(field, 'marginBottom') ? field.marginBottom : 4}
+          marginBottom={
+            _has(field, 'marginBottom') ? field.marginBottom : 'large'
+          }
         >
           {field.type === 'group' ? (
             <Fragment>
-              {field.title && (
-                <Label>
-                  {field.title}
-                  {field.required && <RequiredText>*required</RequiredText>}
-                </Label>
-              )}
+              {field.title && <Paragraph>{field.title}</Paragraph>}
               <Flex>
                 {field.list.length > 0 &&
                   field.list.map((groupedField, ix) => (
                     <Box
                       key={`${field.name}-${groupedField.name}`}
                       flex={1}
-                      mr={1}
-                      ml={ix === 0 ? 0 : 1}
+                      marginRight="xsmall"
+                      marginLeft={ix === 0 ? 'none' : 'xsmall'}
                     >
-                      {groupedField.type && groupedField.title && (
-                        <Label>
-                          {groupedField.title}
-                          {groupedField.required && (
-                            <RequiredText>*required</RequiredText>
-                          )}
-                        </Label>
-                      )}
                       {groupedField.type
                         ? renderField(groupedField, onChange, selectStyling)
                         : null}
@@ -300,10 +275,9 @@ const Fields = ({ onChange, fields, theme }) => {
           ) : (
             <Fragment>
               {field.title && (
-                <Label paddingTop="small" paddingBottom="xsmall">
+                <Paragraph paddingTop="small" paddingBottom="xsmall">
                   {field.title}
-                  {field.required && <RequiredText>*required</RequiredText>}
-                </Label>
+                </Paragraph>
               )}
               {renderField(field, onChange, selectStyling)}
             </Fragment>
