@@ -55,6 +55,11 @@ export const RequiredCharacters = styled.p`
 export const renderField = (field, onChange, selectStyling) => {
   const charsUsed = field.value ? field.value.length : 0;
 
+  // To reset the margin underneath a field
+  if (field.maxLength && !_has(field, 'props.marginBottom')) {
+    field.props = { ...field.props, marginBottom: 0 };
+  }
+
   if (field.type === 'textarea') {
     return (
       <Fragment>
@@ -235,6 +240,7 @@ export const renderField = (field, onChange, selectStyling) => {
         context={field.context}
         renderWidth={field.renderWidth || 'full'}
         icon={field.icon}
+        {...field.props}
       />
       {field.maxLength && (
         <RequiredCharacters>

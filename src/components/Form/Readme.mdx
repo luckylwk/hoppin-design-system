@@ -574,6 +574,38 @@ Field objects need to have a key `type` with one of the following values:
 }}
 </Playground>
 
+Can also be used to provide more styling to individual fields (such as: `maxLength`)
+
+<Playground>
+  {() => {
+    const fieldsConfig = [
+      {
+        name: 'linkedin',
+        type: 'text',
+        label: 'LinkedIn Profile URL',
+        icon: <FiLinkedin />,
+        maxLength: 70
+      },
+      {
+        name: 'pitch',
+        type: 'textarea',
+        title:
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+        label: 'Your Pitch',
+        required: true,
+        maxLength: 300,
+        props: { minHeight: '100px' }
+      }
+    ];
+    const handleChange = (fieldName, event) => {
+      console.log(event.target)
+    }
+    return (
+      <Fields fields={fieldsConfig} onChange={handleChange} />
+    );
+}}
+</Playground>
+
 ## Sortable Drag&Drop Fields
 
 <Props of={FieldsSortable} />
