@@ -20,4 +20,5 @@ Text.defaultProps = {
 };
 
 Text.displayName = 'Text';
+
 export default Text;

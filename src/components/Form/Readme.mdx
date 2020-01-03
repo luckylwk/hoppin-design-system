@@ -6,6 +6,11 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
+import { DateUtils } from 'react-day-picker';
+import Select from 'react-select';
+import { ThemeConsumer } from 'styled-components';
+import { FiLinkedin, FiInstagram, FiMail, FiPhone } from 'react-icons/fi';
+
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
@@ -20,10 +25,6 @@ import RangeSlider from './RangeSlider';
 import getSelectStyling from './SelectStyling';
 import Fields from './Fields';
 import FieldsSortable from './FieldsSortable';
-import { DateUtils } from 'react-day-picker';
-import Select from 'react-select';
-import { ThemeConsumer } from 'styled-components';
-import { FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
 
 # Form
 
@@ -57,36 +58,22 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
           />
           <Input
             name="email"
-            label="Email address"
-            placeholder="Email"
+            placeholder="Email (no label)"
             onChange={onChange}
             icon={<FiMail />}
             value={formData.email || ''}
           />
           <Input
-            name="no_label"
-            placeholder="No label"
-            onChange={onChange}
-            value={formData.no_label || ''}
-          />
-          <Input
-            name="linkedin"
-            placeholder="LinkedIn Profile URL"
-            onChange={onChange}
-            value={formData.linkedin || ''}
-            icon={<FiLinkedin />}
-            label="LinkedIn Profile URL"
-          />
-          <Input
             marginBottom="none"
             name="phone"
             type="tel"
-            placeholder="Phone number"
+            placeholder="Phone number (no marginBottom)"
             onChange={onChange}
             value={formData.phone || ''}
             icon={<FiPhone />}
-            label="Phone Number (no marginBottom)"
+            label="Phone Number "
             context="danger"
+            required
           />
         </Box>
         <Box 
@@ -131,20 +118,58 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
 
 <Playground>
   {() => {
-    const [value, setValue] = useState('Write something **bold**!');
+    const [formData, setFormData] = useState({ veryRichText: 'Write something **bold**!' });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
+    }
     return (
-      <TextareaMd
-        label="Write something exciting"
-        initialValue={value}
-        onChange={e => setValue(e.target.value)}
-        onBlur={e =>
-          console.log('editor lost focus, last value:', e.target.value)
-        }
-        enableBlocks={['paragraph']}
-        disableMarks={['deleted', 'code']}
-        minHeight={150}
-        maxHeight={400}
-      />
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px">
+          <TextareaMd
+            name="veryRichText"
+            label="Write something exciting"
+            initialValue={formData.veryRichText || ''}
+            onChange={onChange}
+            onBlur={e =>
+              console.log('editor lost focus, last value:', e.target.value)
+            }
+            enableBlocks={['paragraph']}
+            disableMarks={['deleted', 'code']}
+            minHeight={150}
+            maxHeight={400}
+            required
+          />
+        </Box>
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {lastEvent.value}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
     );
   }}
 </Playground>
@@ -392,6 +417,7 @@ fields = [
     {
       name: 'name',
       type: 'group',
+      title: 'So, what is your name?',
       list: [
         {
           name: 'first_name',
@@ -406,12 +432,6 @@ fields = [
           renderWidth: 'full',
         },
       ],
-    },
-    {
-      name: 'linkedin',
-      type: 'text',
-      label: 'LinkedIn Profile URL',
-      icon: <FiLinkedin />
     },
     {
       name: 'pitch',
@@ -458,30 +478,46 @@ Field objects need to have a key `type` with one of the following values:
       {
         name: 'name',
         type: 'group',
+        title: 'So, what is your name?',
+        required: true,
         list: [
           {
             name: 'first_name',
             type: 'text',
-            title: 'First Name',
-            label: 'First Name',
+            label: 'Your first name',
+            placeholder: 'First name',
             required: true,
             renderWidth: 'full',
           },
           {
             name: 'last_name',
             type: 'text',
-            title: 'Last Name',
-            label: 'Last Name',
+            label: 'Your surname',
+            placeholder: 'Last Name',
             required: true,
             renderWidth: 'full',
           },
         ],
       },
       {
-        name: 'linkedin',
-        type: 'text',
-        label: 'LinkedIn Profile URL',
-        icon: <FiLinkedin />
+      name: 'name',
+      type: 'group',
+      title: 'Socials...',
+      list: [
+          {
+            name: 'instagram',
+            type: 'text',
+            label: 'Instagram',
+            required: true,
+            icon: <FiInstagram />
+          },
+          {
+            name: 'linkedin',
+            type: 'text',
+            label: 'LinkedIn Profile URL',
+            icon: <FiLinkedin />
+          },
+        ],
       },
       {
         name: 'pitch',
@@ -548,6 +584,38 @@ Field objects need to have a key `type` with one of the following values:
       });
     return (
       <Fields fields={fieldsWithData} onChange={handleChange} />
+    );
+}}
+</Playground>
+
+Can also be used to provide more styling to individual fields (such as: `maxLength`)
+
+<Playground>
+  {() => {
+    const fieldsConfig = [
+      {
+        name: 'linkedin',
+        type: 'text',
+        label: 'LinkedIn Profile URL',
+        icon: <FiLinkedin />,
+        maxLength: 70
+      },
+      {
+        name: 'pitch',
+        type: 'textarea',
+        title:
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+        label: 'Your Pitch',
+        required: true,
+        maxLength: 300,
+        props: { minHeight: '100px' }
+      }
+    ];
+    const handleChange = (fieldName, event) => {
+      console.log(event.target)
+    }
+    return (
+      <Fields fields={fieldsConfig} onChange={handleChange} />
     );
 }}
 </Playground>

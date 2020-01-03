@@ -24,31 +24,31 @@ var headingStyles = variant({
 });
 
 var Heading = styled('h2')(_templateObject, headingStyles, function (_ref) {
-  var theme = _ref.theme,
+  var colors = _ref.theme.colors,
       as = _ref.as;
 
   var colorCSS = '';
   switch (as) {
     case 'h1':
-      colorCSS = 'color: ' + theme.colors.primary.base + ';';
+      colorCSS = 'color: ' + colors.primary.base + ';';
       break;
     case 'h2':
-      colorCSS = 'color: ' + theme.colors.primary.base + ';';
+      colorCSS = 'color: ' + colors.primary.base + ';';
       break;
     case 'h3':
-      colorCSS = 'color: ' + theme.colors.neutral.darker + ';';
+      colorCSS = 'color: ' + colors.neutral.darker + ';';
       break;
     case 'h4':
-      colorCSS = 'color: ' + theme.colors.neutral.darker + ';';
+      colorCSS = 'color: ' + colors.neutral.darker + ';';
       break;
     case 'h5':
-      colorCSS = 'color: ' + theme.colors.neutral.dark + ';';
+      colorCSS = 'color: ' + colors.neutral.dark + ';';
       break;
     case 'h6':
-      colorCSS = 'color: ' + theme.colors.neutral.dark + ';';
+      colorCSS = 'color: ' + colors.neutral.dark + ';';
       break;
     default:
-      colorCSS = 'color: ' + theme.colors.primary.base + ';';
+      colorCSS = 'color: ' + colors.primary.base + ';';
       break;
   }
   return colorCSS;

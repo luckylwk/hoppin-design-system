@@ -35,29 +35,29 @@ const Heading = styled('h2')`
   /* use styled-system variants defined in tokens/typography */
   ${headingStyles}
   /* get color from theme to get dymanic context colors (host vs shadower)*/
-  ${({ theme, as }) => {
+  ${({ theme: { colors }, as }) => {
     let colorCSS = '';
     switch (as) {
       case 'h1':
-        colorCSS = `color: ${theme.colors.primary.base};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h2':
-        colorCSS = `color: ${theme.colors.primary.base};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h3':
-        colorCSS = `color: ${theme.colors.neutral.darker};`;
+        colorCSS = `color: ${colors.neutral.darker};`;
         break;
       case 'h4':
-        colorCSS = `color: ${theme.colors.neutral.darker};`;
+        colorCSS = `color: ${colors.neutral.darker};`;
         break;
       case 'h5':
-        colorCSS = `color: ${theme.colors.neutral.dark};`;
+        colorCSS = `color: ${colors.neutral.dark};`;
         break;
       case 'h6':
-        colorCSS = `color: ${theme.colors.neutral.dark};`;
+        colorCSS = `color: ${colors.neutral.dark};`;
         break;
       default:
-        colorCSS = `color: ${theme.colors.primary.base};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
     }
     return colorCSS;

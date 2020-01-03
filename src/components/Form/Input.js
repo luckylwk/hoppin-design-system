@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { typography, space } from 'styled-system';
 
-import Label from './Label';
 import { Box } from '../Box';
+import { Label, RequiredText } from '.';
 
 // ---------------------------
 
@@ -97,29 +97,29 @@ InputField.displayName = 'InputField';
 
 // ---------------------------
 
-const Input = ({ label, theme, ...rest }) => {
+const Input = ({ label, required, theme, ...rest }) => {
   const { icon, iconPosition } = rest;
   // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
   const LabelOrFragment = label ? Label : Fragment;
   const labelProps = label ? { label, htmlFor: rest.name } : {};
-  const inputProps = label ? { marginTop: 'small' } : {};
+  const inputProps = { ...(label && { marginTop: 'small' }) };
   // if we have an icon, we need to have a box gto position the icon
   const WrapperOrFragment = icon ? Box : Fragment;
   const wrapperProps = icon ? { position: 'relative' } : {};
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.85em',
+      top: '0.79em',
       [iconPosition]: theme.space.base,
     },
     color:
       (theme.colors[rest.context] && theme.colors[rest.context].base) ||
       theme.colors.neutral.base,
   };
-
   return (
     <LabelOrFragment {...labelProps}>
       {label}
+      {label && required && <RequiredText>*required</RequiredText>}
       <WrapperOrFragment {...wrapperProps}>
         <InputField {...rest} {...inputProps} />
         {icon && React.cloneElement(icon, iconProps)}

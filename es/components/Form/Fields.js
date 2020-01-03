@@ -1,7 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n'], ['\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n  color: ', ';\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n  font-family: ', ';\n  margin: 0;\n  padding: 3px;\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n'], ['\n  font-family: ', ';\n  margin: 0;\n  padding: 3px;\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  margin: 0;\n  padding: 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n'], ['\n  margin: 0;\n  padding: 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -15,30 +14,20 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import Checkbox from './Checkbox';
-// import Calendar from './Calendar';
-import Input from './Input';
-import Label from './Label';
-import TextareaMd from './TextareaMd';
+import { Checkbox, Input, Label, TextareaMd, RequiredText } from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
+import { Paragraph } from '../Paragraph';
 
 // ---------------------------
 
-export var RequiredText = styled.span(_templateObject, function (_ref) {
+export var RequiredCharacters = styled.p(_templateObject, function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.primary.base;
-});
-
-// ---------------------------
-
-export var RequiredCharacters = styled.p(_templateObject2, function (_ref2) {
-  var theme = _ref2.theme;
   return theme.fonts.secondary;
-}, function (_ref3) {
-  var theme = _ref3.theme;
+}, function (_ref2) {
+  var theme = _ref2.theme;
   return theme.colors.neutral.light;
 });
 
@@ -51,6 +40,11 @@ export var RequiredCharacters = styled.p(_templateObject2, function (_ref2) {
 export var renderField = function renderField(field, _onChange, selectStyling) {
   var charsUsed = field.value ? field.value.length : 0;
 
+  // To reset the margin underneath a field
+  if (field.maxLength && !_has(field, 'props.marginBottom')) {
+    field.props = _extends({}, field.props, { marginBottom: 0 });
+  }
+
   if (field.type === 'textarea') {
     return React.createElement(
       Fragment,
@@ -58,7 +52,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       React.createElement(TextareaMd, _extends({
         name: field.name,
         initialValue: field.value,
-        label: field.title ? undefined : field.label,
+        label: field.label,
+        placeholder: field.placeholder,
         onChange: _onChange.bind(null, field.name),
         context: field.context
       }, field.props)),
@@ -80,8 +75,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       clearValue: function clearValue() {
         return _onChange(field.name, { target: { value: '' } });
       },
-      onChange: function onChange(option, _ref4) {
-        var action = _ref4.action;
+      onChange: function onChange(option, _ref3) {
+        var action = _ref3.action;
 
         if (action === 'select-option' || action === 'create-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, { target: { value: option.value } });
@@ -103,8 +98,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       isMulti: field.type === 'multi-select',
       isClearable: field.type === 'multi-select',
       value: field.value,
-      onChange: function onChange(option, _ref5) {
-        var action = _ref5.action;
+      onChange: function onChange(option, _ref4) {
+        var action = _ref4.action;
 
         if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, {
@@ -133,8 +128,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     return React.createElement(Async, _extends({
       cacheOptions: false,
       value: field.value,
-      onChange: function onChange(option, _ref6) {
-        var action = _ref6.action;
+      onChange: function onChange(option, _ref5) {
+        var action = _ref5.action;
 
         if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
           return _onChange(field.name, {
@@ -207,16 +202,17 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
   return React.createElement(
     Fragment,
     null,
-    React.createElement(Input, {
+    React.createElement(Input, _extends({
       type: field.type,
       value: field.value || '',
       name: field.name,
+      placeholder: field.placeholder,
       label: field.title ? undefined : field.label,
       onChange: _onChange.bind(null, field.name),
       context: field.context,
       renderWidth: field.renderWidth || 'full',
       icon: field.icon
-    }),
+    }, field.props)),
     field.maxLength && React.createElement(
       RequiredCharacters,
       null,
@@ -231,10 +227,10 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
 // ---------------------------
 
-var Fields = function Fields(_ref7) {
-  var onChange = _ref7.onChange,
-      fields = _ref7.fields,
-      theme = _ref7.theme;
+var Fields = function Fields(_ref6) {
+  var onChange = _ref6.onChange,
+      fields = _ref6.fields,
+      theme = _ref6.theme;
 
   var selectStyling = getSelectStyling(theme);
 
@@ -246,20 +242,15 @@ var Fields = function Fields(_ref7) {
         Box,
         {
           key: field.name,
-          mb: _has(field, 'marginBottom') ? field.marginBottom : 4
+          marginBottom: _has(field, 'marginBottom') ? field.marginBottom : 'large'
         },
         field.type === 'group' ? React.createElement(
           Fragment,
           null,
           field.title && React.createElement(
-            Label,
+            Paragraph,
             null,
-            field.title,
-            field.required && React.createElement(
-              RequiredText,
-              null,
-              '*required'
-            )
+            field.title
           ),
           React.createElement(
             Flex,
@@ -270,19 +261,9 @@ var Fields = function Fields(_ref7) {
                 {
                   key: field.name + '-' + groupedField.name,
                   flex: 1,
-                  mr: 1,
-                  ml: ix === 0 ? 0 : 1
+                  marginRight: 'xsmall',
+                  marginLeft: ix === 0 ? 'none' : 'xsmall'
                 },
-                groupedField.type && groupedField.title && React.createElement(
-                  Label,
-                  null,
-                  groupedField.title,
-                  groupedField.required && React.createElement(
-                    RequiredText,
-                    null,
-                    '*required'
-                  )
-                ),
                 groupedField.type ? renderField(groupedField, onChange, selectStyling) : null
               );
             })
@@ -291,14 +272,9 @@ var Fields = function Fields(_ref7) {
           Fragment,
           null,
           field.title && React.createElement(
-            Label,
+            Paragraph,
             { paddingTop: 'small', paddingBottom: 'xsmall' },
-            field.title,
-            field.required && React.createElement(
-              RequiredText,
-              null,
-              '*required'
-            )
+            field.title
           ),
           renderField(field, onChange, selectStyling)
         )
