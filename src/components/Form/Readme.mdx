@@ -131,7 +131,8 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
           <TextareaMd
             name="veryRichText"
             label="Write something exciting"
-            initialValue={formData.veryRichText || ''}
+            // initialValue={formData.veryRichText || ''}
+            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
             onChange={onChange}
             onBlur={e =>
               console.log('editor lost focus, last value:', e.target.value)
