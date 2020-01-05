@@ -221,6 +221,7 @@ class TextareaMdField extends React.Component {
 const StyledEditor = styled(Editor)`
   box-sizing: border-box;
   display: block;
+  position: relative;
 
   ${space}
   ${layout}
@@ -256,6 +257,10 @@ const StyledEditor = styled(Editor)`
       initialValue && initialValue.length > 0
         ? theme.colors.whiteout.base
         : theme.colors.whiteout.light};
+  }
+
+  & > p {
+    overflow-wrap: break-word;
   }
 `;
 
