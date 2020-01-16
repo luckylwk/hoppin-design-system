@@ -14,7 +14,7 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, RequiredText } from '.';
+import { Checkbox, Input, Label, TextareaMd } from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
