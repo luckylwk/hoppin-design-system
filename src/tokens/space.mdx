@@ -38,3 +38,39 @@ To minimize random problems with z-index clashes, please set the z-indexes with 
 ## ContainerWidths
 
 Only to be used with [Container](/components/Container). See the docs for the component.
+
+## Breakpoints and Media Queries
+
+All styles are defined mobile-first. Meaning the default styles are set for tiny (phone) screens and media queries are used to add specific styles for larger screens.
+
+The [styled system docs on responsive styles](https://styled-system.com/responsive-styles) explain really well how this works.
+
+If you need to access the breakpoints directly, they are available as `theme.breakpoints` in the theme object.
+
+There are three breakpoints:
+- `theme.breakpoints[0]` or `theme.breakpoints.small` - for huge phones or small tablets
+- `theme.breakpoints[1]` or `theme.breakpoints.medium` - for tablets and smaller desktop windows
+- `theme.breakpoints[2]` or `theme.breakpoints.large` - for iPad Pros and large desktop windows
+
+For convenience, there's also a 'mediaQueries' object in the theme.
+
+Use it like:
+
+```
+styled.div`
+  ${/* default styles (mobile)*/}
+  color: blue;
+
+  ${/* get the media query for medium screens (desktop) and override styles */}
+
+   ${({theme}) => theme.mediaQueries.medium} {
+       color: red;
+   }
+
+  ${/* you can also use the array index [0,1,2] (below gets 2 / large) */}
+
+   ${({theme}) => theme.mediaQueries[2]} {
+       color: red;
+   }
+`
+```

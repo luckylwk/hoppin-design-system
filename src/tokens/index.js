@@ -1,5 +1,12 @@
 import { colors } from './colors';
-import { space, containerWidths, radii, zIndices } from './space';
+import {
+  space,
+  containerWidths,
+  radii,
+  zIndices,
+  breakpoints,
+  mediaQueries,
+} from './space';
 import { buttonSizes, buttonIconSpacing } from './buttons';
 import { shadows } from './shadows';
 import {
@@ -14,6 +21,8 @@ import { logo, icon } from './logos';
 export default {
   space,
   containerWidths,
+  breakpoints,
+  mediaQueries,
   radii,
   zIndices,
   fonts,
