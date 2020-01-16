@@ -45,4 +45,20 @@ zIndices.front = zIndices[3];
 zIndices.nav = zIndices[4];
 zIndices.overlay = zIndices[5];
 
-export { space, containerWidths, radii, zIndices };
+// breakpoints are mobile-first use no breakpoint to target phones and up
+const breakpoints = ['40em', '52em', '64em'];
+breakpoints.small = breakpoints[0]; // tablets
+breakpoints.medium = breakpoints[1]; // large tablets, desktop
+breakpoints.large = breakpoints[2]; // big screens
+
+const mediaQueries = [
+  `@media screen and (min-width: ${breakpoints[0]})`,
+  `@media screen and (min-width: ${breakpoints[1]})`,
+  `@media screen and (min-width: ${breakpoints[2]})`,
+];
+
+mediaQueries.small = mediaQueries[0]; // tablets
+mediaQueries.medium = mediaQueries[1]; // large tablets, desktop
+mediaQueries.large = mediaQueries[2]; // big screens
+
+export { space, containerWidths, radii, zIndices, breakpoints, mediaQueries };
