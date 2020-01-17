@@ -34,4 +34,6 @@ export * from './components/Form';
 export * from './components/SteppedForm';
 export * from './components/Loader';
 
+export * from './components/Tooltip';
+
 export { default as tokens } from './tokens';

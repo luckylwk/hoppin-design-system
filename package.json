@@ -1,6 +1,6 @@
 {
   "name": "hoppin-design-system",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
@@ -26,6 +26,7 @@
     "react-rangeslider": "^2.2.0",
     "react-router-dom": "^5.0.1",
     "react-select": "^3.0.4",
+    "react-tooltip": "^3.11.2",
     "react-transition-group": "^4.3.0",
     "rehype-react": "^4.0.1",
     "remark-github-break": "^0.0.0",
@@ -54,9 +55,9 @@
     "react-dom": ">=16.9.0"
   },
   "scripts": {
-    "build": "yarn run clean && yarn run build:nwb:es && yarn run build:docz",
+    "build": "yarn run clean && yarn run build:components && yarn run build:docz",
     "now-build": "yarn run build:docz",
-    "build:nwb:es": "nwb build-react-component",
+    "build:components": "nwb build-react-component",
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",
     "build:docz": "docz build",
@@ -67,7 +68,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn run build:nwb:es"
+      "pre-commit": "lint-staged && yarn run build:components"
     }
   },
   "lint-staged": {

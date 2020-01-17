@@ -1,0 +1,85 @@
+---
+name: Tooltip
+route: /components/Tooltip
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { Tooltip } from '.';
+import { Box } from '../Box';
+
+# Tooltip
+
+The Tooltip is used to show extra information on hover. Use sparingly as it onluy works on desktop, since mobile devices have no hover state.
+
+Tooltip is based on [react-tooltip](https://github.com/wwayne/react-tooltip). Check out the [react-tooltip docs](https://react-tooltip.netlify.com/) for more usage examples.
+Don't use the `react-tooltip` prop `type`. Instead use `context` as you would for a [Button](/components/Button)
+
+Use `data-tip` attribute on any element to attach a `Tooltip` to it.
+Then add `data-for="someid"` to the same element.
+Finally give the `<Tooltip id='someid'>` to link the two.
+
+## Props
+
+<Props of={Tooltip} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  {/* Boxes are just for layout */}
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='default'> d(`･∀･)b </a>
+    <Tooltip id='default'>
+      Default is dark
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='context'> ( •̀д•́) </a>
+    <Tooltip id='context' context='whiteout'>
+      Make it light with whiteout
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='anotherContext'> (･ω´･ )́) </a>
+    <Tooltip id='anotherContext' context='host'>
+      Or any other color context
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='solid-dont-move'> (❂‿❂) </a>
+    <Tooltip id='solid-dont-move' effect='solid'>
+      Don't move
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='place-right'> இдஇ </a>
+    <Tooltip id='place-right' place='right'>
+      Don't move
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='place-bottom'> (〃∀〃) </a>
+    <Tooltip id='place-bottom' place='bottom'>
+      Stick to the bottom
+    </Tooltip>
+
+  </Box>
+  <Box padding='xlarge' paddingLeft="xlarge">
+
+    <a data-tip data-for='solid-left'> ¯\_(ツ)_/¯ </a>
+    <Tooltip id='solid-left' effect='solid' place='left'>
+      Don't move, stay left
+    </Tooltip>
+
+  </Box>
+</Playground>
