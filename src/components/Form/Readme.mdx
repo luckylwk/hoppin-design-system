@@ -22,6 +22,7 @@ import Label from './Label';
 import Calendar from './Calendar';
 import Errors from './Errors';
 import RangeSlider from './RangeSlider';
+import SingleSelectButton from './SingleSelectButton';
 import getSelectStyling from './SelectStyling';
 import Fields from './Fields';
 import FieldsSortable from './FieldsSortable';
@@ -301,6 +302,65 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
 }}
 </Playground>
 
+## SingleSelectButton
+
+<Props of={SingleSelectButton} />
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({ duration: '1 day' });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px">
+          <SingleSelectButton
+            name="duration"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' }, 
+              { value: '1 day', label: '1 day' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.duration}
+            onChange={onChange}
+          />
+        </Box>
+        <Box 
+          margin="base" 
+          padding="base" 
+          maxWidth="300px" 
+          bg="neutral.darker" 
+          color="white" 
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {lastEvent.value}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+  }}
+</Playground>
+
 ## Select
 
 HDS exports `getSelectStyling(theme)` to be used with [React Select](https://react-select.com)
@@ -521,6 +581,18 @@ Field objects need to have a key `type` with one of the following values:
         placeholder: 'yourname@example.org',
         required: true,
         props: { marginBottom: 'none' }
+      },
+      {
+        name: 'opt-in',
+        type: 'single-select-button',
+        title: 'Do you want to opt-in',
+        explain: "We don't know for what either",
+        options: [
+          { value: 'hell no', label: 'Hell no!' }, 
+          { value: 'oh yeah', label: 'Oh yeah!' }
+        ],
+        value: undefined,
+        required: true,
       },
       {
       name: 'name',

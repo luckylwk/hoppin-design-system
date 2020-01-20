@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
 import Select from 'react-select';
@@ -8,40 +8,20 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd } from '.';
+import {
+  Checkbox,
+  Input,
+  Label,
+  TextareaMd,
+  RequiredCharacters,
+  FieldExplanation,
+  SingleSelectButton,
+} from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Paragraph } from '../Paragraph';
-
-// ---------------------------
-
-export const RequiredCharacters = styled.p`
-  margin: 0;
-  padding: 4px 3px;
-
-  font-family: ${({ theme }) => theme.fonts.secondary};
-
-  font-size: 12px;
-  line-height: 12px;
-  color: ${({ theme }) => theme.colors.neutral.light};
-
-  text-align: right;
-`;
-
-export const FieldExplanation = styled.p`
-  margin: 0;
-  padding: 4px 3px;
-
-  font-family: ${({ theme }) => theme.fonts.secondary};
-
-  font-size: 12px;
-  line-height: 12px;
-  color: ${({ theme }) => theme.colors.neutral.base};
-
-  text-align: left;
-`;
 
 // ---------------------------
 
@@ -207,8 +187,23 @@ export const renderField = (field, onChange, selectStyling) => {
         label={field.label}
         checked={field.checked}
         onChange={onChange.bind(null, field.name)}
-        context={field.context}
       />
+    );
+  }
+
+  if (field.type === 'single-select-button') {
+    return (
+      <Fragment>
+        <SingleSelectButton
+          name={field.name}
+          options={field.options}
+          value={field.value}
+          onChange={onChange.bind(null, field.name)}
+        />
+        {field.explain && (
+          <FieldExplanation marginTop="4px">{field.explain}</FieldExplanation>
+        )}
+      </Fragment>
     );
   }
 
