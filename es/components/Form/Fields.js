@@ -1,13 +1,8 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n'], ['\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: right;\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: left;\n'], ['\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ', ';\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ', ';\n\n  text-align: left;\n']);
-
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
-
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
 import Select from 'react-select';
@@ -15,30 +10,12 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd } from '.';
+import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton } from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Paragraph } from '../Paragraph';
-
-// ---------------------------
-
-export var RequiredCharacters = styled.p(_templateObject, function (_ref) {
-  var theme = _ref.theme;
-  return theme.fonts.secondary;
-}, function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.colors.neutral.light;
-});
-
-export var FieldExplanation = styled.p(_templateObject2, function (_ref3) {
-  var theme = _ref3.theme;
-  return theme.fonts.secondary;
-}, function (_ref4) {
-  var theme = _ref4.theme;
-  return theme.colors.neutral.base;
-});
 
 // ---------------------------
 
@@ -95,8 +72,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
         clearValue: function clearValue() {
           return _onChange(field.name, { target: { value: '' } });
         },
-        onChange: function onChange(option, _ref5) {
-          var action = _ref5.action;
+        onChange: function onChange(option, _ref) {
+          var action = _ref.action;
 
           if (action === 'select-option' || action === 'create-option' || action === 'remove-value' || action === 'pop-value') {
             return _onChange(field.name, { target: { value: option.value } });
@@ -130,8 +107,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
         isMulti: field.type === 'multi-select',
         isClearable: field.type === 'multi-select',
         value: field.value,
-        onChange: function onChange(option, _ref6) {
-          var action = _ref6.action;
+        onChange: function onChange(option, _ref2) {
+          var action = _ref2.action;
 
           if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
             return _onChange(field.name, {
@@ -171,8 +148,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       React.createElement(Async, _extends({
         cacheOptions: false,
         value: field.value,
-        onChange: function onChange(option, _ref7) {
-          var action = _ref7.action;
+        onChange: function onChange(option, _ref3) {
+          var action = _ref3.action;
 
           if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
             return _onChange(field.name, {
@@ -207,9 +184,26 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       name: field.name,
       label: field.label,
       checked: field.checked,
-      onChange: _onChange.bind(null, field.name),
-      context: field.context
+      onChange: _onChange.bind(null, field.name)
     });
+  }
+
+  if (field.type === 'single-select-button') {
+    return React.createElement(
+      Fragment,
+      null,
+      React.createElement(SingleSelectButton, {
+        name: field.name,
+        options: field.options,
+        value: field.value,
+        onChange: _onChange.bind(null, field.name)
+      }),
+      field.explain && React.createElement(
+        FieldExplanation,
+        { marginTop: '4px' },
+        field.explain
+      )
+    );
   }
 
   if (field.type === 'inline-submit') {
@@ -282,10 +276,10 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
 // ---------------------------
 
-var Fields = function Fields(_ref8) {
-  var onChange = _ref8.onChange,
-      fields = _ref8.fields,
-      theme = _ref8.theme;
+var Fields = function Fields(_ref4) {
+  var onChange = _ref4.onChange,
+      fields = _ref4.fields,
+      theme = _ref4.theme;
 
   var selectStyling = getSelectStyling(theme);
 

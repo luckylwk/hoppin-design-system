@@ -3,13 +3,11 @@ var _this = this;
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Paragraph, ButtonGroup, Button } from 'hoppin-design-system';
+import { Button, ButtonGroup } from '../Button';
 
-// TODO: Single select only!
-var SelectButton = function SelectButton(_ref) {
+var SingleSelectButton = function SingleSelectButton(_ref) {
   var name = _ref.name,
       type = _ref.type,
-      title = _ref.title,
       options = _ref.options,
       value = _ref.value,
       onChange = _ref.onChange;
@@ -17,11 +15,6 @@ var SelectButton = function SelectButton(_ref) {
   return React.createElement(
     Fragment,
     null,
-    title && React.createElement(
-      Paragraph,
-      null,
-      title
-    ),
     React.createElement(
       ButtonGroup,
       null,
@@ -44,18 +37,18 @@ var SelectButton = function SelectButton(_ref) {
   );
 };
 
-SelectButton.propTypes = process.env.NODE_ENV !== "production" ? {
+SingleSelectButton.propTypes = process.env.NODE_ENV !== "production" ? {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  title: PropTypes.string,
+  value: PropTypes.string,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired
 } : {};
 
-SelectButton.defaultProps = {
-  type: 'select-button'
+SingleSelectButton.defaultProps = {
+  type: 'single-select-button'
 };
 
-SelectButton.displayName = 'SelectButton';
+SingleSelectButton.displayName = 'SingleSelectButton';
 
-export default SelectButton;
+export default SingleSelectButton;
