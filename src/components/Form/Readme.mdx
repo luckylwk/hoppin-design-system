@@ -422,14 +422,21 @@ fields = [
         {
           name: 'first_name',
           type: 'text',
-          label: 'First Name',
+          label: 'Your first name',
+          placeholder: 'First name',
+          required: true,
           renderWidth: 'full',
+          maxLength: 25,
         },
         {
           name: 'last_name',
-          type: 'time',
-          label: 'Last Name',
+          type: 'text',
+          label: 'Your surname',
+          explain: 'Let me explain this',
+          placeholder: 'Last Name',
+          required: true,
           renderWidth: 'full',
+          props: { marginBottom: 'none' }
         },
       ],
     },
@@ -448,15 +455,18 @@ fields = [
       type: 'checkbox',
       label: `I'm ready`,
     },
-    {
+   {
       name: 'favourite_icecream',
       type: 'select',
+      title:
+        `What's your favourite ice cream flavor?`,
       label:
-        `What's your favourite ice cream flavour?`,
+        `Select it from here`,
+      explain: 'Start typing to find your favorite flavor',
       options: [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
+        { value: 'vanilla', label: 'Vanilla' }
       ]
     },
   ]
@@ -488,16 +498,29 @@ Field objects need to have a key `type` with one of the following values:
             placeholder: 'First name',
             required: true,
             renderWidth: 'full',
+            maxLength: 25,
           },
           {
             name: 'last_name',
             type: 'text',
             label: 'Your surname',
+            explain: 'Let me explain this',
             placeholder: 'Last Name',
             required: true,
             renderWidth: 'full',
+            props: { marginBottom: 'none' }
           },
         ],
+      },
+      {
+        name: 'email',
+        type: 'email',
+        title: 'Provide your email for any communications',
+        label: 'Email',
+        explain: 'Your email address will not be shared with any third parties',
+        placeholder: 'yourname@example.org',
+        required: true,
+        props: { marginBottom: 'none' }
       },
       {
       name: 'name',
@@ -537,12 +560,15 @@ Field objects need to have a key `type` with one of the following values:
       {
         name: 'favourite_icecream',
         type: 'select',
+        title:
+          `What's your favourite ice cream flavor?`,
         label:
-          `What's your favourite ice cream flavour?`,
+          `Select it from here`,
+        explain: 'Start typing to find your favorite flavor',
         options: [
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },
-          { value: 'vanilla', label: 'Vanilla' },
+          { value: 'vanilla', label: 'Vanilla' }
         ]
       },
       {

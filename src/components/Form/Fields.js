@@ -19,7 +19,7 @@ import { Paragraph } from '../Paragraph';
 
 export const RequiredCharacters = styled.p`
   margin: 0;
-  padding: 3px;
+  padding: 4px 3px;
 
   font-family: ${({ theme }) => theme.fonts.secondary};
 
@@ -28,6 +28,19 @@ export const RequiredCharacters = styled.p`
   color: ${({ theme }) => theme.colors.neutral.light};
 
   text-align: right;
+`;
+
+export const FieldExplanation = styled.p`
+  margin: 0;
+  padding: 4px 3px;
+
+  font-family: ${({ theme }) => theme.fonts.secondary};
+
+  font-size: 12px;
+  line-height: 12px;
+  color: ${({ theme }) => theme.colors.neutral.base};
+
+  text-align: left;
 `;
 
 // ---------------------------
@@ -63,103 +76,127 @@ export const renderField = (field, onChange, selectStyling) => {
             {field.maxLength} characters.
           </RequiredCharacters>
         )}
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
       </Fragment>
     );
   }
 
   if (field.type === 'creatable-select') {
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.label, htmlFor: field.name }
+      : {};
     return (
-      <Creatable
-        isClearable
-        clearValue={() => onChange(field.name, { target: { value: '' } })}
-        onChange={(option, { action }) => {
-          if (
-            action === 'select-option' ||
-            action === 'create-option' ||
-            action === 'remove-value' ||
-            action === 'pop-value'
-          ) {
-            return onChange(field.name, { target: { value: option.value } });
-          }
-          if (action === 'clear') {
-            return onChange(field.name, { target: { value: '' } });
-          }
-        }}
-        formatCreateLabel={userInput => `Click to add: ${userInput}`}
-        options={field.options}
-        value={{ label: field.value, value: field.value }}
-        {...selectStyling}
-      />
+      <LabelOrFragment {...labelProps}>
+        {field.label}
+        <Creatable
+          isClearable
+          clearValue={() => onChange(field.name, { target: { value: '' } })}
+          onChange={(option, { action }) => {
+            if (
+              action === 'select-option' ||
+              action === 'create-option' ||
+              action === 'remove-value' ||
+              action === 'pop-value'
+            ) {
+              return onChange(field.name, { target: { value: option.value } });
+            }
+            if (action === 'clear') {
+              return onChange(field.name, { target: { value: '' } });
+            }
+          }}
+          formatCreateLabel={userInput => `Click to add: ${userInput}`}
+          options={field.options}
+          value={{ label: field.value, value: field.value }}
+          {...selectStyling}
+        />
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </LabelOrFragment>
     );
   }
 
   if (field.type === 'select' || field.type === 'multi-select') {
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.label, htmlFor: field.name }
+      : {};
     return (
-      <Select
-        isMulti={field.type === 'multi-select'}
-        isClearable={field.type === 'multi-select'}
-        value={field.value}
-        onChange={(option, { action }) => {
-          if (
-            action === 'select-option' ||
-            action === 'remove-value' ||
-            action === 'pop-value'
-          ) {
-            return onChange(field.name, {
-              target: {
-                value:
-                  field.type === 'multi-select'
-                    ? option.map(_option => _option.value)
-                    : option,
-                label:
-                  field.type === 'multi-select'
-                    ? option.map(_option => _option.label)
-                    : option,
-              },
-            });
-          }
-          if (action === 'clear') {
-            return onChange(field.name, {
-              target: { value: field.type === 'multi-select' ? [] : {} },
-            });
-          }
-        }}
-        options={field.options}
-        {...selectStyling}
-      />
+      <LabelOrFragment {...labelProps}>
+        {field.label}
+        <Select
+          isMulti={field.type === 'multi-select'}
+          isClearable={field.type === 'multi-select'}
+          value={field.value}
+          onChange={(option, { action }) => {
+            if (
+              action === 'select-option' ||
+              action === 'remove-value' ||
+              action === 'pop-value'
+            ) {
+              return onChange(field.name, {
+                target: {
+                  value:
+                    field.type === 'multi-select'
+                      ? option.map(_option => _option.value)
+                      : option,
+                  label:
+                    field.type === 'multi-select'
+                      ? option.map(_option => _option.label)
+                      : option,
+                },
+              });
+            }
+            if (action === 'clear') {
+              return onChange(field.name, {
+                target: { value: field.type === 'multi-select' ? [] : {} },
+              });
+            }
+          }}
+          options={field.options}
+          {...selectStyling}
+        />
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </LabelOrFragment>
     );
   }
 
   // Used for location (using Google GeoLocation API)
   if (field.type === 'async-select') {
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.label, htmlFor: field.name }
+      : {};
     return (
-      <Async
-        cacheOptions={false}
-        value={field.value}
-        onChange={(option, { action }) => {
-          if (
-            action === 'select-option' ||
-            action === 'remove-value' ||
-            action === 'pop-value'
-          ) {
-            return onChange(field.name, {
-              target: {
-                value: option,
-              },
-            });
-          } else if (action === 'clear') {
-            return onChange(field.name, {
-              target: {
-                value: {},
-              },
-            });
-          }
-        }}
-        loadOptions={field.options}
-        placeholder="Search..."
-        noOptionsMessage={() => 'Start typing to start the search'}
-        {...selectStyling}
-      />
+      <LabelOrFragment {...labelProps}>
+        <Async
+          cacheOptions={false}
+          value={field.value}
+          onChange={(option, { action }) => {
+            if (
+              action === 'select-option' ||
+              action === 'remove-value' ||
+              action === 'pop-value'
+            ) {
+              return onChange(field.name, {
+                target: {
+                  value: option,
+                },
+              });
+            } else if (action === 'clear') {
+              return onChange(field.name, {
+                target: {
+                  value: {},
+                },
+              });
+            }
+          }}
+          loadOptions={field.options}
+          placeholder="Search..."
+          noOptionsMessage={() => 'Start typing to start the search'}
+          {...selectStyling}
+        />
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </LabelOrFragment>
     );
   }
 
@@ -221,7 +258,8 @@ export const renderField = (field, onChange, selectStyling) => {
         value={field.value || ''}
         name={field.name}
         placeholder={field.placeholder}
-        label={field.title ? undefined : field.label}
+        // label={field.title ? undefined : field.label}
+        label={field.label}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
         renderWidth={field.renderWidth || 'full'}
@@ -235,6 +273,7 @@ export const renderField = (field, onChange, selectStyling) => {
           {field.maxLength} characters.
         </RequiredCharacters>
       )}
+      {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
     </Fragment>
   );
 };
