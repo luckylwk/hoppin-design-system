@@ -1,7 +1,11 @@
-.PHONY: install pretty test/pretty build dev start deploy/now
+.PHONY: install clean pretty test/pretty build dev start deploy/now
 
 install:
 	yarn install
+
+clean:
+	rm -rf node_modules;
+	ls;
 
 pretty:
 	yarn prettier:all
