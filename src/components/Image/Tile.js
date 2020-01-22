@@ -26,6 +26,11 @@ const Tile = styled(Box)`
       : ''} 
   background-size: cover;
   background-position: center;
+
+  ${'' /* Print bg image, otherwise there's funny white spaces */}
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
 `;
 
 Tile.propTypes = {
