@@ -21,6 +21,7 @@ const Wrapper = styled(Box)`
 const Avatar = ({ src, size, squared, ...rest }) => (
   <Wrapper size={size} {...rest}>
     <Tile src={src} ratio="1/1" borderRadius={squared ? '12px' : '50%'} />
+    {/* TODO: use border radius from theme, why 12px? */}
   </Wrapper>
 );
 
