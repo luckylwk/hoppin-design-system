@@ -15,16 +15,19 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
 import { UnorderedList, ListItem } from '../List';
-import Input from './Input';
-import TextareaMd from './TextareaMd';
-import Checkbox from './Checkbox';
-import Label from './Label';
 import Calendar from './Calendar';
-import Errors from './Errors';
-import RangeSlider from './RangeSlider';
-import SingleSelectButton from './SingleSelectButton';
+import {
+  Fields,
+  Input,
+  TextareaMd,
+  Checkbox,
+  Label,
+  SingleSelectButton,
+  SelectButton,
+  RangeSlider,
+  Errors
+} from '../Form';
 import getSelectStyling from './SelectStyling';
-import Fields from './Fields';
 import FieldsSortable from './FieldsSortable';
 
 # Form
@@ -77,12 +80,12 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
             required
           />
         </Box>
-        <Box 
-          margin="base" 
-          padding="base" 
-          maxWidth="300px" 
-          bg="neutral.darker" 
-          color="white" 
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
           borderRadius="5px"
         >
           <Paragraph>
@@ -144,12 +147,12 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
             required
           />
         </Box>
-        <Box 
-          margin="base" 
-          padding="base" 
-          maxWidth="300px" 
-          bg="neutral.darker" 
-          color="white" 
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
           borderRadius="5px"
         >
           <Paragraph>
@@ -226,12 +229,12 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
             />
           </Box>
         </Box>
-        <Box 
-          margin="base" 
-          padding="base" 
-          maxWidth="300px" 
-          bg="neutral.darker" 
-          color="white" 
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
           borderRadius="5px"
         >
           <Paragraph>
@@ -302,6 +305,67 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
 }}
 </Playground>
 
+## SelectButton
+
+<Props of={SelectButton} />
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({ durations: ['1 day'] });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: value })
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px">
+          <SelectButton
+            name="durations"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' },
+              { value: '1 day', label: '1 day' },
+              { value: '2 days', label: '2 days' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.durations}
+            onChange={onChange}
+            isMultiSelect
+          />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {JSON.stringify(lastEvent.value)}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+  }}
+</Playground>
+
 ## SingleSelectButton
 
 <Props of={SingleSelectButton} />
@@ -322,7 +386,7 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
             name="duration"
             title="Select the duration of your experience"
             options={[
-              { value: '1/2 day', label: '1/2 day' }, 
+              { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
               { value: '1 week', label: '1 week' }
             ]}
@@ -330,12 +394,12 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
             onChange={onChange}
           />
         </Box>
-        <Box 
-          margin="base" 
-          padding="base" 
-          maxWidth="300px" 
-          bg="neutral.darker" 
-          color="white" 
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
           borderRadius="5px"
         >
           <Paragraph>
@@ -419,12 +483,12 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
             />
           </Box>
         </Box>
-        <Box 
-          margin="base" 
-          padding="base" 
-          maxWidth="300px" 
-          bg="neutral.darker" 
-          color="white" 
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
           borderRadius="5px"
         >
           <Paragraph>
@@ -588,7 +652,7 @@ Field objects need to have a key `type` with one of the following values:
         title: 'Do you want to opt-in',
         explain: "We don't know for what either",
         options: [
-          { value: 'hell no', label: 'Hell no!' }, 
+          { value: 'hell no', label: 'Hell no!' },
           { value: 'oh yeah', label: 'Oh yeah!' }
         ],
         value: undefined,

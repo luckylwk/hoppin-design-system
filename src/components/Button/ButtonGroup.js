@@ -27,6 +27,7 @@ ButtonGroup.defaultProps = {
   width: 1, // fill available space
   flexDirection: 'row', // horizontal row of buttons
   justifyContent: 'flex-start', // align left
+  flexWrap: 'wrap',
 };
 
 ButtonGroup.displayName = 'ButtonGroup';
