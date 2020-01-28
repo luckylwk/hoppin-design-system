@@ -10,7 +10,9 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton } from '.';
+import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton
+// SelectButton
+} from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
