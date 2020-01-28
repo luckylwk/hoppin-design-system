@@ -18,12 +18,12 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { FullScreenStepWrapper, StepMd, StepForm, StepMultipleChoice, StepTimeline, StepCustom } from './index';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { Loader } from '../Loader';
-import { ProgressBar } from '../Progress';
-
 import _findIndex from 'lodash/findIndex';
 import _template from 'lodash/template';
 import _merge from 'lodash/merge';
+
+import { Loader } from '../Loader';
+import { ProgressBar } from '../Progress';
 
 var SteppedForm = (_temp = _class = function (_Component) {
   _inherits(SteppedForm, _Component);
@@ -60,21 +60,21 @@ var SteppedForm = (_temp = _class = function (_Component) {
   SteppedForm.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
     var _props = this.props,
         location = _props.location,
-        match = _props.match,
+        stepSlug = _props.match.params.stepSlug,
         formData = _props.formData;
 
 
     if (location !== prevProps.location) {
-      var stepShowing = this._getStepFromSlug(match.params.stepSlug);
+      var stepShowing = this._getStepFromSlug(stepSlug);
       this.setState({ stepShowing: stepShowing }, this._matchRouteWithState);
     }
 
     if (prevProps.formData !== formData) {
       var updatedFormData = _merge(this.state.formData, formData);
-
       this.setState({ formData: updatedFormData });
     }
   };
+
   /**
    * this.props.match gets the parent route directly from router.
    * This allows us not to hard-code urls and re-use this component.
@@ -364,10 +364,7 @@ var SteppedForm = (_temp = _class = function (_Component) {
               _state2 = _this3.state, stepShowing = _state2.stepShowing, formData = _state2.formData;
               _props4 = _this3.props, onSaveStep = _props4.onSaveStep, saveErrors = _props4.saveErrors;
               _context.next = 4;
-              return onSaveStep({
-                formData: formData,
-                stepSlug: stepShowing.slug
-              });
+              return onSaveStep({ formData: formData, stepSlug: stepShowing.slug });
 
             case 4:
               if (!(saveErrors && saveErrors.length > 0)) {
@@ -454,7 +451,6 @@ var SteppedForm = (_temp = _class = function (_Component) {
   }();
 
   this.handleFieldChange = function (fieldName, event) {
-    console.log('onChange', fieldName, event);
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
     }
@@ -472,6 +468,9 @@ var SteppedForm = (_temp = _class = function (_Component) {
       return { formData: updatedFormData };
     }, function () {
       _this3._validateStepForm();
+      if (_this3.props.onFieldChange) {
+        _this3.props.onFieldChange(fieldName, newValue, _this3.state.formData);
+      }
     });
   };
 
@@ -587,6 +586,7 @@ var SteppedForm = (_temp = _class = function (_Component) {
 SteppedForm.defaultProps = {
   displayMode: 'fullscreen'
 };
+
 SteppedForm.displayName = 'SteppedForm';
 
 export default withRouter(SteppedForm);

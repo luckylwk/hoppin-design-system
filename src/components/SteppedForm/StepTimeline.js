@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Box } from '../Box';
 import { Container } from '../Container';
 import { Timeline } from '../Timeline';
@@ -31,4 +32,5 @@ const StepTimeline = ({
 };
 
 StepTimeline.displayName = 'StepTimeline';
+
 export default StepTimeline;

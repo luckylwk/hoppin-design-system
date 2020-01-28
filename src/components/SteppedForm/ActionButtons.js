@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { FiArrowLeft } from 'react-icons/fi';
+
 import { Button } from '../Button';
 import { Flex } from '../Flex';
-import { FiArrowLeft } from 'react-icons/fi';
 
 const ActionButtons = ({
   actions,
@@ -73,4 +75,5 @@ const ActionButtons = ({
 };
 
 ActionButtons.displayName = 'ActionButtons';
+
 export default ActionButtons;
