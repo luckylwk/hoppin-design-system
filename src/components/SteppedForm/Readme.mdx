@@ -6,7 +6,14 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
-import { SteppedForm } from '../SteppedForm';
+import { FiMail, FiPhone } from 'react-icons/fi';
+import {
+  StepTimeline,
+  SteppedForm,
+  StepForm,
+  StepMd
+} from '../SteppedForm';
+import { Box } from '../Box';
 
 # Stepped Form
 
@@ -65,11 +72,42 @@ There are different kinds of slides possible, but all share some common props:
 
 - displayMode: 'fullscreen' or 'flex' - fullscreen will position it absolute, flex will fill any space in a flex container.
 
-```<Playground>
- {() => {
+## Example Steps
 
-  const steps = [
-    {
+### StepMd
+
+<Playground>
+  {() => {
+    const step = {
+      slug: 'hello',
+      title: 'Hello!',
+      type: 'md',
+      actions: [{ label: 'Get started', navigate: 'next' }],
+      lede:
+        "We're excited to hear about you, your work and the shadowing experience you could host on Hoppin.\n\nYou will shortly start creating your host profile, then you’ll submit it to the Hoppin team for review.",
+      body:
+        '![excited welcome from the office dog](https://storage.googleapis.com/hoppin-platform/CDN_LIVE/images/app-backgrounds/host-onboard-welcome.gif)',
+    };
+    return (
+      <Box minHeight="80vh">
+        <StepMd
+          title={step.title}
+          lede={step.lede}
+          body={step.body}
+          actions={step.actions}
+          onNavigate={() => console.log('onNavigate')}
+          displayMode="fullscreen"
+        />
+      </Box>
+    )
+  }}
+</Playground>
+
+### StepTimeline
+
+<Playground>
+  {() => {
+    const step = {
       slug: 'overview',
       type: 'timeline',
       title: `What's next`,
@@ -105,71 +143,28 @@ There are different kinds of slides possible, but all share some common props:
         { label: 'Continue', navigate: 'next' },
         { label: 'Back', navigate: 'back' },
       ],
-    },
-    {
-      slug: 'what_is_a_hoppin_experience',
-      type: 'md',
-      title: 'What is a Hoppin shadowing experience? ',
-      lede: `- It’s an opportunity for you to share your expertise and showcase your brand to a lucky individual, a shadower, who has chosen YOU to spend time with.\n\n- It’s a set amount of time (decided by you) in which you will be accompanied by a shadower while you go about the activities of your typical working day.\n\n- It’s a chance for you to help another person learn about your role, organization and industry, and potentially inspire them to make important decisions about their existing or future roles.\n\n- It’s an enjoyable time to network and connect with another professional, while also making some cash for your organization.`,
-      actions: [
-        { label: 'Find out more', navigate: 'next' },
-        { label: 'Back', navigate: 'back' },
-      ],
-    },
-    {
-      slug: 'how_to_host',
-      type: 'md',
-      title: 'What should a host do on the day?',
-      lede: `- Do a meet & greet. 🤝\n\n- Set some guidelines for the day. 🤓\n\n- Introduce them to your team. 🤝\n\n- Get them involved in any activities you’re doing. 👩‍💻\n\n- Debrief and wrap up. ✍️`,
-      actions: [
-        {
-          label: 'FAQs',
-          navigate: 'external',
-          url: 'https://gohoppin.com/host#faq',
-        },
-        { label: 'Got it', navigate: 'next' },
-        { label: 'Back', navigate: 'back' },
-      ],
-    },
-    {
-      slug: 'start_building',
-      type: 'timeline',
-      title: 'Awesome!',
-      lede: 'Now you can start building your profile.',
-      steps: [
-        {
-          bullet: '1',
-          title: 'How to be a great host',
-          description:
-            'Learn the basics of being the host of a shadowing experience.',
-        },
-        {
-          bullet: '2',
-          title: 'Build your profile',
-          description:
-            'Build your profile by sharing information about you and your organization.',
-        },
-        {
-          bullet: '3',
-          title: 'Submit for review',
-          description: 'We’ll notify you when your profile is live!',
-        },
-      ],
-      options: {
-        initAtStep: 1,
-        bulletSize: 'large',
-        showTrack: false,
-        interactive: false,
-        color: 'neutral.lightest',
-      },
-      bg: 'neutral.darkest',
-      color: 'neutral.lightest',
-      actions: [
-        { label: 'Continue', navigate: 'next' },
-        { label: 'Back', navigate: 'back' },
-      ],
-    },
-    {
+    };
+    return (
+      <Box minHeight="80vh">
+        <StepTimeline
+          title={step.title}
+          lede={step.lede}
+          steps={step.steps}
+          options={step.options}
+          actions={step.actions}
+          onNavigate={() => console.log('onNavigate')}
+          displayMode="fullscreen"
+        />
+      </Box>
+    )
+  }}
+</Playground>
+
+### StepForm
+
+<Playground>
+  {() => {
+    const step = {
       slug: 'name',
       type: 'form',
       title: '👋 Help us get to know you!',
@@ -184,15 +179,13 @@ There are different kinds of slides possible, but all share some common props:
           type: 'group',
           list: [
             {
-              title: 'First name',
-              label: '_',
+              label: 'First name',
               name: 'first_name',
               type: 'text',
               required: true,
             },
             {
-              title: 'Last name',
-              label: '_',
+              label: 'Last name',
               name: 'last_name',
               type: 'text',
               required: true,
@@ -200,7 +193,7 @@ There are different kinds of slides possible, but all share some common props:
           ],
         },
         {
-          label: '_',
+          label: 'Email',
           name: 'email',
           required: true,
           validate: function(email) {
@@ -212,10 +205,12 @@ There are different kinds of slides possible, but all share some common props:
           },
           type: 'text',
           title: 'The best email address to get in touch',
+          explain: 'We will only use your contact details to send notifications',
+          icon: <FiMail/>,
+          props: { marginBottom: '0px' },
         },
         {
-          title: 'A phone number',
-          label: '_',
+          label: 'Phone number',
           validate: function(phone) {
             return phone.length < 8
               ? { msg: 'Please enter a valid phone number' }
@@ -223,33 +218,26 @@ There are different kinds of slides possible, but all share some common props:
           },
           name: 'phone',
           type: 'text',
+          icon: <FiPhone />,
           required: true,
         },
       ],
-    },
-  ];
-
-    const [formData, setFormData] = useState({});
-
-    const handleChange = (fieldName, event) => {
-      if (event && typeof event.preventDefault === 'function') {
-        event.preventDefault();
-      }
-      if (event && event.target && event.target.value) {
-        newFormData = {
-          ...formData,
-          [fieldName]: event.target.value || event.target.checked
-        }
-      }
-      setFormData(newFormData)
-    }
-
+    };
     return (
-
-      <SteppedForm steps={steps} onChange={handleChange} formData={formData}/>
-      );
-
-    }}
-
+      <Box minHeight="80vh">
+        <StepForm
+          title={step.title}
+          lede={step.lede}
+          fields={step.fields}
+          actions={step.actions}
+          onNavigate={() => console.log('onNavigate')}
+          onChange={() => console.log('onChange')}
+          validationErrors={[]}
+          saveErrors={[]}
+          isSaving={false}
+          displayMode="fullscreen"
+        />
+      </Box>
+    )
+  }}
 </Playground>
-```

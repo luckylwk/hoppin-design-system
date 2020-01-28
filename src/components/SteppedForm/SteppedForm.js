@@ -9,12 +9,12 @@ import {
   StepCustom,
 } from './index';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { Loader } from '../Loader';
-import { ProgressBar } from '../Progress';
-
 import _findIndex from 'lodash/findIndex';
 import _template from 'lodash/template';
 import _merge from 'lodash/merge';
+
+import { Loader } from '../Loader';
+import { ProgressBar } from '../Progress';
 
 class SteppedForm extends Component {
   constructor(props) {
@@ -39,16 +39,21 @@ class SteppedForm extends Component {
 
   /** This makes browser back/forward buttons work as expected. */
   componentDidUpdate(prevProps) {
-    const { location, match, formData } = this.props;
+    const {
+      location,
+      match: {
+        params: { stepSlug },
+      },
+      formData,
+    } = this.props;
 
     if (location !== prevProps.location) {
-      const stepShowing = this._getStepFromSlug(match.params.stepSlug);
+      const stepShowing = this._getStepFromSlug(stepSlug);
       this.setState({ stepShowing }, this._matchRouteWithState);
     }
 
     if (prevProps.formData !== formData) {
       const updatedFormData = _merge(this.state.formData, formData);
-
       this.setState({ formData: updatedFormData });
     }
   }
@@ -111,6 +116,7 @@ class SteppedForm extends Component {
       : 0;
     return (100 / steps.length) * index;
   };
+
   /**
    * this.props.match gets the parent route directly from router.
    * This allows us not to hard-code urls and re-use this component.
@@ -178,14 +184,9 @@ class SteppedForm extends Component {
     const { stepShowing, formData } = this.state;
     const { onSaveStep, saveErrors } = this.props;
 
-    await onSaveStep({
-      formData,
-      stepSlug: stepShowing.slug,
-    });
+    await onSaveStep({ formData, stepSlug: stepShowing.slug });
 
-    /*
-     * Then continue to navigate on, unless we got save errors.
-     */
+    /** Then continue to navigate on, unless we got save errors. */
     if (saveErrors && saveErrors.length > 0) {
       return;
     }
@@ -231,7 +232,6 @@ class SteppedForm extends Component {
   };
 
   handleFieldChange = (fieldName, event) => {
-    console.log('onChange', fieldName, event);
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
     }
@@ -254,6 +254,9 @@ class SteppedForm extends Component {
       },
       () => {
         this._validateStepForm();
+        if (this.props.onFieldChange) {
+          this.props.onFieldChange(fieldName, newValue, this.state.formData);
+        }
       }
     );
   };
@@ -528,6 +531,7 @@ class SteppedForm extends Component {
 SteppedForm.defaultProps = {
   displayMode: 'fullscreen',
 };
+
 SteppedForm.displayName = 'SteppedForm';
 
 export default withRouter(SteppedForm);
