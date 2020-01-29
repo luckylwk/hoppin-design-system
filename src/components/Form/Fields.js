@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-import Select from 'react-select';
+import { FiSearch } from 'react-icons/fi';
+
+import Select, { components } from 'react-select';
 import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
+import AsyncCreatableSelect from 'react-select/async-creatable';
 
 import getSelectStyling from './SelectStyling';
 import {
@@ -15,7 +18,7 @@ import {
   TextareaMd,
   RequiredCharacters,
   FieldExplanation,
-  SingleSelectButton
+  SingleSelectButton,
   // SelectButton
 } from '.';
 
@@ -23,6 +26,25 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Paragraph } from '../Paragraph';
+
+// ---------------------------
+
+const FiSearchStyled = styled(FiSearch)`
+  color: ${({ theme, focused }) =>
+    focused === 'true'
+      ? theme.colors.primary.base
+      : theme.colors.neutral.light};
+`;
+
+const DropdownIndicator = props => (
+  <components.DropdownIndicator {...props}>
+    <FiSearchStyled focused={`${props.isFocused}`} />
+  </components.DropdownIndicator>
+);
+
+const IndicatorSeparator = ({ innerProps }) => (
+  <span style={{ backgroundColor: 'transparent' }} {...innerProps} />
+);
 
 // ---------------------------
 
@@ -62,6 +84,53 @@ export const renderField = (field, onChange, selectStyling) => {
     );
   }
 
+  if (field.type === 'async-creatable-select') {
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.label, htmlFor: field.name }
+      : {};
+    return (
+      <LabelOrFragment {...labelProps}>
+        {field.label}
+        <AsyncCreatableSelect
+          name={field.name}
+          cacheOptions={false}
+          loadOptions={field.options}
+          onChange={(option, { action }) => {
+            if (
+              action === 'create-option' ||
+              action === 'select-option' ||
+              action === 'remove-value' ||
+              action === 'pop-value'
+            ) {
+              return onChange(field.name, {
+                target: {
+                  name: field.name,
+                  type: field.type,
+                  value: option,
+                  action,
+                },
+              });
+            } else if (action === 'clear') {
+              return onChange(field.name, {
+                target: {
+                  name: field.name,
+                  type: field.type,
+                  value: {},
+                  action,
+                },
+              });
+            }
+          }}
+          placeholder={field.placeholder || 'Search'}
+          components={{ IndicatorSeparator, DropdownIndicator }}
+          {...selectStyling}
+        />
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </LabelOrFragment>
+    );
+  }
+
   if (field.type === 'creatable-select') {
     const LabelOrFragment = field.label ? Label : Fragment;
     const labelProps = field.label
@@ -80,10 +149,24 @@ export const renderField = (field, onChange, selectStyling) => {
               action === 'remove-value' ||
               action === 'pop-value'
             ) {
-              return onChange(field.name, { target: { value: option.value } });
+              return onChange(field.name, {
+                target: {
+                  action,
+                  name: field.name,
+                  type: field.type,
+                  value: option.value,
+                },
+              });
             }
             if (action === 'clear') {
-              return onChange(field.name, { target: { value: '' } });
+              return onChange(field.name, {
+                target: {
+                  action,
+                  type: field.type,
+                  name: field.name,
+                  value: '',
+                },
+              });
             }
           }}
           formatCreateLabel={userInput => `Click to add: ${userInput}`}
@@ -116,6 +199,10 @@ export const renderField = (field, onChange, selectStyling) => {
             ) {
               return onChange(field.name, {
                 target: {
+                  action,
+                  name: field.name,
+                  type: field.type,
+
                   value:
                     field.type === 'multi-select'
                       ? option.map(_option => _option.value)
@@ -129,7 +216,12 @@ export const renderField = (field, onChange, selectStyling) => {
             }
             if (action === 'clear') {
               return onChange(field.name, {
-                target: { value: field.type === 'multi-select' ? [] : {} },
+                target: {
+                  action,
+                  name: field.name,
+                  type: field.type,
+                  value: field.type === 'multi-select' ? [] : {},
+                },
               });
             }
           }}
@@ -160,19 +252,26 @@ export const renderField = (field, onChange, selectStyling) => {
             ) {
               return onChange(field.name, {
                 target: {
+                  action,
+                  name: field.name,
+                  type: field.type,
                   value: option,
                 },
               });
             } else if (action === 'clear') {
               return onChange(field.name, {
                 target: {
+                  action,
+                  name: field.name,
+                  type: field.type,
                   value: {},
                 },
               });
             }
           }}
           loadOptions={field.options}
-          placeholder="Search..."
+          placeholder={field.placeholder || 'Search'}
+          components={{ IndicatorSeparator, DropdownIndicator }}
           noOptionsMessage={() => 'Start typing to start the search'}
           {...selectStyling}
         />
