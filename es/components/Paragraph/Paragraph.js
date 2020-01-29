@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  font-size: ', ';\n  font-family: ', ';\n  line-height: ', ';\n\n  &:last-child {\n    margin-bottom: 0;\n  }\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  font-size: ', ';\n  font-family: ', ';\n  line-height: ', ';\n\n  &:last-child {\n    margin-bottom: 0;\n  }\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  font-size: ', ';\n  font-family: ', ';\n  line-height: ', ';\n  font-weight: ', ';\n\n  &:last-child {\n    margin-bottom: 0;\n  }\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  font-size: ', ';\n  font-family: ', ';\n  line-height: ', ';\n  font-weight: ', ';\n\n  &:last-child {\n    margin-bottom: 0;\n  }\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -17,6 +17,9 @@ var Paragraph = styled('p')(_templateObject, function (_ref) {
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.lineHeights.body || '1.4em';
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.fontWeights.normal;
 }, textAlign, space, position, color, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);
 
 Paragraph.propTypes = _extends({}, propTypes.space, propTypes.position, propTypes.color, propTypes.textAlign, propTypes.flex, propTypes.flexGrow, propTypes.flexShrink, propTypes.flexBasis, propTypes.justifySelf, propTypes.alignSelf, propTypes.order);

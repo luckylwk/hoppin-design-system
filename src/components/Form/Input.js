@@ -33,12 +33,12 @@ const InputField = styled.input`
       ? theme.colors.whiteout.base
       : theme.colors.whiteout.lighter};
 
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-color: ${({ theme, context }) => {
     if (theme.colors[context] !== undefined) {
-      return theme.colors[context].light;
+      return theme.colors[context].lighter;
     } else {
-      return theme.colors.neutral.light;
+      return theme.colors.neutral.lightest;
     }
   }};
   border-radius: ${({ theme }) => theme.radii.small};
@@ -62,12 +62,10 @@ const InputField = styled.input`
 
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.secondary};
-    font-weight: 300;
+    font-weight: ${({ theme }) => theme.fontWeights.normal};;
     color: ${({ theme }) => theme.colors.neutral.light};
   }
 
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   outline: none;
   width: 100%;
@@ -109,7 +107,7 @@ const Input = ({ label, required, theme, ...rest }) => {
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.79em',
+      top: '0.80em',
       [iconPosition]: theme.space.base,
     },
     color:

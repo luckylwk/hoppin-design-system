@@ -29,7 +29,7 @@ Label.defaultProps = {
   lineHeight: 0,
   fontFamily: 'secondary',
   fontSize: 'label',
-  fontWeight: 'bold',
+  fontWeight: 'medium',
   color: 'inherit', // respond to context, if we're white on dark background or dark on light.
   marginRight: 'large',
   position: 'relative',

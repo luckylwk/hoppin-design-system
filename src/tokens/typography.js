@@ -2,7 +2,7 @@ import { space } from './space';
 
 const fonts = {
   primary: 'Pluto, sans-serif',
-  secondary: '"Nunito Sans", sans-serif',
+  secondary: '"Nunito Sans", "Lato", sans-serif',
   system:
     '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue',
 };
@@ -11,8 +11,8 @@ const fontSizes = [
   '.5rem', // 8px
   '.625rem', // 10px
   '.875rem', // 14px
-  '1rem', // 16px
-  '1.25rem', // 20px
+  '1.125rem', // 18px
+  '1.375rem', // 22px
   '1.75rem', // 28px
   '2.5rem', // 40px
   '3rem', // 48px
@@ -48,7 +48,9 @@ lineHeights.body = lineHeights[1];
 lineHeights.large = lineHeights[2];
 
 const fontWeights = {
-  normal: 400,
+  light: 200,
+  normal: 300,
+  medium: 400,
   bold: 600,
 };
 
