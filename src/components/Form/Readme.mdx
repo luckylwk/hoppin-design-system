@@ -431,31 +431,154 @@ HDS exports `getSelectStyling(theme)` to be used with [React Select](https://rea
 
 Invoke `getSelectStyling` by passing it the current theme object, to receive context-accurate `theme` and `styling` objects for all ReactSelect components.
 
+### Standard Select
+
 <Playground>
-  <ThemeConsumer>
-    {theme => {
-      console.log(theme);
+    {() => {
+      const [lastEvent, setLastEvent] = useState({});
+      const onChange = (fieldName, event) => {
+        setLastEvent(event.target)
+      }
       const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' },
       ];
-      const selectStyling = getSelectStyling(theme);
+      const fields = [
+        {
+          name: 'favourite_icecream',
+          type: 'select',
+          title:
+            `What's your favourite ice cream flavor?`,
+          label:
+            `Select`,
+          explain: 'Start typing to find your favorite flavor',
+          options: options
+        },
+        {
+          name: 'favorite_disco',
+          type: 'multi-select',
+          title:
+            `Disco fever?`,
+          label:
+            `Select multiple`,
+          options: options
+        },
+      ];
       return (
-        <>
-          <Select options={options} {...selectStyling} />
-          <Box padding="small" />
-          <Select
-            defaultValue={[options[2], options[3]]}
-            isMulti
-            name="food"
-            options={options}
-            {...selectStyling}
-          />
-        </>
+        <Flex>
+          <Box margin="base" padding="base" maxWidth="400px">
+            <Fields fields={fields} onChange={onChange} />
+          </Box>
+          <Box
+            margin="base"
+            padding="base"
+            maxWidth="300px"
+            bg="neutral.darker"
+            color="white"
+            borderRadius="5px"
+          >
+            <Paragraph>
+              Last event
+            </Paragraph>
+            <UnorderedList>
+              <ListItem>
+                type: {lastEvent.type}
+              </ListItem>
+              <ListItem>
+                name: {lastEvent.name}
+              </ListItem>
+              <ListItem>
+                value: {JSON.stringify(lastEvent.value)}
+              </ListItem>
+              <ListItem>
+                checked: {lastEvent.checked ? 'true': 'false' }
+              </ListItem>
+              <ListItem>
+                action: {lastEvent.action}
+              </ListItem>
+            </UnorderedList>
+          </Box>
+        </Flex>
       );
     }}
-  </ThemeConsumer>
+</Playground>
+
+### Async Creatable Select
+
+<Playground>
+  {() => {
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (fieldName, event) => {
+      setLastEvent(event.target)
+    }
+    const loadOptions = (inputValue) => new Promise(resolve => {
+      setTimeout(() => {
+        resolve([
+          { value: inputValue, label: inputValue },
+          { value: `Another ${inputValue}`, label: `another-${inputValue}` }
+        ]);
+      }, 500);
+    });
+    const fields = [
+      {
+        name: 'favourite_icecream',
+        type: 'async-select',
+        title:
+          `What's your favourite ice cream flavor?`,
+        label:
+          `Search it here`,
+        explain: 'Start typing to find your favorite flavor',
+        options: loadOptions
+      },
+      {
+        name: 'favorite_disco',
+        type: 'async-creatable-select',
+        title:
+          `Disco fever?`,
+        label:
+          `Search it here`,
+        explain: 'Start typing to find your favorite flavor',
+        options: loadOptions
+      },
+    ];
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+          <Fields fields={fields} onChange={onChange} />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {JSON.stringify(lastEvent.value)}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+            <ListItem>
+              action: {lastEvent.action}
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+}}
 </Playground>
 
 ## RangeSlider
