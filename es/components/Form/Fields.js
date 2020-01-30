@@ -1,23 +1,51 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _templateObject = _taggedTemplateLiteralLoose(['\n  color: ', ';\n'], ['\n  color: ', ';\n']);
+
+function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-import Select from 'react-select';
+import { FiSearch } from 'react-icons/fi';
+
+import Select, { components } from 'react-select';
 import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
+import AsyncCreatableSelect from 'react-select/async-creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton
+import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton } from
 // SelectButton
-} from '.';
+'.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Paragraph } from '../Paragraph';
+
+// ---------------------------
+
+var FiSearchStyled = styled(FiSearch)(_templateObject, function (_ref) {
+  var theme = _ref.theme,
+      focused = _ref.focused;
+  return focused === 'true' ? theme.colors.primary.base : theme.colors.neutral.light;
+});
+
+var DropdownIndicator = function DropdownIndicator(props) {
+  return React.createElement(
+    components.DropdownIndicator,
+    props,
+    React.createElement(FiSearchStyled, { focused: '' + props.isFocused })
+  );
+};
+
+var IndicatorSeparator = function IndicatorSeparator(_ref2) {
+  var innerProps = _ref2.innerProps;
+  return React.createElement('span', _extends({ style: { backgroundColor: 'transparent' } }, innerProps));
+};
 
 // ---------------------------
 
@@ -62,26 +90,85 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     );
   }
 
-  if (field.type === 'creatable-select') {
+  if (field.type === 'async-creatable-select') {
     var LabelOrFragment = field.label ? Label : Fragment;
     var labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
       LabelOrFragment,
       labelProps,
       field.label,
+      React.createElement(AsyncCreatableSelect, _extends({
+        name: field.name,
+        cacheOptions: false,
+        loadOptions: field.options,
+        onChange: function onChange(option, _ref3) {
+          var action = _ref3.action;
+
+          if (action === 'create-option' || action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
+            return _onChange(field.name, {
+              target: {
+                name: field.name,
+                type: field.type,
+                value: option,
+                action: action
+              }
+            });
+          } else if (action === 'clear') {
+            return _onChange(field.name, {
+              target: {
+                name: field.name,
+                type: field.type,
+                value: {},
+                action: action
+              }
+            });
+          }
+        },
+        placeholder: field.placeholder || 'Search',
+        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator }
+      }, selectStyling)),
+      field.explain && React.createElement(
+        FieldExplanation,
+        null,
+        field.explain
+      )
+    );
+  }
+
+  if (field.type === 'creatable-select') {
+    var _LabelOrFragment = field.label ? Label : Fragment;
+    var _labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
+    return React.createElement(
+      _LabelOrFragment,
+      _labelProps,
+      field.label,
       React.createElement(Creatable, _extends({
         isClearable: true,
         clearValue: function clearValue() {
           return _onChange(field.name, { target: { value: '' } });
         },
-        onChange: function onChange(option, _ref) {
-          var action = _ref.action;
+        onChange: function onChange(option, _ref4) {
+          var action = _ref4.action;
 
           if (action === 'select-option' || action === 'create-option' || action === 'remove-value' || action === 'pop-value') {
-            return _onChange(field.name, { target: { value: option.value } });
+            return _onChange(field.name, {
+              target: {
+                action: action,
+                name: field.name,
+                type: field.type,
+                value: option.value
+              }
+            });
           }
           if (action === 'clear') {
-            return _onChange(field.name, { target: { value: '' } });
+            return _onChange(field.name, {
+              target: {
+                action: action,
+                type: field.type,
+                name: field.name,
+                value: ''
+              }
+            });
           }
         },
         formatCreateLabel: function formatCreateLabel(userInput) {
@@ -99,22 +186,26 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
   }
 
   if (field.type === 'select' || field.type === 'multi-select') {
-    var _LabelOrFragment = field.label ? Label : Fragment;
-    var _labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
+    var _LabelOrFragment2 = field.label ? Label : Fragment;
+    var _labelProps2 = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
-      _LabelOrFragment,
-      _labelProps,
+      _LabelOrFragment2,
+      _labelProps2,
       field.label,
       React.createElement(Select, _extends({
         isMulti: field.type === 'multi-select',
         isClearable: field.type === 'multi-select',
         value: field.value,
-        onChange: function onChange(option, _ref2) {
-          var action = _ref2.action;
+        onChange: function onChange(option, _ref5) {
+          var action = _ref5.action;
 
           if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
             return _onChange(field.name, {
               target: {
+                action: action,
+                name: field.name,
+                type: field.type,
+
                 value: field.type === 'multi-select' ? option.map(function (_option) {
                   return _option.value;
                 }) : option,
@@ -126,7 +217,12 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
           }
           if (action === 'clear') {
             return _onChange(field.name, {
-              target: { value: field.type === 'multi-select' ? [] : {} }
+              target: {
+                action: action,
+                name: field.name,
+                type: field.type,
+                value: field.type === 'multi-select' ? [] : {}
+              }
             });
           }
         },
@@ -142,33 +238,40 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
   // Used for location (using Google GeoLocation API)
   if (field.type === 'async-select') {
-    var _LabelOrFragment2 = field.label ? Label : Fragment;
-    var _labelProps2 = field.label ? { label: field.label, htmlFor: field.name } : {};
+    var _LabelOrFragment3 = field.label ? Label : Fragment;
+    var _labelProps3 = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
-      _LabelOrFragment2,
-      _labelProps2,
+      _LabelOrFragment3,
+      _labelProps3,
       React.createElement(Async, _extends({
         cacheOptions: false,
         value: field.value,
-        onChange: function onChange(option, _ref3) {
-          var action = _ref3.action;
+        onChange: function onChange(option, _ref6) {
+          var action = _ref6.action;
 
           if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
             return _onChange(field.name, {
               target: {
+                action: action,
+                name: field.name,
+                type: field.type,
                 value: option
               }
             });
           } else if (action === 'clear') {
             return _onChange(field.name, {
               target: {
+                action: action,
+                name: field.name,
+                type: field.type,
                 value: {}
               }
             });
           }
         },
         loadOptions: field.options,
-        placeholder: 'Search...',
+        placeholder: field.placeholder || 'Search',
+        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator },
         noOptionsMessage: function noOptionsMessage() {
           return 'Start typing to start the search';
         }
@@ -210,14 +313,14 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
   if (field.type === 'inline-submit') {
     // if we have a label, wrap input in label add margin-top to input, otherwise no wrapper
-    var _LabelOrFragment3 = field.label ? Label : Fragment;
-    var _labelProps3 = field.label ? { label: field.title ? undefined : field.label, htmlFor: field.name } : {};
+    var _LabelOrFragment4 = field.label ? Label : Fragment;
+    var _labelProps4 = field.label ? { label: field.title ? undefined : field.label, htmlFor: field.name } : {};
     var flexProps = field.label ? { marginTop: 'small', marginBottom: 'base' } : {};
     var inputProps = field.label ? { marginTop: 'none', marginBottom: 'none' } : {};
 
     return React.createElement(
-      _LabelOrFragment3,
-      _labelProps3,
+      _LabelOrFragment4,
+      _labelProps4,
       React.createElement(
         Flex,
         flexProps,
@@ -278,10 +381,10 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
 // ---------------------------
 
-var Fields = function Fields(_ref4) {
-  var onChange = _ref4.onChange,
-      fields = _ref4.fields,
-      theme = _ref4.theme;
+var Fields = function Fields(_ref7) {
+  var onChange = _ref7.onChange,
+      fields = _ref7.fields,
+      theme = _ref7.theme;
 
   var selectStyling = getSelectStyling(theme);
 
