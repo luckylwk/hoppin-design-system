@@ -20,7 +20,7 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: white;
+  stroke: ${({ theme }) => theme.colors.primary.dark};
   stroke-width: 4px;
 `;
 
@@ -43,7 +43,7 @@ const HiddenCheckbox = styled(RcCheckbox)`
   padding: 0;
   position: absolute;
   white-space: nowrap;
-  width: 1px;
+  width: 2px;
 `;
 
 HiddenCheckbox.displayName = 'HiddenCheckbox';
@@ -56,13 +56,16 @@ const StyledCheckbox = styled.div`
 
   width: 18px;
   height: 18px;
+
   ${CheckboxLabel} & {
     margin-right: ${({ theme }) => theme.space.small};
   }
 
   background: ${({ checked, theme }) =>
-    checked ? theme.colors.primary.base : theme.colors.primary.lighter};
-  border: 1px solid ${({ theme }) => theme.colors.primary.base};
+    !checked ? theme.colors.neutral.lightest : theme.colors.primary.lightest};
+  border: 2px solid
+    ${({ checked, theme }) =>
+      !checked ? theme.colors.neutral.lighter : theme.colors.primary.base};
 
   border-radius: ${({ theme }) => theme.radii.xsmall};
 

@@ -38,7 +38,7 @@ const InputField = styled.input`
     if (theme.colors[context] !== undefined) {
       return theme.colors[context].lighter;
     } else {
-      return theme.colors.neutral.lightest;
+      return theme.colors.neutral.lighter;
     }
   }};
   border-radius: ${({ theme }) => theme.radii.small};
@@ -107,7 +107,7 @@ const Input = ({ label, required, theme, ...rest }) => {
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.80em',
+      top: '0.9em',
       [iconPosition]: theme.space.base,
     },
     color:

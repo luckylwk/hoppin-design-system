@@ -43,7 +43,7 @@ var InputField = styled.input(_templateObject, typography, space, function (_ref
   if (theme.colors[context] !== undefined) {
     return theme.colors[context].lighter;
   } else {
-    return theme.colors.neutral.lightest;
+    return theme.colors.neutral.lighter;
   }
 }, function (_ref4) {
   var theme = _ref4.theme;
@@ -114,7 +114,7 @@ var Input = function Input(_ref9) {
   var iconProps = {
     style: (_style = {
       position: 'absolute',
-      top: '0.80em'
+      top: '0.9em'
     }, _style[iconPosition] = theme.space.base, _style),
     color: theme.colors[rest.context] && theme.colors[rest.context].base || theme.colors.neutral.base
   };

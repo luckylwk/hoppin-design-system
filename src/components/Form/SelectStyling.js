@@ -8,15 +8,15 @@ const getSelectStyles = theme => ({
     marginTop: '4px',
     padding: '1px 8px',
     backgroundColor: 'white',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: theme.radii.small,
     borderColor: isFocused
-      ? theme.colors.primary.base
-      : theme.colors.neutral.light,
+      ? theme.colors.primary.lighter
+      : theme.colors.neutral.lighter,
     ':hover': {
       borderColor: isFocused
-        ? theme.colors.primary.base
-        : theme.colors.neutral.light,
+        ? theme.colors.primary.lighter
+        : theme.colors.neutral.lighter,
     },
     boxShadow: null,
     minHeight: '2rem',
@@ -33,7 +33,7 @@ const getSelectStyles = theme => ({
       ? theme.colors.whiteout.base
       : theme.colors.whiteout.lighter,
     color: isDisabled
-      ? theme.colors.neutral.lighter
+      ? theme.colors.neutral.light
       : isSelected
       ? theme.colors.neutral.dark
       : theme.colors.neutral.base,
@@ -49,6 +49,7 @@ const getSelectStyles = theme => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
+    color: theme.colors.neutral.light,
   }),
   singleValue: styles => ({
     ...styles,

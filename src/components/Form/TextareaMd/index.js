@@ -229,12 +229,12 @@ const StyledEditor = styled(Editor)`
 
   background: ${({ theme }) => theme.colors.whiteout.lighter};
 
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-color: ${({ theme, context }) => {
     if (theme.colors[context] !== undefined) {
-      return theme.colors[context].light;
+      return theme.colors[context].lighter;
     } else {
-      return theme.colors.neutral.light;
+      return theme.colors.neutral.lightest;
     }
   }};
   border-radius: ${({ theme }) => theme.radii.small};
@@ -262,7 +262,7 @@ const StyledEditor = styled(Editor)`
 StyledEditor.defaultProps = {
   context: 'neutral',
   marginBottom: 'base',
-  paddingY: 'small',
+  paddingY: 'base',
   paddingX: 'base',
   fontSize: 'body',
 };

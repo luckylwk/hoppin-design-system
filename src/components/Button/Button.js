@@ -45,7 +45,7 @@ const Button = styled.button`
   font-family: ${({ theme }) => theme.fonts.secondary};
   cursor: pointer;
 
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 2em;
 
   font-weight: ${({ theme }) => theme.fontWeights.bold};
@@ -76,9 +76,9 @@ const Button = styled.button`
     switch (variant) {
       case 'outline':
         variantCSS = `
-          border-color: ${colors.base};
+          border-color: ${colors.light};
           background-color: transparent;
-          color: ${colors.base};
+          color: ${context === 'neutral' ? colors.base : colors.dark};
         `;
         break;
       case 'subtle':
@@ -99,8 +99,10 @@ const Button = styled.button`
           background-color: ${colors.base};
           color: ${
             context === 'whiteout'
-              ? theme.colors.primary.base
-              : theme.colors.white
+              ? colors.base
+              : context === 'shadower'
+              ? colors.darkest
+              : theme.colors.whiteout.lightest
           };
         `;
         break;
