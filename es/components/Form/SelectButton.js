@@ -51,6 +51,7 @@ var SelectButton = function SelectButton(_ref) {
       return React.createElement(
         Button,
         {
+          type: 'button',
           context: isSelected ? 'primary' : 'neutral',
           variant: isSelected ? 'full' : 'outline',
           onClick: onClick.bind(_this, {
