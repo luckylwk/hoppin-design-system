@@ -26,7 +26,7 @@ const getSelectStyles = theme => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
-    fontWeight: 400,
+    fontWeight: theme.fontWeights.normal,
     backgroundColor: isDisabled
       ? theme.colors.whiteout.lighter
       : isSelected
