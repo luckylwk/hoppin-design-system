@@ -455,8 +455,18 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
 <Playground>
     {() => {
       const [lastEvent, setLastEvent] = useState({});
+      const [formData, setFormData] = useState({
+        select_multiple_with_preset_example: {
+          value: 'Testing 123 value',
+          label: 'testing-123-value'
+        }
+      });
       const onChange = (fieldName, event) => {
-        setLastEvent(event.target)
+        setLastEvent(event.target);
+        setFormData({
+          ...formData,
+          [event.target.name]: event.target.value
+        })
       }
       const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -465,23 +475,26 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
       ];
       const fields = [
         {
-          name: 'favourite_icecream',
+          name: 'select_one_example',
           type: 'select',
-          title:
-            `What's your favourite ice cream flavor?`,
-          label:
-            `Select`,
+          label: `Select`,
           explain: 'Start typing to find your favorite flavor',
-          options: options
+          options: options,
+          value: formData.select_one_example || null
         },
         {
-          name: 'favorite_disco',
+          name: 'select_multiple_example',
           type: 'multi-select',
-          title:
-            `Disco fever?`,
-          label:
-            `Select multiple`,
-          options: options
+          label: `Select multiple if you dare`,
+          options: options,
+          value: formData.select_multiple_example || null
+        },
+        {
+          name: 'select_multiple_with_preset_example',
+          type: 'multi-select',
+          label: `Select multiple... preset by formData`,
+          options: options,
+          value: formData.select_multiple_with_preset_example || null
         },
       ];
       return (
@@ -490,7 +503,7 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
             <Fields fields={fields} onChange={onChange} />
           </Box>
           <Box
-            margin="base"
+            margin="small"
             padding="base"
             maxWidth="300px"
             bg="neutral.darker"
@@ -518,47 +531,79 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
               </ListItem>
             </UnorderedList>
           </Box>
+          <Box
+            marginY="small"
+            padding="base"
+            maxWidth="250px"
+            bg="neutral.darkest"
+            color="white"
+            borderRadius="5px"
+          >
+            <pre><code>
+            {JSON.stringify(formData, null, 2)}
+            </code></pre>
+          </Box>
         </Flex>
       );
     }}
 </Playground>
 
-### Async Creatable Select
+## Async & Creatable Select
 
 <Playground>
   {() => {
     const [lastEvent, setLastEvent] = useState({});
+    const [formData, setFormData] = useState({
+      favorite_disco: {
+        value: 'Testing 123 value',
+        label: 'testing-123-value'
+      }
+    });
     const onChange = (fieldName, event) => {
+      console.log(event)
       setLastEvent(event.target)
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value
+      })
     }
     const loadOptions = (inputValue) => new Promise(resolve => {
       setTimeout(() => {
         resolve([
           { value: inputValue, label: inputValue },
-          { value: `Another ${inputValue}`, label: `another-${inputValue}` }
+          { value: `Another ${inputValue}`, label: `another-${inputValue}` },
+          { value: `Yet another ${inputValue}`, label: `yet-another-${inputValue}` }
         ]);
       }, 500);
     });
     const fields = [
       {
-        name: 'favourite_icecream',
+        name: 'department',
+        type: 'creatable-select',
+        label: 'Your department, with a creatable-select',
+        explain: `If you can't find your department create a new one`,
+        options: [
+          { value: 'Finance', label: 'finance'},
+          { value: 'Marketing', label: 'marketing'},
+          { value: 'Human Resources', label: 'human_resources'}
+        ],
+        value: formData.department || null,
+      },
+      {
+        name: 'favorite_icecream',
         type: 'async-select',
-        title:
-          `What's your favourite ice cream flavor?`,
-        label:
-          `Search it here`,
-        explain: 'Start typing to find your favorite flavor',
-        options: loadOptions
+        label: `Search it here with this async-select`,
+        explain: 'Start typing to find your whatever',
+        options: loadOptions,
+        value: formData.favorite_icecream || null
       },
       {
         name: 'favorite_disco',
         type: 'async-creatable-select',
-        title:
-          `Disco fever?`,
-        label:
-          `Search it here`,
-        explain: 'Start typing to find your favorite flavor',
-        options: loadOptions
+        label: `Search it here with this async-creatable-select`,
+        explain: 'Start typing to find... but its preset using formData',
+        options: loadOptions,
+        value: formData.favorite_disco || null
       },
     ];
     return (
@@ -567,9 +612,9 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
           <Fields fields={fields} onChange={onChange} />
         </Box>
         <Box
-          margin="base"
+          margin="small"
           padding="base"
-          maxWidth="300px"
+          maxWidth="250px"
           bg="neutral.darker"
           color="white"
           borderRadius="5px"
@@ -594,6 +639,16 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
               action: {lastEvent.action}
             </ListItem>
           </UnorderedList>
+        </Box>
+        <Box
+          marginY="small"
+          padding="base"
+          maxWidth="250px"
+          bg="neutral.darkest"
+          color="white"
+          borderRadius="5px"
+        >
+          <pre><code>{JSON.stringify(formData, null, 2)}</code></pre>
         </Box>
       </Flex>
     );

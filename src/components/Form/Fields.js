@@ -18,8 +18,7 @@ import {
   TextareaMd,
   RequiredCharacters,
   FieldExplanation,
-  SingleSelectButton,
-  // SelectButton
+  SelectButton,
 } from '.';
 
 import { Flex } from '../Flex';
@@ -96,31 +95,17 @@ export const renderField = (field, onChange, selectStyling) => {
           name={field.name}
           cacheOptions={false}
           loadOptions={field.options}
+          value={field.value}
           onChange={(option, { action }) => {
-            if (
-              action === 'create-option' ||
-              action === 'select-option' ||
-              action === 'remove-value' ||
-              action === 'pop-value'
-            ) {
-              return onChange(field.name, {
-                target: {
-                  name: field.name,
-                  type: field.type,
-                  value: option,
-                  action,
-                },
-              });
-            } else if (action === 'clear') {
-              return onChange(field.name, {
-                target: {
-                  name: field.name,
-                  type: field.type,
-                  value: {},
-                  action,
-                },
-              });
-            }
+            const mockEvent = {
+              target: {
+                action,
+                name: field.name,
+                type: field.type,
+                value: action === 'clear' ? {} : option,
+              },
+            };
+            return onChange(field.name, mockEvent);
           }}
           placeholder={field.placeholder || 'Search'}
           components={{ IndicatorSeparator, DropdownIndicator }}
@@ -141,37 +126,30 @@ export const renderField = (field, onChange, selectStyling) => {
         {field.label}
         <Creatable
           isClearable
-          clearValue={() => onChange(field.name, { target: { value: '' } })}
+          clearValue={() =>
+            onChange(field.name, {
+              target: {
+                action: 'clear',
+                name: field.name,
+                type: field.type,
+                value: {},
+              },
+            })
+          }
           onChange={(option, { action }) => {
-            if (
-              action === 'select-option' ||
-              action === 'create-option' ||
-              action === 'remove-value' ||
-              action === 'pop-value'
-            ) {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  name: field.name,
-                  type: field.type,
-                  value: option.value,
-                },
-              });
-            }
-            if (action === 'clear') {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  type: field.type,
-                  name: field.name,
-                  value: '',
-                },
-              });
-            }
+            const mockEvent = {
+              target: {
+                action,
+                name: field.name,
+                type: field.type,
+                value: action === 'clear' ? {} : option,
+              },
+            };
+            return onChange(field.name, mockEvent);
           }}
           formatCreateLabel={userInput => `Click to add: ${userInput}`}
           options={field.options}
-          value={{ label: field.value, value: field.value }}
+          value={field.value}
           {...selectStyling}
         />
         {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
@@ -192,38 +170,18 @@ export const renderField = (field, onChange, selectStyling) => {
           isClearable={field.type === 'multi-select'}
           value={field.value}
           onChange={(option, { action }) => {
-            if (
-              action === 'select-option' ||
-              action === 'remove-value' ||
-              action === 'pop-value'
-            ) {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  name: field.name,
-                  type: field.type,
-
-                  value:
-                    field.type === 'multi-select'
-                      ? option.map(_option => _option.value)
-                      : option,
-                  label:
-                    field.type === 'multi-select'
-                      ? option.map(_option => _option.label)
-                      : option,
-                },
-              });
-            }
-            if (action === 'clear') {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  name: field.name,
-                  type: field.type,
-                  value: field.type === 'multi-select' ? [] : {},
-                },
-              });
-            }
+            const updatedValue =
+              field.type === 'multi-select' ? option : option;
+            const emptyValue = field.type === 'multi-select' ? [] : {};
+            let mockEvent = {
+              target: {
+                action,
+                name: field.name,
+                type: field.type,
+                value: action === 'clear' ? emptyValue : updatedValue,
+              },
+            };
+            return onChange(field.name, mockEvent);
           }}
           options={field.options}
           {...selectStyling}
@@ -241,33 +199,20 @@ export const renderField = (field, onChange, selectStyling) => {
       : {};
     return (
       <LabelOrFragment {...labelProps}>
+        {field.label}
         <Async
           cacheOptions={false}
           value={field.value}
           onChange={(option, { action }) => {
-            if (
-              action === 'select-option' ||
-              action === 'remove-value' ||
-              action === 'pop-value'
-            ) {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  name: field.name,
-                  type: field.type,
-                  value: option,
-                },
-              });
-            } else if (action === 'clear') {
-              return onChange(field.name, {
-                target: {
-                  action,
-                  name: field.name,
-                  type: field.type,
-                  value: {},
-                },
-              });
-            }
+            const mockEvent = {
+              target: {
+                action,
+                name: field.name,
+                type: field.type,
+                value: action === 'clear' ? {} : option,
+              },
+            };
+            return onChange(field.name, mockEvent);
           }}
           loadOptions={field.options}
           placeholder={field.placeholder || 'Search'}
@@ -291,14 +236,15 @@ export const renderField = (field, onChange, selectStyling) => {
     );
   }
 
-  if (field.type === 'single-select-button') {
+  if (field.type === 'single-select-button' || field.type === 'select-button') {
     return (
       <Fragment>
-        <SingleSelectButton
+        <SelectButton
           name={field.name}
           options={field.options}
           value={field.value}
           onChange={onChange.bind(null, field.name)}
+          isMultiSelect={field.type === 'select-button'}
         />
         {field.explain && (
           <FieldExplanation marginTop="4px">{field.explain}</FieldExplanation>
