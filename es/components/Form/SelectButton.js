@@ -1,5 +1,7 @@
 var _this = this;
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,7 +23,8 @@ var SelectButton = function SelectButton(_ref) {
       options = _ref.options,
       value = _ref.value,
       onChange = _ref.onChange,
-      isMultiSelect = _ref.isMultiSelect;
+      isMultiSelect = _ref.isMultiSelect,
+      rest = _objectWithoutProperties(_ref, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect']);
 
   var onClick = function onClick(_ref2, event) {
     var _ref2$target = _ref2.target,
@@ -45,7 +48,7 @@ var SelectButton = function SelectButton(_ref) {
 
   return React.createElement(
     ButtonGroup,
-    null,
+    rest,
     options.map(function (option) {
       var isSelected = getIsSelected(isMultiSelect, value, option);
       return React.createElement(
@@ -57,7 +60,8 @@ var SelectButton = function SelectButton(_ref) {
           onClick: onClick.bind(_this, {
             target: { name: name, type: type, select: option.value, isSelected: isSelected }
           }),
-          key: type + '-' + name + '-' + option.value
+          key: type + '-' + name + '-' + option.value,
+          marginBottom: 'small'
         },
         option.label
       );

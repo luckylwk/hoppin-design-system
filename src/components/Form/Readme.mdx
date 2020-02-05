@@ -309,6 +309,10 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
 
 <Props of={SelectButton} />
 
+Any other props provided to `SelectButton` will be passed down to `ButtonGroup`.
+So we can pass down `flexDirection='column'` for example or positioning props
+like `marginBottom="base"`.
+
 <Playground>
   {() => {
     const [formData, setFormData] = useState({ durations: ['1 day'] });
@@ -320,7 +324,7 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
     }
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="500px">
+        <Box margin="base" padding="base" maxWidth="350px">
           <SelectButton
             name="durations"
             title="Select the duration of your experience"
@@ -333,6 +337,21 @@ Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
             value={formData.durations}
             onChange={onChange}
             isMultiSelect
+            marginBottom="base"
+          />
+          <SelectButton
+            name="durations"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' },
+              { value: '1 day', label: '1 day' },
+              { value: '2 days', label: '2 days' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.durations}
+            onChange={onChange}
+            isMultiSelect
+            flexDirection="column"
           />
         </Box>
         <Box
