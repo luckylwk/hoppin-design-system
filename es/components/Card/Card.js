@@ -6,7 +6,7 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 
 import { Box } from '../Box';
 import styled from 'styled-components';
-import { flexbox, borderTopWidth } from 'styled-system';
+import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 var Card = styled(Box)(_templateObject, function (_ref) {

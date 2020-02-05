@@ -1,6 +1,6 @@
 import { Box } from '../Box';
 import styled from 'styled-components';
-import { flexbox, borderTopWidth } from 'styled-system';
+import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
 const Card = styled(Box)`
