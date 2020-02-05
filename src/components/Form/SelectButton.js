@@ -20,6 +20,7 @@ const SelectButton = ({
   value,
   onChange,
   isMultiSelect,
+  ...rest
 }) => {
   const onClick = ({ target: { name, type, select, isSelected } }, event) => {
     if (isMultiSelect) {
@@ -36,7 +37,7 @@ const SelectButton = ({
   };
 
   return (
-    <ButtonGroup>
+    <ButtonGroup {...rest}>
       {options.map(option => {
         const isSelected = getIsSelected(isMultiSelect, value, option);
         return (
@@ -48,6 +49,7 @@ const SelectButton = ({
               target: { name, type, select: option.value, isSelected },
             })}
             key={`${type}-${name}-${option.value}`}
+            marginBottom="small"
           >
             {option.label}
           </Button>
