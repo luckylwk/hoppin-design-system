@@ -27,7 +27,14 @@ const Wrapper = styled(Box)`
 
   background: transparent;
 
-  border: 1px solid ${({ theme }) => theme.colors.neutral.lighter};
+  border: 2px solid ${({ theme }) => theme.colors.neutral.lighter};
+  border-color: ${({ theme, context }) => {
+    if (theme.colors[context] !== undefined) {
+      return theme.colors[context].lighter;
+    } else {
+      return theme.colors.neutral.lightest;
+    }
+  }};
   border-radius: ${({ theme }) => theme.radii.small};
 
   font-family: ${({ theme }) => theme.fonts.secondary};
