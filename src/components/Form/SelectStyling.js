@@ -42,23 +42,27 @@ const getSelectStyles = theme => ({
   input: styles => ({
     ...styles,
     backgroundColor: 'white',
+    fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
   }),
   placeholder: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
+    fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
     color: theme.colors.neutral.light,
   }),
   singleValue: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
+    fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
   multiValue: styles => ({
     ...styles,
+    fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
     backgroundColor: theme.colors.neutral.lighter,
