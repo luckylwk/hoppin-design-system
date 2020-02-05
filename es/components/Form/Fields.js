@@ -17,9 +17,7 @@ import Creatable from 'react-select/creatable';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SingleSelectButton } from
-// SelectButton
-'.';
+import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SelectButton } from '.';
 
 import { Flex } from '../Flex';
 import { Box } from '../Box';
@@ -101,28 +99,19 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
         name: field.name,
         cacheOptions: false,
         loadOptions: field.options,
+        value: field.value,
         onChange: function onChange(option, _ref3) {
           var action = _ref3.action;
 
-          if (action === 'create-option' || action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
-            return _onChange(field.name, {
-              target: {
-                name: field.name,
-                type: field.type,
-                value: option,
-                action: action
-              }
-            });
-          } else if (action === 'clear') {
-            return _onChange(field.name, {
-              target: {
-                name: field.name,
-                type: field.type,
-                value: {},
-                action: action
-              }
-            });
-          }
+          var mockEvent = {
+            target: {
+              action: action,
+              name: field.name,
+              type: field.type,
+              value: action === 'clear' ? {} : option
+            }
+          };
+          return _onChange(field.name, mockEvent);
         },
         placeholder: field.placeholder || 'Search',
         components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator }
@@ -145,37 +134,33 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       React.createElement(Creatable, _extends({
         isClearable: true,
         clearValue: function clearValue() {
-          return _onChange(field.name, { target: { value: '' } });
+          return _onChange(field.name, {
+            target: {
+              action: 'clear',
+              name: field.name,
+              type: field.type,
+              value: {}
+            }
+          });
         },
         onChange: function onChange(option, _ref4) {
           var action = _ref4.action;
 
-          if (action === 'select-option' || action === 'create-option' || action === 'remove-value' || action === 'pop-value') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                name: field.name,
-                type: field.type,
-                value: option.value
-              }
-            });
-          }
-          if (action === 'clear') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                type: field.type,
-                name: field.name,
-                value: ''
-              }
-            });
-          }
+          var mockEvent = {
+            target: {
+              action: action,
+              name: field.name,
+              type: field.type,
+              value: action === 'clear' ? {} : option
+            }
+          };
+          return _onChange(field.name, mockEvent);
         },
         formatCreateLabel: function formatCreateLabel(userInput) {
           return 'Click to add: ' + userInput;
         },
         options: field.options,
-        value: { label: field.value, value: field.value }
+        value: field.value
       }, selectStyling)),
       field.explain && React.createElement(
         FieldExplanation,
@@ -199,32 +184,17 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
         onChange: function onChange(option, _ref5) {
           var action = _ref5.action;
 
-          if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                name: field.name,
-                type: field.type,
-
-                value: field.type === 'multi-select' ? option.map(function (_option) {
-                  return _option.value;
-                }) : option,
-                label: field.type === 'multi-select' ? option.map(function (_option) {
-                  return _option.label;
-                }) : option
-              }
-            });
-          }
-          if (action === 'clear') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                name: field.name,
-                type: field.type,
-                value: field.type === 'multi-select' ? [] : {}
-              }
-            });
-          }
+          var updatedValue = field.type === 'multi-select' ? option : option;
+          var emptyValue = field.type === 'multi-select' ? [] : {};
+          var mockEvent = {
+            target: {
+              action: action,
+              name: field.name,
+              type: field.type,
+              value: action === 'clear' ? emptyValue : updatedValue
+            }
+          };
+          return _onChange(field.name, mockEvent);
         },
         options: field.options
       }, selectStyling)),
@@ -243,31 +213,22 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     return React.createElement(
       _LabelOrFragment3,
       _labelProps3,
+      field.label,
       React.createElement(Async, _extends({
         cacheOptions: false,
         value: field.value,
         onChange: function onChange(option, _ref6) {
           var action = _ref6.action;
 
-          if (action === 'select-option' || action === 'remove-value' || action === 'pop-value') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                name: field.name,
-                type: field.type,
-                value: option
-              }
-            });
-          } else if (action === 'clear') {
-            return _onChange(field.name, {
-              target: {
-                action: action,
-                name: field.name,
-                type: field.type,
-                value: {}
-              }
-            });
-          }
+          var mockEvent = {
+            target: {
+              action: action,
+              name: field.name,
+              type: field.type,
+              value: action === 'clear' ? {} : option
+            }
+          };
+          return _onChange(field.name, mockEvent);
         },
         loadOptions: field.options,
         placeholder: field.placeholder || 'Search',
@@ -293,15 +254,16 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     });
   }
 
-  if (field.type === 'single-select-button') {
+  if (field.type === 'single-select-button' || field.type === 'select-button') {
     return React.createElement(
       Fragment,
       null,
-      React.createElement(SingleSelectButton, {
+      React.createElement(SelectButton, {
         name: field.name,
         options: field.options,
         value: field.value,
-        onChange: _onChange.bind(null, field.name)
+        onChange: _onChange.bind(null, field.name),
+        isMultiSelect: field.type === 'select-button'
       }),
       field.explain && React.createElement(
         FieldExplanation,
