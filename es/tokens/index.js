@@ -4,7 +4,7 @@ import { buttonSizes, buttonIconSpacing } from './buttons';
 import { shadows } from './shadows';
 import { fonts, fontSizes, lineHeights, fontWeights, headings } from './typography';
 import { logo, icon } from './logos';
-import { borders } from './borders';
+import { borderWidths } from './borders';
 
 export default {
   space: space,
@@ -24,5 +24,5 @@ export default {
   shadows: shadows,
   logo: logo,
   icon: icon,
-  borders: borders
+  borderWidths: borderWidths
 };

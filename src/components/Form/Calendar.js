@@ -27,7 +27,6 @@ const Wrapper = styled(Box)`
 
   background: transparent;
 
-  border: 2px solid ${({ theme }) => theme.colors.neutral.lighter};
   border-color: ${({ theme, context }) => {
     if (theme.colors[context] !== undefined) {
       return theme.colors[context].lighter;
@@ -35,7 +34,6 @@ const Wrapper = styled(Box)`
       return theme.colors.neutral.lightest;
     }
   }};
-  border-radius: ${({ theme }) => theme.radii.small};
 
   font-family: ${({ theme }) => theme.fonts.secondary};
 
@@ -56,6 +54,11 @@ const Wrapper = styled(Box)`
     background: ${({ theme }) => theme.colors.primary.base};
   }
 `;
+Wrapper.defaultProps = {
+  borderWidth: 'base',
+  borderStyle: 'solid',
+  borderRadius: 'small',
+};
 
 // ---------------------------
 

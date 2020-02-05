@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
-import { typography, space } from 'styled-system';
+import { typography, space, border } from 'styled-system';
 
 import { Box } from '../Box';
 import { Label, RequiredText } from '.';
@@ -14,6 +14,7 @@ const InputField = styled.input`
 
   ${typography}
   ${space}
+  ${border}
 
   ${({ theme, icon, iconPosition }) => {
     const padding = {
@@ -33,7 +34,6 @@ const InputField = styled.input`
       ? theme.colors.whiteout.base
       : theme.colors.whiteout.lighter};
 
-  border: 2px solid transparent;
   border-color: ${({ theme, context }) => {
     if (theme.colors[context] !== undefined) {
       return theme.colors[context].lighter;
@@ -41,7 +41,6 @@ const InputField = styled.input`
       return theme.colors.neutral.lighter;
     }
   }};
-  border-radius: ${({ theme }) => theme.radii.small};
 
   &:disabled {
     opacity: 0.25;
@@ -89,6 +88,9 @@ InputField.defaultProps = {
   lineHeight: 1,
   marginBottom: 'base',
   color: 'neutral.base',
+  borderWidth: 'base',
+  borderStyle: 'solid',
+  borderRadius: 'small',
 };
 
 InputField.displayName = 'InputField';
@@ -103,11 +105,13 @@ const Input = ({ label, required, theme, ...rest }) => {
   const inputProps = { ...(label && { marginTop: 'small' }) };
   // if we have an icon, we need to have a box gto position the icon
   const WrapperOrFragment = icon ? Box : Fragment;
-  const wrapperProps = icon ? { position: 'relative' } : {};
+  const wrapperProps = icon
+    ? { position: 'relative', style: { fontSize: theme.fontSizes.label } }
+    : {};
   const iconProps = {
     style: {
       position: 'absolute',
-      top: '0.9em',
+      top: '1.1em',
       [iconPosition]: theme.space.base,
     },
     color:

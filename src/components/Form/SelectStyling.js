@@ -8,7 +8,7 @@ const getSelectStyles = theme => ({
     marginTop: '4px',
     padding: '1px 8px',
     backgroundColor: 'white',
-    borderWidth: 2,
+    borderWidth: theme.borderWidths.base,
     borderRadius: theme.radii.small,
     borderColor: isFocused
       ? theme.colors.primary.lighter

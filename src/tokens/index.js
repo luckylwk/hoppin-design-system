@@ -17,7 +17,7 @@ import {
   headings,
 } from './typography';
 import { logo, icon } from './logos';
-import { borders } from './borders';
+import { borderWidths } from './borders';
 
 export default {
   space,
@@ -37,5 +37,5 @@ export default {
   shadows,
   logo,
   icon,
-  borders,
+  borderWidths,
 };
