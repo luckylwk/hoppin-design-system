@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "design-system",
   "scope": "hoppin",
   "builds": [
     {
