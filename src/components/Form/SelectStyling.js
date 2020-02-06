@@ -8,15 +8,15 @@ const getSelectStyles = theme => ({
     marginTop: '4px',
     padding: '1px 8px',
     backgroundColor: 'white',
-    borderWidth: 1,
+    borderWidth: theme.borderWidths.base,
     borderRadius: theme.radii.small,
     borderColor: isFocused
-      ? theme.colors.primary.base
-      : theme.colors.neutral.light,
+      ? theme.colors.primary.lighter
+      : theme.colors.neutral.lighter,
     ':hover': {
       borderColor: isFocused
-        ? theme.colors.primary.base
-        : theme.colors.neutral.light,
+        ? theme.colors.primary.lighter
+        : theme.colors.neutral.lighter,
     },
     boxShadow: null,
     minHeight: '2rem',
@@ -26,14 +26,14 @@ const getSelectStyles = theme => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
-    fontWeight: 400,
+    fontWeight: theme.fontWeights.normal,
     backgroundColor: isDisabled
       ? theme.colors.whiteout.lighter
       : isSelected
       ? theme.colors.whiteout.base
       : theme.colors.whiteout.lighter,
     color: isDisabled
-      ? theme.colors.neutral.lighter
+      ? theme.colors.neutral.light
       : isSelected
       ? theme.colors.neutral.dark
       : theme.colors.neutral.base,
@@ -42,22 +42,27 @@ const getSelectStyles = theme => ({
   input: styles => ({
     ...styles,
     backgroundColor: 'white',
+    fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
   }),
   placeholder: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
+    fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
+    color: theme.colors.neutral.light,
   }),
   singleValue: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
+    fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
   multiValue: styles => ({
     ...styles,
+    fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
     backgroundColor: theme.colors.neutral.lighter,

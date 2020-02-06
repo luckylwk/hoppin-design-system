@@ -12,11 +12,11 @@ var getSelectStyles = function getSelectStyles(theme) {
         marginTop: '4px',
         padding: '1px 8px',
         backgroundColor: 'white',
-        borderWidth: 1,
+        borderWidth: theme.borderWidths.base,
         borderRadius: theme.radii.small,
-        borderColor: isFocused ? theme.colors.primary.base : theme.colors.neutral.light,
+        borderColor: isFocused ? theme.colors.primary.lighter : theme.colors.neutral.lighter,
         ':hover': {
-          borderColor: isFocused ? theme.colors.primary.base : theme.colors.neutral.light
+          borderColor: isFocused ? theme.colors.primary.lighter : theme.colors.neutral.lighter
         },
         boxShadow: null,
         minHeight: '2rem',
@@ -29,15 +29,16 @@ var getSelectStyles = function getSelectStyles(theme) {
       return _extends({}, styles, {
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
-        fontWeight: 400,
+        fontWeight: theme.fontWeights.normal,
         backgroundColor: isDisabled ? theme.colors.whiteout.lighter : isSelected ? theme.colors.whiteout.base : theme.colors.whiteout.lighter,
-        color: isDisabled ? theme.colors.neutral.lighter : isSelected ? theme.colors.neutral.dark : theme.colors.neutral.base,
+        color: isDisabled ? theme.colors.neutral.light : isSelected ? theme.colors.neutral.dark : theme.colors.neutral.base,
         cursor: isDisabled ? 'not-allowed' : 'default'
       });
     },
     input: function input(styles) {
       return _extends({}, styles, {
         backgroundColor: 'white',
+        fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal
       });
@@ -45,18 +46,22 @@ var getSelectStyles = function getSelectStyles(theme) {
     placeholder: function placeholder(styles) {
       return _extends({}, styles, {
         fontFamily: theme.fonts.secondary,
-        fontWeight: theme.fontWeights.normal
+        fontSize: theme.fontSizes.body,
+        fontWeight: theme.fontWeights.normal,
+        color: theme.colors.neutral.light
       });
     },
     singleValue: function singleValue(styles) {
       return _extends({}, styles, {
         fontFamily: theme.fonts.secondary,
+        fontSize: theme.fontSizes.body,
         fontWeight: theme.fontWeights.normal
       });
     },
     /** Multi value specific.  */
     multiValue: function multiValue(styles) {
       return _extends({}, styles, {
+        fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
         backgroundColor: theme.colors.neutral.lighter,

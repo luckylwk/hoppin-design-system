@@ -24,7 +24,7 @@ Emphasize.propTypes = {
 
 Emphasize.defaultProps = {
   display: 'inline-block',
-  fontWeight: '600',
+  fontWeight: 'medium',
   lineHeight: '0.75',
 };
 

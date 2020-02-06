@@ -13,6 +13,7 @@ import {
   order,
 } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
+
 import { Heading } from '../Heading';
 
 const Lede = styled('p')`
@@ -29,8 +30,8 @@ const Lede = styled('p')`
   ${order}
 
   font-family: ${({ theme }) => theme.fonts.secondary};
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
-  letter-spacing: 1px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  letter-spacing: 0px;
   line-height: ${({ theme }) => theme.lineHeights.base};
 
   ${Heading} + & {

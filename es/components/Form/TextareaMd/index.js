@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class, _temp, _initialiseProps;
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 1px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 2px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 2px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -246,9 +246,9 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontS
       context = _ref3.context;
 
   if (theme.colors[context] !== undefined) {
-    return theme.colors[context].light;
+    return theme.colors[context].lighter;
   } else {
-    return theme.colors.neutral.light;
+    return theme.colors.neutral.lightest;
   }
 }, function (_ref4) {
   var theme = _ref4.theme;
@@ -271,7 +271,7 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontS
 StyledEditor.defaultProps = {
   context: 'neutral',
   marginBottom: 'base',
-  paddingY: 'small',
+  paddingY: 'base',
   paddingX: 'base',
   fontSize: 'body'
 };

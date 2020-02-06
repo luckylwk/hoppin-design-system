@@ -18,6 +18,7 @@ const Paragraph = styled('p')`
   font-size: ${({ theme }) => theme.fontSizes.body || '1em'};
   font-family: ${({ theme }) => theme.fonts.secondary || 'sans-serif'};
   line-height: ${({ theme }) => theme.lineHeights.body || '1.4em'};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
 
   &:last-child {
     margin-bottom: 0;
