@@ -10,8 +10,8 @@ import Button from './Button';
 const ButtonGroup = styled(Flex)`
   ${({ theme, flexDirection }) => {
     if (flexDirection === 'row') {
-      return `${Button} + ${Button} {
-        margin-left: ${theme.space.small};
+      return `${Button}:not(:last-child) {
+        margin-right: ${theme.space.small}
       }`;
     } else {
       return `${Button} + ${Button} {

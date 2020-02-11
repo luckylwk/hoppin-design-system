@@ -16,7 +16,7 @@ var ButtonGroup = styled(Flex)(_templateObject, function (_ref) {
       flexDirection = _ref.flexDirection;
 
   if (flexDirection === 'row') {
-    return Button + ' + ' + Button + ' {\n        margin-left: ' + theme.space.small + ';\n      }';
+    return Button + ':not(:last-child) {\n        margin-right: ' + theme.space.small + '\n      }';
   } else {
     return Button + ' + ' + Button + ' {\n        margin-top: ' + theme.space.small + ';\n      }';
   }
