@@ -4,7 +4,6 @@ export { default as TextareaMd } from './TextareaMd';
 export { default as SelectButton, SingleSelectButton } from './SelectButton';
 export { default as Errors } from './Errors';
 
-export { default as Calendar } from './Calendar';
 export { default as Checkbox } from './Checkbox';
 export { default as RangeSlider } from './RangeSlider';
 export { default as getSelectStyling } from './SelectStyling';

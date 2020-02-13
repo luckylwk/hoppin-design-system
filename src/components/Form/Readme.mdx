@@ -15,7 +15,6 @@ import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Paragraph } from '../Paragraph';
 import { UnorderedList, ListItem } from '../List';
-import Calendar from './Calendar';
 import {
   Fields,
   Input,
@@ -258,51 +257,6 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
       </Flex>
     )
   }}
-</Playground>
-
-## Calendar
-
-Calendar is based on [react-day-picker](http://react-day-picker.js.org/)
-
-<Props of={Calendar} />
-
-<Playground>
-  {() => {
-    const [selectedDays, setSelectedDays] = useState([]);
-    const today = new Date()
-    const availableDays = [
-      new Date(today.getFullYear(), today.getDate() <28 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 1 : 1),
-      new Date(today.getFullYear(), today.getDate() <26 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 3 : 3),
-      new Date(today.getFullYear(), today.getDate() <24 ? today.getMonth() : today.getMonth() + 1, today.getDate() <28 ? today.getDate() + 5 : 5)
-    ];
-    const isSelected = (day) => {
-      const selectedIndex = selectedDays.findIndex(selectedDay =>
-        DateUtils.isSameDay(selectedDay, day)
-      );
-      return selectedIndex !== -1;
-    };
-    const handleDayClick = (day, {selected}) => {
-      const updatedDays = [...selectedDays]
-      const selectedIndex = selectedDays.findIndex(selectedDay => {
-          return DateUtils.isSameDay(selectedDay, day)
-      });
-      if (selectedIndex > -1) {
-        updatedDays.splice(selectedIndex, 1);
-      } else {
-        updatedDays.push(day);
-      }
-      setSelectedDays(updatedDays)
-    }
-    return (
-      <Calendar
-        placeholder="First Name"
-        availableDays={availableDays}
-        selectedDays={isSelected}
-        onDayClick={handleDayClick}
-        onChange={e => console.log(e.target.name, e.target.value)}
-      />
-    )
-}}
 </Playground>
 
 ## SelectButton
