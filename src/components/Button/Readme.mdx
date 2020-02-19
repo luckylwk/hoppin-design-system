@@ -24,7 +24,7 @@ This is your standard button. They typically trigger one action when interacted 
 <Playground>
   <ButtonGroup>
     <Button>Click me</Button>
-    <Button context="shadower">shadower</Button>
+    <Button context="shadower">Shadower</Button>
     <Button context="host">Host</Button>
     <Button context="danger">Danger</Button>
   </ButtonGroup>
@@ -41,7 +41,7 @@ These are our outline buttons. Use them for secondary actions. Most of the time,
 <ButtonGroup>
 
 <Button variant='outline'>Click me</Button>
-<Button variant='outline' context="shadower">shadower</Button>
+<Button variant='outline' context="shadower">Shadower</Button>
 <Button variant='outline' context="host">Host</Button>
 <Button variant='outline' context="danger">Danger</Button>
 </ButtonGroup>
@@ -58,7 +58,7 @@ These are our subtle buttons. Use them for when the action is not overly importa
 <ButtonGroup>
 
 <Button variant='subtle'>Click me</Button>
-<Button variant='subtle' context="shadower">shadower</Button>
+<Button variant='subtle' context="shadower">Shadower</Button>
 <Button variant='subtle' context="host">Host</Button>
 <Button variant='subtle' context="danger">Danger</Button>
 
@@ -94,17 +94,29 @@ Buttons that contain _just_ an icon automatically adjust padding to become round
 
 <Playground>
   <ButtonGroup alignItems="center">
-  <Button icon={true} display="inline-block" size="small">
-    <FiArrowLeft />
-  </Button>
+    <Button icon={true} display="inline-block" size="small">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+    </Button>
+    <Button icon={true} display="inline-block">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+    </Button>
+    <Button icon={true} display="inline-block" size="large">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+    </Button>
+  </ButtonGroup>
+</Playground>
 
-<Button icon={true} display="inline-block">
-  <FiArrowLeft />
-</Button>
-
-  <Button icon={true} display="inline-block" size="large">
-    <FiArrowLeft />
-  </Button>
+<Playground>
+  <ButtonGroup alignItems="center">
+    <Button display="inline-block" size="small">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+    </Button>
+    <Button display="inline-block">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+    </Button>
+    <Button display="inline-block" size="large">
+      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+    </Button>
   </ButtonGroup>
 </Playground>
 

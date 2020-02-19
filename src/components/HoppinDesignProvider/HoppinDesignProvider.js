@@ -43,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
         format('truetype');
   }
 
-  @import url('//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i&display=swap');
+  @import url('//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,600,600i,700,700i&display=swap');
 `;
 
 const HoppinDesignProvider = ({ children, context, theme }) => {

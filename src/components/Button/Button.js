@@ -49,7 +49,7 @@ const Button = styled.button`
   border-radius: 2em;
 
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.5px;
+  letter-spacing: 0px;
   text-decoration: none;
   line-height: 1;
 
@@ -71,6 +71,7 @@ const Button = styled.button`
     // `variant` defines full color (default), outline, or subtle shape
     // `context` defines color default (host/shadower inherited from context), host, shadower, danger
     const colors = get(theme, `colors.${context}`, { base: '#333' });
+    const isShadower = colors.base === theme.colors.shadower.base;
 
     let variantCSS = '';
     switch (variant) {
@@ -99,8 +100,8 @@ const Button = styled.button`
           background-color: ${colors.base};
           color: ${
             context === 'whiteout'
-              ? colors.base
-              : context === 'shadower'
+              ? theme.colors.primary.dark
+              : isShadower
               ? colors.darkest
               : theme.colors.whiteout.lightest
           };
@@ -110,17 +111,12 @@ const Button = styled.button`
     return variantCSS;
   }}
 
-  /*
-  // TODO:  Auto-Spacing between buttons. Messes up in Flexbox (wrap)
-  & + & {
-    margin-left: ${({ theme }) => theme.space.small};
-  } */
-
   /* our buttonSize variant */
   ${buttonSize}
 
   /* icon buttons */
   ${props => props.icon && buttonIconSpacing}
+
   /* styled-system props */
   ${display}
   ${space}

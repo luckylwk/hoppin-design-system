@@ -15,7 +15,6 @@ const ActionButtons = ({
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
     }
-
     if (action.navigate === 'external') {
       return window.open(action.url, action.target || '_blank');
     } else {
@@ -38,7 +37,6 @@ const ActionButtons = ({
                 type="button"
                 variant={action.variant ? action.variant : 'outline'}
                 icon={true}
-                size="large"
                 onClick={handleOnClick.bind(null, action)}
                 order={-1}
                 alignSelf="flex-start"
@@ -61,7 +59,6 @@ const ActionButtons = ({
                   ? 'full'
                   : 'outline'
               }
-              size="large"
               marginLeft="small"
               onClick={handleOnClick.bind(null, action)}
               disabled={(action.navigate === 'next' && disableNext) || isSaving}
