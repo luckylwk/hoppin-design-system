@@ -55,7 +55,8 @@ var SelectButton = function SelectButton(_ref) {
         Button,
         {
           type: 'button',
-          context: isSelected ? 'primary' : 'neutral',
+          size: 'small',
+          context: 'neutral',
           variant: isSelected ? 'full' : 'outline',
           onClick: onClick.bind(_this, {
             target: { name: name, type: type, select: option.value, isSelected: isSelected }

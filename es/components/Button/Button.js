@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  font-family: ', ';\n  cursor: pointer;\n\n  border: 2px solid transparent;\n  border-radius: 2em;\n\n  font-weight: ', ';\n  letter-spacing: 0.5px;\n  text-decoration: none;\n  line-height: 1;\n\n  outline: none;\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    box-shadow: ', ';\n  }\n\n  ', '\n\n  /*\n  // TODO:  Auto-Spacing between buttons. Messes up in Flexbox (wrap)\n  & + & {\n    margin-left: ', ';\n  } */\n\n  /* our buttonSize variant */\n  ', '\n\n  /* icon buttons */\n  ', '\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */\n  & [role=\'img\'] {\n    display: inline-block;\n    margin: .25em auto -.25em;\n  }\n'], ['\n  font-family: ', ';\n  cursor: pointer;\n\n  border: 2px solid transparent;\n  border-radius: 2em;\n\n  font-weight: ', ';\n  letter-spacing: 0.5px;\n  text-decoration: none;\n  line-height: 1;\n\n  outline: none;\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    box-shadow: ', ';\n  }\n\n  ', '\n\n  /*\n  // TODO:  Auto-Spacing between buttons. Messes up in Flexbox (wrap)\n  & + & {\n    margin-left: ', ';\n  } */\n\n  /* our buttonSize variant */\n  ', '\n\n  /* icon buttons */\n  ', '\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */\n  & [role=\'img\'] {\n    display: inline-block;\n    margin: .25em auto -.25em;\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  font-family: ', ';\n  cursor: pointer;\n\n  border: 2px solid transparent;\n  border-radius: 2em;\n\n  font-weight: ', ';\n  letter-spacing: 0px;\n  text-decoration: none;\n  line-height: 1;\n\n  outline: none;\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    box-shadow: ', ';\n  }\n\n  ', '\n\n  /* our buttonSize variant */\n  ', '\n\n  /* icon buttons */\n  ', '\n\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */\n  & [role=\'img\'] {\n    display: inline-block;\n    margin: .25em auto -.25em;\n  }\n'], ['\n  font-family: ', ';\n  cursor: pointer;\n\n  border: 2px solid transparent;\n  border-radius: 2em;\n\n  font-weight: ', ';\n  letter-spacing: 0px;\n  text-decoration: none;\n  line-height: 1;\n\n  outline: none;\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  transition: all 0.5s;\n\n  &:hover {\n    transform: translateY(-1px);\n    box-shadow: ', ';\n  }\n\n  ', '\n\n  /* our buttonSize variant */\n  ', '\n\n  /* icon buttons */\n  ', '\n\n  /* styled-system props */\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */\n  & [role=\'img\'] {\n    display: inline-block;\n    margin: .25em auto -.25em;\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -51,6 +51,7 @@ var Button = styled.button(_templateObject, function (_ref) {
   // `variant` defines full color (default), outline, or subtle shape
   // `context` defines color default (host/shadower inherited from context), host, shadower, danger
   var colors = get(theme, 'colors.' + context, { base: '#333' });
+  var isShadower = colors.base === theme.colors.shadower.base;
 
   var variantCSS = '';
   switch (variant) {
@@ -62,13 +63,10 @@ var Button = styled.button(_templateObject, function (_ref) {
       break;
     case 'full':
     default:
-      variantCSS = '\n          border-color: ' + colors.base + ';\n          background-color: ' + colors.base + ';\n          color: ' + (context === 'whiteout' ? colors.base : context === 'shadower' ? colors.darkest : theme.colors.whiteout.lightest) + ';\n        ';
+      variantCSS = '\n          border-color: ' + colors.base + ';\n          background-color: ' + colors.base + ';\n          color: ' + (context === 'whiteout' ? theme.colors.primary.dark : isShadower ? colors.darkest : theme.colors.whiteout.lightest) + ';\n        ';
       break;
   }
   return variantCSS;
-}, function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.space.small;
 }, buttonSize, function (props) {
   return props.icon && buttonIconSpacing;
 }, display, space, width, flex, flexGrow, flexShrink, flexBasis, justifySelf, alignSelf, order);

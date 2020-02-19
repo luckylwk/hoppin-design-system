@@ -7,10 +7,6 @@ import styled from 'styled-components';
 import { Flex } from '../Flex';
 import Button from './Button';
 
-/**
- * ButtonGroup component. Helps arrange groups of buttons
- */
-
 var ButtonGroup = styled(Flex)(_templateObject, function (_ref) {
   var theme = _ref.theme,
       flexDirection = _ref.flexDirection;
