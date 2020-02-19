@@ -31,7 +31,7 @@ class SteppedForm extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { stepSlug } = this.props.match.params;
     const stepShowing = this._getStepFromSlug(stepSlug);
     this.setState({ stepShowing }, this._matchRouteWithState);

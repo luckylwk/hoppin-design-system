@@ -16,15 +16,16 @@ var buttonSizes = {
   }
 };
 
+// Previously: space[1], space[2], space[3]
 var buttonIconSpacing = {
   small: {
-    padding: '' + space[1]
+    padding: '4px'
   },
   base: {
-    padding: '' + space[2]
+    padding: '7px 8px'
   },
   large: {
-    padding: '' + space[3]
+    padding: '14px 16px'
   }
 };
 

@@ -47,7 +47,7 @@ var SteppedForm = (_temp = _class = function (_Component) {
     return _this;
   }
 
-  SteppedForm.prototype.componentWillMount = function componentWillMount() {
+  SteppedForm.prototype.UNSAFE_componentWillMount = function UNSAFE_componentWillMount() {
     var stepSlug = this.props.match.params.stepSlug;
 
     var stepShowing = this._getStepFromSlug(stepSlug);

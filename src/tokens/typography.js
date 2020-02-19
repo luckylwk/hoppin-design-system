@@ -52,6 +52,7 @@ const fontWeights = {
   normal: 300,
   medium: 400,
   bold: 600,
+  heavy: 700,
 };
 
 // headings style attributes, all but color, since color is dependent on host/shadower context

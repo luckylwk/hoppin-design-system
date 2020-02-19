@@ -43,7 +43,8 @@ const SelectButton = ({
         return (
           <Button
             type="button"
-            context={isSelected ? 'primary' : 'neutral'}
+            size="small"
+            context="neutral"
             variant={isSelected ? 'full' : 'outline'}
             onClick={onClick.bind(this, {
               target: { name, type, select: option.value, isSelected },
