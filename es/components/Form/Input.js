@@ -1,6 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  ', ';\n\n  background: ', ';\n\n  border-color: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n  }\n\n  &::placeholder {\n    font-family: ', ';\n    font-weight: ', ';;\n    color: ', ';\n  }\n\n  appearance: none;\n  outline: none;\n  width: 100%;\n  flex: 1 1 100%;\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  ', ';\n\n  background: ', ';\n\n  border-color: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n  }\n\n  &::placeholder {\n    font-family: ', ';\n    font-weight: ', ';;\n    color: ', ';\n  }\n\n  appearance: none;\n  outline: none;\n  width: 100%;\n  flex: 1 1 100%;\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  ', ';\n\n  background: ', ';\n\n  border-color: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n\n  &::placeholder {\n    font-family: ', ';\n    font-weight: ', ';\n    color: ', ';\n  }\n\n  appearance: none;\n  outline: none;\n  width: 100%;\n  flex: 1 1 100%;\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n\n  ', ';\n\n  background: ', ';\n\n  border-color: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n\n  &::placeholder {\n    font-family: ', ';\n    font-weight: ', ';\n    color: ', ';\n  }\n\n  appearance: none;\n  outline: none;\n  width: 100%;\n  flex: 1 1 100%;\n']);
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -32,19 +32,12 @@ var InputField = styled.input(_templateObject, typography, space, border, functi
   }
   return 'padding: ' + padding.top + ' ' + padding.right + ' ' + padding.bottom + ' ' + padding.left;
 }, function (_ref2) {
-  var isFocused = _ref2.isFocused,
-      value = _ref2.value,
-      theme = _ref2.theme;
-  return isFocused || value && value.length > 0 ? theme.colors.whiteout.base : theme.colors.whiteout.lighter;
+  var theme = _ref2.theme,
+      value = _ref2.value;
+  return value && value.length > 0 ? theme.colors.whiteout.lighter : theme.colors.whiteout.light;
 }, function (_ref3) {
-  var theme = _ref3.theme,
-      context = _ref3.context;
-
-  if (theme.colors[context] !== undefined) {
-    return theme.colors[context].lighter;
-  } else {
-    return theme.colors.neutral.lighter;
-  }
+  var theme = _ref3.theme;
+  return theme.colors.whiteout.dark;
 }, function (_ref4) {
   var theme = _ref4.theme,
       context = _ref4.context;
@@ -58,13 +51,16 @@ var InputField = styled.input(_templateObject, typography, space, border, functi
   }
 }, function (_ref5) {
   var theme = _ref5.theme;
-  return theme.fonts.secondary;
+  return theme.colors.whiteout.lightest;
 }, function (_ref6) {
   var theme = _ref6.theme;
-  return theme.fontWeights.normal;
+  return theme.fonts.secondary;
 }, function (_ref7) {
   var theme = _ref7.theme;
-  return theme.colors.neutral.light;
+  return theme.fontWeights.normal;
+}, function (_ref8) {
+  var theme = _ref8.theme;
+  return theme.colors.neutral.base;
 });
 
 InputField.propTypes = {
@@ -83,7 +79,7 @@ InputField.defaultProps = {
   fontWeight: 'normal',
   lineHeight: 1,
   marginBottom: 'base',
-  color: 'neutral.base',
+  color: 'neutral.dark',
   borderWidth: 'base',
   borderStyle: 'solid',
   borderRadius: 'small'
@@ -93,13 +89,13 @@ InputField.displayName = 'InputField';
 
 // ---------------------------
 
-var Input = function Input(_ref8) {
+var Input = function Input(_ref9) {
   var _style;
 
-  var label = _ref8.label,
-      required = _ref8.required,
-      theme = _ref8.theme,
-      rest = _objectWithoutProperties(_ref8, ['label', 'required', 'theme']);
+  var label = _ref9.label,
+      required = _ref9.required,
+      theme = _ref9.theme,
+      rest = _objectWithoutProperties(_ref9, ['label', 'required', 'theme']);
 
   var icon = rest.icon,
       iconPosition = rest.iconPosition;

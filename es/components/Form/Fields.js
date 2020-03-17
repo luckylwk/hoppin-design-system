@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiChevronDown } from 'react-icons/fi';
 
 import Select, { components } from 'react-select';
 import Async from 'react-select/async';
@@ -26,13 +26,19 @@ import { Paragraph } from '../Paragraph';
 
 // ---------------------------
 
-var FiSearchStyled = styled(FiSearch)(_templateObject, function (_ref) {
+var FiChevronDownStyled = styled(FiChevronDown)(_templateObject, function (_ref) {
   var theme = _ref.theme,
       focused = _ref.focused;
-  return focused === 'true' ? theme.colors.primary.base : theme.colors.neutral.light;
+  return focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base;
 });
 
-var DropdownIndicator = function DropdownIndicator(props) {
+var FiSearchStyled = styled(FiSearch)(_templateObject, function (_ref2) {
+  var theme = _ref2.theme,
+      focused = _ref2.focused;
+  return focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base;
+});
+
+var SearchDropdownIndicator = function SearchDropdownIndicator(props) {
   return React.createElement(
     components.DropdownIndicator,
     props,
@@ -40,8 +46,16 @@ var DropdownIndicator = function DropdownIndicator(props) {
   );
 };
 
-var IndicatorSeparator = function IndicatorSeparator(_ref2) {
-  var innerProps = _ref2.innerProps;
+var DropdownIndicator = function DropdownIndicator(props) {
+  return React.createElement(
+    components.DropdownIndicator,
+    props,
+    React.createElement(FiChevronDownStyled, { focused: '' + props.isFocused })
+  );
+};
+
+var IndicatorSeparator = function IndicatorSeparator(_ref3) {
+  var innerProps = _ref3.innerProps;
   return React.createElement('span', _extends({ style: { backgroundColor: 'transparent' } }, innerProps));
 };
 
@@ -88,48 +102,12 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     );
   }
 
-  if (field.type === 'async-creatable-select') {
+  if (field.type === 'creatable-select') {
     var LabelOrFragment = field.label ? Label : Fragment;
     var labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
       LabelOrFragment,
       labelProps,
-      field.label,
-      React.createElement(AsyncCreatableSelect, _extends({
-        name: field.name,
-        cacheOptions: false,
-        loadOptions: field.options,
-        value: field.value,
-        onChange: function onChange(option, _ref3) {
-          var action = _ref3.action;
-
-          var mockEvent = {
-            target: {
-              action: action,
-              name: field.name,
-              type: field.type,
-              value: action === 'clear' ? {} : option
-            }
-          };
-          return _onChange(field.name, mockEvent);
-        },
-        placeholder: field.placeholder || 'Search',
-        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator }
-      }, selectStyling)),
-      field.explain && React.createElement(
-        FieldExplanation,
-        null,
-        field.explain
-      )
-    );
-  }
-
-  if (field.type === 'creatable-select') {
-    var _LabelOrFragment = field.label ? Label : Fragment;
-    var _labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
-    return React.createElement(
-      _LabelOrFragment,
-      _labelProps,
       field.label,
       React.createElement(Creatable, _extends({
         isClearable: true,
@@ -160,7 +138,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
           return 'Click to add: ' + userInput;
         },
         options: field.options,
-        value: field.value
+        value: field.value,
+        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator }
       }, selectStyling)),
       field.explain && React.createElement(
         FieldExplanation,
@@ -171,11 +150,11 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
   }
 
   if (field.type === 'select' || field.type === 'multi-select') {
-    var _LabelOrFragment2 = field.label ? Label : Fragment;
-    var _labelProps2 = field.label ? { label: field.label, htmlFor: field.name } : {};
+    var _LabelOrFragment = field.label ? Label : Fragment;
+    var _labelProps = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
-      _LabelOrFragment2,
-      _labelProps2,
+      _LabelOrFragment,
+      _labelProps,
       field.label,
       React.createElement(Select, _extends({
         isMulti: field.type === 'multi-select',
@@ -196,7 +175,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
           };
           return _onChange(field.name, mockEvent);
         },
-        options: field.options
+        options: field.options,
+        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator }
       }, selectStyling)),
       field.explain && React.createElement(
         FieldExplanation,
@@ -208,11 +188,11 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
   // Used for location (using Google GeoLocation API)
   if (field.type === 'async-select') {
-    var _LabelOrFragment3 = field.label ? Label : Fragment;
-    var _labelProps3 = field.label ? { label: field.label, htmlFor: field.name } : {};
+    var _LabelOrFragment2 = field.label ? Label : Fragment;
+    var _labelProps2 = field.label ? { label: field.label, htmlFor: field.name } : {};
     return React.createElement(
-      _LabelOrFragment3,
-      _labelProps3,
+      _LabelOrFragment2,
+      _labelProps2,
       field.label,
       React.createElement(Async, _extends({
         cacheOptions: false,
@@ -231,11 +211,53 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
           return _onChange(field.name, mockEvent);
         },
         loadOptions: field.options,
+        components: {
+          IndicatorSeparator: IndicatorSeparator,
+          DropdownIndicator: SearchDropdownIndicator
+        },
         placeholder: field.placeholder || 'Search',
-        components: { IndicatorSeparator: IndicatorSeparator, DropdownIndicator: DropdownIndicator },
         noOptionsMessage: function noOptionsMessage() {
           return 'Start typing to start the search';
         }
+      }, selectStyling)),
+      field.explain && React.createElement(
+        FieldExplanation,
+        null,
+        field.explain
+      )
+    );
+  }
+
+  if (field.type === 'async-creatable-select') {
+    var _LabelOrFragment3 = field.label ? Label : Fragment;
+    var _labelProps3 = field.label ? { label: field.label, htmlFor: field.name } : {};
+    return React.createElement(
+      _LabelOrFragment3,
+      _labelProps3,
+      field.label,
+      React.createElement(AsyncCreatableSelect, _extends({
+        name: field.name,
+        cacheOptions: false,
+        loadOptions: field.options,
+        value: field.value,
+        onChange: function onChange(option, _ref7) {
+          var action = _ref7.action;
+
+          var mockEvent = {
+            target: {
+              action: action,
+              name: field.name,
+              type: field.type,
+              value: action === 'clear' ? {} : option
+            }
+          };
+          return _onChange(field.name, mockEvent);
+        },
+        components: {
+          IndicatorSeparator: IndicatorSeparator,
+          DropdownIndicator: SearchDropdownIndicator
+        },
+        placeholder: field.placeholder || 'Search'
       }, selectStyling)),
       field.explain && React.createElement(
         FieldExplanation,
@@ -343,10 +365,10 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
 
 // ---------------------------
 
-var Fields = function Fields(_ref7) {
-  var onChange = _ref7.onChange,
-      fields = _ref7.fields,
-      theme = _ref7.theme;
+var Fields = function Fields(_ref8) {
+  var onChange = _ref8.onChange,
+      fields = _ref8.fields,
+      theme = _ref8.theme;
 
   var selectStyling = getSelectStyling(theme);
 

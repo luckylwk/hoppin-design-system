@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class, _temp, _initialiseProps;
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 2px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: 2px solid transparent;\n  border-color: ', ';\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: ', ';\n\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: ', ';\n\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -239,17 +239,12 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
 // ---------------------------
 
 var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontSize, function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.colors.whiteout.lighter;
+  var theme = _ref2.theme,
+      initialValue = _ref2.initialValue;
+  return initialValue && initialValue.length > 0 ? theme.colors.whiteout.lighter : theme.colors.whiteout.light;
 }, function (_ref3) {
-  var theme = _ref3.theme,
-      context = _ref3.context;
-
-  if (theme.colors[context] !== undefined) {
-    return theme.colors[context].lighter;
-  } else {
-    return theme.colors.neutral.lightest;
-  }
+  var theme = _ref3.theme;
+  return theme.borderWidths.base + ' solid ' + theme.colors.whiteout.dark;
 }, function (_ref4) {
   var theme = _ref4.theme;
   return theme.radii.small;
@@ -257,15 +252,16 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontS
   var theme = _ref5.theme,
       context = _ref5.context;
 
-  if (context !== 'neutral' && theme.colors[context] !== undefined) {
-    return theme.colors[context].base;
-  } else {
-    return theme.colors.primary.base;
+  switch (context) {
+    case 'danger':
+      return theme.colors.danger.base;
+    case 'neutral':
+    default:
+      return theme.colors.primary.base;
   }
 }, function (_ref6) {
-  var theme = _ref6.theme,
-      initialValue = _ref6.initialValue;
-  return initialValue && initialValue.length > 0 ? theme.colors.whiteout.base : theme.colors.whiteout.light;
+  var theme = _ref6.theme;
+  return theme.colors.whiteout.lightest;
 });
 
 StyledEditor.defaultProps = {
@@ -273,7 +269,8 @@ StyledEditor.defaultProps = {
   marginBottom: 'base',
   paddingY: 'base',
   paddingX: 'base',
-  fontSize: 'body'
+  fontSize: 'body',
+  fontWeight: 'normal'
 };
 
 // ---------------------------
