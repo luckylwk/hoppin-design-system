@@ -1,6 +1,6 @@
 {
   "name": "hoppin-design-system",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "private": true,
   "description": "Design system and shared components for Hoppin.",
   "main": "lib/index.js",
