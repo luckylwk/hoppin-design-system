@@ -227,16 +227,14 @@ const StyledEditor = styled(Editor)`
   ${flexbox}
   ${fontSize}
 
-  background: ${({ theme }) => theme.colors.whiteout.lighter};
+  background: ${({ theme, initialValue }) =>
+    initialValue && initialValue.length > 0
+      ? theme.colors.whiteout.lighter
+      : theme.colors.whiteout.light};
 
-  border: 2px solid transparent;
-  border-color: ${({ theme, context }) => {
-    if (theme.colors[context] !== undefined) {
-      return theme.colors[context].lighter;
-    } else {
-      return theme.colors.neutral.lightest;
-    }
-  }};
+  border: ${({ theme }) =>
+    `${theme.borderWidths.base} solid ${theme.colors.whiteout.dark}`};
+
   border-radius: ${({ theme }) => theme.radii.small};
 
   &:disabled {
@@ -246,16 +244,15 @@ const StyledEditor = styled(Editor)`
 
   &:focus {
     border-color: ${({ theme, context }) => {
-      if (context !== 'neutral' && theme.colors[context] !== undefined) {
-        return theme.colors[context].base;
-      } else {
-        return theme.colors.primary.base;
+      switch (context) {
+        case 'danger':
+          return theme.colors.danger.base;
+        case 'neutral':
+        default:
+          return theme.colors.primary.base;
       }
     }};
-    background: ${({ theme, initialValue }) =>
-      initialValue && initialValue.length > 0
-        ? theme.colors.whiteout.base
-        : theme.colors.whiteout.light};
+    background: ${({ theme }) => theme.colors.whiteout.lightest};
   }
 `;
 
@@ -265,6 +262,7 @@ StyledEditor.defaultProps = {
   paddingY: 'base',
   paddingX: 'base',
   fontSize: 'body',
+  fontWeight: 'normal',
 };
 
 // ---------------------------

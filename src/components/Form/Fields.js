@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import _has from 'lodash/has';
 
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiChevronDown } from 'react-icons/fi';
 
 import Select, { components } from 'react-select';
 import Async from 'react-select/async';
@@ -28,16 +28,25 @@ import { Paragraph } from '../Paragraph';
 
 // ---------------------------
 
+const FiChevronDownStyled = styled(FiChevronDown)`
+  color: ${({ theme, focused }) =>
+    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+`;
+
 const FiSearchStyled = styled(FiSearch)`
   color: ${({ theme, focused }) =>
-    focused === 'true'
-      ? theme.colors.primary.base
-      : theme.colors.neutral.light};
+    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
 `;
+
+const SearchDropdownIndicator = props => (
+  <components.DropdownIndicator {...props}>
+    <FiSearchStyled focused={`${props.isFocused}`} />
+  </components.DropdownIndicator>
+);
 
 const DropdownIndicator = props => (
   <components.DropdownIndicator {...props}>
-    <FiSearchStyled focused={`${props.isFocused}`} />
+    <FiChevronDownStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
 );
 
@@ -83,39 +92,6 @@ export const renderField = (field, onChange, selectStyling) => {
     );
   }
 
-  if (field.type === 'async-creatable-select') {
-    const LabelOrFragment = field.label ? Label : Fragment;
-    const labelProps = field.label
-      ? { label: field.label, htmlFor: field.name }
-      : {};
-    return (
-      <LabelOrFragment {...labelProps}>
-        {field.label}
-        <AsyncCreatableSelect
-          name={field.name}
-          cacheOptions={false}
-          loadOptions={field.options}
-          value={field.value}
-          onChange={(option, { action }) => {
-            const mockEvent = {
-              target: {
-                action,
-                name: field.name,
-                type: field.type,
-                value: action === 'clear' ? {} : option,
-              },
-            };
-            return onChange(field.name, mockEvent);
-          }}
-          placeholder={field.placeholder || 'Search'}
-          components={{ IndicatorSeparator, DropdownIndicator }}
-          {...selectStyling}
-        />
-        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
-      </LabelOrFragment>
-    );
-  }
-
   if (field.type === 'creatable-select') {
     const LabelOrFragment = field.label ? Label : Fragment;
     const labelProps = field.label
@@ -150,6 +126,7 @@ export const renderField = (field, onChange, selectStyling) => {
           formatCreateLabel={userInput => `Click to add: ${userInput}`}
           options={field.options}
           value={field.value}
+          components={{ IndicatorSeparator, DropdownIndicator }}
           {...selectStyling}
         />
         {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
@@ -184,6 +161,7 @@ export const renderField = (field, onChange, selectStyling) => {
             return onChange(field.name, mockEvent);
           }}
           options={field.options}
+          components={{ IndicatorSeparator, DropdownIndicator }}
           {...selectStyling}
         />
         {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
@@ -215,9 +193,48 @@ export const renderField = (field, onChange, selectStyling) => {
             return onChange(field.name, mockEvent);
           }}
           loadOptions={field.options}
+          components={{
+            IndicatorSeparator,
+            DropdownIndicator: SearchDropdownIndicator,
+          }}
           placeholder={field.placeholder || 'Search'}
-          components={{ IndicatorSeparator, DropdownIndicator }}
           noOptionsMessage={() => 'Start typing to start the search'}
+          {...selectStyling}
+        />
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </LabelOrFragment>
+    );
+  }
+
+  if (field.type === 'async-creatable-select') {
+    const LabelOrFragment = field.label ? Label : Fragment;
+    const labelProps = field.label
+      ? { label: field.label, htmlFor: field.name }
+      : {};
+    return (
+      <LabelOrFragment {...labelProps}>
+        {field.label}
+        <AsyncCreatableSelect
+          name={field.name}
+          cacheOptions={false}
+          loadOptions={field.options}
+          value={field.value}
+          onChange={(option, { action }) => {
+            const mockEvent = {
+              target: {
+                action,
+                name: field.name,
+                type: field.type,
+                value: action === 'clear' ? {} : option,
+              },
+            };
+            return onChange(field.name, mockEvent);
+          }}
+          components={{
+            IndicatorSeparator,
+            DropdownIndicator: SearchDropdownIndicator,
+          }}
+          placeholder={field.placeholder || 'Search'}
           {...selectStyling}
         />
         {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
