@@ -3,56 +3,96 @@
  */
 
 const getSelectStyles = theme => ({
-  control: (styles, { isFocused }) => ({
-    ...styles,
-    marginTop: '4px',
-    padding: '1px 8px',
-    backgroundColor: 'white',
-    borderWidth: theme.borderWidths.base,
-    borderRadius: theme.radii.small,
-    borderColor: isFocused
-      ? theme.colors.primary.lighter
-      : theme.colors.neutral.lighter,
-    ':hover': {
+  control: (styles, props) => {
+    const {
+      isFocused, //hasValue
+    } = props;
+    return {
+      ...styles,
+      marginTop: '4px',
+      padding: '1px 8px',
+      backgroundColor: theme.colors.whiteout.light,
+      borderWidth: theme.borderWidths.base,
+      borderRadius: isFocused
+        ? `${theme.radii.small} ${theme.radii.small} 0 0`
+        : theme.radii.small,
       borderColor: isFocused
-        ? theme.colors.primary.lighter
-        : theme.colors.neutral.lighter,
-    },
-    boxShadow: null,
-    minHeight: '2rem',
-    lineHeight: 1,
-  }),
-  option: (styles, { isDisabled, isSelected }) => ({
-    ...styles,
-    fontSize: theme.fontSizes.body,
-    fontFamily: theme.fonts.secondary,
-    fontWeight: theme.fontWeights.normal,
-    backgroundColor: isDisabled
-      ? theme.colors.whiteout.lighter
-      : isSelected
-      ? theme.colors.whiteout.base
-      : theme.colors.whiteout.lighter,
-    color: isDisabled
-      ? theme.colors.neutral.light
-      : isSelected
-      ? theme.colors.neutral.dark
-      : theme.colors.neutral.base,
-    cursor: isDisabled ? 'not-allowed' : 'default',
-  }),
-  input: styles => ({
-    ...styles,
-    backgroundColor: 'white',
-    fontSize: theme.fontSizes.body,
-    fontFamily: theme.fonts.secondary,
-    fontWeight: theme.fontWeights.normal,
-  }),
-  placeholder: styles => ({
-    ...styles,
-    fontFamily: theme.fonts.secondary,
-    fontSize: theme.fontSizes.body,
-    fontWeight: theme.fontWeights.normal,
-    color: theme.colors.neutral.light,
-  }),
+        ? theme.colors.primary.base
+        : theme.colors.whiteout.dark,
+      ':hover': {
+        borderColor: isFocused
+          ? theme.colors.primary.base
+          : theme.colors.whiteout.dark,
+      },
+      boxShadow: null,
+      minHeight: '2rem',
+      lineHeight: 1,
+    };
+  },
+  menu: styles => {
+    return {
+      ...styles,
+      marginTop: `0`,
+      border: `${theme.borderWidths.base} solid ${theme.colors.primary.base}`,
+      borderTop: '0px',
+      borderRadius: `0 0 ${theme.radii.small} ${theme.radii.small}`,
+      boxShadow: theme.shadows.small,
+    };
+  },
+  menuList: styles => {
+    return { ...styles };
+  },
+  option: (styles, props) => {
+    const { isDisabled, isSelected } = props;
+    return {
+      ...styles,
+      padding: `${theme.space.small} ${theme.space.base}`,
+      fontSize: theme.fontSizes.body,
+      fontFamily: theme.fonts.secondary,
+      fontWeight: theme.fontWeights.normal,
+      backgroundColor: isDisabled
+        ? theme.colors.whiteout.light
+        : isSelected
+        ? theme.colors.whiteout.dark
+        : theme.colors.whiteout.light,
+      color: isDisabled
+        ? theme.colors.neutral.light
+        : isSelected
+        ? theme.colors.neutral.darker
+        : theme.colors.neutral.base,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+      ':hover': {
+        backgroundColor: theme.colors.whiteout.dark,
+        color: theme.colors.primary.darker,
+        cursor: 'pointer',
+        fontWeight: theme.fontWeights.normal,
+      },
+    };
+  },
+  input: (styles, { isFocused }) => {
+    return {
+      ...styles,
+      backgroundColor: theme.colors.whiteout.light,
+      fontSize: theme.fontSizes.body,
+      fontFamily: theme.fonts.secondary,
+      fontWeight: theme.fontWeights.normal,
+      borderColor: isFocused
+        ? theme.colors.primary.base
+        : theme.colors.whiteout.dark,
+    };
+  },
+  valueContainer: styles => {
+    return { ...styles, padding: '2.5px' };
+  },
+  placeholder: styles => {
+    return {
+      ...styles,
+      fontFamily: theme.fonts.secondary,
+      fontSize: theme.fontSizes.body,
+      fontWeight: theme.fontWeights.normal,
+      color: theme.colors.neutral.base,
+    };
+  },
   singleValue: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
@@ -65,7 +105,7 @@ const getSelectStyles = theme => ({
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
-    backgroundColor: theme.colors.neutral.lighter,
+    backgroundColor: theme.colors.whiteout.darkest,
     borderRadius: theme.radii.xsmall,
   }),
   multiValueLabel: styles => ({
@@ -76,22 +116,22 @@ const getSelectStyles = theme => ({
   multiValueRemove: styles => ({
     ...styles,
     color: theme.colors.neutral.dark,
+    cursor: 'pointer',
     ':hover': {
       backgroundColor: theme.colors.neutral.lighter,
       color: theme.colors.neutral.dark,
     },
   }),
+  /*  */
   loadingMessage: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
+    color: theme.colors.neutral.light,
   }),
   noOptionsMessage: styles => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
-  }),
-  menu: styles => ({
-    ...styles,
-    boxShadow: theme.shadows.small,
+    color: theme.colors.neutral.light,
   }),
 });
 
@@ -122,7 +162,7 @@ const getSelectTheme = theme => {
 
   const borderRadius = theme.radii.small;
   // Used to calculate consistent margin/padding on elements
-  const baseUnit = 4;
+  const baseUnit = 5;
   // The minimum height of the control
   const controlHeight = 38;
   // The amount of space between the control and menu */

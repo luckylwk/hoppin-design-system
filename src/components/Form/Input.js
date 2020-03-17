@@ -29,18 +29,12 @@ const InputField = styled.input`
     return `padding: ${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`;
   }};
 
-  background: ${({ isFocused, value, theme }) =>
-    isFocused || (value && value.length > 0)
-      ? theme.colors.whiteout.base
-      : theme.colors.whiteout.lighter};
+  background: ${({ theme, value }) =>
+    value && value.length > 0
+      ? theme.colors.whiteout.lighter
+      : theme.colors.whiteout.light};
 
-  border-color: ${({ theme, context }) => {
-    if (theme.colors[context] !== undefined) {
-      return theme.colors[context].lighter;
-    } else {
-      return theme.colors.neutral.lighter;
-    }
-  }};
+  border-color: ${({ theme }) => theme.colors.whiteout.dark};
 
   &:disabled {
     opacity: 0.25;
@@ -57,12 +51,13 @@ const InputField = styled.input`
           return theme.colors.primary.base;
       }
     }};
+    background: ${({ theme }) => theme.colors.whiteout.lightest};
   }
 
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.secondary};
-    font-weight: ${({ theme }) => theme.fontWeights.normal};;
-    color: ${({ theme }) => theme.colors.neutral.light};
+    font-weight: ${({ theme }) => theme.fontWeights.normal};
+    color: ${({ theme }) => theme.colors.neutral.base};
   }
 
   appearance: none;
@@ -87,7 +82,7 @@ InputField.defaultProps = {
   fontWeight: 'normal',
   lineHeight: 1,
   marginBottom: 'base',
-  color: 'neutral.base',
+  color: 'neutral.dark',
   borderWidth: 'base',
   borderStyle: 'solid',
   borderRadius: 'small',
