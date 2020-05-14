@@ -23,6 +23,7 @@ import {
   Label,
   SingleSelectButton,
   SelectButton,
+  SelectCard,
   RangeSlider,
   Errors
 } from '../Form';
@@ -256,6 +257,82 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
         </Box>
       </Flex>
     )
+  }}
+</Playground>
+
+## SelectCard
+
+<Props of={SelectCard} />
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({ durations: ['1 day'] });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: value })
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="350px">
+          <SelectCard
+            name="durations"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' },
+              { value: '1 day', label: '1 day' },
+              { value: '2 days', label: '2 days' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.durations}
+            onChange={onChange}
+            isMultiSelect
+            marginBottom="base"
+          />
+          <SelectCard
+            name="durations"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' },
+              { value: '1 day', label: '1 day' },
+              { value: '2 days', label: '2 days' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.durations}
+            onChange={onChange}
+            isMultiSelect
+            flexDirection="column"
+          />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {JSON.stringify(lastEvent.value)}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
   }}
 </Playground>
 

@@ -4,12 +4,12 @@ route: /components/Card
 menu: Components
 ---
 
-import { Card } from '../Card';
+import { Props, Playground } from 'docz';
+import { Card, CardSelectable } from '../Card';
+import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
-import { Flex } from '../Flex';
-import { Props, Playground } from 'docz';
 
 # Card
 
@@ -71,4 +71,26 @@ It add a prop for `elevation` that controls the size of the drop shadow. _A numb
   <Paragraph>Usually you'll use the default</Paragraph>
 </Card>
 </Box>
+</Playground>
+
+# CardLight
+
+<Props of={CardSelectable} />
+Props table might not render due to a [bug in docz](https://github.com/pedronauck/docz/issues/777)
+
+<Playground>
+  <Flex bg="neutral.lightest" padding="xlarge">
+    <CardSelectable marginRight="xlarge">
+      <Heading as="h3">Card titles can be set with your normal Heading</Heading>
+      <Paragraph>Two</Paragraph>
+    </CardSelectable>
+    <CardSelectable marginRight="xlarge" selected>
+      <Heading as="h3">Card titles can be set with your normal Heading</Heading>
+      <Paragraph>Two</Paragraph>
+    </CardSelectable>
+    <CardSelectable >
+      <Heading as="h3">Card titles can be set with your normal Heading</Heading>
+      <Paragraph>Two</Paragraph>
+    </CardSelectable>
+  </Flex>
 </Playground>

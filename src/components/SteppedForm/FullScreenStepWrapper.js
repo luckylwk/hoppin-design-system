@@ -4,11 +4,13 @@ import { Box } from '../Box';
 const FullScreenStepWrapper = styled(Box)`
   ${({ displayMode }) => {
     return displayMode === 'fullscreen'
-      ? `position: absolute;
+      ? `
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;`
+  left: 0;
+  `
       : `
   position: relative;
   flex: 0 0 100%;
@@ -16,6 +18,7 @@ const FullScreenStepWrapper = styled(Box)`
   align-items: stretch;
   `;
   }}
+
   &.step-appear,
   &.step-enter {
     opacity: 0;

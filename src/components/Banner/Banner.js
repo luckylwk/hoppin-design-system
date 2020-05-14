@@ -4,31 +4,31 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Banner = styled(Flex)`
-  ${props => {
+  ${({ shadow, shadowColorStart, shadowColorEnd, backgroundImage }) => {
     // switch shadow direction depending on shadow prop.
     let shadowCSS;
-    switch (props.shadow) {
+    switch (shadow) {
       case 'top':
-        shadowCSS = 'linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+        shadowCSS = `linear-gradient(to bottom, ${shadowColorStart}, ${shadowColorEnd})`;
         break;
       case 'right':
-        shadowCSS = 'linear-gradient(to left,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+        shadowCSS = `linear-gradient(to left, ${shadowColorStart}, ${shadowColorEnd})`;
         break;
       case 'left':
-        shadowCSS = 'linear-gradient(to right,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+        shadowCSS = `linear-gradient(to right, ${shadowColorStart}, ${shadowColorEnd})`;
         break;
       case 'none':
         shadowCSS = '';
         break;
       case 'bottom':
       default:
-        shadowCSS = 'linear-gradient(to top,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+        shadowCSS = `linear-gradient(to top, ${shadowColorStart}, ${shadowColorEnd})`;
         break;
     }
 
-    return `background-image: ${shadowCSS ? `${shadowCSS}, ` : ''} url(${
-      props.backgroundImage
-    });`;
+    return `background-image: ${
+      shadowCSS ? `${shadowCSS}, ` : ''
+    } url(${backgroundImage});`;
   }}
 
   background-position: ${props => props.backgroundPosition};
@@ -51,6 +51,8 @@ Banner.propTypes = {
   backgroundRepeat: PropTypes.string,
   /** Shadow direction. Start from `left`, `bottom`,... or `none` */
   shadow: PropTypes.oneOf(['left', 'right', 'top', 'bottom', 'none']),
+  shadowColorStart: PropTypes.string,
+  shadowColorEnd: PropTypes.string,
 };
 
 Banner.defaultProps = {
@@ -60,6 +62,10 @@ Banner.defaultProps = {
   backgroundPosition: 'center center',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
+  // Shadow
+  shadow: 'bottom',
+  shadowColorStart: 'rgba(0,0,0,0.45)',
+  shadowColorEnd: 'rgba(0,0,0,0)',
 };
 
 Banner.displayName = 'Banner';
