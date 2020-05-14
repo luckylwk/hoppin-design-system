@@ -20,7 +20,9 @@ var Wrapper = styled(Box)(_templateObject, variant({
     xsmall: { width: '16px', height: '16px' },
     small: { width: '24px', height: '24px' },
     icon: { width: '32px', height: '32px' },
-    base: { width: '96px', height: '96px' }
+    base: { width: '96px', height: '96px' },
+    large: { width: '148px', height: '148px' },
+    xlarge: { width: '196px', height: '196px' }
   }
 }));
 
