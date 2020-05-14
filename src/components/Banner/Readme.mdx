@@ -50,13 +50,15 @@ Overwrite the default `height` or set a `bg` color rather than an image.
   <Banner bg="primary.dark" height="50vh">
     <Container>
       <Heading as="h2" color="white">
-        Some smaller title, maybe
+        Less height... Smaller title
       </Heading>
     </Container>
   </Banner>
 </Playground>
 
 ## Shadow
+
+### Shadow Position / Direction
 
 You can change the anchor of the shadow. Default is to `bottom`
 
@@ -68,6 +70,23 @@ You can change the anchor of the shadow. Default is to `bottom`
 
 <Playground>
   <Banner bg="primary.dark" height="50vh" shadow="none">
+    <Container>
+      <Heading as="h2" color="white">
+        Some smaller title, maybe
+      </Heading>
+    </Container>
+  </Banner>
+</Playground>
+
+### Shadow Color
+
+You can change the start and end color of the shadow. The defaults are
+
+- `shadowColorStart`: `rgba(0,0,0,0.45)`
+- `shadowColorEnd`: `rgba(0,0,0,0)`
+
+<Playground>
+  <Banner bg="primary.dark" height="50vh" shadow="left" shadowColorStart="red" shadowColorEnd="rgba(0,0,255,0.5)">
     <Container>
       <Heading as="h2" color="white">
         Some smaller title, maybe

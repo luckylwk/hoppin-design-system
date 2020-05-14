@@ -9,37 +9,42 @@ import { Container } from '../Container';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-var Banner = styled(Flex)(_templateObject, function (props) {
+var Banner = styled(Flex)(_templateObject, function (_ref) {
+  var shadow = _ref.shadow,
+      shadowColorStart = _ref.shadowColorStart,
+      shadowColorEnd = _ref.shadowColorEnd,
+      backgroundImage = _ref.backgroundImage;
+
   // switch shadow direction depending on shadow prop.
   var shadowCSS = void 0;
-  switch (props.shadow) {
+  switch (shadow) {
     case 'top':
-      shadowCSS = 'linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to bottom, ' + shadowColorStart + ', ' + shadowColorEnd + ')';
       break;
     case 'right':
-      shadowCSS = 'linear-gradient(to left,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to left, ' + shadowColorStart + ', ' + shadowColorEnd + ')';
       break;
     case 'left':
-      shadowCSS = 'linear-gradient(to right,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to right, ' + shadowColorStart + ', ' + shadowColorEnd + ')';
       break;
     case 'none':
       shadowCSS = '';
       break;
     case 'bottom':
     default:
-      shadowCSS = 'linear-gradient(to top,rgba(0,0,0,0.45),rgba(0,0,0,0))';
+      shadowCSS = 'linear-gradient(to top, ' + shadowColorStart + ', ' + shadowColorEnd + ')';
       break;
   }
 
-  return 'background-image: ' + (shadowCSS ? shadowCSS + ', ' : '') + ' url(' + props.backgroundImage + ');';
+  return 'background-image: ' + (shadowCSS ? shadowCSS + ', ' : '') + ' url(' + backgroundImage + ');';
 }, function (props) {
   return props.backgroundPosition;
 }, function (props) {
   return props.backgroundSize;
 }, function (props) {
   return props.backgroundRepeat;
-}, Container, function (_ref) {
-  var theme = _ref.theme;
+}, Container, function (_ref2) {
+  var theme = _ref2.theme;
   return theme.colors.white;
 });
 
@@ -50,7 +55,9 @@ Banner.propTypes = _extends({}, Flex.propTypes, {
   backgroundSize: PropTypes.string,
   backgroundRepeat: PropTypes.string,
   /** Shadow direction. Start from `left`, `bottom`,... or `none` */
-  shadow: PropTypes.oneOf(['left', 'right', 'top', 'bottom', 'none'])
+  shadow: PropTypes.oneOf(['left', 'right', 'top', 'bottom', 'none']),
+  shadowColorStart: PropTypes.string,
+  shadowColorEnd: PropTypes.string
 });
 
 Banner.defaultProps = {
@@ -59,7 +66,11 @@ Banner.defaultProps = {
   flexDirection: 'column',
   backgroundPosition: 'center center',
   backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat'
+  backgroundRepeat: 'no-repeat',
+  // Shadow
+  shadow: 'bottom',
+  shadowColorStart: 'rgba(0,0,0,0.45)',
+  shadowColorEnd: 'rgba(0,0,0,0)'
 };
 
 Banner.displayName = 'Banner';

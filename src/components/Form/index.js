@@ -1,6 +1,7 @@
 export { default as Input } from './Input';
 export { default as Label } from './Label';
 export { default as TextareaMd } from './TextareaMd';
+export { default as SelectCard, SingleSelectCard } from './SelectCard';
 export { default as SelectButton, SingleSelectButton } from './SelectButton';
 export { default as Errors } from './Errors';
 
