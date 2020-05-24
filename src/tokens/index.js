@@ -18,6 +18,7 @@ import {
 } from './typography';
 import { logo, icon } from './logos';
 import { borderWidths } from './borders';
+import { motions } from './motions';
 
 export default {
   space,
@@ -38,4 +39,5 @@ export default {
   logo,
   icon,
   borderWidths,
+  motions,
 };

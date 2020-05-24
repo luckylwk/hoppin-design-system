@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Logo from './Logo';
 
 const LogoResponsive = ({ context, ...rest }) => {

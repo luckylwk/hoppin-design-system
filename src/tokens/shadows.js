@@ -1,6 +1,6 @@
 import { space } from './space';
 
-const shadowColor = 'rgba(0,0,0,.05)';
+const shadowColor = 'rgba(0, 0, 0, .05)';
 const shadows = [
   'none',
   `0 calc(${space.xsmall} - 2px) ${space.xsmall} ${shadowColor}`,

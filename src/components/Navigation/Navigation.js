@@ -44,11 +44,12 @@ const NavOverlay = styled(Overlay)`
 
   transform: translate3d(-100vw, 0, 0);
   opacity: 0;
-  transition: opacity 0.5s;
+
+  transition: opacity ${({ theme }) => theme.motions.base};
 
   &.isExpanded {
     transform: translate3d(0vw, 0, 0);
-    opacity: 1;
+    opacity: 0.9;
   }
 `;
 
@@ -58,6 +59,7 @@ NavOverlay.displayName = 'NavOverlay';
 
 const NavMenuContent = styled(Box)`
   position: fixed;
+
   top: 0;
   right: 0;
   bottom: 0;
@@ -67,14 +69,15 @@ const NavMenuContent = styled(Box)`
   width: 100vw;
   transform: translate3d(100vw, 0, 0);
   opacity: 0;
-  transition: opacity 0.5s, transform 0.01s 0.5s;
+  transition: opacity ${({ theme }) => theme.motions.base},
+    transform 0.01s ${({ theme }) => theme.motions.base};
 
   z-index: ${({ theme }) => theme.zIndices.overlay - 1};
 
   &.isExpanded {
     transform: translate3d(0vw, 0, 0);
     opacity: 1;
-    transition: opacity 0.5s, transform 0.01s 0s;
+    transition: opacity ${({ theme }) => theme.motions.base}, transform 0.01s 0s;
     ${'' /*  */}
   }
 
