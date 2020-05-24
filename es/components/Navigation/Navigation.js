@@ -1,5 +1,5 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s;\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n  }\n'], ['\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s;\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n  }\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s, transform 0.01s 0.5s;\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity 0.5s, transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n'], ['\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity 0.5s, transform 0.01s 0.5s;\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity 0.5s, transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n']);
+var _templateObject = _taggedTemplateLiteralLoose(['\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n\n  transition: opacity ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 0.9;\n  }\n'], ['\n  height: 100vh;\n  width: 100vw;\n\n  transform: translate3d(-100vw, 0, 0);\n  opacity: 0;\n\n  transition: opacity ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 0.9;\n  }\n']),
+    _templateObject2 = _taggedTemplateLiteralLoose(['\n  position: fixed;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity ', ',\n    transform 0.01s ', ';\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity ', ', transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n'], ['\n  position: fixed;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  height: 100vh;\n  width: 100vw;\n  transform: translate3d(100vw, 0, 0);\n  opacity: 0;\n  transition: opacity ', ',\n    transform 0.01s ', ';\n\n  z-index: ', ';\n\n  &.isExpanded {\n    transform: translate3d(0vw, 0, 0);\n    opacity: 1;\n    transition: opacity ', ', transform 0.01s 0s;\n    ', '\n  }\n\n  ', '\n  pointer-events: none;\n\n  ', '\n  & * {\n    pointer-events: auto;\n  }\n']);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -69,15 +69,27 @@ NavMenu.displayName = 'NavMenu';
 
 // ---------------------------
 
-var NavOverlay = styled(Overlay)(_templateObject);
+var NavOverlay = styled(Overlay)(_templateObject, function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.motions.base;
+});
 
 NavOverlay.displayName = 'NavOverlay';
 
 // ---------------------------
 
-var NavMenuContent = styled(Box)(_templateObject2, function (_ref3) {
-  var theme = _ref3.theme;
+var NavMenuContent = styled(Box)(_templateObject2, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.motions.base;
+}, function (_ref5) {
+  var theme = _ref5.theme;
+  return theme.motions.base;
+}, function (_ref6) {
+  var theme = _ref6.theme;
   return theme.zIndices.overlay - 1;
+}, function (_ref7) {
+  var theme = _ref7.theme;
+  return theme.motions.base;
 }, '' /*  */, '' /* ignore clicks on container */, '' /* but enable clicks on content */);
 
 NavMenuContent.displayName = 'NavMenuContent';
