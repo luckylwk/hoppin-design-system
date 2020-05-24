@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, ButtonGroup } from '../Button';
+import { ButtonGroup, ButtonSelect } from '../Button';
 
 // ---------------------------
 
@@ -22,7 +22,10 @@ const SelectButton = ({
   isMultiSelect,
   ...rest
 }) => {
-  const onClick = ({ target: { name, type, select, isSelected } }, event) => {
+  const onClick = (
+    { target: { name: fieldName, type: fieldType, select, isSelected } },
+    event
+  ) => {
     if (isMultiSelect) {
       let newValue = [...value];
       if (isSelected) {
@@ -30,30 +33,35 @@ const SelectButton = ({
       } else {
         newValue.push(select);
       }
-      onChange({ target: { name, type, value: newValue } }, event);
+      onChange(
+        { target: { name: fieldName, type: fieldType, value: newValue } },
+        event
+      );
     } else {
-      onChange({ target: { name, type, value: select } }, event);
+      onChange(
+        { target: { name: fieldName, type: fieldType, value: select } },
+        event
+      );
     }
   };
 
   return (
     <ButtonGroup {...rest}>
-      {options.map(option => {
+      {options.map((option, ix) => {
         const isSelected = getIsSelected(isMultiSelect, value, option);
         return (
-          <Button
+          <ButtonSelect
+            key={`${type}-${name}-${option.value}`}
             type="button"
-            size="small"
-            context="neutral"
-            variant={isSelected ? 'full' : 'outline'}
             onClick={onClick.bind(this, {
               target: { name, type, select: option.value, isSelected },
             })}
-            key={`${type}-${name}-${option.value}`}
+            selected={isSelected}
+            marginRight={ix > options.length - 1 ? 'small' : 'none'}
             marginBottom="small"
           >
             {option.label}
-          </Button>
+          </ButtonSelect>
         );
       })}
     </ButtonGroup>

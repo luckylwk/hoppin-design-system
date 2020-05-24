@@ -6,6 +6,7 @@ import { Box } from '../Box';
 
 const Card = styled(Box)`
   border: 0px;
+
   border-top-width: ${({ theme, borderWidth }) =>
     theme.borderWidths[borderWidth]
       ? theme.borderWidths[borderWidth]
@@ -13,6 +14,7 @@ const Card = styled(Box)`
   border-style: solid;
   border-top-color: ${({ theme }) => theme.colors.primary.base};
   border-radius: ${({ theme }) => theme.radii.xsmall};
+
   box-shadow: ${({ theme, elevation }) => theme.shadows[elevation]};
 
   ${flexbox}

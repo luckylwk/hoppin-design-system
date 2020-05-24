@@ -38,7 +38,7 @@ MenuButton.displayName = 'MenuButton';
 // ---------------------------
 
 const MenuSheetWrapper = styled(Flex)`
-  transition: margin-right 0.5s;
+  transition: margin-right ${({ theme }) => theme.motions.base};
 
   .isExpanded & {
     margin-right: 0;
@@ -63,12 +63,12 @@ const MenuSheet = ({
 
   return (
     <MenuSheetWrapper
-      width={['85%', null, '50%']}
-      marginRight={['-85%', null, '-50%']}
-      height="100%"
-      bg={`${context}.base`}
       position="absolute"
+      height="100%"
+      width={['100%', '85%', '35%']}
+      marginRight={['-100%', '-85%', '-35%']}
       right={0}
+      bg="neutral.darker"
       padding="large"
       flexDirection="column"
       isExpanded={isExpanded}

@@ -5,7 +5,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, ButtonGroup } from '../Button';
+import { ButtonGroup, ButtonSelect } from '../Button';
 
 // ---------------------------
 
@@ -28,8 +28,8 @@ var SelectButton = function SelectButton(_ref) {
 
   var onClick = function onClick(_ref2, event) {
     var _ref2$target = _ref2.target,
-        name = _ref2$target.name,
-        type = _ref2$target.type,
+        fieldName = _ref2$target.name,
+        fieldType = _ref2$target.type,
         select = _ref2$target.select,
         isSelected = _ref2$target.isSelected;
 
@@ -40,28 +40,27 @@ var SelectButton = function SelectButton(_ref) {
       } else {
         newValue.push(select);
       }
-      onChange({ target: { name: name, type: type, value: newValue } }, event);
+      onChange({ target: { name: fieldName, type: fieldType, value: newValue } }, event);
     } else {
-      onChange({ target: { name: name, type: type, value: select } }, event);
+      onChange({ target: { name: fieldName, type: fieldType, value: select } }, event);
     }
   };
 
   return React.createElement(
     ButtonGroup,
     rest,
-    options.map(function (option) {
+    options.map(function (option, ix) {
       var isSelected = getIsSelected(isMultiSelect, value, option);
       return React.createElement(
-        Button,
+        ButtonSelect,
         {
+          key: type + '-' + name + '-' + option.value,
           type: 'button',
-          size: 'small',
-          context: 'neutral',
-          variant: isSelected ? 'full' : 'outline',
           onClick: onClick.bind(_this, {
             target: { name: name, type: type, select: option.value, isSelected: isSelected }
           }),
-          key: type + '-' + name + '-' + option.value,
+          selected: isSelected,
+          marginRight: ix > options.length - 1 ? 'small' : 'none',
           marginBottom: 'small'
         },
         option.label

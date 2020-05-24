@@ -4,12 +4,17 @@ route: /components/Button
 menu: Components
 ---
 
+import { FiArrowLeft } from 'react-icons/fi';
 import { Props, Playground } from 'docz';
+
 import { Flex } from '../Flex';
 import { Box } from '../Box';
+
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
-import { FiArrowLeft } from 'react-icons/fi';
+import ButtonNew from './ButtonNew';
+import ButtonSelect from './ButtonSelect';
+
 
 # Button
 
@@ -144,4 +149,54 @@ Change the layout to be vertical, by applying `flexDirection='column'`
     <Button>Click me</Button>
     <Button>Click me</Button>
   </ButtonGroup>
+</Playground>
+
+## New Button
+
+<Props of={ButtonNew} />
+
+This is your standard button. They typically trigger one action when interacted with, providing the basis for creating an interactive page. Add additional context to them using the context prop.
+
+<Playground>
+  <Box padding="base">
+    <ButtonGroup>
+      <ButtonNew context="neutral">Neutral Full</ButtonNew>
+      <ButtonNew context="shadower" marginLeft="small">Shadower</ButtonNew>
+      <ButtonNew context="host" marginLeft="small">Host</ButtonNew>
+      <ButtonNew context="danger" marginLeft="small">Danger</ButtonNew>
+    </ButtonGroup>
+    <ButtonGroup marginY="base">
+      <ButtonNew variant="outline" context="neutral">Neutral Outline</ButtonNew>
+      <ButtonNew variant="outline" context="shadower" marginLeft="small">Shadower</ButtonNew>
+      <ButtonNew variant="outline" context="host" marginLeft="small">Host</ButtonNew>
+      <ButtonNew variant="outline" context="danger" marginLeft="small">Danger</ButtonNew>
+    </ButtonGroup>
+    <ButtonGroup marginY="base">
+      <ButtonNew variant="subtle" context="neutral">Neutral Subtle</ButtonNew>
+      <ButtonNew variant="subtle" context="shadower" marginLeft="small">Shadower</ButtonNew>
+      <ButtonNew variant="subtle" context="host" marginLeft="small">Host</ButtonNew>
+      <ButtonNew variant="subtle" context="danger" marginLeft="small">Danger</ButtonNew>
+    </ButtonGroup>
+  </Box>
+  <Box bg="neutral.darker" padding="large">
+    <ButtonNew context="whiteout">Whiteout</ButtonNew>
+  </Box>
+</Playground>
+
+## Select Button
+
+<Props of={ButtonSelect} />
+
+Form single and multi select forms.
+
+<Playground>
+  <Box padding="base" bg="whiteout.base">
+    <ButtonGroup>
+      <ButtonSelect selected={false}>Option 1</ButtonSelect>
+      <ButtonSelect selected>Option 2 (Selected)</ButtonSelect>
+    </ButtonGroup>
+  </Box>
+  <Box bg="neutral.darker" padding="large">
+    <ButtonSelect context="whiteout">Whiteout</ButtonSelect>
+  </Box>
 </Playground>

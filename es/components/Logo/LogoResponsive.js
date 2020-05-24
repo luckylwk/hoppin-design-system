@@ -4,6 +4,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Logo from './Logo';
 
 var LogoResponsive = function LogoResponsive(_ref) {
