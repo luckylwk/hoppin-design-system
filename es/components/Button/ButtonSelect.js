@@ -33,11 +33,15 @@ var ButtonSelect = styled(ButtonNew)(_templateObject, function (_ref) {
 ButtonSelect.propTypes = {
   selected: PropTypes.bool,
   elevation: PropTypes.number
+
 };
 
 ButtonSelect.defaultProps = {
   selected: false,
-  elevation: 1
+  elevation: 1,
+  fontSize: 'body',
+  fontFamily: 'secondary',
+  fontWeight: 'normal'
 };
 
 ButtonSelect.displayName = 'ButtonSelect';

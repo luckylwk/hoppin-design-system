@@ -6,7 +6,6 @@ menu: Components
 
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
-import { DateUtils } from 'react-day-picker';
 import Select from 'react-select';
 import { ThemeConsumer } from 'styled-components';
 import { FiLinkedin, FiInstagram, FiMail, FiPhone } from 'react-icons/fi';
@@ -355,7 +354,7 @@ like `marginBottom="base"`.
     }
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="350px">
+        <Box margin="base" padding="base" maxWidth="350px" bg="whiteout.dark">
           <SelectButton
             name="durations"
             title="Select the duration of your experience"
@@ -431,7 +430,7 @@ like `marginBottom="base"`.
     }
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="500px">
+        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
           <SingleSelectButton
             name="duration"
             title="Select the duration of your experience"
@@ -442,6 +441,65 @@ like `marginBottom="base"`.
             ]}
             value={formData.duration}
             onChange={onChange}
+          />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>
+            Last event
+          </Paragraph>
+          <UnorderedList>
+            <ListItem>
+              type: {lastEvent.type}
+            </ListItem>
+            <ListItem>
+              name: {lastEvent.name}
+            </ListItem>
+            <ListItem>
+              value: {lastEvent.value}
+            </ListItem>
+            <ListItem>
+              checked: {lastEvent.checked ? 'true': 'false' }
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+  }}
+</Playground>
+
+We can use the `SingleSelectButton` with an `enableOther` flag.
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({ duration: '1 day' });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
+    }
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
+          <SingleSelectButton
+            name="duration"
+            title="Select the duration of your experience"
+            options={[
+              { value: '1/2 day', label: '1/2 day' },
+              { value: '1 day', label: '1 day' },
+              { value: '1 week', label: '1 week' }
+            ]}
+            value={formData.duration}
+            onChange={onChange}
+            enableOther
+            flexDirection="column"
           />
         </Box>
         <Box

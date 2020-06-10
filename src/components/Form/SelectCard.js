@@ -23,10 +23,7 @@ const SelectCard = ({
   isMultiSelect,
   ...rest
 }) => {
-  const onClick = (
-    { target: { name: fieldName, type, select, isSelected } },
-    event
-  ) => {
+  const onSelect = ({ target: { select, isSelected } }, event) => {
     if (isMultiSelect) {
       let newValue = [...value];
       if (isSelected) {
@@ -34,9 +31,9 @@ const SelectCard = ({
       } else {
         newValue.push(select);
       }
-      onChange({ target: { name: fieldName, type, value: newValue } }, event);
+      onChange({ target: { name, type, value: newValue } }, event);
     } else {
-      onChange({ target: { name: fieldName, type, value: select } }, event);
+      onChange({ target: { name, type, value: select } }, event);
     }
   };
 
@@ -50,8 +47,8 @@ const SelectCard = ({
             size="small"
             context="neutral"
             variant={isSelected ? 'full' : 'outline'}
-            onClick={onClick.bind(this, {
-              target: { name, type, select: option.value, isSelected },
+            onClick={onSelect.bind(this, {
+              target: { select: option.value, isSelected },
             })}
             key={`${type}-${name}-${option.value}`}
             marginBottom="small"

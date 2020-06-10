@@ -6,6 +6,9 @@ import ButtonNew from './ButtonNew';
 const ButtonSelect = styled(ButtonNew)`
   background: ${({ theme }) => theme.colors.whiteout.lightest};
 
+  font-size: ${({ theme }) => theme.fontSizes.body};
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
+
   border: 0;
   border-radius: ${({ theme }) => theme.radii.xsmall};
 

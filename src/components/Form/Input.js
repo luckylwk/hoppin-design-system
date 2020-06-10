@@ -152,4 +152,6 @@ Input.defaultProps = {
 
 Input.displayName = 'Input';
 
+export { InputField, Input };
+
 export default withTheme(Input);
