@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {
+  useState, //useRef
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _intersection from 'lodash/intersection';
@@ -13,7 +15,7 @@ import { ButtonGroup, ButtonSelect } from '../Button';
 
 // ---------------------------
 
-const InputStyled = styled(InputField)`
+const InputFieldStyled = styled(InputField)`
   display: block;
   width: 100%;
 
@@ -86,12 +88,15 @@ const SelectButton = ({
     isMultiSelect
   );
 
+  // const myInputRef = useRef();
+
   const [otherSelected, setOtherSelected] = useState(other ? true : false);
   const [otherValue, setOtherValue] = useState(other);
   const [otherActive, setOtherActive] = useState(false);
 
   const onToggleOther = () => {
     setOtherActive(true);
+    // console.log(myInputRef);
   };
 
   const onChangeOther = event => {
@@ -169,11 +174,13 @@ const SelectButton = ({
           {otherActive ? (
             <Flex alignItems="center">
               <Box flexGrow="1">
-                <InputStyled
+                <InputFieldStyled
                   name="other"
                   value={otherValue || ''}
                   onChange={onChangeOther}
                   onBlur={onBlurOther}
+                  // inputRef={input => input && input.focus()}
+                  // autofocus="true"
                 />
               </Box>
               <SpanStyled onClick={onSubmitOther}>
