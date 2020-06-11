@@ -1,6 +1,6 @@
 var _this = this;
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  display: block;\n  width: 100%;\n\n  background: transparent;\n\n  margin: 0;\n  padding: 0px 8px;\n\n  border: 0px;\n  border-radius: 0px;\n  box-shadow: 0px;\n'], ['\n  display: block;\n  width: 100%;\n\n  background: transparent;\n\n  margin: 0;\n  padding: 0px 8px;\n\n  border: 0px;\n  border-radius: 0px;\n  box-shadow: 0px;\n']),
+var _templateObject = _taggedTemplateLiteralLoose(['\n  display: block;\n  width: 100%;\n\n  background: transparent;\n\n  margin: 0;\n  padding: 2px 8px;\n\n  border: 0px;\n  border-radius: 0px;\n  box-shadow: 0px;\n'], ['\n  display: block;\n  width: 100%;\n\n  background: transparent;\n\n  margin: 0;\n  padding: 2px 8px;\n\n  border: 0px;\n  border-radius: 0px;\n  box-shadow: 0px;\n']),
     _templateObject2 = _taggedTemplateLiteralLoose(['\n  margin: -2px 2px;\n  padding: 4px 4px 2px 4px;\n\n  outline: none;\n  appearance: none;\n\n  background: ', ';\n  color: white;\n\n  border-radius: ', ';\n\n  cursor: pointer;\n'], ['\n  margin: -2px 2px;\n  padding: 4px 4px 2px 4px;\n\n  outline: none;\n  appearance: none;\n\n  background: ', ';\n  color: white;\n\n  border-radius: ', ';\n\n  cursor: pointer;\n']);
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -163,7 +163,7 @@ var SelectButton = function SelectButton(_ref3) {
         type: 'button',
         marginBottom: 'small',
         paddingX: otherActive ? 'xsmall' : 'base',
-        paddingY: otherActive ? 'small' : 'small',
+        paddingY: otherActive ? 'xsmall' : 'small',
         onClick: onToggleOther,
         selected: otherSelected && !otherActive
       },
