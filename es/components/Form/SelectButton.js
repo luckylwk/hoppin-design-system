@@ -7,7 +7,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React, { useState } from 'react';
+import React, { useState } from //useRef
+'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _intersection from 'lodash/intersection';
@@ -22,7 +23,7 @@ import { ButtonGroup, ButtonSelect } from '../Button';
 
 // ---------------------------
 
-var InputStyled = styled(InputField)(_templateObject);
+var InputFieldStyled = styled(InputField)(_templateObject);
 
 var SpanStyled = styled.span(_templateObject2, function (_ref) {
   var theme = _ref.theme;
@@ -76,6 +77,8 @@ var SelectButton = function SelectButton(_ref3) {
       value = _splitValueWithOther.value,
       other = _splitValueWithOther.other;
 
+  // const myInputRef = useRef();
+
   var _useState = useState(other ? true : false),
       otherSelected = _useState[0],
       setOtherSelected = _useState[1];
@@ -90,6 +93,7 @@ var SelectButton = function SelectButton(_ref3) {
 
   var onToggleOther = function onToggleOther() {
     setOtherActive(true);
+    // console.log(myInputRef);
   };
 
   var onChangeOther = function onChangeOther(event) {
@@ -173,11 +177,13 @@ var SelectButton = function SelectButton(_ref3) {
         React.createElement(
           Box,
           { flexGrow: '1' },
-          React.createElement(InputStyled, {
+          React.createElement(InputFieldStyled, {
             name: 'other',
             value: otherValue || '',
             onChange: onChangeOther,
             onBlur: onBlurOther
+            // inputRef={input => input && input.focus()}
+            // autofocus="true"
           })
         ),
         React.createElement(
