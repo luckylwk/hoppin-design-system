@@ -20,7 +20,7 @@ const InputStyled = styled(InputField)`
   background: transparent;
 
   margin: 0;
-  padding: 0px 8px;
+  padding: 2px 8px;
 
   border: 0px;
   border-radius: 0px;
@@ -162,7 +162,7 @@ const SelectButton = ({
           type="button"
           marginBottom="small"
           paddingX={otherActive ? 'xsmall' : 'base'}
-          paddingY={otherActive ? 'small' : 'small'}
+          paddingY={otherActive ? 'xsmall' : 'small'}
           onClick={onToggleOther}
           selected={otherSelected && !otherActive}
         >
