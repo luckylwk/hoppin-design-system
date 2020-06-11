@@ -27,10 +27,8 @@ var SelectCard = function SelectCard(_ref) {
       isMultiSelect = _ref.isMultiSelect,
       rest = _objectWithoutProperties(_ref, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect']);
 
-  var onClick = function onClick(_ref2, event) {
+  var onSelect = function onSelect(_ref2, event) {
     var _ref2$target = _ref2.target,
-        fieldName = _ref2$target.name,
-        type = _ref2$target.type,
         select = _ref2$target.select,
         isSelected = _ref2$target.isSelected;
 
@@ -41,9 +39,9 @@ var SelectCard = function SelectCard(_ref) {
       } else {
         newValue.push(select);
       }
-      onChange({ target: { name: fieldName, type: type, value: newValue } }, event);
+      onChange({ target: { name: name, type: type, value: newValue } }, event);
     } else {
-      onChange({ target: { name: fieldName, type: type, value: select } }, event);
+      onChange({ target: { name: name, type: type, value: select } }, event);
     }
   };
 
@@ -59,8 +57,8 @@ var SelectCard = function SelectCard(_ref) {
           size: 'small',
           context: 'neutral',
           variant: isSelected ? 'full' : 'outline',
-          onClick: onClick.bind(_this, {
-            target: { name: name, type: type, select: option.value, isSelected: isSelected }
+          onClick: onSelect.bind(_this, {
+            target: { select: option.value, isSelected: isSelected }
           }),
           key: type + '-' + name + '-' + option.value,
           marginBottom: 'small',
