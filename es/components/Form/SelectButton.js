@@ -7,10 +7,12 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
-import React, { useState } from //useRef
+import React, { useState } from
+// useRef
 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _shuffle from 'lodash/shuffle';
 import _intersection from 'lodash/intersection';
 import _difference from 'lodash/difference';
 
@@ -69,7 +71,9 @@ var SelectButton = function SelectButton(_ref3) {
       onChange = _ref3.onChange,
       isMultiSelect = _ref3.isMultiSelect,
       enableOther = _ref3.enableOther,
-      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther']);
+      randomizeOptions = _ref3.randomizeOptions,
+      numColumns = _ref3.numColumns,
+      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther', 'randomizeOptions', 'numColumns']);
 
   var _splitValueWithOther = splitValueWithOther(valueComposite, options.map(function (o) {
     return o.value;
@@ -79,17 +83,25 @@ var SelectButton = function SelectButton(_ref3) {
 
   // const myInputRef = useRef();
 
-  var _useState = useState(other ? true : false),
-      otherSelected = _useState[0],
-      setOtherSelected = _useState[1];
+  /** Optional shuffling of options */
 
-  var _useState2 = useState(other),
-      otherValue = _useState2[0],
-      setOtherValue = _useState2[1];
 
-  var _useState3 = useState(false),
-      otherActive = _useState3[0],
-      setOtherActive = _useState3[1];
+  var _useState = useState(randomizeOptions ? _shuffle(options) : options),
+      optionsArray = _useState[0];
+
+  /** Other related state and functions */
+
+  var _useState2 = useState(other ? true : false),
+      otherSelected = _useState2[0],
+      setOtherSelected = _useState2[1];
+
+  var _useState3 = useState(other),
+      otherValue = _useState3[0],
+      setOtherValue = _useState3[1];
+
+  var _useState4 = useState(false),
+      otherActive = _useState4[0],
+      setOtherActive = _useState4[1];
 
   var onToggleOther = function onToggleOther() {
     setOtherActive(true);
@@ -103,11 +115,13 @@ var SelectButton = function SelectButton(_ref3) {
   var onBlurOther = function onBlurOther(event) {
     if (otherValue && otherValue.length > 0) {
       setOtherSelected(true);
-      if (isMultiSelect) {
-        onChange({ target: { name: name, type: type, value: [].concat(value, [otherValue]) } }, event);
-      } else {
-        onChange({ target: { name: name, type: type, value: otherValue } }, event);
-      }
+      onChange({
+        target: {
+          name: name,
+          type: type,
+          value: isMultiSelect ? [].concat(value, [otherValue]) : otherValue
+        }
+      }, event);
     } else {
       setOtherValue(null);
       setOtherSelected(false);
@@ -118,6 +132,7 @@ var SelectButton = function SelectButton(_ref3) {
 
   var onSubmitOther = function onSubmitOther() {};
 
+  /** Specific onSelect handler */
   var onSelect = function onSelect(_ref4, event) {
     var _ref4$target = _ref4.target,
         select = _ref4$target.select,
@@ -141,57 +156,103 @@ var SelectButton = function SelectButton(_ref3) {
     }
   };
 
+  /** Define how many columns we will need. */
+  var numOptions = enableOther ? optionsArray.length + 1 : optionsArray.length;
+  var optionsColumns = [];
+  var columnWidthDesktop = '100%';
+  if (numColumns && numColumns > 1) {
+    var minItemsPerColumn = Math.floor(numOptions / numColumns);
+    var itemsRemaining = numOptions - numColumns * minItemsPerColumn;
+    var startIndex = 0;
+    var endIndex = minItemsPerColumn + (itemsRemaining > 0 ? 1 : 0);
+    for (var i = 0; i < numColumns; i++) {
+      var selection = optionsArray.slice(startIndex, endIndex);
+      startIndex = endIndex;
+      endIndex = endIndex + minItemsPerColumn + (itemsRemaining > i + 1 ? 1 : 0);
+      optionsColumns.push(selection);
+    }
+    columnWidthDesktop = parseInt(100.0 / numColumns - 2) + '%';
+  } else {
+    optionsColumns = [optionsArray];
+  }
+
   return React.createElement(
-    ButtonGroup,
-    rest,
-    options.map(function (option, ix) {
-      var isSelected = getIsSelected(isMultiSelect, value, option);
-      return React.createElement(
-        ButtonSelect,
-        {
-          key: type + '-' + name + '-' + option.value,
-          type: 'button',
-          onClick: onSelect.bind(_this, {
-            target: { select: option.value, isSelected: isSelected }
-          }),
-          selected: isSelected,
-          marginRight: ix > options.length - 1 ? 'small' : 'none',
-          marginBottom: 'small'
-        },
-        option.label
-      );
-    }),
-    enableOther && React.createElement(
-      ButtonSelect,
-      {
-        type: 'button',
-        marginBottom: 'small',
-        paddingX: otherActive ? 'xsmall' : 'base',
-        paddingY: otherActive ? 'xsmall' : 'small',
-        onClick: onToggleOther,
-        selected: otherSelected && !otherActive
-      },
-      otherActive ? React.createElement(
-        Flex,
-        { alignItems: 'center' },
-        React.createElement(
+    Box,
+    null,
+    React.createElement(
+      Flex,
+      { flexWrap: 'wrap', justifyContent: 'center' },
+      optionsColumns.map(function (columnOptions, ix) {
+        var isLastColumn = !numColumns || numColumns === ix + 1;
+        return React.createElement(
           Box,
-          { flexGrow: '1' },
-          React.createElement(InputFieldStyled, {
-            name: 'other',
-            value: otherValue || '',
-            onChange: onChangeOther,
-            onBlur: onBlurOther
-            // inputRef={input => input && input.focus()}
-            // autofocus="true"
-          })
-        ),
-        React.createElement(
-          SpanStyled,
-          { onClick: onSubmitOther },
-          React.createElement(FiCheck, { size: 16 })
-        )
-      ) : other ? 'Other: ' + other : 'Other'
+          {
+            key: name + '-opt-' + ix,
+            width: ['100%', '100%', columnWidthDesktop],
+            maxWidth: ['100%', '100%', columnWidthDesktop],
+            marginY: ['base', 'base', 'small'],
+            marginX: 'xsmall'
+          },
+          React.createElement(
+            ButtonGroup,
+            {
+              flexDirection: optionsColumns.length > 1 ? 'column' : rest.flexDirection || 'column'
+            },
+            columnOptions.map(function (thisOption) {
+              var isSelected = getIsSelected(isMultiSelect, value, thisOption);
+              var mockEvent = {
+                target: { select: thisOption.value, isSelected: isSelected }
+              };
+              return React.createElement(
+                ButtonSelect,
+                {
+                  key: type + '-' + name + '-' + thisOption.value,
+                  onClick: onSelect.bind(_this, mockEvent),
+                  selected: isSelected,
+                  marginY: 'xsmall',
+                  marginX: 'xsmall',
+                  padding: ['small', 'small', 'small'],
+                  borderTopWidth: '0'
+                },
+                thisOption.label
+              );
+            }),
+            enableOther && isLastColumn && React.createElement(
+              ButtonSelect,
+              {
+                type: 'button',
+                marginY: 'xsmall',
+                marginX: 'xsmall',
+                paddingX: otherActive ? 'xsmall' : 'base',
+                paddingY: otherActive ? 'xsmall' : 'small',
+                onClick: onToggleOther,
+                selected: otherSelected && !otherActive
+              },
+              otherActive ? React.createElement(
+                Flex,
+                { alignItems: 'center' },
+                React.createElement(
+                  Box,
+                  { flexGrow: '1' },
+                  React.createElement(InputFieldStyled, {
+                    name: 'other',
+                    value: otherValue || '',
+                    onChange: onChangeOther,
+                    onBlur: onBlurOther
+                    // inputRef={input => input && input.focus()}
+                    // autofocus="true"
+                  })
+                ),
+                React.createElement(
+                  SpanStyled,
+                  { onClick: onSubmitOther },
+                  React.createElement(FiCheck, { size: 16 })
+                )
+              ) : other ? 'Other: ' + other : 'Other'
+            )
+          )
+        );
+      })
     )
   );
 };
@@ -203,13 +264,17 @@ SelectButton.propTypes = process.env.NODE_ENV !== "production" ? {
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
-  enableOther: PropTypes.bool
+  enableOther: PropTypes.bool,
+  randomizeOptions: PropTypes.bool,
+  numColumns: PropTypes.number
 } : {};
 
 SelectButton.defaultProps = {
   type: 'select-button',
   isMultiSelect: false,
-  enableOther: false
+  enableOther: false,
+  randomizeOptions: false,
+  numColumns: null
 };
 
 SelectButton.displayName = 'SelectButton';

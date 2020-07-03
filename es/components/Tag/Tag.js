@@ -7,6 +7,7 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 import styled from 'styled-components';
 import { space, color, get } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
+
 import { Heading } from '../Heading';
 
 var Tag = styled('span')(_templateObject, space, color, function (_ref) {
