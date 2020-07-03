@@ -1,8 +1,10 @@
 import React, {
-  useState, //useRef
+  useState,
+  // useRef
 } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _shuffle from 'lodash/shuffle';
 import _intersection from 'lodash/intersection';
 import _difference from 'lodash/difference';
 
@@ -80,6 +82,8 @@ const SelectButton = ({
   onChange,
   isMultiSelect,
   enableOther,
+  randomizeOptions,
+  numColumns,
   ...rest
 }) => {
   const { value, other } = splitValueWithOther(
@@ -89,6 +93,13 @@ const SelectButton = ({
   );
 
   // const myInputRef = useRef();
+
+  /** Optional shuffling of options */
+  const [optionsArray] = useState(
+    randomizeOptions ? _shuffle(options) : options
+  );
+
+  /** Other related state and functions */
 
   const [otherSelected, setOtherSelected] = useState(other ? true : false);
   const [otherValue, setOtherValue] = useState(other);
@@ -106,14 +117,16 @@ const SelectButton = ({
   const onBlurOther = event => {
     if (otherValue && otherValue.length > 0) {
       setOtherSelected(true);
-      if (isMultiSelect) {
-        onChange(
-          { target: { name, type, value: [...value, otherValue] } },
-          event
-        );
-      } else {
-        onChange({ target: { name, type, value: otherValue } }, event);
-      }
+      onChange(
+        {
+          target: {
+            name,
+            type,
+            value: isMultiSelect ? [...value, otherValue] : otherValue,
+          },
+        },
+        event
+      );
     } else {
       setOtherValue(null);
       setOtherSelected(false);
@@ -124,6 +137,7 @@ const SelectButton = ({
 
   const onSubmitOther = () => {};
 
+  /** Specific onSelect handler */
   const onSelect = ({ target: { select, isSelected } }, event) => {
     if (isMultiSelect) {
       let newValue = [...value];
@@ -143,58 +157,112 @@ const SelectButton = ({
     }
   };
 
+  /** Define how many columns we will need. */
+  const numOptions = enableOther
+    ? optionsArray.length + 1
+    : optionsArray.length;
+  let optionsColumns = [];
+  let columnWidthDesktop = '100%';
+  if (numColumns && numColumns > 1) {
+    const minItemsPerColumn = Math.floor(numOptions / numColumns);
+    const itemsRemaining = numOptions - numColumns * minItemsPerColumn;
+    let startIndex = 0;
+    let endIndex = minItemsPerColumn + (itemsRemaining > 0 ? 1 : 0);
+    for (let i = 0; i < numColumns; i++) {
+      const selection = optionsArray.slice(startIndex, endIndex);
+      startIndex = endIndex;
+      endIndex =
+        endIndex + minItemsPerColumn + (itemsRemaining > i + 1 ? 1 : 0);
+      optionsColumns.push(selection);
+    }
+    columnWidthDesktop = `${parseInt(100.0 / numColumns - 2)}%`;
+  } else {
+    optionsColumns = [optionsArray];
+  }
+
   return (
-    <ButtonGroup {...rest}>
-      {options.map((option, ix) => {
-        const isSelected = getIsSelected(isMultiSelect, value, option);
-        return (
-          <ButtonSelect
-            key={`${type}-${name}-${option.value}`}
-            type="button"
-            onClick={onSelect.bind(this, {
-              target: { select: option.value, isSelected },
-            })}
-            selected={isSelected}
-            marginRight={ix > options.length - 1 ? 'small' : 'none'}
-            marginBottom="small"
-          >
-            {option.label}
-          </ButtonSelect>
-        );
-      })}
-      {enableOther && (
-        <ButtonSelect
-          type="button"
-          marginBottom="small"
-          paddingX={otherActive ? 'xsmall' : 'base'}
-          paddingY={otherActive ? 'xsmall' : 'small'}
-          onClick={onToggleOther}
-          selected={otherSelected && !otherActive}
-        >
-          {otherActive ? (
-            <Flex alignItems="center">
-              <Box flexGrow="1">
-                <InputFieldStyled
-                  name="other"
-                  value={otherValue || ''}
-                  onChange={onChangeOther}
-                  onBlur={onBlurOther}
-                  // inputRef={input => input && input.focus()}
-                  // autofocus="true"
-                />
-              </Box>
-              <SpanStyled onClick={onSubmitOther}>
-                <FiCheck size={16} />
-              </SpanStyled>
-            </Flex>
-          ) : other ? (
-            `Other: ${other}`
-          ) : (
-            'Other'
-          )}
-        </ButtonSelect>
-      )}
-    </ButtonGroup>
+    <Box>
+      <Flex flexWrap="wrap" justifyContent="center">
+        {optionsColumns.map((columnOptions, ix) => {
+          const isLastColumn = !numColumns || numColumns === ix + 1;
+          return (
+            <Box
+              key={`${name}-opt-${ix}`}
+              width={['100%', '100%', columnWidthDesktop]}
+              maxWidth={['100%', '100%', columnWidthDesktop]}
+              marginY={['base', 'base', 'small']}
+              marginX="xsmall"
+            >
+              <ButtonGroup
+                flexDirection={
+                  optionsColumns.length > 1
+                    ? 'column'
+                    : rest.flexDirection || 'column'
+                }
+              >
+                {columnOptions.map(thisOption => {
+                  const isSelected = getIsSelected(
+                    isMultiSelect,
+                    value,
+                    thisOption
+                  );
+                  const mockEvent = {
+                    target: { select: thisOption.value, isSelected },
+                  };
+                  return (
+                    <ButtonSelect
+                      key={`${type}-${name}-${thisOption.value}`}
+                      onClick={onSelect.bind(this, mockEvent)}
+                      selected={isSelected}
+                      marginY="xsmall"
+                      marginX="xsmall"
+                      padding={['small', 'small', 'small']}
+                      borderTopWidth="0"
+                    >
+                      {thisOption.label}
+                    </ButtonSelect>
+                  );
+                })}
+
+                {enableOther && isLastColumn && (
+                  <ButtonSelect
+                    type="button"
+                    marginY="xsmall"
+                    marginX="xsmall"
+                    paddingX={otherActive ? 'xsmall' : 'base'}
+                    paddingY={otherActive ? 'xsmall' : 'small'}
+                    onClick={onToggleOther}
+                    selected={otherSelected && !otherActive}
+                  >
+                    {otherActive ? (
+                      <Flex alignItems="center">
+                        <Box flexGrow="1">
+                          <InputFieldStyled
+                            name="other"
+                            value={otherValue || ''}
+                            onChange={onChangeOther}
+                            onBlur={onBlurOther}
+                            // inputRef={input => input && input.focus()}
+                            // autofocus="true"
+                          />
+                        </Box>
+                        <SpanStyled onClick={onSubmitOther}>
+                          <FiCheck size={16} />
+                        </SpanStyled>
+                      </Flex>
+                    ) : other ? (
+                      `Other: ${other}`
+                    ) : (
+                      'Other'
+                    )}
+                  </ButtonSelect>
+                )}
+              </ButtonGroup>
+            </Box>
+          );
+        })}
+      </Flex>
+    </Box>
   );
 };
 
@@ -206,12 +274,16 @@ SelectButton.propTypes = {
   onChange: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
   enableOther: PropTypes.bool,
+  randomizeOptions: PropTypes.bool,
+  numColumns: PropTypes.number,
 };
 
 SelectButton.defaultProps = {
   type: 'select-button',
   isMultiSelect: false,
   enableOther: false,
+  randomizeOptions: false,
+  numColumns: null,
 };
 
 SelectButton.displayName = 'SelectButton';

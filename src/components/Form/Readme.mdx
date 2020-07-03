@@ -339,10 +339,6 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
 
 <Props of={SelectButton} />
 
-Any other props provided to `SelectButton` will be passed down to `ButtonGroup`.
-So we can pass down `flexDirection='column'` for example or positioning props
-like `marginBottom="base"`.
-
 <Playground>
   {() => {
     const [formData, setFormData] = useState({ durations: ['1 day'] });
@@ -354,7 +350,7 @@ like `marginBottom="base"`.
     }
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="350px" bg="whiteout.dark">
+        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
           <SelectButton
             name="durations"
             title="Select the duration of your experience"
@@ -362,12 +358,17 @@ like `marginBottom="base"`.
               { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
               { value: '2 days', label: '2 days' },
-              { value: '1 week', label: '1 week' }
+              { value: '1 week', label: '1 week' },
+              { value: '2 weeks', label: '2 weeks' },
+              { value: '1 month', label: '1 month' },
+              { value: '1 quarter', label: '1 quarter' }
             ]}
             value={formData.durations}
             onChange={onChange}
             isMultiSelect
             marginBottom="base"
+            numColumns={2}
+            enableOther
           />
           <SelectButton
             name="durations"
@@ -376,12 +377,16 @@ like `marginBottom="base"`.
               { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
               { value: '2 days', label: '2 days' },
-              { value: '1 week', label: '1 week' }
+              { value: '1 week', label: '1 week' },
+              { value: '2 weeks', label: '2 weeks' },
+              { value: '1 month', label: '1 month' },
+              { value: '1 quarter', label: '1 quarter' }
             ]}
             value={formData.durations}
             onChange={onChange}
-            isMultiSelect
             flexDirection="column"
+            isMultiSelect
+            enableOther
           />
         </Box>
         <Box
@@ -419,64 +424,9 @@ like `marginBottom="base"`.
 
 <Props of={SingleSelectButton} />
 
-<Playground>
-  {() => {
-    const [formData, setFormData] = useState({ duration: '1 day' });
-    const [lastEvent, setLastEvent] = useState({});
-    const onChange = (e) => {
-      setLastEvent(e.target);
-      const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
-    }
-    return (
-      <Flex>
-        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
-          <SingleSelectButton
-            name="duration"
-            title="Select the duration of your experience"
-            options={[
-              { value: '1/2 day', label: '1/2 day' },
-              { value: '1 day', label: '1 day' },
-              { value: '1 week', label: '1 week' }
-            ]}
-            value={formData.duration}
-            onChange={onChange}
-          />
-        </Box>
-        <Box
-          margin="base"
-          padding="base"
-          maxWidth="300px"
-          bg="neutral.darker"
-          color="white"
-          borderRadius="5px"
-        >
-          <Paragraph>
-            Last event
-          </Paragraph>
-          <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
-          </UnorderedList>
-        </Box>
-      </Flex>
-    );
-  }}
-</Playground>
-
-## SingleSelectButton with Other
-
-We can use the `SingleSelectButton` with an `enableOther` flag.
+We can use the `SingleSelectButton` with
+* an `enableOther` flag and also
+* add a `randomizeOptions` flag to randomize the options if we want to.
 
 <Playground>
   {() => {
@@ -496,11 +446,16 @@ We can use the `SingleSelectButton` with an `enableOther` flag.
             options={[
               { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
-              { value: '1 week', label: '1 week' }
+              { value: '1 week', label: '1 week' },
+              { value: '2 weeks', label: '2 weeks' },
+              { value: '1 month', label: '1 month' },
+              { value: '1 quarter', label: '1 quarter' }
             ]}
             value={formData.duration}
             onChange={onChange}
+            numColumns={2}
             enableOther
+            randomizeOptions
             flexDirection="column"
           />
         </Box>
