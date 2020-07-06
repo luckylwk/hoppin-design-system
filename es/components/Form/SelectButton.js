@@ -73,7 +73,8 @@ var SelectButton = function SelectButton(_ref3) {
       enableOther = _ref3.enableOther,
       randomizeOptions = _ref3.randomizeOptions,
       numColumns = _ref3.numColumns,
-      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther', 'randomizeOptions', 'numColumns']);
+      maxSelect = _ref3.maxSelect,
+      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther', 'randomizeOptions', 'numColumns', 'maxSelect']);
 
   var _splitValueWithOther = splitValueWithOther(valueComposite, options.map(function (o) {
     return o.value;
@@ -142,7 +143,7 @@ var SelectButton = function SelectButton(_ref3) {
       var newValue = [].concat(value);
       if (isSelected) {
         newValue.splice(newValue.indexOf(select), 1);
-      } else {
+      } else if (!maxSelect || maxSelect && newValue.length < maxSelect) {
         newValue.push(select);
       }
       if (otherValue && otherValue.length > 0) {
@@ -266,7 +267,8 @@ SelectButton.propTypes = process.env.NODE_ENV !== "production" ? {
   isMultiSelect: PropTypes.bool,
   enableOther: PropTypes.bool,
   randomizeOptions: PropTypes.bool,
-  numColumns: PropTypes.number
+  numColumns: PropTypes.number,
+  maxSelect: PropTypes.number
 } : {};
 
 SelectButton.defaultProps = {
@@ -274,7 +276,8 @@ SelectButton.defaultProps = {
   isMultiSelect: false,
   enableOther: false,
   randomizeOptions: false,
-  numColumns: null
+  numColumns: null,
+  maxSelect: null
 };
 
 SelectButton.displayName = 'SelectButton';

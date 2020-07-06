@@ -1,4 +1,4 @@
-.PHONY: install clean pretty test/pretty build dev start deploy/now
+.PHONY: install clean pretty test/pretty build dev start deploy/now deploy/now-prod
 
 install:
 	yarn install
@@ -23,5 +23,9 @@ make build:
 	yarn build
 
 deploy/now:
-	yarn build
-	yarn deploy
+	now switch hoppin
+	now
+
+deploy/now-prod:
+	now switch hoppin
+	now --prod

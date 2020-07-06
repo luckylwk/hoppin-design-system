@@ -84,6 +84,7 @@ const SelectButton = ({
   enableOther,
   randomizeOptions,
   numColumns,
+  maxSelect,
   ...rest
 }) => {
   const { value, other } = splitValueWithOther(
@@ -143,7 +144,7 @@ const SelectButton = ({
       let newValue = [...value];
       if (isSelected) {
         newValue.splice(newValue.indexOf(select), 1);
-      } else {
+      } else if (!maxSelect || (maxSelect && newValue.length < maxSelect)) {
         newValue.push(select);
       }
       if (otherValue && otherValue.length > 0) {
@@ -276,6 +277,7 @@ SelectButton.propTypes = {
   enableOther: PropTypes.bool,
   randomizeOptions: PropTypes.bool,
   numColumns: PropTypes.number,
+  maxSelect: PropTypes.number,
 };
 
 SelectButton.defaultProps = {
@@ -284,6 +286,7 @@ SelectButton.defaultProps = {
   enableOther: false,
   randomizeOptions: false,
   numColumns: null,
+  maxSelect: null,
 };
 
 SelectButton.displayName = 'SelectButton';
