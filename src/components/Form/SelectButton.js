@@ -82,6 +82,8 @@ const SelectButton = ({
   onChange,
   isMultiSelect,
   enableOther,
+  enableWildcard,
+  wildcardText,
   randomizeOptions,
   numColumns,
   maxSelect,
@@ -97,7 +99,9 @@ const SelectButton = ({
 
   /** Optional shuffling of options */
   const [optionsArray] = useState(
-    randomizeOptions ? _shuffle(options) : options
+    !enableOther && !enableWildcard && randomizeOptions
+      ? _shuffle(options)
+      : options
   );
 
   /** Other related state and functions */
@@ -142,6 +146,9 @@ const SelectButton = ({
   const onSelect = ({ target: { select, isSelected } }, event) => {
     if (isMultiSelect) {
       let newValue = [...value];
+      if (enableWildcard && select === wildcardText) {
+        newValue = [];
+      }
       if (isSelected) {
         newValue.splice(newValue.indexOf(select), 1);
       } else if (!maxSelect || (maxSelect && newValue.length < maxSelect)) {
@@ -181,6 +188,11 @@ const SelectButton = ({
     optionsColumns = [optionsArray];
   }
 
+  const isWildcardSelected =
+    enableWildcard &&
+    getIsSelected(isMultiSelect, other, { value: wildcardText });
+  console.log('isWildcardSelected', isWildcardSelected);
+
   return (
     <Box>
       <Flex flexWrap="wrap" justifyContent="center">
@@ -191,7 +203,7 @@ const SelectButton = ({
               key={`${name}-opt-${ix}`}
               width={['100%', '100%', columnWidthDesktop]}
               maxWidth={['100%', '100%', columnWidthDesktop]}
-              marginY={['base', 'base', 'small']}
+              marginY={['none', 'base', 'small']}
               marginX="xsmall"
             >
               <ButtonGroup
@@ -225,7 +237,25 @@ const SelectButton = ({
                   );
                 })}
 
-                {enableOther && isLastColumn && (
+                {enableWildcard && isLastColumn && (
+                  <ButtonSelect
+                    onClick={onSelect.bind(this, {
+                      target: {
+                        select: wildcardText,
+                        isSelected: isWildcardSelected,
+                      },
+                    })}
+                    selected={isWildcardSelected}
+                    marginY="xsmall"
+                    marginX="xsmall"
+                    padding={['small', 'small', 'small']}
+                    borderTopWidth="0"
+                  >
+                    {wildcardText}
+                  </ButtonSelect>
+                )}
+
+                {!enableWildcard && enableOther && isLastColumn && (
                   <ButtonSelect
                     type="button"
                     marginY="xsmall"
@@ -243,8 +273,6 @@ const SelectButton = ({
                             value={otherValue || ''}
                             onChange={onChangeOther}
                             onBlur={onBlurOther}
-                            // inputRef={input => input && input.focus()}
-                            // autofocus="true"
                           />
                         </Box>
                         <SpanStyled onClick={onSubmitOther}>
@@ -275,6 +303,8 @@ SelectButton.propTypes = {
   onChange: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
   enableOther: PropTypes.bool,
+  enableWildcard: PropTypes.bool,
+  wildcardText: PropTypes.string,
   randomizeOptions: PropTypes.bool,
   numColumns: PropTypes.number,
   maxSelect: PropTypes.number,
@@ -284,6 +314,8 @@ SelectButton.defaultProps = {
   type: 'select-button',
   isMultiSelect: false,
   enableOther: false,
+  enableWildcard: false,
+  wildcardText: 'All of the above',
   randomizeOptions: false,
   numColumns: null,
   maxSelect: null,
