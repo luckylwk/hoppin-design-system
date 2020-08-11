@@ -71,10 +71,12 @@ var SelectButton = function SelectButton(_ref3) {
       onChange = _ref3.onChange,
       isMultiSelect = _ref3.isMultiSelect,
       enableOther = _ref3.enableOther,
+      enableWildcard = _ref3.enableWildcard,
+      wildcardText = _ref3.wildcardText,
       randomizeOptions = _ref3.randomizeOptions,
       numColumns = _ref3.numColumns,
       maxSelect = _ref3.maxSelect,
-      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther', 'randomizeOptions', 'numColumns', 'maxSelect']);
+      rest = _objectWithoutProperties(_ref3, ['name', 'type', 'options', 'value', 'onChange', 'isMultiSelect', 'enableOther', 'enableWildcard', 'wildcardText', 'randomizeOptions', 'numColumns', 'maxSelect']);
 
   var _splitValueWithOther = splitValueWithOther(valueComposite, options.map(function (o) {
     return o.value;
@@ -87,7 +89,7 @@ var SelectButton = function SelectButton(_ref3) {
   /** Optional shuffling of options */
 
 
-  var _useState = useState(randomizeOptions ? _shuffle(options) : options),
+  var _useState = useState(!enableOther && !enableWildcard && randomizeOptions ? _shuffle(options) : options),
       optionsArray = _useState[0];
 
   /** Other related state and functions */
@@ -141,6 +143,9 @@ var SelectButton = function SelectButton(_ref3) {
 
     if (isMultiSelect) {
       var newValue = [].concat(value);
+      if (enableWildcard && select === wildcardText) {
+        newValue = [];
+      }
       if (isSelected) {
         newValue.splice(newValue.indexOf(select), 1);
       } else if (!maxSelect || maxSelect && newValue.length < maxSelect) {
@@ -177,6 +182,9 @@ var SelectButton = function SelectButton(_ref3) {
     optionsColumns = [optionsArray];
   }
 
+  var isWildcardSelected = enableWildcard && getIsSelected(isMultiSelect, other, { value: wildcardText });
+  console.log('isWildcardSelected', isWildcardSelected);
+
   return React.createElement(
     Box,
     null,
@@ -191,7 +199,7 @@ var SelectButton = function SelectButton(_ref3) {
             key: name + '-opt-' + ix,
             width: ['100%', '100%', columnWidthDesktop],
             maxWidth: ['100%', '100%', columnWidthDesktop],
-            marginY: ['base', 'base', 'small'],
+            marginY: ['none', 'base', 'small'],
             marginX: 'xsmall'
           },
           React.createElement(
@@ -218,7 +226,24 @@ var SelectButton = function SelectButton(_ref3) {
                 thisOption.label
               );
             }),
-            enableOther && isLastColumn && React.createElement(
+            enableWildcard && isLastColumn && React.createElement(
+              ButtonSelect,
+              {
+                onClick: onSelect.bind(_this, {
+                  target: {
+                    select: wildcardText,
+                    isSelected: isWildcardSelected
+                  }
+                }),
+                selected: isWildcardSelected,
+                marginY: 'xsmall',
+                marginX: 'xsmall',
+                padding: ['small', 'small', 'small'],
+                borderTopWidth: '0'
+              },
+              wildcardText
+            ),
+            !enableWildcard && enableOther && isLastColumn && React.createElement(
               ButtonSelect,
               {
                 type: 'button',
@@ -240,8 +265,6 @@ var SelectButton = function SelectButton(_ref3) {
                     value: otherValue || '',
                     onChange: onChangeOther,
                     onBlur: onBlurOther
-                    // inputRef={input => input && input.focus()}
-                    // autofocus="true"
                   })
                 ),
                 React.createElement(
@@ -266,6 +289,8 @@ SelectButton.propTypes = process.env.NODE_ENV !== "production" ? {
   onChange: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
   enableOther: PropTypes.bool,
+  enableWildcard: PropTypes.bool,
+  wildcardText: PropTypes.string,
   randomizeOptions: PropTypes.bool,
   numColumns: PropTypes.number,
   maxSelect: PropTypes.number
@@ -275,6 +300,8 @@ SelectButton.defaultProps = {
   type: 'select-button',
   isMultiSelect: false,
   enableOther: false,
+  enableWildcard: false,
+  wildcardText: 'All of the above',
   randomizeOptions: false,
   numColumns: null,
   maxSelect: null
