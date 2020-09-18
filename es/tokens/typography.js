@@ -1,8 +1,8 @@
 import { space } from './space';
 
 var fonts = {
-  primary: 'Pluto, sans-serif',
-  secondary: '"Nunito Sans", "Lato", sans-serif',
+  primary: '"Poppins", sans-serif',
+  secondary: '"Poppins", sans-serif',
   system: '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue'
 };
 // font-sizes are multiples of 2, 8 if possible, to create a natural rythm, together with space tokens.
