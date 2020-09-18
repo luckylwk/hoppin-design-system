@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     background: #f8fafb;
     font-size: 16px;
     /* set default text color and family, so inheritance works */
-    font-family: ${tokens.fonts.secondary};
+    font-family: ${tokens.fonts.primary};
     color: ${({ theme }) => theme.colors.neutral.darker};
     text-align: left;
    }
@@ -28,27 +28,12 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  @font-face {
-    font-family: 'Pluto';
-    font-weight: normal;
-    font-style: normal;
-    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot');
-    src: url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.eot')
-        format('embedded-opentype'),
-      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff2')
-        format('woff2'),
-      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.woff')
-        format('woff'),
-      url('//storage.googleapis.com/hoppin-platform/fonts/pluto/pluto-regular.ttf')
-        format('truetype');
-  }
-
-  @import url('//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,600,600i,700,700i&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap');
 `;
 
-const HoppinDesignProvider = ({ children, context, theme }) => {
+const DesignProvider = ({ children, context, theme }) => {
   // Get theme from the react context.
-  // This is used when we use nested HoppinDesignProviders,
+  // This is used when we use nested DesignProviders,
   // it will inherit the tokens/theme form it's parent, no need to pass in a new theme, just set the context.
   const themeContext = useContext(ThemeContext);
   // if we specify a theme-override, merge it with the default tokens
@@ -86,15 +71,15 @@ const HoppinDesignProvider = ({ children, context, theme }) => {
   );
 };
 
-HoppinDesignProvider.propTypes = {
+DesignProvider.propTypes = {
   /** defaults to shadower, but can set to host to change all decending elements to pink host style */
   context: propTypes.oneOf(['shadower', 'host']),
   /** theme is not needed, by  default all the standard tokens get loaded, if extending the theme, set this prop */
   theme: propTypes.object,
 };
 
-HoppinDesignProvider.defaultProps = {
+DesignProvider.defaultProps = {
   context: 'shadower',
 };
 
-export default HoppinDesignProvider;
+export default DesignProvider;

@@ -1,6 +1,6 @@
 export { default as styled } from 'styled-components';
 
-export * from './components/HoppinDesignProvider';
+export * from './components/DesignProvider';
 
 export * from './components/Box';
 export * from './components/Flex';

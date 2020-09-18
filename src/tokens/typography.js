@@ -1,8 +1,8 @@
 import { space } from './space';
 
 const fonts = {
-  primary: 'Pluto, sans-serif',
-  secondary: '"Nunito Sans", "Lato", sans-serif',
+  primary: '"Poppins", sans-serif',
+  secondary: '"Poppins", sans-serif',
   system:
     '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue',
 };

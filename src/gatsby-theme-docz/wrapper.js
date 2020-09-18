@@ -1,6 +1,4 @@
 import React from 'react';
-import { HoppinDesignProvider } from '../../../src/components/HoppinDesignProvider';
+import { DesignProvider } from '../../../src/components/DesignProvider';
 
-export default ({ children }) => (
-  <HoppinDesignProvider>{children}</HoppinDesignProvider>
-);
+export default ({ children }) => <DesignProvider>{children}</DesignProvider>;
