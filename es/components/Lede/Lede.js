@@ -21,7 +21,7 @@ var Lede = styled('p')(_templateObject(), textAlign, space, color, fontSize, fle
   return theme.fonts.secondary;
 }, function (_ref2) {
   var theme = _ref2.theme;
-  return theme.fontWeights.medium;
+  return theme.fontWeights.light;
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.lineHeights.base;
@@ -30,8 +30,7 @@ Lede.propTypes = _extends({}, propTypes.space, propTypes.color, propTypes.textAl
 Lede.defaultProps = {
   textAlign: 'inherit',
   fontSize: 4,
-  color: 'inherit',
-  // respond to context, if we're white on dark background or dark on light.
+  color: 'secondary.darker',
   marginX: 0,
   marginY: 'large'
 };

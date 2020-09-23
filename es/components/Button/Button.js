@@ -65,7 +65,7 @@ var Button = styled.button(_templateObject(), function (_ref) {
 
   switch (variant) {
     case 'outline':
-      variantCSS = "\n          border-color: " + contextColors.light + ";\n          background-color: transparent;\n          color: " + (context === 'neutral' ? contextColors.base : contextColors.dark) + ";\n        ";
+      variantCSS = "\n          border-color: " + contextColors.base + ";\n          background-color: transparent;\n          color: " + (context === 'neutral' ? contextColors.base : contextColors.dark) + ";\n        ";
       break;
 
     case 'subtle':

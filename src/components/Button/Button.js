@@ -76,7 +76,7 @@ const Button = styled.button`
     switch (variant) {
       case 'outline':
         variantCSS = `
-          border-color: ${contextColors.light};
+          border-color: ${contextColors.base};
           background-color: transparent;
           color: ${
             context === 'neutral' ? contextColors.base : contextColors.dark

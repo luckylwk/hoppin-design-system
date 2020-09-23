@@ -42,16 +42,16 @@ const Heading = styled('h2')`
         colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h2':
-        colorCSS = `color: ${colors.primary.base};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       case 'h3':
-        colorCSS = `color: ${colors.secondary.darker};`;
-        break;
-      case 'h4':
         colorCSS = `color: ${colors.primary.base};`;
         break;
-      case 'h5':
+      case 'h4':
         colorCSS = `color: ${colors.secondary.darker};`;
+        break;
+      case 'h5':
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h6':
         colorCSS = `color: ${colors.secondary.darker};`;
@@ -79,6 +79,10 @@ const Heading = styled('h2')`
 
   &:first-child {
     margin-top: 0;
+  }
+
+  & + & {
+    margin-top: 0 !important;
   }
 `;
 
