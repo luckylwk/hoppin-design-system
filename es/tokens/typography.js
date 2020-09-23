@@ -19,7 +19,7 @@ var fontSizes = ['.5rem', // 8px
 
 fontSizes.body = fontSizes[3];
 fontSizes.label = fontSizes[2];
-fontSizes.huge = fontSizes[8];
+fontSizes.huge = fontSizes[9];
 fontSizes.h1 = fontSizes[7];
 fontSizes.h2 = fontSizes[6];
 fontSizes.h3 = fontSizes[6];

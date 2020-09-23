@@ -23,7 +23,7 @@ const fontSizes = [
 // shortcuts, so we don't have to remember array indices.
 fontSizes.body = fontSizes[3];
 fontSizes.label = fontSizes[2];
-fontSizes.huge = fontSizes[8];
+fontSizes.huge = fontSizes[9];
 fontSizes.h1 = fontSizes[7];
 fontSizes.h2 = fontSizes[6];
 fontSizes.h3 = fontSizes[6];
