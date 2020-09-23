@@ -1,5 +1,4 @@
-export { default as styled } from 'styled-components';
-export * from 'styled-components';
+export { default as styled, createGlobalStyle, css, isStyledComponent, keyframes, ServerStyleSheet, StyleSheetConsumer, StyleSheetContext, StyleSheetManager, ThemeConsumer, ThemeContext, useTheme, withTheme } from 'styled-components';
 export * from './components/DesignProvider';
 export * from './components/Box';
 export * from './components/Flex';
