@@ -1,20 +1,18 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /**
  * Documentation: https://react-select.com/styles
  */
-
 var getSelectStyles = function getSelectStyles(theme) {
   return {
     control: function control(styles, props) {
       var isFocused = props.isFocused;
-
       return _extends({}, styles, {
         marginTop: '4px',
         padding: '1px 8px',
         backgroundColor: theme.colors.whiteout.light,
         borderWidth: theme.borderWidths.base,
-        borderRadius: isFocused ? theme.radii.small + ' ' + theme.radii.small + ' 0 0' : theme.radii.small,
+        borderRadius: isFocused ? theme.radii.small + " " + theme.radii.small + " 0 0" : theme.radii.small,
         borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark,
         ':hover': {
           borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark
@@ -26,10 +24,10 @@ var getSelectStyles = function getSelectStyles(theme) {
     },
     menu: function menu(styles) {
       return _extends({}, styles, {
-        marginTop: '0',
-        border: theme.borderWidths.base + ' solid ' + theme.colors.primary.base,
+        marginTop: "0",
+        border: theme.borderWidths.base + " solid " + theme.colors.primary.base,
         borderTop: '0px',
-        borderRadius: '0 0 ' + theme.radii.small + ' ' + theme.radii.small,
+        borderRadius: "0 0 " + theme.radii.small + " " + theme.radii.small,
         boxShadow: theme.shadows.small
       });
     },
@@ -39,9 +37,8 @@ var getSelectStyles = function getSelectStyles(theme) {
     option: function option(styles, props) {
       var isDisabled = props.isDisabled,
           isSelected = props.isSelected;
-
       return _extends({}, styles, {
-        padding: theme.space.small + ' ' + theme.space.base,
+        padding: theme.space.small + " " + theme.space.base,
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
@@ -58,7 +55,6 @@ var getSelectStyles = function getSelectStyles(theme) {
     },
     input: function input(styles, _ref) {
       var isFocused = _ref.isFocused;
-
       return _extends({}, styles, {
         backgroundColor: theme.colors.whiteout.light,
         fontSize: theme.fontSizes.body,
@@ -68,7 +64,9 @@ var getSelectStyles = function getSelectStyles(theme) {
       });
     },
     valueContainer: function valueContainer(styles) {
-      return _extends({}, styles, { padding: '2.5px' });
+      return _extends({}, styles, {
+        padding: '2.5px'
+      });
     },
     placeholder: function placeholder(styles) {
       return _extends({}, styles, {
@@ -85,6 +83,7 @@ var getSelectStyles = function getSelectStyles(theme) {
         fontWeight: theme.fontWeights.normal
       });
     },
+
     /** Multi value specific.  */
     multiValue: function multiValue(styles) {
       return _extends({}, styles, {
@@ -111,6 +110,7 @@ var getSelectStyles = function getSelectStyles(theme) {
         }
       });
     },
+
     /*  */
     loadingMessage: function loadingMessage(styles) {
       return _extends({}, styles, {
@@ -125,9 +125,8 @@ var getSelectStyles = function getSelectStyles(theme) {
       });
     }
   };
-};
+}; // ---------------------------
 
-// ---------------------------
 
 var getSelectTheme = function getSelectTheme(theme) {
   var colors = {
@@ -135,10 +134,8 @@ var getSelectTheme = function getSelectTheme(theme) {
     primary75: theme.colors.primary.light,
     primary50: theme.colors.primary.lighter,
     primary25: theme.colors.primary.lightest,
-
     danger: theme.colors.danger.base,
     dangerLight: theme.colors.danger.lighter,
-
     neutral0: theme.colors.whiteout.lighter,
     neutral5: theme.colors.whiteout.light,
     neutral10: theme.colors.whiteout.base,
@@ -151,21 +148,18 @@ var getSelectTheme = function getSelectTheme(theme) {
     neutral80: theme.colors.neutral.darker,
     neutral90: theme.colors.neutral.darkest
   };
+  var borderRadius = theme.radii.small; // Used to calculate consistent margin/padding on elements
 
-  var borderRadius = theme.radii.small;
-  // Used to calculate consistent margin/padding on elements
-  var baseUnit = 5;
-  // The minimum height of the control
-  var controlHeight = 38;
-  // The amount of space between the control and menu */
+  var baseUnit = 5; // The minimum height of the control
+
+  var controlHeight = 38; // The amount of space between the control and menu */
+
   var menuGutter = baseUnit * 2;
-
   var spacing = {
     baseUnit: baseUnit,
     controlHeight: controlHeight,
     menuGutter: menuGutter
   };
-
   return {
     borderRadius: borderRadius,
     colors: colors,
@@ -174,7 +168,6 @@ var getSelectTheme = function getSelectTheme(theme) {
 };
 
 export { getSelectTheme, getSelectStyles };
-
 export default (function (theme) {
   return {
     styles: getSelectStyles(theme),

@@ -46,7 +46,7 @@ const Button = styled.button`
   cursor: pointer;
 
   border: 2px solid transparent;
-  border-radius: 2em;
+  border-radius: ${({ theme }) => theme.radii.large};
 
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0px;
@@ -60,33 +60,34 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 
-  transition: all 0.5s;
+  transition: all ${({ theme }) => theme.motions.base};
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: ${({ theme }) => theme.shadows.xsmall};
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.small};
   }
 
   ${({ theme, variant, context }) => {
     // `variant` defines full color (default), outline, or subtle shape
     // `context` defines color default (host/shadower inherited from context), host, shadower, danger
-    const colors = get(theme, `colors.${context}`, { base: '#333' });
-    const isShadower = colors.base === theme.colors.shadower.base;
+    const contextColors = get(theme, `colors.${context}`, { base: '#333' });
 
     let variantCSS = '';
     switch (variant) {
       case 'outline':
         variantCSS = `
-          border-color: ${colors.light};
+          border-color: ${contextColors.light};
           background-color: transparent;
-          color: ${context === 'neutral' ? colors.base : colors.dark};
+          color: ${
+            context === 'neutral' ? contextColors.base : contextColors.dark
+          };
         `;
         break;
       case 'subtle':
         variantCSS = `
           border-color: transparent;
           background-color: transparent;
-          color: ${colors.base};
+          color: ${contextColors.dark};
 
           &:hover {
             box-shadow: none;
@@ -96,14 +97,10 @@ const Button = styled.button`
       case 'full':
       default:
         variantCSS = `
-          border-color: ${colors.base};
-          background-color: ${colors.base};
+          border-color: ${contextColors.base};
+          background-color: ${contextColors.base};
           color: ${
-            context === 'whiteout'
-              ? theme.colors.primary.dark
-              : isShadower
-              ? colors.darkest
-              : theme.colors.whiteout.lightest
+            context === 'whiteout' ? theme.colors.indigo : theme.colors.white
           };
         `;
         break;
@@ -115,7 +112,7 @@ const Button = styled.button`
   ${buttonSize}
 
   /* icon buttons */
-  ${props => props.icon && buttonIconSpacing}
+  ${(props) => props.icon && buttonIconSpacing}
 
   /* styled-system props */
   ${display}
@@ -129,10 +126,10 @@ const Button = styled.button`
   ${alignSelf}
   ${order}
 
-  /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */
+  /* TODO: delete this? copied over from orbiit-react-blog not sure where this is used. */
   & [role='img'] {
     display: inline-block;
-    margin: .25em auto -.25em;
+    margin: 0.25em auto -0.25em;
   }
 `;
 
@@ -155,8 +152,6 @@ Button.propTypes = {
     'primary',
     'secondary',
     'tertiary',
-    'shadower',
-    'host',
     'neutral',
     'danger',
     'whiteout',

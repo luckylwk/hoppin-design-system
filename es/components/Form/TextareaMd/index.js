@@ -1,27 +1,30 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(["\n  box-sizing: border-box;\n  display: block;\n\n  ", "\n  ", "\n  ", "\n  ", "\n\n  background: ", ";\n\n  border: ", ";\n\n  border-radius: ", ";\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ", ";\n    background: ", ";\n  }\n"]);
 
-var _class, _temp, _initialiseProps;
+  _templateObject = function _templateObject() {
+    return data;
+  };
 
-var _templateObject = _taggedTemplateLiteralLoose(['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: ', ';\n\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n'], ['\n  box-sizing: border-box;\n  display: block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  background: ', ';\n\n  border: ', ';\n\n  border-radius: ', ';\n\n  &:disabled {\n    opacity: 0.25;\n    cursor: not-allowed;\n  }\n\n  &:focus {\n    border-color: ', ';\n    background: ', ';\n  }\n']);
+  return data;
+}
 
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-
 import styled from 'styled-components';
 import { space, layout, flexbox, fontSize } from 'styled-system';
-
 import { Label, RequiredText } from '../.';
-
 import { Editor } from 'slate-react';
 import MarkdownSerializer from 'slate-md-serializer';
 import { Value } from 'slate';
@@ -33,10 +36,8 @@ import KeyboardBehaviour from './Plugins/KeyboardBehaviour';
 import KeyboardShortcuts from './Plugins/KeyboardShortcuts';
 import Ellipsis from './Plugins/Ellipsis';
 import Chrome from './Plugins/Chrome';
-
 import Schema from './lib/Schema';
 import queries from './lib/queries';
-
 var EMPTY_VALUE = {
   document: {
     nodes: [{
@@ -48,48 +49,179 @@ var EMPTY_VALUE = {
       }]
     }]
   }
-};
-
-// ---------------------------
+}; // ---------------------------
 
 /**
  * A rich text editor.
  */
-var TextareaMdField = (_temp = _class = function (_React$Component) {
-  _inherits(TextareaMdField, _React$Component);
 
-  function TextareaMdField(props) {
-    _classCallCheck(this, TextareaMdField);
+var TextareaMdField = /*#__PURE__*/function (_React$Component) {
+  _inheritsLoose(TextareaMdField, _React$Component);
 
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+  function TextareaMdField(_props) {
+    var _this;
 
-    _initialiseProps.call(_this);
+    _this = _React$Component.call(this, _props) || this;
+
+    _defineProperty(_assertThisInitialized(_this), "makeSchema", function (props) {
+      if (props === void 0) {
+        props = _this.props;
+      }
+
+      var _props2 = props,
+          enableBlocks = _props2.enableBlocks,
+          enableMarks = _props2.enableMarks,
+          disableBlocks = _props2.disableBlocks,
+          disableMarks = _props2.disableMarks;
+      var customNodes = []; // if we have disableBlocks, ignore enableBlocks
+
+      if (disableBlocks && disableBlocks.length > 0) {
+        // map over all available nodes in Schema
+        Schema.document.nodes[0].match.map(function (node) {
+          // pick the ones that are not disabled
+          if (disableBlocks.indexOf(node.type) < 0) {
+            customNodes.push(node);
+          }
+
+          return true;
+        }); // if we have don't have disableBlocks, use enableBlocks if available
+      } else if (enableBlocks && enableBlocks.length > 0) {
+        // map over all available nodes in Schema
+        Schema.document.nodes[0].match.map(function (node) {
+          // pick the ones that are not disabled
+          if (enableBlocks.indexOf(node.type) > -1) {
+            customNodes.push(node);
+          }
+
+          return true;
+        }); // default to Schema as is
+      } else {
+        customNodes = [].concat(Schema.document.nodes[0].match);
+      } // if we have disableMarks, ignore enableMarks
+
+
+      if (disableMarks && disableMarks.length > 0) {
+        // map over all available marks in Schema
+        Object.keys(Schema.blocks).map(function (block) {
+          var tempBlockMarks = [];
+          var blockMarks = Schema.blocks[block].marks;
+
+          if (blockMarks && blockMarks.length > 0) {
+            blockMarks.map(function (mark) {
+              // pick the ones that are not disabled
+              if (disableMarks.indexOf(mark.type) < 0) {
+                tempBlockMarks.push(mark);
+              }
+
+              return true;
+            });
+            Schema.blocks[block].marks = tempBlockMarks;
+          }
+
+          return true;
+        }); // if we have don't have disableMarks, use enableMarks if available
+      } else if (enableMarks && enableMarks.length > 0) {
+        // map over all available marks in Schema
+        Object.keys(Schema.blocks).map(function (block) {
+          var tempBlockMarks = [];
+          var blockMarks = Schema.blocks[block].marks;
+
+          if (blockMarks && blockMarks.length > 0) {
+            blockMarks.map(function (mark) {
+              // pick the ones that are not disabled
+              if (enableMarks.indexOf(mark.type) > -1) {
+                tempBlockMarks.push(mark);
+              }
+
+              return true;
+            });
+            Schema.blocks[block].marks = tempBlockMarks;
+          }
+
+          return true;
+        }); // default to Schema as is
+      }
+
+      var newSchema = _extends({}, Schema);
+
+      newSchema.document.nodes[0].match = customNodes;
+      return newSchema;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "deserialize", function (value) {
+      if (Value.isValue(value)) {
+        return value;
+      }
+
+      if (typeof value === 'string') {
+        return _this.markdown.deserialize(value);
+      }
+
+      return Value.fromJSON(value || EMPTY_VALUE);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (_ref) {
+      var value = _ref.value;
+      var onChange = _this.props.onChange;
+      onChange && onChange({
+        target: {
+          type: 'textarea',
+          name: _this.props.name,
+          value: _this.markdown.serialize(value)
+        }
+      });
+
+      _this.setState({
+        value: value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleBlur", function (event, editor, next) {
+      var onBlur = _this.props.onBlur;
+      onBlur && onBlur({
+        target: {
+          type: 'textarea',
+          name: _this.props.name,
+          value: _this.markdown.serialize(_this.state.value)
+        }
+      });
+      next();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "serialise", function (value) {
+      if (Value.isValue(value)) {
+        return _this.markdown.serialize(value);
+      }
+
+      return value;
+    });
 
     _this.markdown = new MarkdownSerializer();
-    _this.plugins = [Nodes, Marks, KeyboardBehaviour(), KeyboardShortcuts(), MarkdownShortcuts(props.enableBlocks, props.enableMarks), MarkdownPaste(_this.markdown), Ellipsis(), Chrome()];
-    _this.schema = _this.makeSchema(props);
-
+    _this.plugins = [Nodes, Marks, KeyboardBehaviour(), KeyboardShortcuts(), MarkdownShortcuts(_props.enableBlocks, _props.enableMarks), MarkdownPaste(_this.markdown), Ellipsis(), Chrome()];
+    _this.schema = _this.makeSchema(_props);
     _this.state = {
       // Deserialising the value and caching the result, so that other methods
-      value: _this.markdown.deserialize(props.initialValue)
+      value: _this.markdown.deserialize(_props.initialValue)
     };
     return _this;
   }
 
-  TextareaMdField.prototype.render = function render() {
+  var _proto = TextareaMdField.prototype;
+
+  _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        initialValue = _props.initialValue,
-        onChange = _props.onChange,
-        onBlur = _props.onBlur,
-        enableMarks = _props.enableMarks,
-        enableBlocks = _props.enableBlocks,
-        disableMarks = _props.disableMarks,
-        disableBlocks = _props.disableBlocks,
-        rest = _objectWithoutProperties(_props, ['initialValue', 'onChange', 'onBlur', 'enableMarks', 'enableBlocks', 'disableMarks', 'disableBlocks']);
+    var _this$props = this.props,
+        initialValue = _this$props.initialValue,
+        onChange = _this$props.onChange,
+        onBlur = _this$props.onBlur,
+        enableMarks = _this$props.enableMarks,
+        enableBlocks = _this$props.enableBlocks,
+        disableMarks = _this$props.disableMarks,
+        disableBlocks = _this$props.disableBlocks,
+        rest = _objectWithoutPropertiesLoose(_this$props, ["initialValue", "onChange", "onBlur", "enableMarks", "enableBlocks", "disableMarks", "disableBlocks"]);
 
-    return React.createElement(StyledEditor, _extends({
+    return /*#__PURE__*/React.createElement(StyledEditor, _extends({
       onChange: this.handleChange,
       onBlur: this.handleBlur,
       plugins: this.plugins,
@@ -104,147 +236,16 @@ var TextareaMdField = (_temp = _class = function (_React$Component) {
   };
 
   return TextareaMdField;
-}(React.Component), _initialiseProps = function _initialiseProps() {
-  var _this3 = this;
-
-  this.makeSchema = function () {
-    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this3.props;
-    var enableBlocks = props.enableBlocks,
-        enableMarks = props.enableMarks,
-        disableBlocks = props.disableBlocks,
-        disableMarks = props.disableMarks;
+}(React.Component); // ---------------------------
 
 
-    var customNodes = [];
-    // if we have disableBlocks, ignore enableBlocks
-    if (disableBlocks && disableBlocks.length > 0) {
-      // map over all available nodes in Schema
-      Schema.document.nodes[0].match.map(function (node) {
-        // pick the ones that are not disabled
-        if (disableBlocks.indexOf(node.type) < 0) {
-          customNodes.push(node);
-        }
-        return true;
-      });
-      // if we have don't have disableBlocks, use enableBlocks if available
-    } else if (enableBlocks && enableBlocks.length > 0) {
-      // map over all available nodes in Schema
-      Schema.document.nodes[0].match.map(function (node) {
-        // pick the ones that are not disabled
-        if (enableBlocks.indexOf(node.type) > -1) {
-          customNodes.push(node);
-        }
-        return true;
-      });
-      // default to Schema as is
-    } else {
-      customNodes = [].concat(Schema.document.nodes[0].match);
-    }
-
-    // if we have disableMarks, ignore enableMarks
-    if (disableMarks && disableMarks.length > 0) {
-      // map over all available marks in Schema
-      Object.keys(Schema.blocks).map(function (block) {
-        var tempBlockMarks = [];
-        var blockMarks = Schema.blocks[block].marks;
-        if (blockMarks && blockMarks.length > 0) {
-          blockMarks.map(function (mark) {
-            // pick the ones that are not disabled
-            if (disableMarks.indexOf(mark.type) < 0) {
-              tempBlockMarks.push(mark);
-            }
-            return true;
-          });
-          Schema.blocks[block].marks = tempBlockMarks;
-        }
-        return true;
-      });
-
-      // if we have don't have disableMarks, use enableMarks if available
-    } else if (enableMarks && enableMarks.length > 0) {
-      // map over all available marks in Schema
-      Object.keys(Schema.blocks).map(function (block) {
-        var tempBlockMarks = [];
-        var blockMarks = Schema.blocks[block].marks;
-        if (blockMarks && blockMarks.length > 0) {
-          blockMarks.map(function (mark) {
-            // pick the ones that are not disabled
-            if (enableMarks.indexOf(mark.type) > -1) {
-              tempBlockMarks.push(mark);
-            }
-            return true;
-          });
-          Schema.blocks[block].marks = tempBlockMarks;
-        }
-        return true;
-      });
-      // default to Schema as is
-    }
-
-    var newSchema = _extends({}, Schema);
-    newSchema.document.nodes[0].match = customNodes;
-    return newSchema;
-  };
-
-  this.deserialize = function (value) {
-    if (Value.isValue(value)) {
-      return value;
-    }
-
-    if (typeof value === 'string') {
-      return _this3.markdown.deserialize(value);
-    }
-
-    return Value.fromJSON(value || EMPTY_VALUE);
-  };
-
-  this.handleChange = function (_ref) {
-    var value = _ref.value;
-    var onChange = _this3.props.onChange;
-
-    onChange && onChange({
-      target: {
-        type: 'textarea',
-        name: _this3.props.name,
-        value: _this3.markdown.serialize(value)
-      }
-    });
-
-    _this3.setState({ value: value });
-  };
-
-  this.handleBlur = function (event, editor, next) {
-    var onBlur = _this3.props.onBlur;
-
-    onBlur && onBlur({
-      target: {
-        type: 'textarea',
-        name: _this3.props.name,
-        value: _this3.markdown.serialize(_this3.state.value)
-      }
-    });
-
-    next();
-  };
-
-  this.serialise = function (value) {
-    if (Value.isValue(value)) {
-      return _this3.markdown.serialize(value);
-    }
-
-    return value;
-  };
-}, _temp);
-
-// ---------------------------
-
-var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontSize, function (_ref2) {
+var StyledEditor = styled(Editor)(_templateObject(), space, layout, flexbox, fontSize, function (_ref2) {
   var theme = _ref2.theme,
       initialValue = _ref2.initialValue;
   return initialValue && initialValue.length > 0 ? theme.colors.whiteout.lighter : theme.colors.whiteout.light;
 }, function (_ref3) {
   var theme = _ref3.theme;
-  return theme.borderWidths.base + ' solid ' + theme.colors.whiteout.dark;
+  return theme.borderWidths.base + " solid " + theme.colors.whiteout.dark;
 }, function (_ref4) {
   var theme = _ref4.theme;
   return theme.radii.small;
@@ -255,6 +256,7 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontS
   switch (context) {
     case 'danger':
       return theme.colors.danger.base;
+
     case 'neutral':
     default:
       return theme.colors.primary.base;
@@ -263,7 +265,6 @@ var StyledEditor = styled(Editor)(_templateObject, space, layout, flexbox, fontS
   var theme = _ref6.theme;
   return theme.colors.whiteout.lightest;
 });
-
 StyledEditor.defaultProps = {
   context: 'neutral',
   marginBottom: 'base',
@@ -271,33 +272,25 @@ StyledEditor.defaultProps = {
   paddingX: 'base',
   fontSize: 'body',
   fontWeight: 'normal'
-};
-
-// ---------------------------
+}; // ---------------------------
 
 var TextareaMd = function TextareaMd(_ref7) {
   var label = _ref7.label,
       required = _ref7.required,
-      rest = _objectWithoutProperties(_ref7, ['label', 'required']);
+      rest = _objectWithoutPropertiesLoose(_ref7, ["label", "required"]);
 
   var LabelOrFragment = label ? Label : Fragment;
-  var labelProps = label ? { label: label, htmlFor: rest.name } : {};
-  var textareaProps = label ? { marginTop: 'small' } : {};
-  return React.createElement(
-    LabelOrFragment,
-    labelProps,
-    label,
-    label && required && React.createElement(
-      RequiredText,
-      null,
-      '*required'
-    ),
-    React.createElement(TextareaMdField, _extends({}, rest, textareaProps))
-  );
+  var labelProps = label ? {
+    label: label,
+    htmlFor: rest.name
+  } : {};
+  var textareaProps = label ? {
+    marginTop: 'small'
+  } : {};
+  return /*#__PURE__*/React.createElement(LabelOrFragment, labelProps, label, label && required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"), /*#__PURE__*/React.createElement(TextareaMdField, _extends({}, rest, textareaProps)));
 };
 
 TextareaMd.displayName = 'TextareaMd';
-
 TextareaMd.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone
@@ -333,16 +326,17 @@ TextareaMd.propTypes = process.env.NODE_ENV !== "production" ? {
    * Alternatively supply an array of blocks to disable, keep all others. Only supply either enableBlocks OR disableBlocks. Disable wins in case both are supplied.
    */
   disableBlocks: PropTypes.array,
+
   /**
    * Alternatively supply an array of marks to disable, keep all others. Only supply either enableMarks OR disableMarks. Disable wins in case both are supplied.
    */
   disableMarks: PropTypes.array,
+
   /**
    * Provide context (any of colors.contexts) to change the outline color
    */
   context: PropTypes.string
 } : {};
-
 TextareaMd.defaultProps = {
   initialValue: '',
   tooltip: 'span',
@@ -351,5 +345,4 @@ TextareaMd.defaultProps = {
   disableBlocks: null,
   disableMarks: null
 };
-
 export default TextareaMd;

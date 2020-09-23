@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import ButtonNew from './ButtonNew';
+import Button from './Button';
 
-const ButtonSelect = styled(ButtonNew)`
+const ButtonSelect = styled(Button)`
   background: ${({ theme }) => theme.colors.whiteout.lightest};
 
   font-size: ${({ theme }) => theme.fontSizes.body};

@@ -45,16 +45,16 @@ const Heading = styled('h2')`
         colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h3':
-        colorCSS = `color: ${colors.neutral.darker};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       case 'h4':
-        colorCSS = `color: ${colors.neutral.darker};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h5':
-        colorCSS = `color: ${colors.neutral.dark};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       case 'h6':
-        colorCSS = `color: ${colors.neutral.dark};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       default:
         colorCSS = `color: ${colors.primary.base};`;
@@ -80,7 +80,6 @@ const Heading = styled('h2')`
   &:first-child {
     margin-top: 0;
   }
-
 `;
 
 Heading.propTypes = {

@@ -1,4 +1,4 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React from 'react';
 import { Box } from '../Box';
@@ -24,35 +24,38 @@ var StepCustom = function StepCustom(_ref) {
   var hasRequiredFieldValues = function hasRequiredFieldValues() {
     return fields && Array.isArray(fields) && fields.length > 0 && fields.map(function (field) {
       return !field.required || formData[field.name] && formData[field.name] !== '';
-    })
-    // check if all are true
+    }) // check if all are true
     .reduce(function (all, current) {
       return all && current;
     });
   };
 
-  var containerProps = displayMode === 'flex' ? { padding: 0 } : {};
-  return React.createElement(
-    Container,
-    _extends({ height: '100%', width: 'narrow' }, containerProps),
-    React.createElement(StepHeader, { title: title, lede: lede }),
-    React.createElement(SlideContent, {
-      formData: formData,
-      slug: slug,
-      onChange: onChange,
-      onNavigate: onNavigate,
-      validationErrors: validationErrors,
-      saveErrors: saveErrors
-    }),
-    React.createElement(Errors, { errors: [].concat(validationErrors, saveErrors) }),
-    React.createElement(Box, { flexGrow: 1 }),
-    React.createElement(ActionButtons, {
-      actions: actions,
-      onNavigate: onNavigate,
-      disableNext: validationErrors.length > 0 || !hasRequiredFieldValues(),
-      isSaving: isSaving || false
-    })
-  );
+  var containerProps = displayMode === 'flex' ? {
+    padding: 0
+  } : {};
+  return /*#__PURE__*/React.createElement(Container, _extends({
+    height: "100%",
+    width: "narrow"
+  }, containerProps), /*#__PURE__*/React.createElement(StepHeader, {
+    title: title,
+    lede: lede
+  }), /*#__PURE__*/React.createElement(SlideContent, {
+    formData: formData,
+    slug: slug,
+    onChange: onChange,
+    onNavigate: onNavigate,
+    validationErrors: validationErrors,
+    saveErrors: saveErrors
+  }), /*#__PURE__*/React.createElement(Errors, {
+    errors: [].concat(validationErrors, saveErrors)
+  }), /*#__PURE__*/React.createElement(Box, {
+    flexGrow: 1
+  }), /*#__PURE__*/React.createElement(ActionButtons, {
+    actions: actions,
+    onNavigate: onNavigate,
+    disableNext: validationErrors.length > 0 || !hasRequiredFieldValues(),
+    isSaving: isSaving || false
+  }));
 };
 
 StepCustom.displayName = 'StepCustom';

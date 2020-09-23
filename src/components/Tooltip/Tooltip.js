@@ -4,8 +4,8 @@ import ReactTooltip from 'react-tooltip';
 
 const getBgColor = ({ theme, context }) =>
   context === 'whiteout'
-    ? theme.colors[context].lighter
-    : theme.colors[context].darker;
+    ? theme.colors[context]?.lighter
+    : theme.colors[context]?.darker;
 
 const getTextColor = ({ theme, context }) =>
   context === 'whiteout'
@@ -13,7 +13,7 @@ const getTextColor = ({ theme, context }) =>
     : theme.colors.whiteout.lightest;
 
 const Tooltip = styled(ReactTooltip)`
-  &.__react_component_tooltip.hoppin-context.type-dark {
+  &.__react_component_tooltip.orbiit-context.type-dark {
     border-radius: ${({ theme }) => theme.radii.small};
     font-size: ${({ theme }) => theme.fontSizes.label};
     z-index: ${({ theme }) => theme.zIndices.overlay};
@@ -70,8 +70,7 @@ const Tooltip = styled(ReactTooltip)`
 Tooltip.propTypes = {
   context: PropTypes.oneOf([
     'primary',
-    'shadower',
-    'host',
+    'secondary',
     'neutral',
     'danger',
     'whiteout',
@@ -82,7 +81,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   context: 'neutral',
-  className: 'hoppin-context',
+  className: 'orbiit-context',
   effect: 'float',
   place: 'top',
 };

@@ -1,1 +1,1 @@
-export { default as DesignProvider } from './DesignProvider';
+export { default as DesignProvider, Fonts } from './DesignProvider';

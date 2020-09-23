@@ -36,9 +36,9 @@ const headingSizes = [];
 headingSizes.huge = [fontSizes[7], null, fontSizes[8]];
 headingSizes.h1 = [fontSizes[6], null, fontSizes[7]];
 headingSizes.h2 = [fontSizes[5], null, fontSizes[6]];
-headingSizes.h3 = [fontSizes[4], null, fontSizes[5]];
-headingSizes.h4 = [fontSizes[3], null, fontSizes[5]];
-headingSizes.h5 = [fontSizes[3], null, fontSizes[4]];
+headingSizes.h3 = [fontSizes[5], null, fontSizes[6]];
+headingSizes.h4 = [fontSizes[4], null, fontSizes[5]];
+headingSizes.h5 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h6 = [fontSizes[3], null, fontSizes[3]];
 
 const lineHeights = [1, 1.4, 1.8];
@@ -48,11 +48,11 @@ lineHeights.body = lineHeights[1];
 lineHeights.large = lineHeights[2];
 
 const fontWeights = {
-  light: 200,
+  light: 300,
   normal: 300,
-  medium: 400,
+  medium: 600,
   bold: 600,
-  heavy: 700,
+  heavy: 600,
 };
 
 // headings style attributes, all but color, since color is dependent on host/shadower context
@@ -60,7 +60,7 @@ const headings = {
   h1: {
     fontFamily: fonts.primary,
     fontSize: headingSizes.h1,
-    letterSpacing: '-2px',
+    letterSpacing: '1px',
     lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold,
     marginTop: space.xlarge,
@@ -69,13 +69,14 @@ const headings = {
   h2: {
     fontFamily: fonts.primary,
     fontSize: headingSizes.h2,
-    letterSpacing: '-2px',
+    letterSpacing: '1px',
     lineHeight: lineHeights.small,
-    fontWeight: fontWeights.normal,
+    fontWeight: fontWeights.bold,
   },
   h3: {
-    fontFamily: fonts.secondary,
+    fontFamily: fonts.primary,
     fontSize: headingSizes.h3,
+    letterSpacing: '1px',
     lineHeight: lineHeights.small,
     fontWeight: fontWeights.bold,
   },
@@ -83,7 +84,7 @@ const headings = {
     fontFamily: fonts.secondary,
     fontSize: headingSizes.h4,
     lineHeight: lineHeights.base,
-    fontWeight: fontWeights.normal,
+    fontWeight: fontWeights.bold,
   },
   h5: {
     fontFamily: fonts.secondary,

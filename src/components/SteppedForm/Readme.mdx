@@ -7,12 +7,7 @@ menu: Components
 import { useState } from 'react';
 import { Props, Playground } from 'docz';
 import { FiMail, FiPhone } from 'react-icons/fi';
-import {
-  StepTimeline,
-  SteppedForm,
-  StepForm,
-  StepMd
-} from '../SteppedForm';
+import { StepTimeline, SteppedForm, StepForm, StepMd } from '../SteppedForm';
 import { Box } from '../Box';
 
 # Stepped Form
@@ -86,7 +81,7 @@ There are different kinds of slides possible, but all share some common props:
       lede:
         "We're excited to hear about you, your work and the shadowing experience you could host on Hoppin.\n\nYou will shortly start creating your host profile, then you’ll submit it to the Hoppin team for review.",
       body:
-        '![excited welcome from the office dog](https://storage.googleapis.com/hoppin-platform/CDN_LIVE/images/app-backgrounds/host-onboard-welcome.gif)',
+        '![excited welcome from the office dog](https://storage.googleapis.com/orbiit-platform/CDN_LIVE/images/app-backgrounds/host-onboard-welcome.gif)',
     };
     return (
       <Box minHeight="80vh">
@@ -99,7 +94,7 @@ There are different kinds of slides possible, but all share some common props:
           displayMode="fullscreen"
         />
       </Box>
-    )
+    );
   }}
 </Playground>
 
@@ -156,7 +151,7 @@ There are different kinds of slides possible, but all share some common props:
           displayMode="fullscreen"
         />
       </Box>
-    )
+    );
   }}
 </Playground>
 
@@ -205,8 +200,9 @@ There are different kinds of slides possible, but all share some common props:
           },
           type: 'text',
           title: 'The best email address to get in touch',
-          explain: 'We will only use your contact details to send notifications',
-          icon: <FiMail/>,
+          explain:
+            'We will only use your contact details to send notifications',
+          icon: <FiMail />,
           props: { marginBottom: '0px' },
         },
         {
@@ -238,6 +234,6 @@ There are different kinds of slides possible, but all share some common props:
           displayMode="fullscreen"
         />
       </Box>
-    )
+    );
   }}
 </Playground>

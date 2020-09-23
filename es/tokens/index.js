@@ -6,7 +6,6 @@ import { fonts, fontSizes, lineHeights, fontWeights, headings } from './typograp
 import { logo, icon } from './logos';
 import { borderWidths } from './borders';
 import { motions } from './motions';
-
 export default {
   space: space,
   containerWidths: containerWidths,
