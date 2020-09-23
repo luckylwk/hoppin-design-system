@@ -3,15 +3,15 @@ import { fontSizes } from './typography';
 
 const buttonSizes = {
   small: {
-    fontSize: fontSizes[3],
+    fontSize: fontSizes.small,
     padding: `${space[1]} ${space[3]}`,
   },
   base: {
-    fontSize: fontSizes[3],
+    fontSize: fontSizes.small,
     padding: `${space[2]} ${space[4]}`,
   },
   large: {
-    fontSize: fontSizes[4],
+    fontSize: fontSizes.body,
     padding: `${space[3]} ${space[5]}`,
   },
 };

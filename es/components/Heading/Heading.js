@@ -35,7 +35,7 @@ var Heading = styled('h2')(_templateObject(), headingStyles, function (_ref) {
 
   switch (as) {
     case 'h1':
-      colorCSS = "color: " + colors.primary.base + ";";
+      colorCSS = "color: " + colors.primary.lightest + ";";
       break;
 
     case 'h2':

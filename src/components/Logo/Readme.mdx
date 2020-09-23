@@ -9,7 +9,7 @@ import Logo from './Logo';
 import LogoResponsive from './LogoResponsive';
 import { Props, Playground } from 'docz';
 
-# Logos 
+# Logos
 
 ## Logo
 
@@ -22,20 +22,22 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
 
 <Playground>
   <Logo margin='xlarge' />
-  <Logo context='shadower' margin='xlarge' />
-  <Logo context='host' margin='xlarge' />
+  <Logo variant='fullcolor' margin='xlarge' />
+  <Logo variant='monochrome' margin='xlarge' />
 
-  <Box bg='primary.base' padding='large'>
-    <Logo context='whiteout' margin='xlarge' />
+
+  <Box bg='primary.darkest' padding='large'>
+    <Logo variant='monochrome' baseColor='white' margin='xlarge' />
   </Box>
 </Playground>
+
 
 Add prop `size='icon'` to render the hop icon only.
 
 <Playground>
   <Logo size="icon" margin="xlarge" />
-  <Logo size="icon" context="shadower" margin="xlarge" />
-  <Logo size="icon" context="host" margin="xlarge" />
+  <Logo size="icon" variant="fullcolor" margin="xlarge" />
+  <Logo size="icon" variant="monochrome" margin="xlarge" />
 </Playground>
 
 ## LogoResponsive
@@ -49,6 +51,6 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
 
 <Playground>
   <LogoResponsive margin="xlarge" />
-  <LogoResponsive context="shadower" margin="xlarge" />
-  <LogoResponsive context="host" margin="xlarge" />
+  <LogoResponsive variant="fullcolor" margin="xlarge" />
+  <LogoResponsive variant="monochrome" margin="xlarge" />
 </Playground>

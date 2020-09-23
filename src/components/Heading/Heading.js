@@ -39,7 +39,7 @@ const Heading = styled('h2')`
     let colorCSS = '';
     switch (as) {
       case 'h1':
-        colorCSS = `color: ${colors.primary.base};`;
+        colorCSS = `color: ${colors.primary.lightest};`;
         break;
       case 'h2':
         colorCSS = `color: ${colors.secondary.darker};`;

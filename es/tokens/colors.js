@@ -7,10 +7,10 @@ var colors = {
   sky: '#008CE6',
   indigo: '#03033B',
   primary: {
-    lightest: '#FFCC00',
+    lightest: '#FFF',
     //made up
     lighter: '#FFCC00',
-    light: '#FF5936',
+    light: '#FFCC00',
     base: '#FF5936',
     dark: '#FF5936',
     darker: '#03033B',
