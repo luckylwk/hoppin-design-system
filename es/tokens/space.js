@@ -3,9 +3,9 @@ var space = [0, '.25rem', // 4px
 '.5rem', // 8px
 '1rem', // 16px
 '1.5rem', // 24px
-'2rem', // 32px
-'4rem', // 64px
-'6rem' // 96px
+'3rem', // 32px
+'6rem', // 96px
+'10rem' // 160px
 ];
 space.none = space[0];
 space.xsmall = space[1];
@@ -14,6 +14,7 @@ space.base = space[3];
 space.medium = space[3];
 space.large = space[4];
 space.xlarge = space[5];
+space.huge = space[6];
 var containerWidths = {
   narrow: '50rem',
   base: '70rem',
