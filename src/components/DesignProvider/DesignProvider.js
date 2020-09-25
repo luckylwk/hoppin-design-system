@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     margin: 0;
-    background: #f8fafb;
+    background: ${({ theme }) => theme.colors.whiteout.lightest};
     font-size: 16px;
     /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.primary};
