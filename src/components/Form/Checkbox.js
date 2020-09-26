@@ -65,7 +65,7 @@ const StyledCheckbox = styled.div`
     !checked ? theme.colors.neutral.lightest : theme.colors.primary.lightest};
   border: 2px solid
     ${({ checked, theme }) =>
-      !checked ? theme.colors.neutral.lighter : theme.colors.primary.base};
+      !checked ? theme.colors.neutral.lighter : theme.colors.secondary.lighter};
 
   border-radius: ${({ theme }) => theme.radii.xsmall};
 
@@ -85,7 +85,7 @@ StyledCheckbox.displayName = 'StyledCheckbox';
 // ---------------------------
 
 const Checkbox = ({ name, checked, label, onChange }) => {
-  const onClick = e => {
+  const onClick = (e) => {
     e.preventDefault();
     onChange({
       target: {

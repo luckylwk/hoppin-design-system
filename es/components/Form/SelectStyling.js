@@ -13,9 +13,9 @@ var getSelectStyles = function getSelectStyles(theme) {
         backgroundColor: theme.colors.whiteout.light,
         borderWidth: theme.borderWidths.base,
         borderRadius: isFocused ? theme.radii.small + " " + theme.radii.small + " 0 0" : theme.radii.small,
-        borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark,
+        borderColor: isFocused ? theme.colors.secondary.lighter : theme.colors.whiteout.dark,
         ':hover': {
-          borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark
+          borderColor: isFocused ? theme.colors.secondary.lighter : theme.colors.whiteout.dark
         },
         boxShadow: null,
         minHeight: '2rem',
@@ -25,7 +25,7 @@ var getSelectStyles = function getSelectStyles(theme) {
     menu: function menu(styles) {
       return _extends({}, styles, {
         marginTop: "0",
-        border: theme.borderWidths.base + " solid " + theme.colors.primary.base,
+        border: theme.borderWidths.base + " solid " + theme.colors.secondary.lighter,
         borderTop: '0px',
         borderRadius: "0 0 " + theme.radii.small + " " + theme.radii.small,
         boxShadow: theme.shadows.small
@@ -47,7 +47,7 @@ var getSelectStyles = function getSelectStyles(theme) {
         cursor: isDisabled ? 'not-allowed' : 'default',
         ':hover': {
           backgroundColor: theme.colors.whiteout.dark,
-          color: theme.colors.primary.darker,
+          color: theme.colors.secondary.lighter,
           cursor: 'pointer',
           fontWeight: theme.fontWeights.normal
         }
@@ -60,7 +60,7 @@ var getSelectStyles = function getSelectStyles(theme) {
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
-        borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark
+        borderColor: isFocused ? theme.colors.secondary.lighter : theme.colors.whiteout.dark
       });
     },
     valueContainer: function valueContainer(styles) {
@@ -130,9 +130,9 @@ var getSelectStyles = function getSelectStyles(theme) {
 
 var getSelectTheme = function getSelectTheme(theme) {
   var colors = {
-    primary: theme.colors.primary.base,
-    primary75: theme.colors.primary.light,
-    primary50: theme.colors.primary.lighter,
+    primary: theme.colors.secondary.lighter,
+    primary75: theme.colors.primary.dark,
+    primary50: theme.colors.primary.dark,
     primary25: theme.colors.primary.lightest,
     danger: theme.colors.danger.base,
     dangerLight: theme.colors.danger.lighter,

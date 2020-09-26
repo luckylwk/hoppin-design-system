@@ -76,7 +76,7 @@ var StyledCheckbox = styled.div(_templateObject4(), CheckboxLabel, function (_re
 }, function (_ref4) {
   var checked = _ref4.checked,
       theme = _ref4.theme;
-  return !checked ? theme.colors.neutral.lighter : theme.colors.primary.base;
+  return !checked ? theme.colors.neutral.lighter : theme.colors.secondary.lighter;
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.radii.xsmall;

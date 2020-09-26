@@ -48,7 +48,7 @@ const InputField = styled.input`
           return theme.colors.danger.base;
         case 'neutral':
         default:
-          return theme.colors.primary.base;
+          return theme.colors.secondary.lighter;
       }
     }};
     background: ${({ theme }) => theme.colors.whiteout.lightest};

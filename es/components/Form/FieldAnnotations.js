@@ -35,7 +35,7 @@ import styled from 'styled-components'; // ---------------------------
 
 export var RequiredText = styled.span(_templateObject(), function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.primary.base;
+  return theme.colors.secondary.lighter;
 });
 RequiredText.propTypes = {};
 RequiredText.defaultProps = {};

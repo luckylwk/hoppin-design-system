@@ -54,7 +54,7 @@ var InputField = styled.input(_templateObject(), typography, space, border, func
 
     case 'neutral':
     default:
-      return theme.colors.primary.base;
+      return theme.colors.secondary.lighter;
   }
 }, function (_ref5) {
   var theme = _ref5.theme;

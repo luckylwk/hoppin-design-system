@@ -33,13 +33,13 @@ var StyledSlider = styled(Slider)(_templateObject(), function (_ref) {
   return theme.colors.neutral.light;
 }, function (_ref5) {
   var theme = _ref5.theme;
-  return theme.colors.primary.base;
+  return theme.colors.secondary.lighter;
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.colors.neutral.lighter;
 }, function (_ref7) {
   var theme = _ref7.theme;
-  return theme.colors.primary.base;
+  return theme.colors.secondary.lighter;
 }, function (_ref8) {
   var theme = _ref8.theme;
   return theme.fontSizes.label;

@@ -18,13 +18,15 @@ import {
   Fields,
   Input,
   TextareaMd,
+  Textarea,
   Checkbox,
   Label,
   SingleSelectButton,
   SelectButton,
   SelectCard,
   RangeSlider,
-  Errors
+  PhoneInput,
+  Errors,
 } from '../Form';
 import getSelectStyling from './SelectStyling';
 import FieldsSortable from './FieldsSortable';
@@ -47,8 +49,11 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
-    }
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="400px">
@@ -87,26 +92,16 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
-    )
+    );
   }}
 </Playground>
 
@@ -121,13 +116,18 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
 
 <Playground>
   {() => {
-    const [formData, setFormData] = useState({ veryRichText: 'Write something **bold**!' });
+    const [formData, setFormData] = useState({
+      veryRichText: 'Write something **bold**!',
+    });
     const [lastEvent, setLastEvent] = useState({});
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
-    }
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="500px">
@@ -136,7 +136,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
             label="Write something exciting"
             initialValue={formData.veryRichText || ''}
             onChange={onChange}
-            onBlur={e =>
+            onBlur={(e) =>
               console.log('editor lost focus, last value:', e.target.value)
             }
             enableBlocks={['paragraph']}
@@ -154,22 +154,68 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+  }}
+</Playground>
+
+## Textarea
+
+`Textarea` a simple textarea without formatting options.
+
+<Props of={Textarea} />
+
+`Textarea` can also accept props for [Styled System: space, layout and flexbox](https://styled-system.com/api).
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({
+      simpletext: 'Write something simple!',
+    });
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="500px">
+          <Textarea
+            name="simpletext"
+            label="Write something exciting"
+            value={formData.simpletext || ''}
+            onChange={onChange}
+            minHeight={150}
+            maxHeight={400}
+            required
+          />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>Last event</Paragraph>
+          <UnorderedList>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
@@ -184,10 +230,11 @@ Checkbox uses [rc-checkbox](https://github.com/react-component/checkbox) under t
 <Props of={Checkbox} />
 
 Checkbox will expose an `event.target` with
-* `name`
-* `type` as `checkbox`
-* `value` as a boolean indicating the `checked` value
-* `checked` as a boolean indicating the `checked` value
+
+- `name`
+- `type` as `checkbox`
+- `value` as a boolean indicating the `checked` value
+- `checked` as a boolean indicating the `checked` value
 
 Checkboxes need to be positioned with a `Box` for `margin` and `padding`
 
@@ -198,12 +245,15 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
-    }
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="400px">
-        <Input
+          <Input
             name="email"
             label="Email address"
             placeholder="Email"
@@ -236,26 +286,16 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
-    )
+    );
   }}
 </Playground>
 
@@ -270,8 +310,8 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: value })
-    }
+      setFormData({ ...formData, [name]: value });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="350px">
@@ -282,7 +322,7 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
               { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
               { value: '2 days', label: '2 days' },
-              { value: '1 week', label: '1 week' }
+              { value: '1 week', label: '1 week' },
             ]}
             value={formData.durations}
             onChange={onChange}
@@ -296,7 +336,7 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
               { value: '1/2 day', label: '1/2 day' },
               { value: '1 day', label: '1 day' },
               { value: '2 days', label: '2 days' },
-              { value: '1 week', label: '1 week' }
+              { value: '1 week', label: '1 week' },
             ]}
             value={formData.durations}
             onChange={onChange}
@@ -312,22 +352,12 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {JSON.stringify(lastEvent.value)}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {JSON.stringify(lastEvent.value)}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
@@ -346,8 +376,8 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: value })
-    }
+      setFormData({ ...formData, [name]: value });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
@@ -361,7 +391,7 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
               { value: '1 week', label: '1 week' },
               { value: '2 weeks', label: '2 weeks' },
               { value: '1 month', label: '1 month' },
-              { value: '1 quarter', label: '1 quarter' }
+              { value: '1 quarter', label: '1 quarter' },
             ]}
             value={formData.durations}
             onChange={onChange}
@@ -381,7 +411,7 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
               { value: '1 week', label: '1 week' },
               { value: '2 weeks', label: '2 weeks' },
               { value: '1 month', label: '1 month' },
-              { value: '1 quarter', label: '1 quarter' }
+              { value: '1 quarter', label: '1 quarter' },
             ]}
             value={formData.durations}
             onChange={onChange}
@@ -399,22 +429,12 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {JSON.stringify(lastEvent.value)}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {JSON.stringify(lastEvent.value)}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
@@ -427,8 +447,9 @@ Checkboxes need to be positioned with a `Box` for `margin` and `padding`
 <Props of={SingleSelectButton} />
 
 We can use the `SingleSelectButton` with
-* an `enableOther` flag and also
-* add a `randomizeOptions` flag to randomize the options if we want to.
+
+- an `enableOther` flag and also
+- add a `randomizeOptions` flag to randomize the options if we want to.
 
 <Playground>
   {() => {
@@ -437,8 +458,11 @@ We can use the `SingleSelectButton` with
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value, type, checked } = e.target;
-      setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
-    }
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.dark">
@@ -451,7 +475,7 @@ We can use the `SingleSelectButton` with
               { value: '1 week', label: '1 week' },
               { value: '2 weeks', label: '2 weeks' },
               { value: '1 month', label: '1 month' },
-              { value: '1 quarter', label: '1 quarter' }
+              { value: '1 quarter', label: '1 quarter' },
             ]}
             value={formData.duration}
             onChange={onChange}
@@ -469,22 +493,12 @@ We can use the `SingleSelectButton` with
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
@@ -501,99 +515,87 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
 ### Standard Select
 
 <Playground>
-    {() => {
-      const [lastEvent, setLastEvent] = useState({});
-      const [formData, setFormData] = useState({
-        select_multiple_with_preset_example: {
-          value: 'Testing 123 value',
-          label: 'testing-123-value'
-        }
+  {() => {
+    const [lastEvent, setLastEvent] = useState({});
+    const [formData, setFormData] = useState({
+      select_multiple_with_preset_example: {
+        value: 'Testing 123 value',
+        label: 'testing-123-value',
+      },
+    });
+    const onChange = (fieldName, event) => {
+      setLastEvent(event.target);
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value,
       });
-      const onChange = (fieldName, event) => {
-        setLastEvent(event.target);
-        setFormData({
-          ...formData,
-          [event.target.name]: event.target.value
-        })
-      }
-      const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-      ];
-      const fields = [
-        {
-          name: 'select_one_example',
-          type: 'select',
-          label: `Select`,
-          explain: 'Start typing to find your favorite flavor',
-          options: options,
-          value: formData.select_one_example || null
-        },
-        {
-          name: 'select_multiple_example',
-          type: 'multi-select',
-          label: `Select multiple if you dare`,
-          options: options,
-          value: formData.select_multiple_example || null
-        },
-        {
-          name: 'select_multiple_with_preset_example',
-          type: 'multi-select',
-          label: `Select multiple... preset by formData`,
-          options: options,
-          value: formData.select_multiple_with_preset_example || null
-        },
-      ];
-      return (
-        <Flex>
-          <Box margin="base" padding="base" maxWidth="400px">
-            <Fields fields={fields} onChange={onChange} />
-          </Box>
-          <Box
-            margin="small"
-            padding="base"
-            maxWidth="300px"
-            bg="neutral.darker"
-            color="white"
-            borderRadius="5px"
-          >
-            <Paragraph>
-              Last event
-            </Paragraph>
-            <UnorderedList>
-              <ListItem>
-                type: {lastEvent.type}
-              </ListItem>
-              <ListItem>
-                name: {lastEvent.name}
-              </ListItem>
-              <ListItem>
-                value: {JSON.stringify(lastEvent.value)}
-              </ListItem>
-              <ListItem>
-                checked: {lastEvent.checked ? 'true': 'false' }
-              </ListItem>
-              <ListItem>
-                action: {lastEvent.action}
-              </ListItem>
-            </UnorderedList>
-          </Box>
-          <Box
-            marginY="small"
-            padding="base"
-            maxWidth="250px"
-            bg="neutral.darkest"
-            color="white"
-            borderRadius="5px"
-          >
-            <pre><code>
-            {JSON.stringify(formData, null, 2)}
-            </code></pre>
-          </Box>
-        </Flex>
-      );
-    }}
+    };
+    const options = [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ];
+    const fields = [
+      {
+        name: 'select_one_example',
+        type: 'select',
+        label: `Select`,
+        explain: 'Start typing to find your favorite flavor',
+        options: options,
+        value: formData.select_one_example || null,
+      },
+      {
+        name: 'select_multiple_example',
+        type: 'multi-select',
+        label: `Select multiple if you dare`,
+        options: options,
+        value: formData.select_multiple_example || null,
+      },
+      {
+        name: 'select_multiple_with_preset_example',
+        type: 'multi-select',
+        label: `Select multiple... preset by formData`,
+        options: options,
+        value: formData.select_multiple_with_preset_example || null,
+      },
+    ];
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+          <Fields fields={fields} onChange={onChange} />
+        </Box>
+        <Box
+          margin="small"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>Last event</Paragraph>
+          <UnorderedList>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {JSON.stringify(lastEvent.value)}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
+            <ListItem>action: {lastEvent.action}</ListItem>
+          </UnorderedList>
+        </Box>
+        <Box
+          marginY="small"
+          padding="base"
+          maxWidth="250px"
+          bg="neutral.darkest"
+          color="white"
+          borderRadius="5px"
+        >
+          <pre>
+            <code>{JSON.stringify(formData, null, 2)}</code>
+          </pre>
+        </Box>
+      </Flex>
+    );
+  }}
 </Playground>
 
 ## Async & Creatable Select
@@ -604,26 +606,30 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
     const [formData, setFormData] = useState({
       favorite_disco: {
         value: 'Testing 123 value',
-        label: 'testing-123-value'
-      }
+        label: 'testing-123-value',
+      },
     });
     const onChange = (fieldName, event) => {
-      console.log(event)
-      setLastEvent(event.target)
+      console.log(event);
+      setLastEvent(event.target);
       setFormData({
         ...formData,
-        [event.target.name]: event.target.value
-      })
-    }
-    const loadOptions = (inputValue) => new Promise(resolve => {
-      setTimeout(() => {
-        resolve([
-          { value: inputValue, label: inputValue },
-          { value: `Another ${inputValue}`, label: `another-${inputValue}` },
-          { value: `Yet another ${inputValue}`, label: `yet-another-${inputValue}` }
-        ]);
-      }, 500);
-    });
+        [event.target.name]: event.target.value,
+      });
+    };
+    const loadOptions = (inputValue) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve([
+            { value: inputValue, label: inputValue },
+            { value: `Another ${inputValue}`, label: `another-${inputValue}` },
+            {
+              value: `Yet another ${inputValue}`,
+              label: `yet-another-${inputValue}`,
+            },
+          ]);
+        }, 500);
+      });
     const fields = [
       {
         name: 'department',
@@ -631,9 +637,9 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
         label: 'Your department, with a creatable-select',
         explain: `If you can't find your department create a new one`,
         options: [
-          { value: 'Finance', label: 'finance'},
-          { value: 'Marketing', label: 'marketing'},
-          { value: 'Human Resources', label: 'human_resources'}
+          { value: 'Finance', label: 'finance' },
+          { value: 'Marketing', label: 'marketing' },
+          { value: 'Human Resources', label: 'human_resources' },
         ],
         value: formData.department || null,
       },
@@ -643,7 +649,7 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
         label: `Search it here with this async-select`,
         explain: 'Start typing to find your whatever',
         options: loadOptions,
-        value: formData.favorite_icecream || null
+        value: formData.favorite_icecream || null,
       },
       {
         name: 'favorite_disco',
@@ -651,7 +657,7 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
         label: `Search it here with this async-creatable-select`,
         explain: 'Start typing to find... but its preset using formData',
         options: loadOptions,
-        value: formData.favorite_disco || null
+        value: formData.favorite_disco || null,
       },
     ];
     return (
@@ -667,25 +673,13 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {JSON.stringify(lastEvent.value)}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
-            <ListItem>
-              action: {lastEvent.action}
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {JSON.stringify(lastEvent.value)}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
+            <ListItem>action: {lastEvent.action}</ListItem>
           </UnorderedList>
         </Box>
         <Box
@@ -696,11 +690,13 @@ Invoke `getSelectStyling` by passing it the current theme object, to receive con
           color="white"
           borderRadius="5px"
         >
-          <pre><code>{JSON.stringify(formData, null, 2)}</code></pre>
+          <pre>
+            <code>{JSON.stringify(formData, null, 2)}</code>
+          </pre>
         </Box>
       </Flex>
     );
-}}
+  }}
 </Playground>
 
 ## RangeSlider
@@ -715,8 +711,8 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
     const onChange = (e) => {
       setLastEvent(e.target);
       const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value })
-    }
+      setFormData({ ...formData, [name]: value });
+    };
     return (
       <Flex>
         <Box margin="base" padding="base" maxWidth="400px">
@@ -736,26 +732,16 @@ Props table might not render due to a [bug in docz](https://github.com/pedronauc
           color="white"
           borderRadius="5px"
         >
-          <Paragraph>
-            Last event
-          </Paragraph>
+          <Paragraph>Last event</Paragraph>
           <UnorderedList>
-            <ListItem>
-              type: {lastEvent.type}
-            </ListItem>
-            <ListItem>
-              name: {lastEvent.name}
-            </ListItem>
-            <ListItem>
-              value: {lastEvent.value}
-            </ListItem>
-            <ListItem>
-              checked: {lastEvent.checked ? 'true': 'false' }
-            </ListItem>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+            <ListItem>checked: {lastEvent.checked ? 'true' : 'false'}</ListItem>
           </UnorderedList>
         </Box>
       </Flex>
-    )
+    );
   }}
 </Playground>
 
@@ -877,7 +863,7 @@ Field objects need to have a key `type` with one of the following values:
             placeholder: 'Last Name',
             required: true,
             renderWidth: 'full',
-            props: { marginBottom: 'none' }
+            props: { marginBottom: 'none' },
           },
         ],
       },
@@ -889,7 +875,7 @@ Field objects need to have a key `type` with one of the following values:
         explain: 'Your email address will not be shared with any third parties',
         placeholder: 'yourname@example.org',
         required: true,
-        props: { marginBottom: 'none' }
+        props: { marginBottom: 'none' },
       },
       {
         name: 'opt-in',
@@ -898,28 +884,28 @@ Field objects need to have a key `type` with one of the following values:
         explain: "We don't know for what either",
         options: [
           { value: 'hell no', label: 'Hell no!' },
-          { value: 'oh yeah', label: 'Oh yeah!' }
+          { value: 'oh yeah', label: 'Oh yeah!' },
         ],
         value: undefined,
         required: true,
       },
       {
-      name: 'social',
-      type: 'group',
-      title: 'Socials...',
-      list: [
+        name: 'social',
+        type: 'group',
+        title: 'Socials...',
+        list: [
           {
             name: 'instagram',
             type: 'text',
             label: 'Instagram',
             required: true,
-            icon: <FiInstagram />
+            icon: <FiInstagram />,
           },
           {
             name: 'linkedin',
             type: 'text',
             label: 'LinkedIn Profile URL',
-            icon: <FiLinkedin />
+            icon: <FiLinkedin />,
           },
         ],
       },
@@ -931,7 +917,7 @@ Field objects need to have a key `type` with one of the following values:
         label: 'Your Pitch',
         required: true,
         maxLength: 300,
-        props: { minHeight: '100px' }
+        props: { minHeight: '100px' },
       },
       {
         name: 'ready',
@@ -941,16 +927,14 @@ Field objects need to have a key `type` with one of the following values:
       {
         name: 'favourite_icecream',
         type: 'select',
-        title:
-          `What's your favourite ice cream flavor?`,
-        label:
-          `Select it from here`,
+        title: `What's your favourite ice cream flavor?`,
+        label: `Select it from here`,
         explain: 'Start typing to find your favorite flavor',
         options: [
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },
-          { value: 'vanilla', label: 'Vanilla' }
-        ]
+          { value: 'vanilla', label: 'Vanilla' },
+        ],
       },
       {
         name: 'message',
@@ -959,7 +943,7 @@ Field objects need to have a key `type` with one of the following values:
         title: 'Chat with your host:',
         label: 'Message',
         submitText: 'Send',
-      }
+      },
     ];
     const [formData, setFormData] = useState({});
     const handleChange = (fieldName, event) => {
@@ -969,30 +953,28 @@ Field objects need to have a key `type` with one of the following values:
       if (event && event.target) {
         let newFormData = {
           ...formData,
-          [fieldName]: event.target.value || event.target.checked
-        }
-        setFormData(newFormData)
+          [fieldName]: event.target.value || event.target.checked,
+        };
+        setFormData(newFormData);
       }
-    }
+    };
     const fieldsWithData = fieldsConfig.map((field) => {
-        if (field.type === 'group') {
-          let fieldsWithValue = { ...field };
-          if (fieldsWithValue.list) {
-            fieldsWithValue.list = fieldsWithValue.list.map((groupField) => {
-              return { ...groupField, value: formData[groupField.name] };
-            });
-          }
-          return fieldsWithValue;
-        } else if(field.type === 'checkbox') {
-          return { ...field, checked: formData[field.name] || false };
-        } else {
-          return { ...field, value: formData[field.name] };
+      if (field.type === 'group') {
+        let fieldsWithValue = { ...field };
+        if (fieldsWithValue.list) {
+          fieldsWithValue.list = fieldsWithValue.list.map((groupField) => {
+            return { ...groupField, value: formData[groupField.name] };
+          });
         }
-      });
-    return (
-      <Fields fields={fieldsWithData} onChange={handleChange} />
-    );
-}}
+        return fieldsWithValue;
+      } else if (field.type === 'checkbox') {
+        return { ...field, checked: formData[field.name] || false };
+      } else {
+        return { ...field, value: formData[field.name] };
+      }
+    });
+    return <Fields fields={fieldsWithData} onChange={handleChange} />;
+  }}
 </Playground>
 
 Can also be used to provide more styling to individual fields (such as: `maxLength`)
@@ -1005,7 +987,7 @@ Can also be used to provide more styling to individual fields (such as: `maxLeng
         type: 'text',
         label: 'LinkedIn Profile URL',
         icon: <FiLinkedin />,
-        maxLength: 70
+        maxLength: 70,
       },
       {
         name: 'pitch',
@@ -1015,16 +997,14 @@ Can also be used to provide more styling to individual fields (such as: `maxLeng
         label: 'Your Pitch',
         required: true,
         maxLength: 300,
-        props: { minHeight: '100px' }
-      }
+        props: { minHeight: '100px' },
+      },
     ];
     const handleChange = (fieldName, event) => {
-      console.log(event.target)
-    }
-    return (
-      <Fields fields={fieldsConfig} onChange={handleChange} />
-    );
-}}
+      console.log(event.target);
+    };
+    return <Fields fields={fieldsConfig} onChange={handleChange} />;
+  }}
 </Playground>
 
 ## Sortable Drag&Drop Fields
@@ -1067,22 +1047,76 @@ The drag and drop functionality is added by [react beautiful dnd](https://github
       if (event && event.target && event.target.value) {
         newFormData = {
           ...formData,
-          [fieldName]: event.target.value || event.target.checked
-        }
+          [fieldName]: event.target.value || event.target.checked,
+        };
       }
-      setFormData(newFormData)
-    }
+      setFormData(newFormData);
+    };
     const handleSort = (newFieldsConfig) => {
-      console.log(newFieldsConfig)
-      setFieldsConfig(newFieldsConfig)
-    }
+      console.log(newFieldsConfig);
+      setFieldsConfig(newFieldsConfig);
+    };
     const fieldsWithData = fieldsConfig.map((field) => {
-        return field.type === 'checkbox'
-         ? { ...field, checked: formData[field.name] }
-         : { ...field, value: formData[field.name] };
-      });
+      return field.type === 'checkbox'
+        ? { ...field, checked: formData[field.name] }
+        : { ...field, value: formData[field.name] };
+    });
     return (
-      <FieldsSortable fields={fieldsWithData} onChange={handleChange} onSort={handleSort}/>
+      <FieldsSortable
+        fields={fieldsWithData}
+        onChange={handleChange}
+        onSort={handleSort}
+      />
     );
-}}
+  }}
+</Playground>
+
+## PhoneInput
+
+<Props of={PhoneInput} />
+
+<Playground>
+  {() => {
+    const [formData, setFormData] = useState({});
+    const [lastEvent, setLastEvent] = useState({});
+    const onChange = (e) => {
+      setLastEvent(e.target);
+      const { name, value, type, checked } = e.target;
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    };
+    return (
+      <Flex>
+        <Box margin="base" padding="base" maxWidth="400px">
+          <PhoneInput
+            marginBottom="none"
+            name="phone"
+            type="tel"
+            placeholder="Phone number (no marginBottom)"
+            onChange={onChange}
+            value={formData.phone || ''}
+            label="Phone Number "
+            required
+          />
+        </Box>
+        <Box
+          margin="base"
+          padding="base"
+          maxWidth="300px"
+          bg="neutral.darker"
+          color="white"
+          borderRadius="5px"
+        >
+          <Paragraph>Last event</Paragraph>
+          <UnorderedList>
+            <ListItem>type: {lastEvent.type}</ListItem>
+            <ListItem>name: {lastEvent.name}</ListItem>
+            <ListItem>value: {lastEvent.value}</ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
+    );
+  }}
 </Playground>

@@ -2,7 +2,7 @@
  * Documentation: https://react-select.com/styles
  */
 
-const getSelectStyles = theme => ({
+const getSelectStyles = (theme) => ({
   control: (styles, props) => {
     const {
       isFocused, //hasValue
@@ -17,11 +17,11 @@ const getSelectStyles = theme => ({
         ? `${theme.radii.small} ${theme.radii.small} 0 0`
         : theme.radii.small,
       borderColor: isFocused
-        ? theme.colors.primary.base
+        ? theme.colors.secondary.lighter
         : theme.colors.whiteout.dark,
       ':hover': {
         borderColor: isFocused
-          ? theme.colors.primary.base
+          ? theme.colors.secondary.lighter
           : theme.colors.whiteout.dark,
       },
       boxShadow: null,
@@ -29,17 +29,17 @@ const getSelectStyles = theme => ({
       lineHeight: 1,
     };
   },
-  menu: styles => {
+  menu: (styles) => {
     return {
       ...styles,
       marginTop: `0`,
-      border: `${theme.borderWidths.base} solid ${theme.colors.primary.base}`,
+      border: `${theme.borderWidths.base} solid ${theme.colors.secondary.lighter}`,
       borderTop: '0px',
       borderRadius: `0 0 ${theme.radii.small} ${theme.radii.small}`,
       boxShadow: theme.shadows.small,
     };
   },
-  menuList: styles => {
+  menuList: (styles) => {
     return { ...styles };
   },
   option: (styles, props) => {
@@ -63,7 +63,7 @@ const getSelectStyles = theme => ({
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':hover': {
         backgroundColor: theme.colors.whiteout.dark,
-        color: theme.colors.primary.darker,
+        color: theme.colors.secondary.lighter,
         cursor: 'pointer',
         fontWeight: theme.fontWeights.normal,
       },
@@ -77,14 +77,14 @@ const getSelectStyles = theme => ({
       fontFamily: theme.fonts.secondary,
       fontWeight: theme.fontWeights.normal,
       borderColor: isFocused
-        ? theme.colors.primary.base
+        ? theme.colors.secondary.lighter
         : theme.colors.whiteout.dark,
     };
   },
-  valueContainer: styles => {
+  valueContainer: (styles) => {
     return { ...styles, padding: '2.5px' };
   },
-  placeholder: styles => {
+  placeholder: (styles) => {
     return {
       ...styles,
       fontFamily: theme.fonts.secondary,
@@ -93,14 +93,14 @@ const getSelectStyles = theme => ({
       color: theme.colors.neutral.base,
     };
   },
-  singleValue: styles => ({
+  singleValue: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
-  multiValue: styles => ({
+  multiValue: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
@@ -108,12 +108,12 @@ const getSelectStyles = theme => ({
     backgroundColor: theme.colors.whiteout.darkest,
     borderRadius: theme.radii.xsmall,
   }),
-  multiValueLabel: styles => ({
+  multiValueLabel: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     color: theme.colors.neutral.dark,
   }),
-  multiValueRemove: styles => ({
+  multiValueRemove: (styles) => ({
     ...styles,
     color: theme.colors.neutral.dark,
     cursor: 'pointer',
@@ -123,12 +123,12 @@ const getSelectStyles = theme => ({
     },
   }),
   /*  */
-  loadingMessage: styles => ({
+  loadingMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
   }),
-  noOptionsMessage: styles => ({
+  noOptionsMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
@@ -137,11 +137,11 @@ const getSelectStyles = theme => ({
 
 // ---------------------------
 
-const getSelectTheme = theme => {
+const getSelectTheme = (theme) => {
   const colors = {
-    primary: theme.colors.primary.base,
-    primary75: theme.colors.primary.light,
-    primary50: theme.colors.primary.lighter,
+    primary: theme.colors.secondary.lighter,
+    primary75: theme.colors.primary.dark,
+    primary50: theme.colors.primary.dark,
     primary25: theme.colors.primary.lightest,
 
     danger: theme.colors.danger.base,
@@ -183,7 +183,7 @@ const getSelectTheme = theme => {
 
 export { getSelectTheme, getSelectStyles };
 
-export default theme => ({
+export default (theme) => ({
   styles: getSelectStyles(theme),
   theme: getSelectTheme(theme),
 });

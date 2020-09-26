@@ -12,7 +12,7 @@ export const RequiredText = styled.span`
   line-height: 10px;
   font-weight: 600;
 
-  color: ${({ theme }) => theme.colors.primary.base};
+  color: ${({ theme }) => theme.colors.secondary.lighter};
 `;
 
 RequiredText.propTypes = {};
