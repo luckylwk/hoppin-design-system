@@ -16,7 +16,7 @@ const TextareaField = styled.textarea`
 
   padding: 12px 16px;
 
-  background: ${({ theme }) => theme.colors.whiteout.light};
+  background: ${({ theme }) => theme.colors.form.background};
 
   font-size: 18px;
   line-height: 26px;
@@ -26,7 +26,7 @@ const TextareaField = styled.textarea`
   color: ${({ theme }) => theme.colors.neutral.darker};
 
   border: 2px solid transparent;
-  border-color: ${({ theme, context }) => theme.colors.whiteout.darker};
+  border-color: ${({ theme, context }) => theme.colors.form.border};
   border-radius: ${({ theme }) => theme.radii.small};
 
   &:disabled {
@@ -36,11 +36,9 @@ const TextareaField = styled.textarea`
 
   &:focus {
     border-color: ${({ theme, context, overrideBg }) =>
-      overrideBg ? overrideBg : theme.colors.secondary.lighter};
+      overrideBg || theme.colors.form.focused.border};
     background: ${({ theme, initialValue }) =>
-      initialValue && initialValue.length > 0
-        ? theme.colors.whiteout.base
-        : theme.colors.whiteout.light};
+      theme.colors.form.focused.background};
   }
 
   &::placeholder {

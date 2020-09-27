@@ -31,10 +31,10 @@ const InputField = styled.input`
 
   background: ${({ theme, value }) =>
     value && value.length > 0
-      ? theme.colors.whiteout.lighter
-      : theme.colors.whiteout.light};
+      ? theme.colors.form.focused.background
+      : theme.colors.form.background};
 
-  border-color: ${({ theme }) => theme.colors.whiteout.dark};
+  border-color: ${({ theme }) => theme.colors.form.border};
 
   &:disabled {
     opacity: 0.25;
@@ -48,7 +48,7 @@ const InputField = styled.input`
           return theme.colors.danger.base;
         case 'neutral':
         default:
-          return theme.colors.secondary.lighter;
+          return theme.colors.form.focused.border;
       }
     }};
     background: ${({ theme }) => theme.colors.whiteout.lightest};

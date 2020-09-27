@@ -6,7 +6,8 @@ import Card from './Card';
 const CardSelectable = styled(Card)`
   border-top: ${({ borderTopWidth }) => borderTopWidth} solid
     ${({ selected, theme }) =>
-      selected ? theme.colors.neutral.darkest : theme.colors.primary.base};
+      selected ? theme.colors.neutral.darkest : theme.colors.primary.darker};
+
   box-shadow: ${({ theme }) => theme.shadows[1]};
 
   cursor: pointer;
@@ -15,7 +16,10 @@ const CardSelectable = styled(Card)`
 
   ${({ theme, selected }) =>
     selected
-      ? `background: ${theme.colors.neutral.darker}; color: ${theme.colors.whiteout.lighter};`
+      ? `
+      background: ${theme.colors.primary.darkest};
+      color: ${theme.colors.whiteout.lighter};
+    `
       : ``}
 
   &:hover {

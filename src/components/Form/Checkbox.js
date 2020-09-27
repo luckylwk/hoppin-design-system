@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
@@ -20,7 +20,7 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: ${({ theme }) => theme.colors.primary.dark};
+  stroke: ${({ theme }) => theme.colors.primary.lightest};
   stroke-width: 4px;
 `;
 
@@ -62,10 +62,10 @@ const StyledCheckbox = styled.div`
   }
 
   background: ${({ checked, theme }) =>
-    !checked ? theme.colors.neutral.lightest : theme.colors.primary.lightest};
+    !checked ? theme.colors.form.background : theme.colors.primary.darkest};
   border: 2px solid
     ${({ checked, theme }) =>
-      !checked ? theme.colors.neutral.lighter : theme.colors.secondary.lighter};
+      !checked ? theme.colors.form.border : theme.colors.primary.darkest};
 
   border-radius: ${({ theme }) => theme.radii.xsmall};
 
@@ -78,6 +78,8 @@ const StyledCheckbox = styled.div`
   ${Icon} {
     visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
   }
+
+  cursor: pointer;
 `;
 
 StyledCheckbox.displayName = 'StyledCheckbox';
@@ -85,17 +87,21 @@ StyledCheckbox.displayName = 'StyledCheckbox';
 // ---------------------------
 
 const Checkbox = ({ name, checked, label, onChange }) => {
-  const onClick = (e) => {
-    e.preventDefault();
-    onChange({
-      target: {
-        type: 'checkbox',
-        name,
-        value: !checked ? 'on' : null,
-        checked: !checked,
-      },
-    });
-  };
+  const onClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      onChange({
+        target: {
+          type: 'checkbox',
+          name,
+          value: !checked ? 'on' : null,
+          checked: !checked,
+        },
+      });
+    },
+    [onChange, checked, name]
+  );
+
   const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
 
   return (
