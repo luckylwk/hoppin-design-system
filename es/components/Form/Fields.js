@@ -32,7 +32,7 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, RequiredCharacters, FieldExplanation, SelectButton } from '.';
+import { Checkbox, Input, Label, TextareaMd, Textarea, PhoneInput, RequiredCharacters, FieldExplanation, SelectButton } from '.';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
@@ -85,10 +85,21 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     });
   }
 
-  if (field.type === 'textarea') {
+  if (field.type === 'textareamd') {
     return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(TextareaMd, _extends({
       name: field.name,
       initialValue: field.value,
+      label: field.label,
+      placeholder: field.placeholder,
+      onChange: _onChange.bind(null, field.name),
+      context: field.context
+    }, field.props)), field.maxLength && /*#__PURE__*/React.createElement(RequiredCharacters, null, "We recommend using no more than", ' ', charsUsed !== 0 ? charsUsed + "/" : '', field.maxLength, " characters."), field.explain && /*#__PURE__*/React.createElement(FieldExplanation, null, field.explain));
+  }
+
+  if (field.type === 'textarea') {
+    return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Textarea, _extends({
+      name: field.name,
+      value: field.value,
       label: field.label,
       placeholder: field.placeholder,
       onChange: _onChange.bind(null, field.name),
@@ -248,6 +259,18 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       checked: field.checked,
       onChange: _onChange.bind(null, field.name)
     });
+  }
+
+  if (field.type === 'phoneinput') {
+    return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(PhoneInput, _extends({
+      value: field.value || '',
+      name: field.name,
+      placeholder: field.placeholder,
+      label: field.label,
+      onChange: _onChange.bind(null, field.name),
+      context: field.context,
+      overrideBg: field.overrideBg
+    }, field.props)), field.maxLength && /*#__PURE__*/React.createElement(RequiredCharacters, null, "We recommend using no more than", ' ', charsUsed !== 0 ? charsUsed + "/" : '', field.maxLength, " characters."), field.explain && /*#__PURE__*/React.createElement(FieldExplanation, null, field.explain));
   }
 
   if (field.type === 'single-select-button' || field.type === 'select-button') {

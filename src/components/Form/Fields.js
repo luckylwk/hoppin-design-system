@@ -16,6 +16,8 @@ import {
   Input,
   Label,
   TextareaMd,
+  Textarea,
+  PhoneInput,
   RequiredCharacters,
   FieldExplanation,
   SelectButton,
@@ -38,13 +40,13 @@ const FiSearchStyled = styled(FiSearch)`
     focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
 `;
 
-const SearchDropdownIndicator = props => (
+const SearchDropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiSearchStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
 );
 
-const DropdownIndicator = props => (
+const DropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiChevronDownStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
@@ -68,12 +70,36 @@ export const renderField = (field, onChange, selectStyling) => {
     field.props = { ...field.props, marginBottom: 0 };
   }
 
-  if (field.type === 'textarea') {
+  if (field.type === 'textareamd') {
     return (
       <Fragment>
         <TextareaMd
           name={field.name}
           initialValue={field.value}
+          label={field.label}
+          placeholder={field.placeholder}
+          onChange={onChange.bind(null, field.name)}
+          context={field.context}
+          {...field.props}
+        />
+        {field.maxLength && (
+          <RequiredCharacters>
+            We recommend using no more than{' '}
+            {charsUsed !== 0 ? `${charsUsed}/` : ''}
+            {field.maxLength} characters.
+          </RequiredCharacters>
+        )}
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </Fragment>
+    );
+  }
+
+  if (field.type === 'textarea') {
+    return (
+      <Fragment>
+        <Textarea
+          name={field.name}
+          value={field.value}
           label={field.label}
           placeholder={field.placeholder}
           onChange={onChange.bind(null, field.name)}
@@ -123,7 +149,7 @@ export const renderField = (field, onChange, selectStyling) => {
             };
             return onChange(field.name, mockEvent);
           }}
-          formatCreateLabel={userInput => `Click to add: ${userInput}`}
+          formatCreateLabel={(userInput) => `Click to add: ${userInput}`}
           options={field.options}
           value={field.value}
           components={{ IndicatorSeparator, DropdownIndicator }}
@@ -253,6 +279,31 @@ export const renderField = (field, onChange, selectStyling) => {
     );
   }
 
+  if (field.type === 'phoneinput') {
+    return (
+      <Fragment>
+        <PhoneInput
+          value={field.value || ''}
+          name={field.name}
+          placeholder={field.placeholder}
+          label={field.label}
+          onChange={onChange.bind(null, field.name)}
+          context={field.context}
+          overrideBg={field.overrideBg}
+          {...field.props}
+        />
+        {field.maxLength && (
+          <RequiredCharacters>
+            We recommend using no more than{' '}
+            {charsUsed !== 0 ? `${charsUsed}/` : ''}
+            {field.maxLength} characters.
+          </RequiredCharacters>
+        )}
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </Fragment>
+    );
+  }
+
   if (field.type === 'single-select-button' || field.type === 'select-button') {
     return (
       <Fragment>
@@ -343,7 +394,7 @@ const Fields = ({ onChange, fields, theme }) => {
 
   return (
     <Box>
-      {fields.map(field => (
+      {fields.map((field) => (
         <Box
           key={field.name}
           marginBottom={

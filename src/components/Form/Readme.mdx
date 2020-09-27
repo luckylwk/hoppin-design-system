@@ -796,11 +796,29 @@ fields = [
       ],
     },
     {
-      name: 'pitch',
-      type: 'textarea',
+      name: 'phone',
+      type: 'phoneinput',
+      label: 'Your first name',
+      placeholder: 'Phone Number',
+      required: true,
+      maxLength: 25,
+    },
+    {
+      name: 'pitchmd',
+      type: 'textareamd',
       title:
         'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
-      label: 'Your Pitch',
+      label: 'Your Pitch in Markdown',
+      required: true,
+      maxLength: 300,
+      props: { minHeight: '150px' }
+    },
+    {
+      name: 'pitch',
+      type: 'textarea','
+      title:
+        'Pitch me baby, one more time! You got 30 seconds or 100 words. Go. This time in plain text.',
+      label: 'Your Pitch Plain Text',
       required: true,
       maxLength: 300,
       props: { minHeight: '150px' }
@@ -868,6 +886,14 @@ Field objects need to have a key `type` with one of the following values:
         ],
       },
       {
+        name: 'phone',
+        type: 'phoneinput',
+        label: 'Your first name',
+        placeholder: 'Phone Number',
+        required: true,
+        maxLength: 25,
+      },
+      {
         name: 'email',
         type: 'email',
         title: 'Provide your email for any communications',
@@ -910,14 +936,24 @@ Field objects need to have a key `type` with one of the following values:
         ],
       },
       {
+        name: 'pitchmd',
+        type: 'textareamd',
+        title:
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
+        label: 'Your Pitch in Markdown',
+        required: true,
+        maxLength: 300,
+        props: { minHeight: '150px' },
+      },
+      {
         name: 'pitch',
         type: 'textarea',
         title:
-          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go.',
-        label: 'Your Pitch',
+          'Pitch me baby, one more time! You got 30 seconds or 100 words. Go. This time in plain text.',
+        label: 'Your Pitch Plain Text',
         required: true,
         maxLength: 300,
-        props: { minHeight: '100px' },
+        props: { minHeight: '150px' },
       },
       {
         name: 'ready',

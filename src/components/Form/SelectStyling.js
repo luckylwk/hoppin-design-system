@@ -9,7 +9,7 @@ const getSelectStyles = (theme) => ({
     } = props;
     return {
       ...styles,
-      marginTop: '4px',
+      marginTop: theme.space.small,
       padding: '1px 8px',
       backgroundColor: theme.colors.whiteout.light,
       borderWidth: theme.borderWidths.base,
@@ -56,14 +56,14 @@ const getSelectStyles = (theme) => ({
         ? theme.colors.whiteout.dark
         : theme.colors.whiteout.light,
       color: isDisabled
-        ? theme.colors.neutral.light
+        ? theme.colors.neutral.base
         : isSelected
-        ? theme.colors.neutral.darker
-        : theme.colors.neutral.base,
+        ? theme.colors.secondary.darker
+        : theme.colors.neutral.darker,
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':hover': {
         backgroundColor: theme.colors.whiteout.dark,
-        color: theme.colors.secondary.lighter,
+        color: theme.colors.secondary.base,
         cursor: 'pointer',
         fontWeight: theme.fontWeights.normal,
       },

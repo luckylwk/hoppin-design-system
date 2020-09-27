@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
@@ -7,9 +7,10 @@ import { Box } from '../Box';
 
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { default as ReactPhoneInput } from 'react-phone-input-2';
+import PhoneInputBaseStyles from './PhoneInputBaseStyles';
 
 const PhoneStyler = styled(Box)`
-  & > div {
+  &&& > div {
     .form-control {
       width: 100%;
       height: auto;
@@ -21,9 +22,9 @@ const PhoneStyler = styled(Box)`
       padding-right: ${({ theme }) => theme.space.base};
 
       font-size: ${({ theme }) => theme.fontSizes.body};
-      font-size: 18px;
-      line-height: 18px;
-      font-weight: 300;
+      line-height: 1;
+      font-weight: ${({ theme }) => theme.fontWeights.normal};
+
       font-family: ${({ theme }) => theme.fonts.secondary};
       color: ${({ theme }) => theme.colors.neutral.darker};
 
@@ -87,20 +88,18 @@ const PhoneInput = ({ name, label, value, onChange, overrideBg }) => {
       target: {
         name,
         type: 'tel',
-        value: {
-          number:
-            parsedPhoneNumber && parsedPhoneNumber.number
-              ? parsedPhoneNumber.number
-              : phoneNumber,
-          _phone: _phone || false,
-        },
+        value:
+          parsedPhoneNumber && parsedPhoneNumber.number
+            ? parsedPhoneNumber.number
+            : phoneNumber,
+        _phone: _phone || false,
       },
     };
-    onChange(name, mockEvent);
+    onChange(mockEvent);
   };
 
   return (
-    <Fragment>
+    <PhoneInputBaseStyles>
       {label && <Label htmlFor={name}>{label}</Label>}
       <PhoneStyler
         marginTop="small"
@@ -108,14 +107,13 @@ const PhoneInput = ({ name, label, value, onChange, overrideBg }) => {
         overrideBg={overrideBg}
       >
         <ReactPhoneInput
-          inputProps={{ name }}
           country="us"
           preferredCountries={['us', 'ca', 'gb']}
           value={value}
           onChange={onChangePhone}
         />
       </PhoneStyler>
-    </Fragment>
+    </PhoneInputBaseStyles>
   );
 };
 

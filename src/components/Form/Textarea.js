@@ -1,8 +1,11 @@
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-const Textarea = styled.textarea`
+import { Label, RequiredText } from '.';
+
+const TextareaField = styled.textarea`
   box-sizing: border-box;
   display: block;
 
@@ -45,14 +48,51 @@ const Textarea = styled.textarea`
   }
 `;
 
-Textarea.propTypes = {
+TextareaField.propTypes = {
   overrideBg: PropTypes.string,
 };
 
-Textarea.defaultProps = {
+TextareaField.defaultProps = {
   overrideBg: null,
+};
+
+TextareaField.displayName = 'TextareaField';
+
+export default TextareaField;
+
+const Textarea = ({ label, required, ...rest }) => {
+  const LabelOrFragment = label ? Label : Fragment;
+  const labelProps = label ? { label, htmlFor: rest.name } : {};
+  const textareaProps = label ? { marginTop: 'small' } : {};
+  return (
+    <LabelOrFragment {...labelProps}>
+      {label}
+      {label && required && <RequiredText>*required</RequiredText>}
+      <TextareaField {...rest} {...textareaProps} />
+    </LabelOrFragment>
+  );
 };
 
 Textarea.displayName = 'Textarea';
 
-export default Textarea;
+Textarea.propTypes = {
+  /**
+   * supply a label prop and the InputField gets wrapped in a Label, omit it to render the InputField alone
+   * */
+  label: PropTypes.string,
+
+  /**
+   * The initial value of the editor.
+   */
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+
+  /**
+   * A callback function that is fired whenever the content changes.
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Provide context (any of colors.contexts) to change the outline color
+   */
+  context: PropTypes.string,
+};
