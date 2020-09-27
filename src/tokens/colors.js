@@ -82,4 +82,16 @@ let colors = {
   },
 };
 
+colors = {
+  ...colors,
+  form: {
+    background: colors.whiteout.light,
+    border: colors.whiteout.dark,
+    focused: {
+      background: colors.whiteout.lighter,
+      border: colors.neutral.dark,
+    },
+  },
+};
+
 export { colors };

@@ -8,6 +8,7 @@ const ButtonSelect = styled(Button)`
 
   font-size: ${({ theme }) => theme.fontSizes.body};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
+  color: ${({ theme }) => theme.colors.primary.darker};
 
   border: 0;
   border-radius: ${({ theme }) => theme.radii.xsmall};
@@ -20,7 +21,10 @@ const ButtonSelect = styled(Button)`
 
   ${({ theme, selected }) =>
     selected
-      ? `background: ${theme.colors.neutral.darker}; color: ${theme.colors.whiteout.lighter};`
+      ? `
+    background: ${theme.colors.primary.darker};
+    color: ${theme.colors.whiteout.lighter};
+  `
       : ``}
 
   &:hover {

@@ -3,7 +3,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteralLoose(["\n  font-size: ", ";\n  font-family: ", ";\n  line-height: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n\n  position: relative;\n  padding-left: ", ";\n\n  ", " & svg {\n    color: ", ";\n\n      position: absolute;\n      top: .2em;\n      left: -", ";\n      width: 1em;\n      height: 1em;\n  }\n\n  ", " & svg {\n    display: none;\n  }\n\n  ", " &:before {\n    counter-increment: list;\n    content: counter(list);\n    position: absolute;\n    top: 0;\n    left: -", ";\n    color: ", ";\n    font-weight: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  font-size: ", ";\n  font-family: ", ";\n  line-height: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n\n  position: relative;\n  padding-left: ", ";\n\n  ", " & svg {\n    color: ", ";\n\n    position: absolute;\n    top: 0.2em;\n    left: -", ";\n    width: 1em;\n    height: 1em;\n  }\n\n  ", " & svg {\n    display: none;\n  }\n\n  ", " &:before {\n    counter-increment: list;\n    content: counter(list);\n    position: absolute;\n    top: 0;\n    left: -", ";\n    color: ", ";\n    font-weight: ", ";\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;

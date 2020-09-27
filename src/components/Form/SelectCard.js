@@ -39,7 +39,7 @@ const SelectCard = ({
 
   return (
     <Flex {...rest}>
-      {options.map(option => {
+      {options.map((option) => {
         const isSelected = getIsSelected(isMultiSelect, value, option);
         return (
           <CardSelectable
@@ -81,7 +81,7 @@ SelectCard.displayName = 'SelectCard';
 
 // ---------------------------
 
-const SingleSelectCard = props => <SelectCard {...props} />;
+const SingleSelectCard = (props) => <SelectCard {...props} />;
 
 SingleSelectCard.propTypes = {
   type: PropTypes.string,

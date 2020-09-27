@@ -1,3 +1,5 @@
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 var colors = {
   white: '#FFF',
   black: '#050505',
@@ -79,4 +81,14 @@ var colors = {
     darkest: '#f0f0f0'
   }
 };
+colors = _extends({}, colors, {
+  form: {
+    background: colors.whiteout.light,
+    border: colors.whiteout.dark,
+    focused: {
+      background: colors.whiteout.lighter,
+      border: colors.neutral.dark
+    }
+  }
+});
 export { colors };

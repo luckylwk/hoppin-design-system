@@ -25,15 +25,16 @@ const StepContainer = styled(Flex)`
   flex-grow: 1;
   flex-direction: column;
   max-width: 36em;
-  margin-bottom: ${props => (props.isLast ? 0 : props.theme.space[3])};
-  margin-left: calc(2 * ${props =>
-    props.theme.space[props.bulletSize]} + .75rem);
+  margin-bottom: ${(props) => (props.isLast ? 0 : props.theme.space[3])};
+  margin-left: calc(
+    2 * ${(props) => props.theme.space[props.bulletSize]} + 0.75rem
+  );
 
-  ${props => props.isActive && `flex-grow: 2;`}
-  ${props => props.isLast && `flex-grow: 0;`}
+  ${(props) => props.isActive && `flex-grow: 2;`}
+  ${(props) => props.isLast && `flex-grow: 0;`}
 
   /* "track" on which the bullets sit */
-  ${props =>
+  ${(props) =>
     !props.isLast &&
     props.showTrack &&
     `
@@ -55,21 +56,21 @@ const StepBullet = styled(Flex)`
   position: absolute;
   align-items: center;
   justify-content: center;
-  z-index: ${props => props.index + 1};
-  top: ${props => props.theme.space[3]};
+  z-index: ${(props) => props.index + 1};
+  top: ${(props) => props.theme.space[3]};
   left: 0;
-  margin-top: calc(-${props => props.theme.space[props.bulletSize]} + .1rem);
-  margin-left: calc(-2 * ${props =>
+  margin-top: calc(-${(props) => props.theme.space[props.bulletSize]} + .1rem);
+  margin-left: calc(-2 * ${(props) =>
     props.theme.space[props.bulletSize]} - .75rem);
-  width: calc(${props => props.theme.space[props.bulletSize]} * 2);
-  height: calc(${props => props.theme.space[props.bulletSize]} * 2);
+  width: calc(${(props) => props.theme.space[props.bulletSize]} * 2);
+  height: calc(${(props) => props.theme.space[props.bulletSize]} * 2);
   border-radius: 50%;
-  border: 2px solid ${props =>
+  border: 2px solid ${(props) =>
     props.isActive
       ? props.theme.colors.primary.base
       : props.theme.colors.neutral.light};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => {
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  font-size: ${(props) => {
     let fontSize;
     switch (props.bulletSize) {
       case 'xlarge':
@@ -83,14 +84,14 @@ const StepBullet = styled(Flex)`
     }
     return fontSize;
   }}
-  background: ${props =>
+  background: ${(props) =>
     props.isActive
       ? props.theme.colors.primary.base
       : props.theme.colors.neutral.light};
   box-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);
 
   & span {
-    color: ${props => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 StepBullet.defaultProps = {
@@ -100,29 +101,29 @@ StepBullet.displayName = 'StepBullet';
 
 const ActiveStepBox = styled(Box)`
   border-radius: 5px;
-  border-top: 4px solid ${props => props.theme.colors.primary};
-  background: ${props => props.theme.colors.white};
+  border-top: 4px solid ${(props) => props.theme.colors.primary};
+  background: ${(props) => props.theme.colors.white};
   box-shadow: 0 15px 35px 0 rgba(43, 64, 78, 0.1),
     0 5px 15px 0 rgba(0, 0, 0, 0.05);
-  margin-top: -${props => props.theme.space[3]};
+  margin-top: -${(props) => props.theme.space[3]};
   overflow: hidden;
 `;
 ActiveStepBox.displayName = 'ActiveStepBox';
 
 const StepContent = styled(Box)`
-  padding: ${props =>
+  padding: ${(props) =>
     props.isActive && props.showTrack ? props.theme.space[3] : 0};
 `;
 StepContent.displayName = 'StepContent';
 
 const StepTitle = styled(Heading)`
-  color: ${props =>
+  color: ${(props) =>
     props.isActive ? props.theme.colors.primary.base : 'inherit'};
-  ${props =>
+  ${(props) =>
     props.isActive &&
     `text-shadow: 0 15px 35px 0 rgba(43,64,78,0.10), 0 5px 15px 0 rgba(0,0,0,0.05);`};
 
-  ${props => props.isLast && `margin-bottom: 0;`}
+  ${(props) => props.isLast && `margin-bottom: 0;`}
 `;
 StepTitle.displayName = 'StepTitle';
 
@@ -190,7 +191,7 @@ function Step({
           )}
           {interactive && isActive && !isLast && (
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 goToStep(index + 1);
               }}

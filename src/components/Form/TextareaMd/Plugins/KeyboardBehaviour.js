@@ -19,7 +19,7 @@ export default function KeyboardBehavior() {
       }
 
       let active;
-      document.nodes.forEach(n => {
+      document.nodes.forEach((n) => {
         if (active && headingLevels.includes(n.type)) {
           active = false;
           return;
@@ -149,7 +149,7 @@ export default function KeyboardBehavior() {
     if (selection.isCollapsed) {
       const marksAtCursor = startBlock.getMarksAtRange(selection);
       const codeMarksAtCursor = marksAtCursor.filter(
-        mark => mark.type === 'code'
+        (mark) => mark.type === 'code'
       );
 
       // If at the end of a code mark hitting backspace should remove the mark
@@ -159,12 +159,12 @@ export default function KeyboardBehavior() {
         let iterationOffset = 0;
         const startOffset = selection.start.offset;
         const textNode = startBlock.getTextAtOffset(startOffset);
-        const leavesUntilCode = textNode.leaves.takeUntil(v => {
+        const leavesUntilCode = textNode.leaves.takeUntil((v) => {
           iterationOffset += v.text.length;
           return iterationOffset > startOffset;
         });
 
-        const textUntilCode = leavesUntilCode.map(l => l.text).join('');
+        const textUntilCode = leavesUntilCode.map((l) => l.text).join('');
         const codeLeaf = leavesUntilCode.reverse().first();
 
         if (!codeLeaf) return next();

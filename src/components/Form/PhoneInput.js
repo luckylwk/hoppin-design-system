@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import styled from 'styled-components';
+
 import { Label } from '.';
 import { Box } from '../Box';
 
@@ -17,9 +17,10 @@ const PhoneStyler = styled(Box)`
       appearance: none;
       outline: none;
 
-      padding-top: ${({ theme }) => theme.space.small};
-      padding-bottom: ${({ theme }) => theme.space.small};
+      padding-top: 9px;
+      padding-bottom: 9px;
       padding-right: ${({ theme }) => theme.space.base};
+      padding-left: 68px;
 
       font-size: ${({ theme }) => theme.fontSizes.body};
       line-height: 1;
@@ -30,15 +31,16 @@ const PhoneStyler = styled(Box)`
 
       background: ${({ value, theme }) =>
         value && value.length > 0
-          ? theme.colors.whiteout.light
-          : theme.colors.whiteout.lighter};
+          ? theme.colors.form.focused.background
+          : theme.colors.form.background};
 
       border-radius: ${({ theme }) => theme.radii.small};
 
       &:focus {
-        background-color: ${({ theme }) => theme.colors.whiteout.lighter};
+        background-color: ${({ theme }) =>
+          theme.colors.form.focused.background};
         border-color: ${({ theme, overrideBg }) =>
-          overrideBg ? overrideBg : theme.colors.secondary.lighter};
+          overrideBg || theme.colors.form.focused.border};
       }
 
       &:disabled {
@@ -54,7 +56,10 @@ const PhoneStyler = styled(Box)`
     }
 
     .flag-dropdown {
-      background: ${({ theme }) => theme.colors.whiteout.light};
+      padding-left: 8px;
+      padding-right: 8px;
+
+      background: ${({ theme }) => theme.colors.form.background};
       border-radius: ${({ theme }) => theme.radii.small} 0 0
         ${({ theme }) => theme.radii.small};
 
@@ -67,14 +72,14 @@ const PhoneStyler = styled(Box)`
     .form-control,
     .flag-dropdown {
       border: ${({ theme }) => theme.borderWidths.base} solid
-        ${({ theme }) => theme.colors.whiteout.darker};
-      border-color: ${({ theme }) => theme.colors.whiteout.darker};
+        ${({ theme }) => theme.colors.form.border};
+      border-color: ${({ theme }) => theme.colors.form.border};
     }
 
     .form-control:focus + .flag-dropdown {
-      background-color: ${({ theme }) => theme.colors.whiteout.lighter};
+      background-color: ${({ theme }) => theme.colors.form.focused.background};
       border-color: ${({ theme, overrideBg }) =>
-        overrideBg ? overrideBg : theme.colors.secondary.lighter};
+        overrideBg || theme.colors.form.focused.border};
     }
   }
 `;

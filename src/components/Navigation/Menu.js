@@ -55,7 +55,7 @@ const MenuSheet = ({
 }) => {
   const { toggleExpanded, isExpanded } = useContext(ExpandableContext);
 
-  const handleLogoClick = e => {
+  const handleLogoClick = (e) => {
     e.preventDefault();
     toggleExpanded();
     onLogoClick();

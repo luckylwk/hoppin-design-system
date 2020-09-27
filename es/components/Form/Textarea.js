@@ -20,7 +20,7 @@ import styled from 'styled-components';
 import { Label, RequiredText } from '.';
 var TextareaField = styled.textarea(_templateObject(), function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.whiteout.light;
+  return theme.colors.form.background;
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.fonts.secondary;
@@ -30,7 +30,7 @@ var TextareaField = styled.textarea(_templateObject(), function (_ref) {
 }, function (_ref4) {
   var theme = _ref4.theme,
       context = _ref4.context;
-  return theme.colors.whiteout.darker;
+  return theme.colors.form.border;
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.radii.small;
@@ -38,11 +38,11 @@ var TextareaField = styled.textarea(_templateObject(), function (_ref) {
   var theme = _ref6.theme,
       context = _ref6.context,
       overrideBg = _ref6.overrideBg;
-  return overrideBg ? overrideBg : theme.colors.secondary.lighter;
+  return overrideBg || theme.colors.form.focused.border;
 }, function (_ref7) {
   var theme = _ref7.theme,
       initialValue = _ref7.initialValue;
-  return initialValue && initialValue.length > 0 ? theme.colors.whiteout.base : theme.colors.whiteout.light;
+  return theme.colors.form.focused.background;
 });
 TextareaField.propTypes = {
   overrideBg: PropTypes.string

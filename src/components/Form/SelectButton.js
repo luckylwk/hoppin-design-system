@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  // useRef
-} from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _shuffle from 'lodash/shuffle';
@@ -91,11 +88,9 @@ const SelectButton = ({
 }) => {
   const { value, other } = splitValueWithOther(
     valueComposite,
-    options.map(o => o.value),
+    options.map((o) => o.value),
     isMultiSelect
   );
-
-  // const myInputRef = useRef();
 
   /** Optional shuffling of options */
   const [optionsArray] = useState(
@@ -105,65 +100,93 @@ const SelectButton = ({
   );
 
   /** Other related state and functions */
-
   const [otherSelected, setOtherSelected] = useState(other ? true : false);
   const [otherValue, setOtherValue] = useState(other);
   const [otherActive, setOtherActive] = useState(false);
 
-  const onToggleOther = () => {
+  const onToggleOther = useCallback(() => {
     setOtherActive(true);
-    // console.log(myInputRef);
-  };
+  }, [setOtherActive]);
 
-  const onChangeOther = event => {
-    setOtherValue(event.target.value);
-  };
+  const onChangeOther = useCallback(
+    (event) => {
+      setOtherValue(event.target.value);
+    },
+    [setOtherValue]
+  );
 
-  const onBlurOther = event => {
-    if (otherValue && otherValue.length > 0) {
-      setOtherSelected(true);
-      onChange(
-        {
-          target: {
-            name,
-            type,
-            value: isMultiSelect ? [...value, otherValue] : otherValue,
+  const onBlurOther = useCallback(
+    (event) => {
+      if (otherValue && otherValue.length > 0) {
+        setOtherSelected(true);
+        onChange(
+          {
+            target: {
+              name,
+              type,
+              value: isMultiSelect ? [...value, otherValue] : otherValue,
+            },
           },
-        },
-        event
-      );
-    } else {
-      setOtherValue(null);
-      setOtherSelected(false);
-      onChange({ target: { name, type, value } }, event);
-    }
-    setOtherActive(false);
-  };
+          event
+        );
+      } else {
+        setOtherValue(null);
+        setOtherSelected(false);
+        onChange({ target: { name, type, value } }, event);
+      }
+      setOtherActive(false);
+    },
+    [
+      isMultiSelect,
+      name,
+      type,
+      value,
+      otherValue,
+      setOtherSelected,
+      setOtherValue,
+      onChange,
+    ]
+  );
 
   const onSubmitOther = () => {};
 
   /** Specific onSelect handler */
-  const onSelect = ({ target: { select, isSelected } }, event) => {
-    if (isMultiSelect) {
-      let newValue = [...value];
-      if (enableWildcard && select === wildcardText) {
-        newValue = [];
+  const onSelect = useCallback(
+    ({ target: { select, isSelected } }, event) => {
+      if (isMultiSelect) {
+        let newValue = [...value];
+        if (enableWildcard && select === wildcardText) {
+          newValue = [];
+        }
+        if (isSelected) {
+          newValue.splice(newValue.indexOf(select), 1);
+        } else if (!maxSelect || (maxSelect && newValue.length < maxSelect)) {
+          newValue.push(select);
+        }
+        if (otherValue && otherValue.length > 0) {
+          newValue = [...newValue, otherValue];
+        }
+        onChange({ target: { name, type, value: newValue } }, event);
+      } else {
+        onChange({ target: { name, type, value: select } }, event);
+        setOtherSelected(false);
+        setOtherValue(null);
       }
-      if (isSelected) {
-        newValue.splice(newValue.indexOf(select), 1);
-      } else if (!maxSelect || (maxSelect && newValue.length < maxSelect)) {
-        newValue.push(select);
-      }
-      if (otherValue && otherValue.length > 0) {
-        newValue = [...newValue, otherValue];
-      }
-      onChange({ target: { name, type, value: newValue } }, event);
-    } else {
-      onChange({ target: { name, type, value: select } }, event);
-      setOtherSelected(false);
-      setOtherValue(null);
-    }
-  };
+    },
+    [
+      isMultiSelect,
+      enableWildcard,
+      wildcardText,
+      otherValue,
+      setOtherSelected,
+      setOtherValue,
+      onChange,
+      name,
+      type,
+      value,
+      maxSelect,
+    ]
+  );
 
   /** Define how many columns we will need. */
   const numOptions = enableOther
@@ -191,7 +214,6 @@ const SelectButton = ({
   const isWildcardSelected =
     enableWildcard &&
     getIsSelected(isMultiSelect, other, { value: wildcardText });
-  console.log('isWildcardSelected', isWildcardSelected);
 
   return (
     <Box>
@@ -213,7 +235,7 @@ const SelectButton = ({
                     : rest.flexDirection || 'column'
                 }
               >
-                {columnOptions.map(thisOption => {
+                {columnOptions.map((thisOption) => {
                   const isSelected = getIsSelected(
                     isMultiSelect,
                     value,
@@ -325,7 +347,7 @@ SelectButton.displayName = 'SelectButton';
 
 // ---------------------------
 
-const SingleSelectButton = props => <SelectButton {...props} />;
+const SingleSelectButton = (props) => <SelectButton {...props} />;
 
 SingleSelectButton.propTypes = {
   type: PropTypes.string,

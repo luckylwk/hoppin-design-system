@@ -11,15 +11,15 @@ class FormattingToolbar extends React.Component {
    * @param {String} type
    * @return {Boolean}
    */
-  hasMark = type => {
+  hasMark = (type) => {
     try {
-      return this.props.editor.value.marks.some(mark => mark.type === type);
+      return this.props.editor.value.marks.some((mark) => mark.type === type);
     } catch (_err) {
       return false;
     }
   };
 
-  isBlock = type => {
+  isBlock = (type) => {
     const { startBlock, document } = this.props.editor.value;
 
     // accounts for blocks with an inner paragraph tag
@@ -48,7 +48,7 @@ class FormattingToolbar extends React.Component {
     // we don't allow bold / italic / strikethrough code.
     const isInlineCode = this.hasMark('code') || type === 'code';
     if (isInlineCode) {
-      editor.value.marks.forEach(mark => {
+      editor.value.marks.forEach((mark) => {
         if (mark.type !== 'code') editor.removeMark(mark);
       });
     }
@@ -69,14 +69,14 @@ class FormattingToolbar extends React.Component {
     }
   };
 
-  renderMarkButton = type => {
+  renderMarkButton = (type) => {
     const Tooltip = this.props.editor.props.tooltip;
 
     const buttonLabel = markButtonDetails[type].label;
     const ButtonIcon = markButtonDetails[type].Icon;
 
     const isActive = this.hasMark(type);
-    const onMouseDown = ev => this.onClickMark(ev, type);
+    const onMouseDown = (ev) => this.onClickMark(ev, type);
 
     return (
       <ToolbarButton onMouseDown={onMouseDown} active={isActive} key={type}>
@@ -87,7 +87,7 @@ class FormattingToolbar extends React.Component {
     );
   };
 
-  renderBlockButton = type => {
+  renderBlockButton = (type) => {
     // TODO: add block buttons. needs tooltop label and Icon (see above for mark buttons)
     // const Tooltip = this.props.editor.props.tooltip;
     //
@@ -112,7 +112,7 @@ class FormattingToolbar extends React.Component {
 
     return (
       <React.Fragment>
-        {blockMarks.map(mark => this.renderMarkButton(mark.type))}
+        {blockMarks.map((mark) => this.renderMarkButton(mark.type))}
 
         {/*!isSelectionInTable && (
           <React.Fragment>

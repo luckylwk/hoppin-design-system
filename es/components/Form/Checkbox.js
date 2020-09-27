@@ -1,5 +1,5 @@
 function _templateObject4() {
-  var data = _taggedTemplateLiteralLoose(["\n  display: inline-block;\n  vertical-align: text-top;\n\n  width: 18px;\n  height: 18px;\n\n  ", " & {\n    margin-right: ", ";\n  }\n\n  background: ", ";\n  border: 2px solid\n    ", ";\n\n  border-radius: ", ";\n\n  transition: all 150ms;\n\n  ", ":focus + & {\n    box-shadow: ", ";\n  }\n\n  ", " {\n    visibility: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  display: inline-block;\n  vertical-align: text-top;\n\n  width: 18px;\n  height: 18px;\n\n  ", " & {\n    margin-right: ", ";\n  }\n\n  background: ", ";\n  border: 2px solid\n    ", ";\n\n  border-radius: ", ";\n\n  transition: all 150ms;\n\n  ", ":focus + & {\n    box-shadow: ", ";\n  }\n\n  ", " {\n    visibility: ", ";\n  }\n\n  cursor: pointer;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -40,7 +40,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
@@ -55,7 +55,7 @@ var CheckboxContainer = styled.div(_templateObject()); // ----------------------
 
 var Icon = styled.svg(_templateObject2(), function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.primary.dark;
+  return theme.colors.primary.lightest;
 }); // ---------------------------
 // Hide checkbox visually but remain accessible to screen readers.
 // Source: https://polished.js.org/docs/#hidevisually
@@ -72,11 +72,11 @@ var StyledCheckbox = styled.div(_templateObject4(), CheckboxLabel, function (_re
 }, function (_ref3) {
   var checked = _ref3.checked,
       theme = _ref3.theme;
-  return !checked ? theme.colors.neutral.lightest : theme.colors.primary.lightest;
+  return !checked ? theme.colors.form.background : theme.colors.primary.darkest;
 }, function (_ref4) {
   var checked = _ref4.checked,
       theme = _ref4.theme;
-  return !checked ? theme.colors.neutral.lighter : theme.colors.secondary.lighter;
+  return !checked ? theme.colors.form.border : theme.colors.primary.darkest;
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.radii.xsmall;
@@ -94,8 +94,7 @@ var Checkbox = function Checkbox(_ref8) {
       checked = _ref8.checked,
       label = _ref8.label,
       onChange = _ref8.onChange;
-
-  var onClick = function onClick(e) {
+  var onClick = useCallback(function (e) {
     e.preventDefault();
     onChange({
       target: {
@@ -105,8 +104,7 @@ var Checkbox = function Checkbox(_ref8) {
         checked: !checked
       }
     });
-  };
-
+  }, [onChange, checked, name]);
   var CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
   return /*#__PURE__*/React.createElement(CheckBoxWrapper, {
     onClick: onClick,

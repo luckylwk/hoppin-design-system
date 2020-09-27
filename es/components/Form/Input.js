@@ -40,10 +40,10 @@ var InputField = styled.input(_templateObject(), typography, space, border, func
 }, function (_ref2) {
   var theme = _ref2.theme,
       value = _ref2.value;
-  return value && value.length > 0 ? theme.colors.whiteout.lighter : theme.colors.whiteout.light;
+  return value && value.length > 0 ? theme.colors.form.focused.background : theme.colors.form.background;
 }, function (_ref3) {
   var theme = _ref3.theme;
-  return theme.colors.whiteout.dark;
+  return theme.colors.form.border;
 }, function (_ref4) {
   var theme = _ref4.theme,
       context = _ref4.context;
@@ -54,7 +54,7 @@ var InputField = styled.input(_templateObject(), typography, space, border, func
 
     case 'neutral':
     default:
-      return theme.colors.secondary.lighter;
+      return theme.colors.form.focused.border;
   }
 }, function (_ref5) {
   var theme = _ref5.theme;

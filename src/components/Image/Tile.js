@@ -20,10 +20,7 @@ const Tile = styled(Box)`
     },
   })}
 
-  ${({ src }) =>
-    src && src !== ''
-      ? `background-image: url(${src});`
-      : ''} 
+  ${({ src }) => (src && src !== '' ? `background-image: url(${src});` : '')} 
   background-size: cover;
   background-position: center;
 

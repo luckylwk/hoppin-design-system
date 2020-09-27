@@ -1,7 +1,7 @@
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteralLoose(["\n  position: relative;\n  border: 0px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  overflow: visible;\n  ", "\n\n  &:before {\n    content: '';\n    position: absolute;\n    display: none;\n    top: ", ";;\n    left: -3rem;\n    width: 2rem;\n    height: 2rem;\n    border-radius: ", ";\n    background-color: ", ";\n    background-size: cover;\n    ", "\n    box-shadow: ", ";\n  }\n\n  ", ";\n\n  /* TODO: pretty typing animation. */\n  ", ";\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  position: relative;\n  border: 0px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  overflow: visible;\n  ", "\n\n  &:before {\n    content: '';\n    position: absolute;\n    display: none;\n    top: ", ";\n    left: -3rem;\n    width: 2rem;\n    height: 2rem;\n    border-radius: ", ";\n    background-color: ", ";\n    background-size: cover;\n    ", "\n    box-shadow: ", ";\n  }\n\n  ", ";\n\n  /* TODO: pretty typing animation. */\n  ", ";\n"]);
 
   _templateObject = function _templateObject() {
     return data;

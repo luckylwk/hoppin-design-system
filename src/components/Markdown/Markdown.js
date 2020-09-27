@@ -16,13 +16,13 @@ import githubBreak from 'remark-github-break';
 import remark2rehype from 'remark-rehype';
 import rehype2react from 'rehype-react';
 
-const H1 = props => <Heading as="h1" {...props} />;
-const H2 = props => <Heading as="h2" {...props} />;
-const H3 = props => <Heading as="h3" {...props} />;
-const H4 = props => <Heading as="h4" {...props} />;
-const H5 = props => <Heading as="h5" {...props} />;
-const H6 = props => <Heading as="h6" {...props} />;
-const ALink = props => <Link as="a" {...props} />;
+const H1 = (props) => <Heading as="h1" {...props} />;
+const H2 = (props) => <Heading as="h2" {...props} />;
+const H3 = (props) => <Heading as="h3" {...props} />;
+const H4 = (props) => <Heading as="h4" {...props} />;
+const H5 = (props) => <Heading as="h5" {...props} />;
+const H6 = (props) => <Heading as="h6" {...props} />;
+const ALink = (props) => <Link as="a" {...props} />;
 
 export const componentsMap = {
   a: ALink,
