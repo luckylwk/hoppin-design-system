@@ -31,9 +31,9 @@ const Banner = styled(Flex)`
     } url(${backgroundImage});`;
   }}
 
-  background-position: ${props => props.backgroundPosition};
-  background-size: ${props => props.backgroundSize};
-  background-repeat: ${props => props.backgroundRepeat};
+  background-position: ${(props) => props.backgroundPosition};
+  background-size: ${(props) => props.backgroundSize};
+  background-repeat: ${(props) => props.backgroundRepeat};
 
   & > ${Container} {
     color: ${({ theme }) => theme.colors.white};

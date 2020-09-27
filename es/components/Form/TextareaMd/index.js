@@ -259,7 +259,7 @@ var StyledEditor = styled(Editor)(_templateObject(), space, layout, flexbox, fon
 
     case 'neutral':
     default:
-      return theme.colors.secondary.lighter;
+      return theme.colors.neutral.dark;
   }
 }, function (_ref6) {
   var theme = _ref6.theme;

@@ -69,7 +69,7 @@ const StepForm = ({
         margin={['base', 'large', 'xlarge']}
       >
         {options.length > 0 &&
-          options.map(option => {
+          options.map((option) => {
             return (
               <Button
                 key={option.value}

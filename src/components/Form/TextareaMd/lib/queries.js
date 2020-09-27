@@ -2,7 +2,7 @@ const queries = {
   isLinkActive(editor) {
     const { value } = editor;
     const { inlines } = value;
-    return inlines.some(i => i.type === 'link');
+    return inlines.some((i) => i.type === 'link');
   },
 
   isSelectionInHeading(editor) {
@@ -29,7 +29,7 @@ const queries = {
       const { value } = editor;
       const selectedLinks = value.document
         .getLeafInlinesAtRange(value.selection)
-        .filter(node => node.type === 'link');
+        .filter((node) => node.type === 'link');
 
       if (selectedLinks.size) {
         const link = selectedLinks.first();

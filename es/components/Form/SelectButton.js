@@ -24,8 +24,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
 
-import React, { useState // useRef
-} from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _shuffle from 'lodash/shuffle';
@@ -104,8 +103,7 @@ var SelectButton = function SelectButton(_ref3) {
     return o.value;
   }), isMultiSelect),
       value = _splitValueWithOther.value,
-      other = _splitValueWithOther.other; // const myInputRef = useRef();
-
+      other = _splitValueWithOther.other;
   /** Optional shuffling of options */
 
 
@@ -126,15 +124,13 @@ var SelectButton = function SelectButton(_ref3) {
       otherActive = _useState4[0],
       setOtherActive = _useState4[1];
 
-  var onToggleOther = function onToggleOther() {
-    setOtherActive(true); // console.log(myInputRef);
-  };
-
-  var onChangeOther = function onChangeOther(event) {
+  var onToggleOther = useCallback(function () {
+    setOtherActive(true);
+  }, [setOtherActive]);
+  var onChangeOther = useCallback(function (event) {
     setOtherValue(event.target.value);
-  };
-
-  var onBlurOther = function onBlurOther(event) {
+  }, [setOtherValue]);
+  var onBlurOther = useCallback(function (event) {
     if (otherValue && otherValue.length > 0) {
       setOtherSelected(true);
       onChange({
@@ -157,13 +153,13 @@ var SelectButton = function SelectButton(_ref3) {
     }
 
     setOtherActive(false);
-  };
+  }, [isMultiSelect, name, type, value, otherValue, setOtherSelected, setOtherValue, onChange]);
 
   var onSubmitOther = function onSubmitOther() {};
   /** Specific onSelect handler */
 
 
-  var onSelect = function onSelect(_ref4, event) {
+  var onSelect = useCallback(function (_ref4, event) {
     var _ref4$target = _ref4.target,
         select = _ref4$target.select,
         isSelected = _ref4$target.isSelected;
@@ -203,9 +199,8 @@ var SelectButton = function SelectButton(_ref3) {
       setOtherSelected(false);
       setOtherValue(null);
     }
-  };
+  }, [isMultiSelect, enableWildcard, wildcardText, otherValue, setOtherSelected, setOtherValue, onChange, name, type, value, maxSelect]);
   /** Define how many columns we will need. */
-
 
   var numOptions = enableOther ? optionsArray.length + 1 : optionsArray.length;
   var optionsColumns = [];
@@ -232,7 +227,6 @@ var SelectButton = function SelectButton(_ref3) {
   var isWildcardSelected = enableWildcard && getIsSelected(isMultiSelect, other, {
     value: wildcardText
   });
-  console.log('isWildcardSelected', isWildcardSelected);
   return /*#__PURE__*/React.createElement(Box, null, /*#__PURE__*/React.createElement(Flex, {
     flexWrap: "wrap",
     justifyContent: "center"

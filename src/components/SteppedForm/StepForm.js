@@ -22,13 +22,13 @@ const StepForm = ({
   const hasRequiredFieldValues = () => {
     return (
       fields
-        .map(field => {
+        .map((field) => {
           let fieldHasValue = false;
           if (field.type === 'group') {
             fieldHasValue =
               !field.list || // catch if field is defined as group but has no list of fields
               field.list // map over all grouped fields, check each one
-                .map(groupField => {
+                .map((groupField) => {
                   return (
                     !groupField.required ||
                     (groupField.value && groupField.value.length > 0) ||

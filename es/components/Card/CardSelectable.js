@@ -1,5 +1,5 @@
 function _templateObject() {
-  var data = _taggedTemplateLiteralLoose(["\n  border-top: ", " solid\n    ", ";\n  box-shadow: ", ";\n\n  cursor: pointer;\n\n  transition: all 0.5s;\n\n  ", "\n\n  &:hover {\n    box-shadow: ", ";\n    transform: translateY(-1px);\n  }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  border-top: ", " solid\n    ", ";\n\n  box-shadow: ", ";\n\n  cursor: pointer;\n\n  transition: all 0.5s;\n\n  ", "\n\n  &:hover {\n    box-shadow: ", ";\n    transform: translateY(-1px);\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -19,14 +19,14 @@ var CardSelectable = styled(Card)(_templateObject(), function (_ref) {
 }, function (_ref2) {
   var selected = _ref2.selected,
       theme = _ref2.theme;
-  return selected ? theme.colors.neutral.darkest : theme.colors.primary.base;
+  return selected ? theme.colors.neutral.darkest : theme.colors.primary.darker;
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.shadows[1];
 }, function (_ref4) {
   var theme = _ref4.theme,
       selected = _ref4.selected;
-  return selected ? "background: " + theme.colors.neutral.darker + "; color: " + theme.colors.whiteout.lighter + ";" : "";
+  return selected ? "\n      background: " + theme.colors.primary.darkest + ";\n      color: " + theme.colors.whiteout.lighter + ";\n    " : "";
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.shadows[3];

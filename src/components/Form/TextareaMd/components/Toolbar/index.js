@@ -141,7 +141,7 @@ export default class Toolbar extends React.Component {
       <Portal>
         <Menu
           active={this.state.active}
-          ref={ref => (this.menu = ref)}
+          ref={(ref) => (this.menu = ref)}
           style={style}
         >
           {
@@ -166,13 +166,13 @@ export default class Toolbar extends React.Component {
 export const Menu = styled.div`
   padding: 8px 16px;
   position: absolute;
-  z-index: ${props => {
+  z-index: ${(props) => {
     return props.theme.zIndices.overlay;
   }};
   top: -10000px;
   left: -10000px;
   opacity: 0;
-  background-color: ${props => props.theme.colors.neutral.darker};
+  background-color: ${(props) => props.theme.colors.neutral.darker};
   border-radius: 4px;
   transform: scale(0.95);
   transition: opacity 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -190,7 +190,7 @@ export const Menu = styled.div`
     width: 24px;
     height: 24px;
     transform: translateX(-50%) rotate(45deg);
-    background: ${props => props.theme.colors.neutral.darker};
+    background: ${(props) => props.theme.colors.neutral.darker};
     border-radius: 3px;
     z-index: -1;
 

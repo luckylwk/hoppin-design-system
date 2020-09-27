@@ -249,7 +249,7 @@ const StyledEditor = styled(Editor)`
           return theme.colors.danger.base;
         case 'neutral':
         default:
-          return theme.colors.secondary.lighter;
+          return theme.colors.neutral.dark;
       }
     }};
     background: ${({ theme }) => theme.colors.whiteout.lightest};

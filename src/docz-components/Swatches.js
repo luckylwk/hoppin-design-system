@@ -30,7 +30,7 @@ const getContrastColor = (bg, colors) => {
 };
 
 const ColorSwatches = ({ context, colors }) => {
-  return Object.keys(colors[context]).map(color => {
+  return Object.keys(colors[context]).map((color) => {
     return (
       <Swatch
         bg={colors[context][color]}
@@ -51,7 +51,7 @@ const ColorSwatches = ({ context, colors }) => {
 };
 
 const SpaceSwatches = ({ space }) => {
-  return spaceScale.map(key => (
+  return spaceScale.map((key) => (
     <Swatch bg="neutral.base" padding={key} key={key}>
       <Flex bg="neutral.lightest" padding="base">
         <Box>{key === 'medium' ? "medium (or 'base')" : key}</Box>
@@ -64,7 +64,7 @@ const SpaceSwatches = ({ space }) => {
 };
 
 const RadiusSwatches = ({ radii }) => {
-  return spaceScale.map(key => (
+  return spaceScale.map((key) => (
     <Swatch
       bg="neutral.base"
       padding="large"
@@ -83,7 +83,7 @@ const RadiusSwatches = ({ radii }) => {
 };
 
 const ShadowSwatches = ({ shadows }) => {
-  return spaceScale.map(key => (
+  return spaceScale.map((key) => (
     <Swatch
       padding="large"
       marginY="xlarge"
