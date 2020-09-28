@@ -51,9 +51,9 @@ lineHeights.large = lineHeights[2];
 const fontWeights = {
   light: 300,
   normal: 300,
-  medium: 600,
-  bold: 600,
-  heavy: 600,
+  medium: 500,
+  bold: 500,
+  heavy: 500,
 };
 
 // headings style attributes, all but color, since color is dependent on host/shadower context
