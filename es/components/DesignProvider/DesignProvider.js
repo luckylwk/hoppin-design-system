@@ -1,5 +1,5 @@
 function _templateObject() {
-  var data = _taggedTemplateLiteralLoose(["\n  html,\n  body,\n  * {\n    /* use border-box model */\n    box-sizing: border-box;\n  }\n\n  html,\n  body {\n    margin: 0;\n    background: ", ";\n    font-size: 16px;\n    /* set default text color and family, so inheritance works */\n    font-family: ", ";\n    color: ", ";\n    text-align: left;\n   }\n\n  * {\n    color: inherit;\n  }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  html,\n  body,\n  * {\n    /* use border-box model */\n    box-sizing: border-box;\n  }\n\n  html,\n  body {\n    margin: 0;\n    background: ", ";\n\n    /** Set default text color and family, so inheritance works */\n    font-size: 16px;\n    font-family: ", ";\n    color: ", ";\n\n    text-align: left;\n   }\n\n  * {\n    color: inherit;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -12,10 +12,10 @@ function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.s
 
 import React, { useContext } from 'react';
 import { ThemeProvider, ThemeContext } from 'styled-components';
-import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import { merge } from 'lodash';
+import tokens from '../../tokens';
 var GlobalStyle = createGlobalStyle(_templateObject(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.whiteout.lightest;
@@ -25,7 +25,7 @@ var GlobalStyle = createGlobalStyle(_templateObject(), function (_ref) {
 });
 export var Fonts = function Fonts() {
   return /*#__PURE__*/React.createElement("link", {
-    href: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap",
+    href: "https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-cdn.css",
     rel: "stylesheet"
   });
 };

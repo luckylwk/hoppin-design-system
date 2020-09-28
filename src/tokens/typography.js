@@ -1,11 +1,12 @@
 import { space } from './space';
 
 const fonts = {
-  primary: '"Poppins", sans-serif',
-  secondary: '"Poppins", sans-serif',
+  primary: '"Surt", sans-serif',
+  secondary: '"Surt", sans-serif',
   system:
     '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue',
 };
+
 // font-sizes are multiples of 2, 8 if possible, to create a natural rythm, together with space tokens.
 const fontSizes = [
   '.5rem', // 8px
@@ -50,9 +51,9 @@ lineHeights.large = lineHeights[2];
 const fontWeights = {
   light: 300,
   normal: 300,
-  medium: 600,
-  bold: 600,
-  heavy: 600,
+  medium: 500,
+  bold: 500,
+  heavy: 500,
 };
 
 // headings style attributes, all but color, since color is dependent on host/shadower context

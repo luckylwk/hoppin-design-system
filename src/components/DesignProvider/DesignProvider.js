@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { ThemeProvider, ThemeContext } from 'styled-components';
-import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import { merge } from 'lodash';
+
+import tokens from '../../tokens';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -17,10 +18,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     background: ${({ theme }) => theme.colors.whiteout.lightest};
+
+    /** Set default text color and family, so inheritance works */
     font-size: 16px;
-    /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.primary};
     color: ${({ theme }) => theme.colors.neutral.darker};
+
     text-align: left;
    }
 
@@ -31,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
 
 export const Fonts = () => (
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    href="https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-cdn.css"
     rel="stylesheet"
   />
 );

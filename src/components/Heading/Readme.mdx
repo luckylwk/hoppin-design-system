@@ -7,6 +7,7 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
+import { Box } from '../Box';
 
 # Heading
 
@@ -26,7 +27,9 @@ Make sure you only have one h1 per page.
 If you need more options, consider using [Text](components/Text) or [Paragraph](components/Paragraph).
 
 <Playground>
-  <Heading as="h1">The big site title, just one per page, please</Heading>
+  <Box bg="primary.darker" p="medium">
+    <Heading as="h1">The big site title, just one per page, please</Heading>
+  </Box>
   <Heading>Default is the H2</Heading>
   <Paragraph>
     Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
