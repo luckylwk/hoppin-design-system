@@ -1,17 +1,17 @@
 export default {
-  title: 'Hoppin Design System',
-  description: 'Getting consistent design at Hoppin',
+  title: 'Orbiit Design System',
+  description: 'Getting consistent design at Orbiit',
   port: 2000,
   src: './src',
   files: '**/*.{md,markdown,mdx}',
   themeConfig: {
     colors: {
-      primary: '#44E2D6',
+      primary: '#008CE6',
     },
     showPlaygroundEditor: true,
     styles: {
       root: {
-        fontFamily: '"Nunito Sans", sans-serif',
+        fontFamily: 'sans-serif',
         fontSize: 2,
       },
       Container: {

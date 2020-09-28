@@ -1,4 +1,5 @@
 import React from 'react';
-import { Logo as HoppinLogo } from '@ds';
 
-export const Logo = () => <HoppinLogo margin="base" />;
+import { Logo as OrbiitLogo } from '@ds';
+
+export const Logo = () => <OrbiitLogo margin="base" />;
