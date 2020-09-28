@@ -42,7 +42,7 @@ headingSizes.h4 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h5 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h6 = [fontSizes[3], null, fontSizes[3]];
 
-const lineHeights = [1, 1.4, 1.8];
+const lineHeights = [1.1, 1.4, 1.8];
 lineHeights.small = lineHeights[0];
 lineHeights.base = lineHeights[1];
 lineHeights.body = lineHeights[1];
