@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { ThemeProvider, ThemeContext } from 'styled-components';
-import tokens from '../../tokens';
 import propTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import { merge } from 'lodash';
+
+import tokens from '../../tokens';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -17,24 +18,58 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     background: ${({ theme }) => theme.colors.whiteout.lightest};
+
+    /** Set default text color and family, so inheritance works */
     font-size: 16px;
-    /* set default text color and family, so inheritance works */
     font-family: ${tokens.fonts.primary};
     color: ${({ theme }) => theme.colors.neutral.darker};
+
     text-align: left;
    }
 
   * {
     color: inherit;
   }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-light-webfont.woff2') format('woff2'),
+      url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-lightoblique-webfont.woff2') format('woff2'),
+      url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-lightoblique-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semibold-webfont.woff2') format('woff2'),
+      url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semibold-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semiboldoblique-webfont.woff2') format('woff2'),
+      url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semiboldoblique-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+  }
 `;
 
-export const Fonts = () => (
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
-    rel="stylesheet"
-  />
-);
+// export const Fonts = () => (
+//   <link
+//     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+//     rel="stylesheet"
+//   />
+// );
 
 const DesignProvider = ({ children, theme }) => {
   // Get theme from the react context.
