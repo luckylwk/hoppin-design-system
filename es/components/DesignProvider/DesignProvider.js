@@ -22,7 +22,10 @@ var GlobalStyle = createGlobalStyle(_templateObject(), function (_ref) {
 }, tokens.fonts.primary, function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.neutral.darker;
-}); // export const Fonts = () => (
+});
+export var Fonts = function Fonts() {
+  return null;
+}; // export const Fonts = () => (
 //   <link
 //     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
 //     rel="stylesheet"
