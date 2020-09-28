@@ -24,13 +24,11 @@ var GlobalStyle = createGlobalStyle(_templateObject(), function (_ref) {
   return theme.colors.neutral.darker;
 });
 export var Fonts = function Fonts() {
-  return null;
-}; // export const Fonts = () => (
-//   <link
-//     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
-//     rel="stylesheet"
-//   />
-// );
+  return /*#__PURE__*/React.createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap",
+    rel: "stylesheet"
+  });
+};
 
 var DesignProvider = function DesignProvider(_ref3) {
   var children = _ref3.children,

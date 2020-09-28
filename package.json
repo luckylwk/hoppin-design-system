@@ -46,7 +46,9 @@
     "node-forge": "^0.10.0",
     "node-fetch": "^2.6.1",
     "yargs-parser": "^13.1.2",
-    "http-proxy": "^1.18.1"
+    "http-proxy": "^1.18.1",
+    "dot-prop": "^4.2.1",
+    "serialize-javascript": "^3.1.0"
   },
   "devDependencies": {
     "docz": "^2.2.0",
@@ -57,9 +59,7 @@
     "prettier": "^2.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "dot-prop": "^4.2.1",
-    "serialize-javascript": "^3.1.0"
+    "react-dom": "^16.13.1"
   },
   "resolutions": {
     "react": "^16.13.1",

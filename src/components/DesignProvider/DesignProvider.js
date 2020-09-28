@@ -64,13 +64,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const Fonts = () => null;
-// export const Fonts = () => (
-//   <link
-//     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
-//     rel="stylesheet"
-//   />
-// );
+export const Fonts = () => (
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet"
+  />
+);
 
 const DesignProvider = ({ children, theme }) => {
   // Get theme from the react context.
