@@ -10,7 +10,7 @@ export const RequiredText = styled.span`
 
   font-size: 13px;
   line-height: 11px;
-  font-weight: 600;
+  font-weight: 400;
 
   color: ${({ theme }) => theme.colors.form.required};
 `;
