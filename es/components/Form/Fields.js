@@ -101,6 +101,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       name: field.name,
       value: field.value,
       label: field.label,
+      required: field.required,
       placeholder: field.placeholder,
       onChange: _onChange.bind(null, field.name),
       context: field.context
@@ -257,7 +258,8 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       name: field.name,
       label: field.label,
       checked: field.checked,
-      onChange: _onChange.bind(null, field.name)
+      onChange: _onChange.bind(null, field.name),
+      required: field.required
     });
   }
 
@@ -267,6 +269,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       name: field.name,
       placeholder: field.placeholder,
       label: field.label,
+      required: field.required,
       onChange: _onChange.bind(null, field.name),
       context: field.context,
       overrideBg: field.overrideBg
@@ -325,6 +328,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     name: field.name,
     placeholder: field.placeholder,
     label: field.label,
+    required: field.required,
     onChange: _onChange.bind(null, field.name),
     context: field.context,
     renderWidth: field.renderWidth || 'full',

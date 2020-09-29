@@ -60,8 +60,7 @@ TextareaField.defaultProps = {
 
 TextareaField.displayName = 'TextareaField';
 
-const Textarea = (props) => {
-  const { label, required, ...rest } = props;
+const Textarea = ({ label, required, ...rest }) => {
   const LabelOrFragment = label ? Label : Fragment;
   const labelProps = label ? { label, htmlFor: rest.name } : {};
   const textareaProps = label ? { marginTop: 'small' } : {};
@@ -87,6 +86,15 @@ Textarea.propTypes = {
 
   /** Provide context (any of colors.contexts) to change the outline color */
   context: PropTypes.string,
+
+  required: PropTypes.bool,
 };
+
+Textarea.defaultProps = {
+  label: null,
+  required: false,
+};
+
+Textarea.displayName = 'TextareaODS';
 
 export default Textarea;

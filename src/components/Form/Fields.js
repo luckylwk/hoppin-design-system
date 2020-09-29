@@ -105,6 +105,7 @@ export const renderField = (field, onChange, selectStyling) => {
           name={field.name}
           value={field.value}
           label={field.label}
+          required={field.required}
           placeholder={field.placeholder}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
@@ -279,6 +280,7 @@ export const renderField = (field, onChange, selectStyling) => {
         label={field.label}
         checked={field.checked}
         onChange={onChange.bind(null, field.name)}
+        required={field.required}
       />
     );
   }
@@ -291,6 +293,7 @@ export const renderField = (field, onChange, selectStyling) => {
           name={field.name}
           placeholder={field.placeholder}
           label={field.label}
+          required={field.required}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
           overrideBg={field.overrideBg}
@@ -372,6 +375,7 @@ export const renderField = (field, onChange, selectStyling) => {
         name={field.name}
         placeholder={field.placeholder}
         label={field.label}
+        required={field.required}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
         renderWidth={field.renderWidth || 'full'}
