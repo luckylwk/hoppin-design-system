@@ -56,7 +56,7 @@ as well as FieldsWrapper which takes a JSON config object and renders the whole 
     };
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="400px">
+        <Box margin="base" padding="base" maxWidth="400px" bg="whiteout.darker">
           <Input
             name="name"
             label="Name (with default marginBottom)"
@@ -118,7 +118,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
     };
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="500px">
+        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.darker">
           <TextareaMd
             name="veryRichText"
             label="Write something exciting"
@@ -179,7 +179,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
     };
     return (
       <Flex>
-        <Box margin="base" padding="base" maxWidth="500px">
+        <Box margin="base" padding="base" maxWidth="500px" bg="whiteout.darker">
           <Textarea
             name="simpletext"
             label="Write something exciting"
@@ -187,6 +187,7 @@ It's pinned to slate.js v0.45 since slate's API changes quite rapidly at the mom
             onChange={onChange}
             minHeight={150}
             maxHeight={400}
+            rows="6"
             required
           />
         </Box>

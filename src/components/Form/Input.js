@@ -51,13 +51,13 @@ const InputField = styled.input`
           return theme.colors.form.focused.border;
       }
     }};
-    background: ${({ theme }) => theme.colors.whiteout.lightest};
+    background: ${({ theme }) => theme.colors.form.focused.background};
   }
 
   &::placeholder {
     font-family: ${({ theme }) => theme.fonts.secondary};
     font-weight: ${({ theme }) => theme.fontWeights.normal};
-    color: ${({ theme }) => theme.colors.neutral.base};
+    color: ${({ theme }) => theme.colors.form.placeholder};
   }
 
   appearance: none;
