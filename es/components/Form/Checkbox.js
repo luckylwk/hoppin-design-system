@@ -44,7 +44,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
-import CheckboxLabel from './Label';
+import { Label, RequiredText } from '.';
 /**
  * Taken from
  * https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
@@ -66,7 +66,7 @@ RcCheckbox.displayName = 'RcCheckbox'; // ---------------------------
 var HiddenCheckbox = styled(RcCheckbox)(_templateObject3());
 HiddenCheckbox.displayName = 'HiddenCheckbox'; // ---------------------------
 
-var StyledCheckbox = styled.div(_templateObject4(), CheckboxLabel, function (_ref2) {
+var StyledCheckbox = styled.div(_templateObject4(), Label, function (_ref2) {
   var theme = _ref2.theme;
   return theme.space.small;
 }, function (_ref3) {
@@ -93,6 +93,7 @@ var Checkbox = function Checkbox(_ref8) {
   var name = _ref8.name,
       checked = _ref8.checked,
       label = _ref8.label,
+      required = _ref8.required,
       onChange = _ref8.onChange;
   var onClick = useCallback(function (e) {
     e.preventDefault();
@@ -105,8 +106,8 @@ var Checkbox = function Checkbox(_ref8) {
       }
     });
   }, [onChange, checked, name]);
-  var CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
-  return /*#__PURE__*/React.createElement(CheckBoxWrapper, {
+  var LabelOrCheckboxContainer = !!label ? Label : CheckboxContainer;
+  return /*#__PURE__*/React.createElement(LabelOrCheckboxContainer, {
     onClick: onClick,
     htmlFor: name
   }, /*#__PURE__*/React.createElement(HiddenCheckbox, {
@@ -118,7 +119,7 @@ var Checkbox = function Checkbox(_ref8) {
     viewBox: "0 0 24 24"
   }, /*#__PURE__*/React.createElement("polyline", {
     points: "20 6 9 17 4 12"
-  }))), label);
+  }))), label, label && required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"));
 };
 
 Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -127,10 +128,12 @@ Checkbox.propTypes = process.env.NODE_ENV !== "production" ? {
   onChange: PropTypes.func.isRequired,
 
   /** Omit label prop to render Checkbox without a label */
-  label: PropTypes.string
+  label: PropTypes.string,
+  required: PropTypes.bool
 } : {};
 Checkbox.defaultProps = {
-  checked: false
+  checked: false,
+  required: false
 };
 Checkbox.displayName = 'Checkbox';
 export default Checkbox;

@@ -58,10 +58,10 @@ TextareaField.defaultProps = {
 };
 TextareaField.displayName = 'TextareaField';
 
-var Textarea = function Textarea(props) {
-  var label = props.label,
-      required = props.required,
-      rest = _objectWithoutPropertiesLoose(props, ["label", "required"]);
+var Textarea = function Textarea(_ref9) {
+  var label = _ref9.label,
+      required = _ref9.required,
+      rest = _objectWithoutPropertiesLoose(_ref9, ["label", "required"]);
 
   var LabelOrFragment = label ? Label : Fragment;
   var labelProps = label ? {
@@ -85,6 +85,12 @@ Textarea.propTypes = process.env.NODE_ENV !== "production" ? {
   onChange: PropTypes.func,
 
   /** Provide context (any of colors.contexts) to change the outline color */
-  context: PropTypes.string
+  context: PropTypes.string,
+  required: PropTypes.bool
 } : {};
+Textarea.defaultProps = {
+  label: null,
+  required: false
+};
+Textarea.displayName = 'TextareaODS';
 export default Textarea;
