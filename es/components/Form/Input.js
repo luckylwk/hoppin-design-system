@@ -58,7 +58,7 @@ var InputField = styled.input(_templateObject(), typography, space, border, func
   }
 }, function (_ref5) {
   var theme = _ref5.theme;
-  return theme.colors.whiteout.lightest;
+  return theme.colors.form.focused.background;
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.fonts.secondary;
@@ -67,7 +67,7 @@ var InputField = styled.input(_templateObject(), typography, space, border, func
   return theme.fontWeights.normal;
 }, function (_ref8) {
   var theme = _ref8.theme;
-  return theme.colors.neutral.base;
+  return theme.colors.form.placeholder;
 });
 InputField.propTypes = {
   disabled: PropTypes.bool,
