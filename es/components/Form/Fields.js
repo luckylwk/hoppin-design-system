@@ -41,12 +41,12 @@ import { Paragraph } from '../Paragraph'; // ---------------------------
 var FiChevronDownStyled = styled(FiChevronDown)(_templateObject(), function (_ref) {
   var theme = _ref.theme,
       focused = _ref.focused;
-  return focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base;
+  return focused === 'true' ? theme.colors.form.focused.border : theme.colors.form.border;
 });
 var FiSearchStyled = styled(FiSearch)(_templateObject2(), function (_ref2) {
   var theme = _ref2.theme,
       focused = _ref2.focused;
-  return focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base;
+  return focused === 'true' ? theme.colors.form.focused.border : theme.colors.form.border;
 });
 
 var SearchDropdownIndicator = function SearchDropdownIndicator(props) {
@@ -323,8 +323,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
     type: field.type,
     value: field.value || '',
     name: field.name,
-    placeholder: field.placeholder // label={field.title ? undefined : field.label}
-    ,
+    placeholder: field.placeholder,
     label: field.label,
     onChange: _onChange.bind(null, field.name),
     context: field.context,

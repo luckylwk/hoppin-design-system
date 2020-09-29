@@ -56,11 +56,11 @@ var getSelectStyles = function getSelectStyles(theme) {
     input: function input(styles, _ref) {
       var isFocused = _ref.isFocused;
       return _extends({}, styles, {
-        backgroundColor: theme.colors.whiteout.light,
+        backgroundColor: theme.colors.form.background,
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
-        borderColor: isFocused ? theme.colors.neutral.dark : theme.colors.whiteout.dark
+        borderColor: isFocused ? theme.colors.form.focused.border : theme.colors.form.border
       });
     },
     valueContainer: function valueContainer(styles) {
@@ -73,7 +73,7 @@ var getSelectStyles = function getSelectStyles(theme) {
         fontFamily: theme.fonts.secondary,
         fontSize: theme.fontSizes.body,
         fontWeight: theme.fontWeights.normal,
-        color: theme.colors.neutral.base
+        color: theme.colors.form.placeholder
       });
     },
     singleValue: function singleValue(styles) {

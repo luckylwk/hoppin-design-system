@@ -72,13 +72,13 @@ const getSelectStyles = (theme) => ({
   input: (styles, { isFocused }) => {
     return {
       ...styles,
-      backgroundColor: theme.colors.whiteout.light,
+      backgroundColor: theme.colors.form.background,
       fontSize: theme.fontSizes.body,
       fontFamily: theme.fonts.secondary,
       fontWeight: theme.fontWeights.normal,
       borderColor: isFocused
-        ? theme.colors.neutral.dark
-        : theme.colors.whiteout.dark,
+        ? theme.colors.form.focused.border
+        : theme.colors.form.border,
     };
   },
   valueContainer: (styles) => {
@@ -90,7 +90,7 @@ const getSelectStyles = (theme) => ({
       fontFamily: theme.fonts.secondary,
       fontSize: theme.fontSizes.body,
       fontWeight: theme.fontWeights.normal,
-      color: theme.colors.neutral.base,
+      color: theme.colors.form.placeholder,
     };
   },
   singleValue: (styles) => ({

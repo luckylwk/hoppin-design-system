@@ -32,12 +32,16 @@ import { Paragraph } from '../Paragraph';
 
 const FiChevronDownStyled = styled(FiChevronDown)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
 const FiSearchStyled = styled(FiSearch)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
 const SearchDropdownIndicator = (props) => (
@@ -367,7 +371,6 @@ export const renderField = (field, onChange, selectStyling) => {
         value={field.value || ''}
         name={field.name}
         placeholder={field.placeholder}
-        // label={field.title ? undefined : field.label}
         label={field.label}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
