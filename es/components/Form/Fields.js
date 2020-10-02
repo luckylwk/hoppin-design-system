@@ -32,7 +32,7 @@ import Async from 'react-select/async';
 import Creatable from 'react-select/creatable';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import getSelectStyling from './SelectStyling';
-import { Checkbox, Input, Label, TextareaMd, Textarea, PhoneInput, RequiredCharacters, FieldExplanation, SelectButton } from '.';
+import { Checkbox, Input, Label, TextareaMd, Textarea, PhoneInput, RequiredCharacters, FieldExplanation, SelectButton, RequiredText } from '.';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
@@ -114,7 +114,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       label: field.label,
       htmlFor: field.name
     } : {};
-    return /*#__PURE__*/React.createElement(LabelOrFragment, labelProps, field.label, /*#__PURE__*/React.createElement(Creatable, _extends({
+    return /*#__PURE__*/React.createElement(LabelOrFragment, labelProps, field.label, field.label && field.required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"), /*#__PURE__*/React.createElement(Creatable, _extends({
       isClearable: true,
       clearValue: function clearValue() {
         return _onChange(field.name, {
@@ -158,7 +158,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       htmlFor: field.name
     } : {};
 
-    return /*#__PURE__*/React.createElement(_LabelOrFragment, _labelProps, field.label, /*#__PURE__*/React.createElement(Select, _extends({
+    return /*#__PURE__*/React.createElement(_LabelOrFragment, _labelProps, field.label, field.label && field.required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"), /*#__PURE__*/React.createElement(Select, _extends({
       isMulti: field.type === 'multi-select',
       isClearable: field.type === 'multi-select',
       value: field.value,
@@ -193,7 +193,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       htmlFor: field.name
     } : {};
 
-    return /*#__PURE__*/React.createElement(_LabelOrFragment2, _labelProps2, field.label, /*#__PURE__*/React.createElement(Async, _extends({
+    return /*#__PURE__*/React.createElement(_LabelOrFragment2, _labelProps2, field.label, field.label && field.required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"), /*#__PURE__*/React.createElement(Async, _extends({
       cacheOptions: false,
       value: field.value,
       onChange: function onChange(option, _ref6) {
@@ -228,7 +228,7 @@ export var renderField = function renderField(field, _onChange, selectStyling) {
       htmlFor: field.name
     } : {};
 
-    return /*#__PURE__*/React.createElement(_LabelOrFragment3, _labelProps3, field.label, /*#__PURE__*/React.createElement(AsyncCreatableSelect, _extends({
+    return /*#__PURE__*/React.createElement(_LabelOrFragment3, _labelProps3, field.label, field.label && field.required && /*#__PURE__*/React.createElement(RequiredText, null, "*required"), /*#__PURE__*/React.createElement(AsyncCreatableSelect, _extends({
       name: field.name,
       cacheOptions: false,
       loadOptions: field.options,

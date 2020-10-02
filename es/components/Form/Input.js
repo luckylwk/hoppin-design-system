@@ -82,7 +82,7 @@ InputField.defaultProps = {
   fontSize: 'body',
   fontFamily: 'secondary',
   fontWeight: 'normal',
-  lineHeight: 1,
+  lineHeight: 'none',
   marginBottom: 'base',
   color: 'neutral.dark',
   borderWidth: 'base',
