@@ -21,6 +21,7 @@ import {
   RequiredCharacters,
   FieldExplanation,
   SelectButton,
+  RequiredText,
 } from '.';
 
 import { Flex } from '../Flex';
@@ -131,6 +132,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Creatable
           isClearable
           clearValue={() =>
@@ -173,6 +177,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Select
           isMulti={field.type === 'multi-select'}
           isClearable={field.type === 'multi-select'}
@@ -209,6 +216,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Async
           cacheOptions={false}
           value={field.value}
@@ -245,6 +255,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <AsyncCreatableSelect
           name={field.name}
           cacheOptions={false}
