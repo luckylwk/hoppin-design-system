@@ -23,9 +23,9 @@ make build:
 	yarn build
 
 deploy/now:
-	now switch hoppin
+	now switch orbiit
 	now
 
 deploy/now-prod:
-	now switch hoppin
+	now switch orbiit
 	now --prod

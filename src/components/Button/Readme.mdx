@@ -12,9 +12,7 @@ import { Box } from '../Box';
 
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
-import ButtonNew from './ButtonNew';
 import ButtonSelect from './ButtonSelect';
-
 
 # Button
 
@@ -29,8 +27,6 @@ This is your standard button. They typically trigger one action when interacted 
 <Playground>
   <ButtonGroup>
     <Button>Click me</Button>
-    <Button context="shadower">Shadower</Button>
-    <Button context="host">Host</Button>
     <Button context="danger">Danger</Button>
   </ButtonGroup>
   <Box bg="primary.base" padding="large" marginTop="large">
@@ -44,13 +40,15 @@ These are our outline buttons. Use them for secondary actions. Most of the time,
 
 <Playground>
   <ButtonGroup>
-    <Button variant='outline'>Click me</Button>
-    <Button variant='outline' context="shadower">Shadower</Button>
-    <Button variant='outline' context="host">Host</Button>
-    <Button variant='outline' context="danger">Danger</Button>
+    <Button variant="outline">Click me</Button>
+    <Button variant="outline" context="danger">
+      Danger
+    </Button>
   </ButtonGroup>
   <Box bg="primary.base" padding="large" marginTop="large">
-    <Button variant="outline" context="whiteout">Whiteout</Button>
+    <Button variant="outline" context="whiteout">
+      Whiteout
+    </Button>
   </Box>
 </Playground>
 
@@ -61,17 +59,20 @@ These are our subtle buttons. Use them for when the action is not overly importa
 <Playground>
 <ButtonGroup>
 
-<Button variant='subtle'>Click me</Button>
-<Button variant='subtle' context="shadower">Shadower</Button>
-<Button variant='subtle' context="host">Host</Button>
-<Button variant='subtle' context="danger">Danger</Button>
+
+<Button variant="subtle">Click me</Button>
+<Button variant="subtle" context="danger">
+  Danger
+</Button>
 
 </ButtonGroup>
+
 
 <Box bg="primary.base" padding="large" marginTop="large">
   <Button variant="subtle" context="whiteout">Whiteout</Button>
 </Box>
 </Playground>
+
 
 ## Sizes
 
@@ -99,13 +100,13 @@ Buttons that contain _just_ an icon automatically adjust padding to become round
 <Playground>
   <ButtonGroup alignItems="center">
     <Button icon={true} display="inline-block" size="small">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} />
     </Button>
     <Button icon={true} display="inline-block">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} />
     </Button>
     <Button icon={true} display="inline-block" size="large">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} />
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} />
     </Button>
   </ButtonGroup>
 </Playground>
@@ -113,13 +114,13 @@ Buttons that contain _just_ an icon automatically adjust padding to become round
 <Playground>
   <ButtonGroup alignItems="center">
     <Button display="inline-block" size="small">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} /> Back
     </Button>
     <Button display="inline-block">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} /> Back
     </Button>
     <Button display="inline-block" size="large">
-      <FiArrowLeft style={{ marginBottom:'-0.125em' }} /> Back
+      <FiArrowLeft style={{ marginBottom: '-0.125em' }} /> Back
     </Button>
   </ButtonGroup>
 </Playground>
@@ -148,38 +149,6 @@ Change the layout to be vertical, by applying `flexDirection='column'`
     <Button>Click me</Button>
     <Button>Click me</Button>
   </ButtonGroup>
-</Playground>
-
-## New Button
-
-<Props of={ButtonNew} />
-
-This is your standard button. They typically trigger one action when interacted with, providing the basis for creating an interactive page. Add additional context to them using the context prop.
-
-<Playground>
-  <Box padding="base">
-    <ButtonGroup>
-      <ButtonNew context="neutral">Neutral Full</ButtonNew>
-      <ButtonNew context="shadower" marginLeft="small">Shadower</ButtonNew>
-      <ButtonNew context="host" marginLeft="small">Host</ButtonNew>
-      <ButtonNew context="danger" marginLeft="small">Danger</ButtonNew>
-    </ButtonGroup>
-    <ButtonGroup marginY="base">
-      <ButtonNew variant="outline" context="neutral">Neutral Outline</ButtonNew>
-      <ButtonNew variant="outline" context="shadower" marginLeft="small">Shadower</ButtonNew>
-      <ButtonNew variant="outline" context="host" marginLeft="small">Host</ButtonNew>
-      <ButtonNew variant="outline" context="danger" marginLeft="small">Danger</ButtonNew>
-    </ButtonGroup>
-    <ButtonGroup marginY="base">
-      <ButtonNew variant="subtle" context="neutral">Neutral Subtle</ButtonNew>
-      <ButtonNew variant="subtle" context="shadower" marginLeft="small">Shadower</ButtonNew>
-      <ButtonNew variant="subtle" context="host" marginLeft="small">Host</ButtonNew>
-      <ButtonNew variant="subtle" context="danger" marginLeft="small">Danger</ButtonNew>
-    </ButtonGroup>
-  </Box>
-  <Box bg="neutral.darker" padding="large">
-    <ButtonNew context="whiteout">Whiteout</ButtonNew>
-  </Box>
 </Playground>
 
 ## Select Button

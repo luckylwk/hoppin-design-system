@@ -1,23 +1,21 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /**
  * Documentation: https://react-select.com/styles
  */
-
 var getSelectStyles = function getSelectStyles(theme) {
   return {
     control: function control(styles, props) {
       var isFocused = props.isFocused;
-
       return _extends({}, styles, {
-        marginTop: '4px',
+        marginTop: theme.space.small,
         padding: '1px 8px',
-        backgroundColor: theme.colors.whiteout.light,
+        backgroundColor: theme.colors.form.background,
         borderWidth: theme.borderWidths.base,
-        borderRadius: isFocused ? theme.radii.small + ' ' + theme.radii.small + ' 0 0' : theme.radii.small,
-        borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark,
+        borderRadius: isFocused ? theme.radii.small + " " + theme.radii.small + " 0 0" : theme.radii.small,
+        borderColor: isFocused ? theme.colors.form.focused.border : theme.colors.form.border,
         ':hover': {
-          borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark
+          borderColor: isFocused ? theme.colors.form.focused.border : theme.colors.form.border
         },
         boxShadow: null,
         minHeight: '2rem',
@@ -26,10 +24,10 @@ var getSelectStyles = function getSelectStyles(theme) {
     },
     menu: function menu(styles) {
       return _extends({}, styles, {
-        marginTop: '0',
-        border: theme.borderWidths.base + ' solid ' + theme.colors.primary.base,
+        marginTop: "0",
+        border: theme.borderWidths.base + " solid " + theme.colors.form.focused.border,
         borderTop: '0px',
-        borderRadius: '0 0 ' + theme.radii.small + ' ' + theme.radii.small,
+        borderRadius: "0 0 " + theme.radii.small + " " + theme.radii.small,
         boxShadow: theme.shadows.small
       });
     },
@@ -39,18 +37,17 @@ var getSelectStyles = function getSelectStyles(theme) {
     option: function option(styles, props) {
       var isDisabled = props.isDisabled,
           isSelected = props.isSelected;
-
       return _extends({}, styles, {
-        padding: theme.space.small + ' ' + theme.space.base,
+        padding: theme.space.small + " " + theme.space.base,
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
         backgroundColor: isDisabled ? theme.colors.whiteout.light : isSelected ? theme.colors.whiteout.dark : theme.colors.whiteout.light,
-        color: isDisabled ? theme.colors.neutral.light : isSelected ? theme.colors.neutral.darker : theme.colors.neutral.base,
+        color: isDisabled ? theme.colors.neutral.base : isSelected ? theme.colors.form.focused.border : theme.colors.neutral.darker,
         cursor: isDisabled ? 'not-allowed' : 'default',
         ':hover': {
           backgroundColor: theme.colors.whiteout.dark,
-          color: theme.colors.primary.darker,
+          color: theme.colors.primary.darkest,
           cursor: 'pointer',
           fontWeight: theme.fontWeights.normal
         }
@@ -58,24 +55,25 @@ var getSelectStyles = function getSelectStyles(theme) {
     },
     input: function input(styles, _ref) {
       var isFocused = _ref.isFocused;
-
       return _extends({}, styles, {
-        backgroundColor: theme.colors.whiteout.light,
+        backgroundColor: theme.colors.form.background,
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
-        borderColor: isFocused ? theme.colors.primary.base : theme.colors.whiteout.dark
+        borderColor: isFocused ? theme.colors.form.focused.border : theme.colors.form.border
       });
     },
     valueContainer: function valueContainer(styles) {
-      return _extends({}, styles, { padding: '2.5px' });
+      return _extends({}, styles, {
+        padding: '2.5px'
+      });
     },
     placeholder: function placeholder(styles) {
       return _extends({}, styles, {
         fontFamily: theme.fonts.secondary,
         fontSize: theme.fontSizes.body,
         fontWeight: theme.fontWeights.normal,
-        color: theme.colors.neutral.base
+        color: theme.colors.form.placeholder
       });
     },
     singleValue: function singleValue(styles) {
@@ -85,32 +83,34 @@ var getSelectStyles = function getSelectStyles(theme) {
         fontWeight: theme.fontWeights.normal
       });
     },
+
     /** Multi value specific.  */
     multiValue: function multiValue(styles) {
       return _extends({}, styles, {
         fontSize: theme.fontSizes.body,
         fontFamily: theme.fonts.secondary,
         fontWeight: theme.fontWeights.normal,
-        backgroundColor: theme.colors.whiteout.darkest,
+        backgroundColor: theme.colors.form.background,
         borderRadius: theme.radii.xsmall
       });
     },
     multiValueLabel: function multiValueLabel(styles) {
       return _extends({}, styles, {
         fontSize: theme.fontSizes.body,
-        color: theme.colors.neutral.dark
+        color: theme.colors.form.focused.border
       });
     },
     multiValueRemove: function multiValueRemove(styles) {
       return _extends({}, styles, {
-        color: theme.colors.neutral.dark,
+        color: theme.colors.form.focused.border,
         cursor: 'pointer',
         ':hover': {
           backgroundColor: theme.colors.neutral.lighter,
-          color: theme.colors.neutral.dark
+          color: theme.colors.form.focused.border
         }
       });
     },
+
     /*  */
     loadingMessage: function loadingMessage(styles) {
       return _extends({}, styles, {
@@ -125,20 +125,17 @@ var getSelectStyles = function getSelectStyles(theme) {
       });
     }
   };
-};
+}; // ---------------------------
 
-// ---------------------------
 
 var getSelectTheme = function getSelectTheme(theme) {
   var colors = {
-    primary: theme.colors.primary.base,
-    primary75: theme.colors.primary.light,
-    primary50: theme.colors.primary.lighter,
+    primary: theme.colors.neutral.dark,
+    primary75: theme.colors.primary.dark,
+    primary50: theme.colors.primary.dark,
     primary25: theme.colors.primary.lightest,
-
     danger: theme.colors.danger.base,
     dangerLight: theme.colors.danger.lighter,
-
     neutral0: theme.colors.whiteout.lighter,
     neutral5: theme.colors.whiteout.light,
     neutral10: theme.colors.whiteout.base,
@@ -151,21 +148,18 @@ var getSelectTheme = function getSelectTheme(theme) {
     neutral80: theme.colors.neutral.darker,
     neutral90: theme.colors.neutral.darkest
   };
+  var borderRadius = theme.radii.small; // Used to calculate consistent margin/padding on elements
 
-  var borderRadius = theme.radii.small;
-  // Used to calculate consistent margin/padding on elements
-  var baseUnit = 5;
-  // The minimum height of the control
-  var controlHeight = 38;
-  // The amount of space between the control and menu */
+  var baseUnit = 5; // The minimum height of the control
+
+  var controlHeight = 38; // The amount of space between the control and menu */
+
   var menuGutter = baseUnit * 2;
-
   var spacing = {
     baseUnit: baseUnit,
     controlHeight: controlHeight,
     menuGutter: menuGutter
   };
-
   return {
     borderRadius: borderRadius,
     colors: colors,
@@ -174,7 +168,6 @@ var getSelectTheme = function getSelectTheme(theme) {
 };
 
 export { getSelectTheme, getSelectStyles };
-
 export default (function (theme) {
   return {
     styles: getSelectStyles(theme),

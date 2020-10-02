@@ -39,22 +39,22 @@ const Heading = styled('h2')`
     let colorCSS = '';
     switch (as) {
       case 'h1':
-        colorCSS = `color: ${colors.primary.base};`;
+        colorCSS = `color: ${colors.primary.lightest};`;
         break;
       case 'h2':
-        colorCSS = `color: ${colors.primary.base};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       case 'h3':
-        colorCSS = `color: ${colors.neutral.darker};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h4':
-        colorCSS = `color: ${colors.neutral.darker};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       case 'h5':
-        colorCSS = `color: ${colors.neutral.dark};`;
+        colorCSS = `color: ${colors.primary.base};`;
         break;
       case 'h6':
-        colorCSS = `color: ${colors.neutral.dark};`;
+        colorCSS = `color: ${colors.secondary.darker};`;
         break;
       default:
         colorCSS = `color: ${colors.primary.base};`;
@@ -81,6 +81,9 @@ const Heading = styled('h2')`
     margin-top: 0;
   }
 
+  & + & {
+    margin-top: 0 !important;
+  }
 `;
 
 Heading.propTypes = {

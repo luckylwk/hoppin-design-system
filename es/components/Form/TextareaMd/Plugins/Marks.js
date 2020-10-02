@@ -1,7 +1,6 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React from 'react';
-
 import { Text } from '../../../Text';
 
 var renderMark = function renderMark(_ref, _, next) {
@@ -11,29 +10,23 @@ var renderMark = function renderMark(_ref, _, next) {
 
   switch (mark.type) {
     case 'bold':
-      return React.createElement(
-        Text,
-        _extends({ fontWeight: 'bold' }, attributes),
-        children
-      );
+      return /*#__PURE__*/React.createElement(Text, _extends({
+        fontWeight: "bold"
+      }, attributes), children);
 
     case 'code':
-      return React.createElement(
-        'code',
-        attributes,
-        children
-      );
+      return /*#__PURE__*/React.createElement("code", attributes, children);
 
     case 'italic':
-      return React.createElement(
-        Text,
-        _extends({ fontStyle: 'italic' }, attributes),
-        children
-      );
+      return /*#__PURE__*/React.createElement(Text, _extends({
+        fontStyle: "italic"
+      }, attributes), children);
 
     default:
       return next();
   }
 };
 
-export default { renderMark: renderMark };
+export default {
+  renderMark: renderMark
+};

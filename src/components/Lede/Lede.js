@@ -30,7 +30,7 @@ const Lede = styled('p')`
   ${order}
 
   font-family: ${({ theme }) => theme.fonts.secondary};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-weight: ${({ theme }) => theme.fontWeights.light};
   letter-spacing: 0px;
   line-height: ${({ theme }) => theme.lineHeights.base};
 
@@ -55,7 +55,7 @@ Lede.propTypes = {
 Lede.defaultProps = {
   textAlign: 'inherit',
   fontSize: 4,
-  color: 'inherit', // respond to context, if we're white on dark background or dark on light.
+  color: 'secondary.darker',
   marginX: 0,
   marginY: 'large',
 };

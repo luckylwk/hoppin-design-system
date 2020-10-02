@@ -15,16 +15,16 @@ const Tag = styled('span')`
 
   &::before {
     content: '';
-    background-color: ${props =>
+    background-color: ${(props) =>
       get(props, `theme.colors.${props.color}`, '#ddd')};
     width: 4px;
     height: 4px;
     border-radius: 2px;
     vertical-align: middle;
-    -webkit-transform: translateY(-.1rem);
-    transform: translateY(-.1rem);
+    -webkit-transform: translateY(-0.1rem);
+    transform: translateY(-0.1rem);
     display: inline-block;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
   }
 
   &:first-of-type::before {

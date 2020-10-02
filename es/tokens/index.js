@@ -3,10 +3,8 @@ import { space, containerWidths, radii, zIndices, breakpoints, mediaQueries } fr
 import { buttonSizes, buttonIconSpacing } from './buttons';
 import { shadows } from './shadows';
 import { fonts, fontSizes, lineHeights, fontWeights, headings } from './typography';
-import { logo, icon } from './logos';
 import { borderWidths } from './borders';
 import { motions } from './motions';
-
 export default {
   space: space,
   containerWidths: containerWidths,
@@ -23,8 +21,6 @@ export default {
   buttonSizes: buttonSizes,
   buttonIconSpacing: buttonIconSpacing,
   shadows: shadows,
-  logo: logo,
-  icon: icon,
   borderWidths: borderWidths,
   motions: motions
 };

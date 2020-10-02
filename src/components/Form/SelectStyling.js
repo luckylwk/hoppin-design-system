@@ -2,44 +2,44 @@
  * Documentation: https://react-select.com/styles
  */
 
-const getSelectStyles = theme => ({
+const getSelectStyles = (theme) => ({
   control: (styles, props) => {
     const {
       isFocused, //hasValue
     } = props;
     return {
       ...styles,
-      marginTop: '4px',
+      marginTop: theme.space.small,
       padding: '1px 8px',
-      backgroundColor: theme.colors.whiteout.light,
+      backgroundColor: theme.colors.form.background,
       borderWidth: theme.borderWidths.base,
       borderRadius: isFocused
         ? `${theme.radii.small} ${theme.radii.small} 0 0`
         : theme.radii.small,
       borderColor: isFocused
-        ? theme.colors.primary.base
-        : theme.colors.whiteout.dark,
+        ? theme.colors.form.focused.border
+        : theme.colors.form.border,
       ':hover': {
         borderColor: isFocused
-          ? theme.colors.primary.base
-          : theme.colors.whiteout.dark,
+          ? theme.colors.form.focused.border
+          : theme.colors.form.border,
       },
       boxShadow: null,
       minHeight: '2rem',
       lineHeight: 1,
     };
   },
-  menu: styles => {
+  menu: (styles) => {
     return {
       ...styles,
       marginTop: `0`,
-      border: `${theme.borderWidths.base} solid ${theme.colors.primary.base}`,
+      border: `${theme.borderWidths.base} solid ${theme.colors.form.focused.border}`,
       borderTop: '0px',
       borderRadius: `0 0 ${theme.radii.small} ${theme.radii.small}`,
       boxShadow: theme.shadows.small,
     };
   },
-  menuList: styles => {
+  menuList: (styles) => {
     return { ...styles };
   },
   option: (styles, props) => {
@@ -56,14 +56,14 @@ const getSelectStyles = theme => ({
         ? theme.colors.whiteout.dark
         : theme.colors.whiteout.light,
       color: isDisabled
-        ? theme.colors.neutral.light
+        ? theme.colors.neutral.base
         : isSelected
-        ? theme.colors.neutral.darker
-        : theme.colors.neutral.base,
+        ? theme.colors.form.focused.border
+        : theme.colors.neutral.darker,
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':hover': {
         backgroundColor: theme.colors.whiteout.dark,
-        color: theme.colors.primary.darker,
+        color: theme.colors.primary.darkest,
         cursor: 'pointer',
         fontWeight: theme.fontWeights.normal,
       },
@@ -72,63 +72,63 @@ const getSelectStyles = theme => ({
   input: (styles, { isFocused }) => {
     return {
       ...styles,
-      backgroundColor: theme.colors.whiteout.light,
+      backgroundColor: theme.colors.form.background,
       fontSize: theme.fontSizes.body,
       fontFamily: theme.fonts.secondary,
       fontWeight: theme.fontWeights.normal,
       borderColor: isFocused
-        ? theme.colors.primary.base
-        : theme.colors.whiteout.dark,
+        ? theme.colors.form.focused.border
+        : theme.colors.form.border,
     };
   },
-  valueContainer: styles => {
+  valueContainer: (styles) => {
     return { ...styles, padding: '2.5px' };
   },
-  placeholder: styles => {
+  placeholder: (styles) => {
     return {
       ...styles,
       fontFamily: theme.fonts.secondary,
       fontSize: theme.fontSizes.body,
       fontWeight: theme.fontWeights.normal,
-      color: theme.colors.neutral.base,
+      color: theme.colors.form.placeholder,
     };
   },
-  singleValue: styles => ({
+  singleValue: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
-  multiValue: styles => ({
+  multiValue: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
     fontWeight: theme.fontWeights.normal,
-    backgroundColor: theme.colors.whiteout.darkest,
+    backgroundColor: theme.colors.form.background,
     borderRadius: theme.radii.xsmall,
   }),
-  multiValueLabel: styles => ({
+  multiValueLabel: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
-    color: theme.colors.neutral.dark,
+    color: theme.colors.form.focused.border,
   }),
-  multiValueRemove: styles => ({
+  multiValueRemove: (styles) => ({
     ...styles,
-    color: theme.colors.neutral.dark,
+    color: theme.colors.form.focused.border,
     cursor: 'pointer',
     ':hover': {
       backgroundColor: theme.colors.neutral.lighter,
-      color: theme.colors.neutral.dark,
+      color: theme.colors.form.focused.border,
     },
   }),
   /*  */
-  loadingMessage: styles => ({
+  loadingMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
   }),
-  noOptionsMessage: styles => ({
+  noOptionsMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
@@ -137,11 +137,11 @@ const getSelectStyles = theme => ({
 
 // ---------------------------
 
-const getSelectTheme = theme => {
+const getSelectTheme = (theme) => {
   const colors = {
-    primary: theme.colors.primary.base,
-    primary75: theme.colors.primary.light,
-    primary50: theme.colors.primary.lighter,
+    primary: theme.colors.neutral.dark,
+    primary75: theme.colors.primary.dark,
+    primary50: theme.colors.primary.dark,
     primary25: theme.colors.primary.lightest,
 
     danger: theme.colors.danger.base,
@@ -183,7 +183,7 @@ const getSelectTheme = theme => {
 
 export { getSelectTheme, getSelectStyles };
 
-export default theme => ({
+export default (theme) => ({
   styles: getSelectStyles(theme),
   theme: getSelectTheme(theme),
 });

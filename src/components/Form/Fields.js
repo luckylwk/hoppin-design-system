@@ -16,9 +16,12 @@ import {
   Input,
   Label,
   TextareaMd,
+  Textarea,
+  PhoneInput,
   RequiredCharacters,
   FieldExplanation,
   SelectButton,
+  RequiredText,
 } from '.';
 
 import { Flex } from '../Flex';
@@ -30,21 +33,25 @@ import { Paragraph } from '../Paragraph';
 
 const FiChevronDownStyled = styled(FiChevronDown)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
 const FiSearchStyled = styled(FiSearch)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
-const SearchDropdownIndicator = props => (
+const SearchDropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiSearchStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
 );
 
-const DropdownIndicator = props => (
+const DropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiChevronDownStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
@@ -68,13 +75,38 @@ export const renderField = (field, onChange, selectStyling) => {
     field.props = { ...field.props, marginBottom: 0 };
   }
 
-  if (field.type === 'textarea') {
+  if (field.type === 'textareamd') {
     return (
       <Fragment>
         <TextareaMd
           name={field.name}
           initialValue={field.value}
           label={field.label}
+          placeholder={field.placeholder}
+          onChange={onChange.bind(null, field.name)}
+          context={field.context}
+          {...field.props}
+        />
+        {field.maxLength && (
+          <RequiredCharacters>
+            We recommend using no more than{' '}
+            {charsUsed !== 0 ? `${charsUsed}/` : ''}
+            {field.maxLength} characters.
+          </RequiredCharacters>
+        )}
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </Fragment>
+    );
+  }
+
+  if (field.type === 'textarea') {
+    return (
+      <Fragment>
+        <Textarea
+          name={field.name}
+          value={field.value}
+          label={field.label}
+          required={field.required}
           placeholder={field.placeholder}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
@@ -100,6 +132,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Creatable
           isClearable
           clearValue={() =>
@@ -123,7 +158,7 @@ export const renderField = (field, onChange, selectStyling) => {
             };
             return onChange(field.name, mockEvent);
           }}
-          formatCreateLabel={userInput => `Click to add: ${userInput}`}
+          formatCreateLabel={(userInput) => `Click to add: ${userInput}`}
           options={field.options}
           value={field.value}
           components={{ IndicatorSeparator, DropdownIndicator }}
@@ -142,6 +177,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Select
           isMulti={field.type === 'multi-select'}
           isClearable={field.type === 'multi-select'}
@@ -178,6 +216,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Async
           cacheOptions={false}
           value={field.value}
@@ -214,6 +255,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <AsyncCreatableSelect
           name={field.name}
           cacheOptions={false}
@@ -249,7 +293,34 @@ export const renderField = (field, onChange, selectStyling) => {
         label={field.label}
         checked={field.checked}
         onChange={onChange.bind(null, field.name)}
+        required={field.required}
       />
+    );
+  }
+
+  if (field.type === 'phoneinput') {
+    return (
+      <Fragment>
+        <PhoneInput
+          value={field.value || ''}
+          name={field.name}
+          placeholder={field.placeholder}
+          label={field.label}
+          required={field.required}
+          onChange={onChange.bind(null, field.name)}
+          context={field.context}
+          overrideBg={field.overrideBg}
+          {...field.props}
+        />
+        {field.maxLength && (
+          <RequiredCharacters>
+            We recommend using no more than{' '}
+            {charsUsed !== 0 ? `${charsUsed}/` : ''}
+            {field.maxLength} characters.
+          </RequiredCharacters>
+        )}
+        {field.explain && <FieldExplanation>{field.explain}</FieldExplanation>}
+      </Fragment>
     );
   }
 
@@ -316,8 +387,8 @@ export const renderField = (field, onChange, selectStyling) => {
         value={field.value || ''}
         name={field.name}
         placeholder={field.placeholder}
-        // label={field.title ? undefined : field.label}
         label={field.label}
+        required={field.required}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
         renderWidth={field.renderWidth || 'full'}
@@ -343,7 +414,7 @@ const Fields = ({ onChange, fields, theme }) => {
 
   return (
     <Box>
-      {fields.map(field => (
+      {fields.map((field) => (
         <Box
           key={field.name}
           marginBottom={

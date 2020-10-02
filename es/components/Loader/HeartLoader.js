@@ -1,22 +1,43 @@
-var _templateObject = _taggedTemplateLiteralLoose(['\n  0% {\n    transform: scale(0.95);\n  }\n  5% {\n    transform: scale(1.1);\n  }\n  39% {\n    transform: scale(0.85);\n  }\n  45% {\n    transform: scale(1);\n  }\n  60% {\n    transform: scale(0.95);\n  }\n  100% {\n    transform: scale(0.9);\n  }\n'], ['\n  0% {\n    transform: scale(0.95);\n  }\n  5% {\n    transform: scale(1.1);\n  }\n  39% {\n    transform: scale(0.85);\n  }\n  45% {\n    transform: scale(1);\n  }\n  60% {\n    transform: scale(0.95);\n  }\n  100% {\n    transform: scale(0.9);\n  }\n']),
-    _templateObject2 = _taggedTemplateLiteralLoose(['\n  display: inline-block;\n\n  position: relative;\n\n  width: ', 'px;\n  height: ', 'px;\n\n  transform: rotate(45deg);\n  transform-origin: ', 'px;\n  ', 'px;\n'], ['\n  display: inline-block;\n\n  position: relative;\n\n  width: ', 'px;\n  height: ', 'px;\n\n  transform: rotate(45deg);\n  transform-origin: ', 'px;\n  ', 'px;\n']),
-    _templateObject3 = _taggedTemplateLiteralLoose(['\n  display: block;\n  position: absolute;\n  \n  top: ', 'px;\n  left: ', 'px;\n\n  width: ', 'px;\n  height: ', 'px;\n  \n  background-color: ', ';\n  \n  animation: ', ' 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n  animation-delay: ', ';\n\n  &:after,\n  &:before {\n    content: " ";\n    position: absolute;\n    display: block;\n    width: ', 'px;\n    height: ', 'px;\n    background-color: ', ';\n  }\n\n  &:before {\n    left: -', 'px;\n    border-radius: 50% 0 0 50%;\n  }\n\n  &:after {\n    top: -', 'px\n    border-radius: 50% 50% 0 0;\n  }\n'], ['\n  display: block;\n  position: absolute;\n  \n  top: ', 'px;\n  left: ', 'px;\n\n  width: ', 'px;\n  height: ', 'px;\n  \n  background-color: ', ';\n  \n  animation: ', ' 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n  animation-delay: ', ';\n\n  &:after,\n  &:before {\n    content: " ";\n    position: absolute;\n    display: block;\n    width: ', 'px;\n    height: ', 'px;\n    background-color: ', ';\n  }\n\n  &:before {\n    left: -', 'px;\n    border-radius: 50% 0 0 50%;\n  }\n\n  &:after {\n    top: -', 'px\n    border-radius: 50% 50% 0 0;\n  }\n']);
+function _templateObject3() {
+  var data = _taggedTemplateLiteralLoose(["\n  display: block;\n  position: absolute;\n  \n  top: ", "px;\n  left: ", "px;\n\n  width: ", "px;\n  height: ", "px;\n  \n  background-color: ", ";\n  \n  animation: ", " 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n  animation-delay: ", ";\n\n  &:after,\n  &:before {\n    content: \" \";\n    position: absolute;\n    display: block;\n    width: ", "px;\n    height: ", "px;\n    background-color: ", ";\n  }\n\n  &:before {\n    left: -", "px;\n    border-radius: 50% 0 0 50%;\n  }\n\n  &:after {\n    top: -", "px\n    border-radius: 50% 50% 0 0;\n  }\n"]);
 
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteralLoose(["\n  display: inline-block;\n\n  position: relative;\n\n  width: ", "px;\n  height: ", "px;\n\n  transform: rotate(45deg);\n  transform-origin: ", "px;\n  ", "px;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(["\n  0% {\n    transform: scale(0.95);\n  }\n  5% {\n    transform: scale(1.1);\n  }\n  39% {\n    transform: scale(0.85);\n  }\n  45% {\n    transform: scale(1);\n  }\n  60% {\n    transform: scale(0.95);\n  }\n  100% {\n    transform: scale(0.9);\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
 
 // From: https://loading.io/css/
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components'; // ---------------------------
 
-// ---------------------------
+var HeartKeyFrames = keyframes(_templateObject()); // ---------------------------
 
-var HeartKeyFrames = keyframes(_templateObject);
-
-// ---------------------------
-
-var Wrapper = styled.div(_templateObject2, function (_ref) {
+var Wrapper = styled.div(_templateObject2(), function (_ref) {
   var size = _ref.size;
   return Math.round(2 * size);
 }, function (_ref2) {
@@ -28,11 +49,9 @@ var Wrapper = styled.div(_templateObject2, function (_ref) {
 }, function (_ref4) {
   var size = _ref4.size;
   return Math.round(0.66 * size);
-});
+}); // ---------------------------
 
-// ---------------------------
-
-var Heart = styled.div(_templateObject3, function (_ref5) {
+var Heart = styled.div(_templateObject3(), function (_ref5) {
   var size = _ref5.size;
   return Math.round(0.66 * size);
 }, function (_ref6) {
@@ -67,30 +86,27 @@ var Heart = styled.div(_templateObject3, function (_ref5) {
 }, function (_ref15) {
   var size = _ref15.size;
   return Math.round(0.5 * size);
-});
-
-// ---------------------------
+}); // ---------------------------
 
 var HeartLoader = function HeartLoader(_ref16) {
   var size = _ref16.size,
       context = _ref16.context;
-  return React.createElement(
-    Wrapper,
-    { size: size },
-    React.createElement(Heart, { delay: '0s', size: size, context: context })
-  );
+  return /*#__PURE__*/React.createElement(Wrapper, {
+    size: size
+  }, /*#__PURE__*/React.createElement(Heart, {
+    delay: "0s",
+    size: size,
+    context: context
+  }));
 };
 
 HeartLoader.propTypes = process.env.NODE_ENV !== "production" ? {
   context: PropTypes.string,
   size: PropTypes.number
 } : {};
-
 HeartLoader.defaultProps = {
   context: 'neutral',
   size: 32
 };
-
 HeartLoader.displayName = 'HeartLoader';
-
 export default HeartLoader;

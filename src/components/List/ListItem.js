@@ -44,11 +44,11 @@ const ListItemWrapper = styled('li')`
         ? theme.colors.neutral.light
         : theme.colors.primary.base};
 
-      position: absolute;
-      top: .2em;
-      left: -${({ theme }) => theme.space.base};
-      width: 1em;
-      height: 1em;
+    position: absolute;
+    top: 0.2em;
+    left: -${({ theme }) => theme.space.base};
+    width: 1em;
+    height: 1em;
   }
 
   ${OrderedList} & svg {

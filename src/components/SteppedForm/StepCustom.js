@@ -25,7 +25,7 @@ const StepCustom = ({
       Array.isArray(fields) &&
       fields.length > 0 &&
       fields
-        .map(field => {
+        .map((field) => {
           return (
             !field.required ||
             (formData[field.name] && formData[field.name] !== '')

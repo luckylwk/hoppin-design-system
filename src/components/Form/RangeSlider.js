@@ -67,7 +67,7 @@ const StyledSlider = styled(Slider)`
     border-radius: 10px;
     .rangeslider__fill {
       height: 100%;
-      background-color: ${({ theme }) => theme.colors.primary.base};
+      background-color: ${({ theme }) => theme.colors.secondary.lighter};
       border-radius: 10px;
       top: 0;
     }
@@ -119,7 +119,7 @@ const StyledSlider = styled(Slider)`
 
     .rangeslider__fill {
       width: 100%;
-      background-color: ${({ theme }) => theme.colors.primary.base};
+      background-color: ${({ theme }) => theme.colors.secondary.lighter};
       box-shadow: none;
       bottom: 0;
     }
@@ -208,7 +208,7 @@ const StyledSlider = styled(Slider)`
 // ---------------------------
 
 const RangeSlider = ({ name, value, onChange, ...rest }) => {
-  const onChangeHandler = newValue => {
+  const onChangeHandler = (newValue) => {
     onChange({ target: { type: 'slider', name, value: newValue } });
   };
 

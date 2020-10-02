@@ -1,46 +1,72 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var _class, _temp2, _initialiseProps;
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LinkStyled from './LinkStyled'; // Logic from https://bit.dev/grommet/grommet/routed-button/~code#components/RoutedButton/RoutedButton.js
 
-import LinkStyled from './LinkStyled';
-
-// Logic from https://bit.dev/grommet/grommet/routed-button/~code#components/RoutedButton/RoutedButton.js
-
-var RoutedLinkStyled = (_temp2 = _class = function (_Component) {
-  _inherits(RoutedLinkStyled, _Component);
+var RoutedLinkStyled = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(RoutedLinkStyled, _Component);
 
   function RoutedLinkStyled() {
-    var _temp, _this, _ret;
+    var _this;
 
-    _classCallCheck(this, RoutedLinkStyled);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+    for (var _len = arguments.length, _args = new Array(_len), _key = 0; _key < _len; _key++) {
+      _args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
+    _this = _Component.call.apply(_Component, [this].concat(_args)) || this;
+
+    _defineProperty(_assertThisInitialized(_this), "onClick", function (event) {
+      var _this$props = _this.props,
+          method = _this$props.method,
+          onClick = _this$props.onClick,
+          to = _this$props.to;
+      var router = _this.context.router;
+
+      if (event) {
+        var modifierKey = event.ctrlKey || event.metaKey; // if the user right-clicked in the button we should let it go
+
+        if (modifierKey) {
+          return;
+        }
+      }
+
+      if (router) {
+        event.preventDefault();
+        (router.history || router)[method](to);
+      }
+
+      if (onClick) {
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
+
+        onClick.apply(void 0, [event].concat(args));
+      }
+    });
+
+    return _this;
   }
 
-  RoutedLinkStyled.prototype.render = function render() {
-    var _props = this.props,
-        href = _props.href,
-        to = _props.to,
-        method = _props.method,
-        onClick = _props.onClick,
-        rest = _objectWithoutProperties(_props, ['href', 'to', 'method', 'onClick']);
+  var _proto = RoutedLinkStyled.prototype;
 
-    return React.createElement(LinkStyled, _extends({}, rest, {
+  _proto.render = function render() {
+    var _this$props2 = this.props,
+        href = _this$props2.href,
+        to = _this$props2.to,
+        method = _this$props2.method,
+        onClick = _this$props2.onClick,
+        rest = _objectWithoutPropertiesLoose(_this$props2, ["href", "to", "method", "onClick"]);
+
+    return /*#__PURE__*/React.createElement(LinkStyled, _extends({}, rest, {
       href: to || href,
       disabled: !to && !onClick,
       onClick: this.onClick
@@ -48,42 +74,15 @@ var RoutedLinkStyled = (_temp2 = _class = function (_Component) {
   };
 
   return RoutedLinkStyled;
-}(Component), _class.contextTypes = {
+}(Component);
+
+_defineProperty(RoutedLinkStyled, "contextTypes", {
   router: PropTypes.shape({}).isRequired
-}, _class.defaultProps = {
+});
+
+_defineProperty(RoutedLinkStyled, "defaultProps", {
   method: 'push'
-}, _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
-
-  this.onClick = function (event) {
-    for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-      args[_key2 - 1] = arguments[_key2];
-    }
-
-    var _props2 = _this2.props,
-        method = _props2.method,
-        onClick = _props2.onClick,
-        to = _props2.to;
-    var router = _this2.context.router;
-
-    if (event) {
-      var modifierKey = event.ctrlKey || event.metaKey;
-
-      // if the user right-clicked in the button we should let it go
-      if (modifierKey) {
-        return;
-      }
-    }
-    if (router) {
-      event.preventDefault();
-      (router.history || router)[method](to);
-    }
-    if (onClick) {
-      onClick.apply(undefined, [event].concat(args));
-    }
-  };
-}, _temp2);
-
+});
 
 RoutedLinkStyled.displayName = 'RoutedLinkStyled';
 export default RoutedLinkStyled;

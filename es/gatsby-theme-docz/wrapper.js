@@ -1,11 +1,6 @@
 import React from 'react';
-import { HoppinDesignProvider } from '../../../src/components/HoppinDesignProvider';
-
+import { DesignProvider } from '../../../src/components/DesignProvider';
 export default (function (_ref) {
   var children = _ref.children;
-  return React.createElement(
-    HoppinDesignProvider,
-    null,
-    children
-  );
+  return /*#__PURE__*/React.createElement(DesignProvider, null, children);
 });

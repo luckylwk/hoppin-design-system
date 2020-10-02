@@ -1,0 +1,53 @@
+---
+name: DesignProvider
+route: /components/DesignProvider
+menu: Components
+---
+
+import { Props, Playground } from 'docz';
+import { DesignProvider } from '../DesignProvider';
+import { Button } from '../Button';
+
+# DesignProvider
+
+The DesignProvider should wrap the main App component, it provides the theme to all the siblings.
+
+Please manually add the fonts to the header of your app. For convenience you can `import { Fonts } form 'orbiit-design-system'` and then render `<Fonts />` in the head of your app.
+
+In Next.js you'd add it to your `_app.js`:
+
+```
+import Head from 'next/head';
+
+function MyApp({ Component, pageProps }) {
+  ${ /* .... other components  ....*/ }
+      <Head>
+        <Fonts />
+      </Head>
+  ${ /* .... other components  ....*/ }
+  );
+}
+```
+
+## Props
+
+<Props of={DesignProvider} />
+
+<Playground>
+  <DesignProvider>
+    <Button variant="full" context="primary">Primary Button</Button>
+  </DesignProvider>
+
+
+<br/>
+<DesignProvider context="shadower">
+  <Button variant="full" context="primary">
+    Primary Button
+  </Button>
+</DesignProvider>
+<br/>
+  <DesignProvider context="host">
+    <Button variant="full" context="primary">Primary Button</Button>
+  </DesignProvider>
+</Playground>
+

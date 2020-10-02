@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
-import CheckboxLabel from './Label';
+
+import { Label, RequiredText } from '.';
 
 /**
  * Taken from
@@ -20,7 +21,7 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: ${({ theme }) => theme.colors.primary.dark};
+  stroke: ${({ theme }) => theme.colors.primary.lightest};
   stroke-width: 4px;
 `;
 
@@ -57,15 +58,15 @@ const StyledCheckbox = styled.div`
   width: 18px;
   height: 18px;
 
-  ${CheckboxLabel} & {
+  ${Label} & {
     margin-right: ${({ theme }) => theme.space.small};
   }
 
   background: ${({ checked, theme }) =>
-    !checked ? theme.colors.neutral.lightest : theme.colors.primary.lightest};
+    !checked ? theme.colors.form.background : theme.colors.primary.darkest};
   border: 2px solid
     ${({ checked, theme }) =>
-      !checked ? theme.colors.neutral.lighter : theme.colors.primary.base};
+      !checked ? theme.colors.form.border : theme.colors.primary.darkest};
 
   border-radius: ${({ theme }) => theme.radii.xsmall};
 
@@ -78,28 +79,34 @@ const StyledCheckbox = styled.div`
   ${Icon} {
     visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
   }
+
+  cursor: pointer;
 `;
 
 StyledCheckbox.displayName = 'StyledCheckbox';
 
 // ---------------------------
 
-const Checkbox = ({ name, checked, label, onChange }) => {
-  const onClick = e => {
-    e.preventDefault();
-    onChange({
-      target: {
-        type: 'checkbox',
-        name,
-        value: !checked ? 'on' : null,
-        checked: !checked,
-      },
-    });
-  };
-  const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+const Checkbox = ({ name, checked, label, required, onChange }) => {
+  const onClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      onChange({
+        target: {
+          type: 'checkbox',
+          name,
+          value: !checked ? 'on' : null,
+          checked: !checked,
+        },
+      });
+    },
+    [onChange, checked, name]
+  );
+
+  const LabelOrCheckboxContainer = !!label ? Label : CheckboxContainer;
 
   return (
-    <CheckBoxWrapper onClick={onClick} htmlFor={name}>
+    <LabelOrCheckboxContainer onClick={onClick} htmlFor={name}>
       <HiddenCheckbox checked={checked} name={name} />
       <StyledCheckbox checked={checked}>
         <Icon viewBox="0 0 24 24">
@@ -107,7 +114,8 @@ const Checkbox = ({ name, checked, label, onChange }) => {
         </Icon>
       </StyledCheckbox>
       {label}
-    </CheckBoxWrapper>
+      {label && required && <RequiredText>*required</RequiredText>}
+    </LabelOrCheckboxContainer>
   );
 };
 
@@ -117,10 +125,12 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   checked: false,
+  required: false,
 };
 
 Checkbox.displayName = 'Checkbox';

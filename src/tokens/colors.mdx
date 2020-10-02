@@ -4,9 +4,9 @@ route: /tokens/Colors
 menu: Tokens
 ---
 
-import { ColorSwatches } from "../docz-components/Swatches";
-import { Flex } from "../components/Flex";
-import { colors } from "./colors";
+import { ColorSwatches } from '../docz-components/Swatches';
+import { Flex } from '../components/Flex';
+import { colors } from './colors';
 
 # Colors
 
@@ -14,22 +14,16 @@ import { colors } from "./colors";
 
 ### Contextual Primary colors
 
-Primary colors react to the context that is set in `HoppinDesignProvider`
-Wherever possible use `primary` and set the context in the HoppinDesignProvider that wrappes that part of the app.
+Primary colors react to the context that is set in `DesignProvider`.
+Wherever possible use `primary` and set the context in the DesignProvider that wrappes that part of the app.
 
 <ColorSwatches colors={colors} context="primary" />
 
-### Shadower Colors
+### Contextual Secondary colors
 
-These colors are assigned to `primary` when `context='shadower'` on the `HoppinDesignProvider`
+Secondary colors react to the context that is set in `DesignProvider`.
 
-<ColorSwatches colors={colors} context="shadower" />
-
-### Host Colors
-
-These colors are assigned to `primary` when `context='host'` on the `HoppinDesignProvider`
-
-<ColorSwatches colors={colors} context="host" />
+<ColorSwatches colors={colors} context="secondary" />
 
 ## Neutral colors
 

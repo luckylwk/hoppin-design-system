@@ -7,6 +7,7 @@ menu: Components
 import { Props, Playground } from 'docz';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
+import { Box } from '../Box';
 
 # Heading
 
@@ -26,9 +27,10 @@ Make sure you only have one h1 per page.
 If you need more options, consider using [Text](components/Text) or [Paragraph](components/Paragraph).
 
 <Playground>
-  <Heading as="h1">The big site title, just one per page, please</Heading>
-  <Heading>What a default!</Heading>
-  <Heading as="h3">You will use this one a lot</Heading>
+  <Box bg="primary.darker" p="medium">
+    <Heading as="h1">The big site title, just one per page, please</Heading>
+  </Box>
+  <Heading>Default is the H2</Heading>
   <Paragraph>
     Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
     williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
@@ -36,21 +38,30 @@ If you need more options, consider using [Text](components/Text) or [Paragraph](
     sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
     brooklyn bushwick distillery.
   </Paragraph>
-  <Heading as="h4">And this guy</Heading>
+  <Heading as="h3">H3 looks the same, but in indigo</Heading>
+  <Paragraph>
+    Lorem ipsum dolor amet photo booth scenester cornhole trust fund vaporware
+    williamsburg. Selfies tbh tumeric XOXO man braid cred. Skateboard heirloom
+    locavore, kogi everyday carry af tattooed art party asymmetrical cardigan
+    sustainable. Tbh cornhole post-ironic, literally hashtag ethical adaptogen
+    brooklyn bushwick distillery.
+  </Paragraph>
+  <Heading as="h4">Then we get smaller with H4</Heading>
   <Paragraph>
     Tbh cornhole post-ironic, literally hashtag ethical adaptogen brooklyn
     bushwick distillery. Vape stumptown swag glossier small batch gastropub.
     Vape stumptown swag glossier small batch gastropub. Taxidermy 90's everyday
     carry kombucha.
   </Paragraph>
-  <Heading as="h5">From here, we're using neutral colors</Heading>
+  <Heading as="h5">Again, H5 is the same, but in indigo</Heading>
   <Paragraph>
     Everyday carry af tattooed art party asymmetrical cardigan sustainable. Tbh
     cornhole post-ironic, literally hashtag ethical adaptogen brooklyn bushwick
     distillery. Vape stumptown swag glossier small batch gastropub. Taxidermy
     90's everyday carry kombucha. Banjo VHS occupy marfa roof party slow-carb.
   </Paragraph>
-  <Heading as="h6">All the way down to the smallest one</Heading>
+  <Heading as="h6">H6 is best used as a Caption</Heading>
+  <Heading>To a nice big orange title, H2 or H4</Heading>
   <Paragraph>
     Skateboard heirloom locavore, kogi everyday carry af tattooed art party
     asymmetrical cardigan sustainable. Tbh cornhole post-ironic, literally
