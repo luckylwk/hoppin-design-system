@@ -22,10 +22,10 @@ start:
 make build:
 	yarn build
 
-deploy/now:
-	now switch hoppin
+deploy:
+	now switch orbiit
 	now
 
-deploy/now-prod:
-	now switch hoppin
+deploy/prod:
+	now switch orbiit
 	now --prod

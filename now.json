@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "scope": "hoppin",
+  "scope": "orbiit",
   "builds": [
     {
       "src": "package.json",
