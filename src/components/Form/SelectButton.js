@@ -191,7 +191,6 @@ const SelectButton = ({
   const isWildcardSelected =
     enableWildcard &&
     getIsSelected(isMultiSelect, other, { value: wildcardText });
-  console.log('isWildcardSelected', isWildcardSelected);
 
   return (
     <Box>
