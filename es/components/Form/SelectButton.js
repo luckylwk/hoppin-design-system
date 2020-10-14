@@ -183,7 +183,6 @@ var SelectButton = function SelectButton(_ref3) {
   }
 
   var isWildcardSelected = enableWildcard && getIsSelected(isMultiSelect, other, { value: wildcardText });
-  console.log('isWildcardSelected', isWildcardSelected);
 
   return React.createElement(
     Box,

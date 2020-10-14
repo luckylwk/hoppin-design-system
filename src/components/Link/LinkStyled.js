@@ -31,16 +31,16 @@ const LinkStyled = styled.a`
 
   border: none;
   border-bottom: 1px solid ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.light;
+    const colors = get(theme.colors, context, theme.colors.neutral);
+    return colors.base;
   }};
 
   color: ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.primary);
-    return colors.darker;
+    const colors = get(theme.colors, context, theme.colors.neutral);
+    return colors.darkest;
   }};
 
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 0.5px;
 
   outline: none;
