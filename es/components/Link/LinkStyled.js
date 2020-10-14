@@ -23,17 +23,17 @@ var LinkStyled = styled.a(_templateObject, function (_ref) {
   var theme = _ref2.theme,
       context = _ref2.context;
 
-  var colors = get(theme.colors, context, theme.colors.primary);
-  return colors.light;
+  var colors = get(theme.colors, context, theme.colors.neutral);
+  return colors.base;
 }, function (_ref3) {
   var theme = _ref3.theme,
       context = _ref3.context;
 
-  var colors = get(theme.colors, context, theme.colors.primary);
-  return colors.darker;
+  var colors = get(theme.colors, context, theme.colors.neutral);
+  return colors.darkest;
 }, function (_ref4) {
   var theme = _ref4.theme;
-  return theme.fontWeights.normal;
+  return theme.fontWeights.bold;
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.shadows.small;
