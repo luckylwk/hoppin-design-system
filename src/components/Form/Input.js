@@ -13,6 +13,8 @@ const InputField = styled.input`
   display: block;
 
   ${typography}
+  line-height: 1em;
+
   ${space}
   ${border}
 
@@ -24,7 +26,7 @@ const InputField = styled.input`
       left: theme.space.base,
     };
     if (icon !== undefined) {
-      padding[iconPosition] = '2.7rem';
+      padding[iconPosition] = '2.4rem';
     }
     return `padding: ${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`;
   }};
@@ -58,6 +60,7 @@ const InputField = styled.input`
     font-family: ${({ theme }) => theme.fonts.secondary};
     font-weight: ${({ theme }) => theme.fontWeights.normal};
     color: ${({ theme }) => theme.colors.form.placeholder};
+    line-height: 1em;
   }
 
   appearance: none;

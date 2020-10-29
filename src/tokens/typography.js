@@ -1,8 +1,8 @@
 import { space } from './space';
 
 const fonts = {
-  primary: '"Surt", sans-serif',
-  secondary: '"Surt", sans-serif',
+  primary: '"AT Surt", sans-serif',
+  secondary: '"AT Surt", sans-serif',
   system:
     '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue',
 };
