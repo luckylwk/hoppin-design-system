@@ -21,6 +21,7 @@ import {
   RequiredCharacters,
   FieldExplanation,
   SelectButton,
+  RequiredText,
 } from '.';
 
 import { Flex } from '../Flex';
@@ -32,12 +33,16 @@ import { Paragraph } from '../Paragraph';
 
 const FiChevronDownStyled = styled(FiChevronDown)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
 const FiSearchStyled = styled(FiSearch)`
   color: ${({ theme, focused }) =>
-    focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
+    focused === 'true'
+      ? theme.colors.form.focused.border
+      : theme.colors.form.border};
 `;
 
 const SearchDropdownIndicator = (props) => (
@@ -101,6 +106,7 @@ export const renderField = (field, onChange, selectStyling) => {
           name={field.name}
           value={field.value}
           label={field.label}
+          required={field.required}
           placeholder={field.placeholder}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
@@ -126,6 +132,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Creatable
           isClearable
           clearValue={() =>
@@ -168,6 +177,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Select
           isMulti={field.type === 'multi-select'}
           isClearable={field.type === 'multi-select'}
@@ -204,6 +216,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <Async
           cacheOptions={false}
           value={field.value}
@@ -240,6 +255,9 @@ export const renderField = (field, onChange, selectStyling) => {
     return (
       <LabelOrFragment {...labelProps}>
         {field.label}
+        {field.label && field.required && (
+          <RequiredText>*required</RequiredText>
+        )}
         <AsyncCreatableSelect
           name={field.name}
           cacheOptions={false}
@@ -275,6 +293,7 @@ export const renderField = (field, onChange, selectStyling) => {
         label={field.label}
         checked={field.checked}
         onChange={onChange.bind(null, field.name)}
+        required={field.required}
       />
     );
   }
@@ -287,6 +306,7 @@ export const renderField = (field, onChange, selectStyling) => {
           name={field.name}
           placeholder={field.placeholder}
           label={field.label}
+          required={field.required}
           onChange={onChange.bind(null, field.name)}
           context={field.context}
           overrideBg={field.overrideBg}
@@ -367,8 +387,8 @@ export const renderField = (field, onChange, selectStyling) => {
         value={field.value || ''}
         name={field.name}
         placeholder={field.placeholder}
-        // label={field.title ? undefined : field.label}
         label={field.label}
+        required={field.required}
         onChange={onChange.bind(null, field.name)}
         context={field.context}
         renderWidth={field.renderWidth || 'full'}

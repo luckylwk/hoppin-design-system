@@ -2,7 +2,8 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RcCheckbox from 'rc-checkbox';
-import CheckboxLabel from './Label';
+
+import { Label, RequiredText } from '.';
 
 /**
  * Taken from
@@ -57,7 +58,7 @@ const StyledCheckbox = styled.div`
   width: 18px;
   height: 18px;
 
-  ${CheckboxLabel} & {
+  ${Label} & {
     margin-right: ${({ theme }) => theme.space.small};
   }
 
@@ -86,7 +87,7 @@ StyledCheckbox.displayName = 'StyledCheckbox';
 
 // ---------------------------
 
-const Checkbox = ({ name, checked, label, onChange }) => {
+const Checkbox = ({ name, checked, label, required, onChange }) => {
   const onClick = useCallback(
     (e) => {
       e.preventDefault();
@@ -102,10 +103,10 @@ const Checkbox = ({ name, checked, label, onChange }) => {
     [onChange, checked, name]
   );
 
-  const CheckBoxWrapper = label ? CheckboxLabel : CheckboxContainer;
+  const LabelOrCheckboxContainer = !!label ? Label : CheckboxContainer;
 
   return (
-    <CheckBoxWrapper onClick={onClick} htmlFor={name}>
+    <LabelOrCheckboxContainer onClick={onClick} htmlFor={name}>
       <HiddenCheckbox checked={checked} name={name} />
       <StyledCheckbox checked={checked}>
         <Icon viewBox="0 0 24 24">
@@ -113,7 +114,8 @@ const Checkbox = ({ name, checked, label, onChange }) => {
         </Icon>
       </StyledCheckbox>
       {label}
-    </CheckBoxWrapper>
+      {label && required && <RequiredText>*required</RequiredText>}
+    </LabelOrCheckboxContainer>
   );
 };
 
@@ -123,10 +125,12 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Omit label prop to render Checkbox without a label */
   label: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   checked: false,
+  required: false,
 };
 
 Checkbox.displayName = 'Checkbox';

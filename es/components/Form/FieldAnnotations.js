@@ -1,5 +1,5 @@
 function _templateObject3() {
-  var data = _taggedTemplateLiteralLoose(["\n  margin: 0;\n  margintop: ", ";\n  padding: 4px 3px;\n\n  font-family: ", ";\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ", ";\n\n  text-align: left;\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  margin: 0;\n  margintop: ", ";\n  padding: 7px 3px 4px 12px;\n\n  font-family: ", ";\n\n  font-size: 13px;\n  line-height: 11px;\n  color: ", ";\n  font-weight: 300;\n\n  text-align: left;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -9,7 +9,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteralLoose(["\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ", ";\n\n  font-size: 12px;\n  line-height: 12px;\n  color: ", ";\n\n  text-align: right;\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  margin: 0;\n  padding: 4px 3px;\n\n  font-family: ", ";\n\n  font-size: 13px;\n  line-height: 11px;\n  color: ", ";\n\n  text-align: right;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -19,7 +19,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteralLoose(["\n  display: inline-block;\n\n  margin-left: 6px;\n\n  font-size: 12px;\n  line-height: 10px;\n  font-weight: 600;\n\n  color: ", ";\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  display: inline-block;\n\n  margin-left: 8px;\n\n  font-size: 13px;\n  line-height: 11px;\n  font-weight: 400;\n\n  color: ", ";\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -35,7 +35,7 @@ import styled from 'styled-components'; // ---------------------------
 
 export var RequiredText = styled.span(_templateObject(), function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.secondary.lighter;
+  return theme.colors.form.required;
 });
 RequiredText.propTypes = {};
 RequiredText.defaultProps = {};
@@ -60,7 +60,7 @@ export var FieldExplanation = styled.p(_templateObject3(), function (_ref4) {
   return theme.fonts.secondary;
 }, function (_ref6) {
   var theme = _ref6.theme;
-  return theme.colors.neutral.base;
+  return theme.colors.form.placeholder;
 });
 FieldExplanation.propTypes = {
   marginTop: PropTypes.string

@@ -1,5 +1,6 @@
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+import Color from 'color';
 var colors = {
   white: '#FFF',
   black: '#050505',
@@ -8,6 +9,7 @@ var colors = {
   cyan: '#3ADADA',
   sky: '#008CE6',
   indigo: '#03033B',
+  mutedBlue: '#96C9DB',
   primary: {
     lightest: '#FFF',
     //made up
@@ -83,11 +85,13 @@ var colors = {
 };
 colors = _extends({}, colors, {
   form: {
-    background: colors.whiteout.light,
-    border: colors.whiteout.dark,
+    background: colors.whiteout.lighter,
+    border: colors.whiteout.darkest,
+    placeholder: Color(colors.neutral.darker).alpha('0.65').rgb().string(),
+    required: Color(colors.orange).alpha('0.75').rgb().string(),
     focused: {
-      background: colors.whiteout.lighter,
-      border: colors.neutral.dark
+      background: colors.whiteout.lightest,
+      border: colors.sky
     }
   }
 });

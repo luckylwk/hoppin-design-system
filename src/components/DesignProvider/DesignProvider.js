@@ -30,6 +30,88 @@ const GlobalStyle = createGlobalStyle`
   * {
     color: inherit;
   }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-light-webfont.woff2') format('woff2'),
+         url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-lightoblique-webfont.woff2') format('woff2'),
+         url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-lightoblique-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semibold-webfont.woff2') format('woff2'),
+         url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semibold-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Surt';
+    src: url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semiboldoblique-webfont.woff2') format('woff2'),
+         url('https://storage.googleapis.com/orbiit-assets/fonts/surt/surt-semiboldoblique-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @font-face {
+  font-family: 'AT Surt';
+  src: url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-light-webfont.woff2')
+      format('woff2'),
+    url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-light-webfont.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AT Surt';
+  src: url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-regular-webfont.woff2')
+      format('woff2'),
+    url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-regular-webfont.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AT Surt';
+  src: url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-demibold-webfont.woff2')
+      format('woff2'),
+    url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-demibold-webfont.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AT Surt';
+  src: url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-semibold-webfont.woff2')
+      format('woff2'),
+    url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-semibold-webfont.woff')
+      format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AT Surt';
+  src: url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-bold-webfont.woff2')
+      format('woff2'),
+    url('https://storage.googleapis.com/orbiit-assets/fonts/at_surt/atsurt-bold-webfont.woff')
+      format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
 `;
 
 export const Fonts = () => (

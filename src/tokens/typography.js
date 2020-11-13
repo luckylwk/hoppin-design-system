@@ -1,8 +1,8 @@
 import { space } from './space';
 
 const fonts = {
-  primary: '"Surt", sans-serif',
-  secondary: '"Surt", sans-serif',
+  primary: '"AT Surt", sans-serif',
+  secondary: '"AT Surt", sans-serif',
   system:
     '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue',
 };
@@ -42,11 +42,12 @@ headingSizes.h4 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h5 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h6 = [fontSizes[3], null, fontSizes[3]];
 
-const lineHeights = [1, 1.4, 1.8];
-lineHeights.small = lineHeights[0];
-lineHeights.base = lineHeights[1];
-lineHeights.body = lineHeights[1];
-lineHeights.large = lineHeights[2];
+const lineHeights = [1, 1.1, 1.4, 1.8];
+lineHeights.none = lineHeights[0];
+lineHeights.small = lineHeights[1];
+lineHeights.base = lineHeights[2];
+lineHeights.body = lineHeights[2];
+lineHeights.large = lineHeights[3];
 
 const fontWeights = {
   light: 300,

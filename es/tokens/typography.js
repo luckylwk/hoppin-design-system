@@ -1,7 +1,7 @@
 import { space } from './space';
 var fonts = {
-  primary: '"Surt", sans-serif',
-  secondary: '"Surt", sans-serif',
+  primary: '"AT Surt", sans-serif',
+  secondary: '"AT Surt", sans-serif',
   system: '-apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue'
 }; // font-sizes are multiples of 2, 8 if possible, to create a natural rythm, together with space tokens.
 
@@ -35,11 +35,12 @@ headingSizes.h3 = [fontSizes[5], null, fontSizes[6]];
 headingSizes.h4 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h5 = [fontSizes[4], null, fontSizes[5]];
 headingSizes.h6 = [fontSizes[3], null, fontSizes[3]];
-var lineHeights = [1, 1.4, 1.8];
-lineHeights.small = lineHeights[0];
-lineHeights.base = lineHeights[1];
-lineHeights.body = lineHeights[1];
-lineHeights.large = lineHeights[2];
+var lineHeights = [1, 1.1, 1.4, 1.8];
+lineHeights.none = lineHeights[0];
+lineHeights.small = lineHeights[1];
+lineHeights.base = lineHeights[2];
+lineHeights.body = lineHeights[2];
+lineHeights.large = lineHeights[3];
 var fontWeights = {
   light: 300,
   normal: 300,
