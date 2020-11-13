@@ -37,11 +37,11 @@ radii.base = radii[3];
 radii.large = radii[4];
 radii.xlarge = radii[5];
 
-const zIndices = [0, 15, 150, 1500, 15000, 50000];
+const zIndices = [0, 10, 20, 30, 40, 50];
 
-zIndices.farBack = -zIndices[3];
-zIndices.back = -zIndices[1];
-zIndices.base = zIndices[0];
+zIndices.farBack = zIndices[0];
+zIndices.back = zIndices[1];
+zIndices.base = zIndices[2];
 zIndices.front = zIndices[3];
 zIndices.nav = zIndices[4];
 zIndices.overlay = zIndices[5];
