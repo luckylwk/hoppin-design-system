@@ -1,4 +1,4 @@
-.PHONY: install clean pretty test/pretty build dev start deploy/now deploy/now-prod
+.PHONY: install clean pretty test/pretty build dev start deploy/now deploy/now-prod local/link
 
 install:
 	yarn install
@@ -29,3 +29,10 @@ deploy/now:
 deploy/now-prod:
 	now switch orbiit
 	now --prod
+
+local/link:
+	yarn link
+	cd node_modules/react
+	yarn link
+	cd ../styled-components
+	yarn link
