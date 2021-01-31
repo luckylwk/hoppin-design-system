@@ -17,7 +17,7 @@ function Timeline({
 }) {
   const [activeStep, setActiveStep] = useState(0);
 
-  const goToStep = index => {
+  const goToStep = (index) => {
     setActiveStep(index);
     onStepChange && onStepChange(steps[index]);
   };

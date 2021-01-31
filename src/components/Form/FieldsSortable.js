@@ -19,7 +19,7 @@ export const FieldWrapper = styled(Box)`
     flex: 1;
   }
 
-  ${props =>
+  ${(props) =>
     !props.isDragging
       ? ''
       : `
@@ -30,16 +30,16 @@ export const FieldWrapper = styled(Box)`
 // ---------------------------
 
 const DraggableList = styled(Box)`
-  border-radius: ${props => props.theme.radii.small};
+  border-radius: ${(props) => props.theme.radii.small};
 
-  padding: ${props => props.theme.space[3]};
-  padding-left: ${props => props.theme.space[1]};
+  padding: ${(props) => props.theme.space[3]};
+  padding-left: ${(props) => props.theme.space[1]};
 
-  background: ${props =>
+  background: ${(props) =>
     props.isDraggingOver ? props.theme.colors.whiteout.light : 'transparent'};
 
   border: 2px dotted
-    ${props =>
+    ${(props) =>
       props.isDraggingOver
         ? props.theme.colors.neutral.lighter
         : 'transparent'};

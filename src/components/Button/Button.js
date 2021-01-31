@@ -115,7 +115,7 @@ const Button = styled.button`
   ${buttonSize}
 
   /* icon buttons */
-  ${props => props.icon && buttonIconSpacing}
+  ${(props) => props.icon && buttonIconSpacing}
 
   /* styled-system props */
   ${display}
@@ -132,7 +132,7 @@ const Button = styled.button`
   /* TODO: delete this? copied over from hoppin-react-blog not sure where this is used. */
   & [role='img'] {
     display: inline-block;
-    margin: .25em auto -.25em;
+    margin: 0.25em auto -0.25em;
   }
 `;
 

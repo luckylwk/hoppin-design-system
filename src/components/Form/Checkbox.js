@@ -85,7 +85,7 @@ StyledCheckbox.displayName = 'StyledCheckbox';
 // ---------------------------
 
 const Checkbox = ({ name, checked, label, onChange }) => {
-  const onClick = e => {
+  const onClick = (e) => {
     e.preventDefault();
     onChange({
       target: {

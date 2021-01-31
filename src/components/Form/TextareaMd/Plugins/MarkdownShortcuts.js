@@ -62,13 +62,11 @@ export default function MarkdownShortcuts(enableBlocks, enableMarks) {
       if (chars === '[x]') checked = true;
       if (chars === '[ ]') checked = false;
 
-      editor.withoutNormalizing(c => {
-        c.moveFocusToStartOfNode(startBlock)
-          .delete()
-          .setBlocks({
-            type,
-            data: { checked },
-          });
+      editor.withoutNormalizing((c) => {
+        c.moveFocusToStartOfNode(startBlock).delete().setBlocks({
+          type,
+          data: { checked },
+        });
 
         if (type === 'list-item') {
           if (checked !== undefined) {

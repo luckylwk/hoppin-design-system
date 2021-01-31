@@ -58,18 +58,18 @@ class SteppedForm extends Component {
     }
   }
 
-  _generateEmptyFormData = steps => {
+  _generateEmptyFormData = (steps) => {
     let emptyFormData = {};
 
     steps &&
-      steps.forEach(step => {
+      steps.forEach((step) => {
         // if it has fields, find them
         if ((step.type === 'form' || step.type === 'custom') && step.fields) {
-          step.fields.forEach(field => {
+          step.fields.forEach((field) => {
             // field groups are special, get each field in the array
             if (field.type === 'group') {
               field.list &&
-                field.list.forEach(groupField => {
+                field.list.forEach((groupField) => {
                   emptyFormData[groupField.name] = '';
                 });
             } else {
@@ -101,7 +101,7 @@ class SteppedForm extends Component {
     return notFound || isLast ? steps[0] : steps[nextStepIndex];
   };
 
-  _getStepBySlug = slug => {
+  _getStepBySlug = (slug) => {
     const { steps } = this.props;
     const index = _findIndex(steps, { slug: slug });
     const notFound = index === -1;
@@ -121,7 +121,7 @@ class SteppedForm extends Component {
    * this.props.match gets the parent route directly from router.
    * This allows us not to hard-code urls and re-use this component.
    */
-  _getUrlForStep = newSlug => {
+  _getUrlForStep = (newSlug) => {
     const { url, params } = this.props.match;
     /**
      * if path `/root-of-component/:slideSlug`is missing the `/:slideSlug` add it
@@ -180,7 +180,7 @@ class SteppedForm extends Component {
    *
    * first finishSlide(action) gets called to save data, and on success, it'll call handleNavigate(action)
    */
-  finishSlide = async action => {
+  finishSlide = async (action) => {
     const { stepShowing, formData } = this.state;
     const { onSaveStep, saveErrors } = this.props;
 
@@ -194,7 +194,7 @@ class SteppedForm extends Component {
     this.handleNavigate(action);
   };
 
-  handleNavigate = async action => {
+  handleNavigate = async (action) => {
     switch (action.navigate) {
       case 'back':
         return this.props.history.goBack();
@@ -242,7 +242,7 @@ class SteppedForm extends Component {
         : event.target.checked;
 
     this.setState(
-      state => {
+      (state) => {
         const { formData } = state;
 
         let updatedFormData = {
@@ -280,13 +280,13 @@ class SteppedForm extends Component {
     ) {
       errors = stepShowing.fields
         // check each field for the currently showing step
-        .map(field => {
+        .map((field) => {
           let requiredError = null;
           let validationError = null;
           let missingFields = [];
           let fieldValidationErrors = [];
 
-          const checkForMissingRequiredFields = field => {
+          const checkForMissingRequiredFields = (field) => {
             const fieldValue = formData[field.name];
             return (
               (field.required &&
@@ -298,7 +298,7 @@ class SteppedForm extends Component {
             );
           };
 
-          const checkForValidationError = field => {
+          const checkForValidationError = (field) => {
             const fieldValue = formData[field.name];
             // check if we have a field.validate() func.
             // if there's no field.validate() func, then field is valid.
@@ -314,14 +314,14 @@ class SteppedForm extends Component {
             missingFields =
               (field.list && // catch if field is defined as group but has no list of fields
                 field.list // map over all grouped fields, check each one
-                  .map(groupField =>
+                  .map((groupField) =>
                     checkForMissingRequiredFields(groupField)
                   )) ||
               [];
             fieldValidationErrors =
               (field.list && // catch if field is defined as group but has no list of fields
                 field.list // map over all grouped fields, check each one
-                  .map(groupField => checkForValidationError(groupField))) ||
+                  .map((groupField) => checkForValidationError(groupField))) ||
               [];
           } else {
             // normal fields are easy to check
@@ -329,8 +329,8 @@ class SteppedForm extends Component {
             fieldValidationErrors.push(checkForValidationError(field));
           }
 
-          missingFields = missingFields.filter(e => e); // remove null values
-          fieldValidationErrors = fieldValidationErrors.filter(e => e);
+          missingFields = missingFields.filter((e) => e); // remove null values
+          fieldValidationErrors = fieldValidationErrors.filter((e) => e);
 
           requiredError = missingFields &&
             missingFields.length > 0 && {
@@ -362,8 +362,8 @@ class SteppedForm extends Component {
                 msg: `Please choose ${
                   // start with minChoices that will be our error (maxLen can't be reached as it automatically truncates)
                   minChoices &&
-                    value.length < minChoices &&
-                    `at least ${minChoices}`
+                  value.length < minChoices &&
+                  `at least ${minChoices}`
                 }${
                   maxChoices !== undefined // if maxChoices is set, add upper limit to the sentence
                     ? ` and no more than ${maxChoices}`
@@ -376,9 +376,9 @@ class SteppedForm extends Component {
 
     // flatten array of error arrays
     errors = [].concat.apply([], errors);
-    errors = errors.filter(e => e); // remove null values
+    errors = errors.filter((e) => e); // remove null values
 
-    this.setState(state => {
+    this.setState((state) => {
       return {
         validationErrors: {
           ...state.validationErrors,
@@ -391,7 +391,7 @@ class SteppedForm extends Component {
   /**
    * String interpolation in the steps lede, body, etc. use standard ES6 template string syntax ${formFieldName}
    */
-  _replaceTemplateVarsIfNeeded = string => {
+  _replaceTemplateVarsIfNeeded = (string) => {
     if (string.indexOf('${') < 0) {
       return string;
     } else {
@@ -421,7 +421,7 @@ class SteppedForm extends Component {
       stepShowing.body = this._replaceTemplateVarsIfNeeded(stepShowing.body);
     }
     if (stepShowing.actions && stepShowing.actions.length > 0) {
-      stepShowing.actions = stepShowing.actions.map(action => {
+      stepShowing.actions = stepShowing.actions.map((action) => {
         action.label = this._replaceTemplateVarsIfNeeded(action.label);
         return action;
       });
@@ -433,11 +433,11 @@ class SteppedForm extends Component {
     switch (stepShowing.type) {
       case 'form':
         // map data and field info together to use with <FieldsWrapper/>
-        const fieldsWithData = stepShowing.fields.map(field => {
+        const fieldsWithData = stepShowing.fields.map((field) => {
           if (field.type === 'group') {
             let fieldsWithValue = { ...field };
             if (fieldsWithValue.list) {
-              fieldsWithValue.list = fieldsWithValue.list.map(groupField => {
+              fieldsWithValue.list = fieldsWithValue.list.map((groupField) => {
                 return { ...groupField, value: formData[groupField.name] };
               });
             }

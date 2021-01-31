@@ -80,7 +80,6 @@ const Heading = styled('h2')`
   &:first-child {
     margin-top: 0;
   }
-
 `;
 
 Heading.propTypes = {

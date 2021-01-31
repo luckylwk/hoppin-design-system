@@ -15,7 +15,7 @@ const ChatBubble = styled(Box)`
     content: '';
     position: absolute;
     display: none;
-    top: ${({ theme }) => theme.space.xsmall};;
+    top: ${({ theme }) => theme.space.xsmall};
     left: -3rem;
     width: 2rem;
     height: 2rem;

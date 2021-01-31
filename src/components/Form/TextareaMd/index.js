@@ -73,7 +73,7 @@ class TextareaMdField extends React.Component {
     // if we have disableBlocks, ignore enableBlocks
     if (disableBlocks && disableBlocks.length > 0) {
       // map over all available nodes in Schema
-      Schema.document.nodes[0].match.map(node => {
+      Schema.document.nodes[0].match.map((node) => {
         // pick the ones that are not disabled
         if (disableBlocks.indexOf(node.type) < 0) {
           customNodes.push(node);
@@ -83,7 +83,7 @@ class TextareaMdField extends React.Component {
       // if we have don't have disableBlocks, use enableBlocks if available
     } else if (enableBlocks && enableBlocks.length > 0) {
       // map over all available nodes in Schema
-      Schema.document.nodes[0].match.map(node => {
+      Schema.document.nodes[0].match.map((node) => {
         // pick the ones that are not disabled
         if (enableBlocks.indexOf(node.type) > -1) {
           customNodes.push(node);
@@ -98,11 +98,11 @@ class TextareaMdField extends React.Component {
     // if we have disableMarks, ignore enableMarks
     if (disableMarks && disableMarks.length > 0) {
       // map over all available marks in Schema
-      Object.keys(Schema.blocks).map(block => {
+      Object.keys(Schema.blocks).map((block) => {
         const tempBlockMarks = [];
         const blockMarks = Schema.blocks[block].marks;
         if (blockMarks && blockMarks.length > 0) {
-          blockMarks.map(mark => {
+          blockMarks.map((mark) => {
             // pick the ones that are not disabled
             if (disableMarks.indexOf(mark.type) < 0) {
               tempBlockMarks.push(mark);
@@ -117,11 +117,11 @@ class TextareaMdField extends React.Component {
       // if we have don't have disableMarks, use enableMarks if available
     } else if (enableMarks && enableMarks.length > 0) {
       // map over all available marks in Schema
-      Object.keys(Schema.blocks).map(block => {
+      Object.keys(Schema.blocks).map((block) => {
         const tempBlockMarks = [];
         const blockMarks = Schema.blocks[block].marks;
         if (blockMarks && blockMarks.length > 0) {
-          blockMarks.map(mark => {
+          blockMarks.map((mark) => {
             // pick the ones that are not disabled
             if (enableMarks.indexOf(mark.type) > -1) {
               tempBlockMarks.push(mark);
@@ -140,7 +140,7 @@ class TextareaMdField extends React.Component {
     return newSchema;
   };
 
-  deserialize = value => {
+  deserialize = (value) => {
     if (Value.isValue(value)) {
       return value;
     }
@@ -180,7 +180,7 @@ class TextareaMdField extends React.Component {
     next();
   };
 
-  serialise = value => {
+  serialise = (value) => {
     if (Value.isValue(value)) {
       return this.markdown.serialize(value);
     }
@@ -205,7 +205,7 @@ class TextareaMdField extends React.Component {
         onChange={this.handleChange}
         onBlur={this.handleBlur}
         plugins={this.plugins}
-        ref={el => (this.editor = el)}
+        ref={(el) => (this.editor = el)}
         schema={this.schema}
         queries={queries}
         value={this.state.value}

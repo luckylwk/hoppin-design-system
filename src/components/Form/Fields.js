@@ -38,13 +38,13 @@ const FiSearchStyled = styled(FiSearch)`
     focused === 'true' ? theme.colors.primary.dark : theme.colors.neutral.base};
 `;
 
-const SearchDropdownIndicator = props => (
+const SearchDropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiSearchStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
 );
 
-const DropdownIndicator = props => (
+const DropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>
     <FiChevronDownStyled focused={`${props.isFocused}`} />
   </components.DropdownIndicator>
@@ -123,7 +123,7 @@ export const renderField = (field, onChange, selectStyling) => {
             };
             return onChange(field.name, mockEvent);
           }}
-          formatCreateLabel={userInput => `Click to add: ${userInput}`}
+          formatCreateLabel={(userInput) => `Click to add: ${userInput}`}
           options={field.options}
           value={field.value}
           components={{ IndicatorSeparator, DropdownIndicator }}
@@ -343,7 +343,7 @@ const Fields = ({ onChange, fields, theme }) => {
 
   return (
     <Box>
-      {fields.map(field => (
+      {fields.map((field) => (
         <Box
           key={field.name}
           marginBottom={

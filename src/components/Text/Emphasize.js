@@ -10,10 +10,7 @@ const Emphasize = styled(Text)`
   border: 0px;
   border-bottom: 4px solid;
   border-bottom-color: ${({ theme }) =>
-    Color(theme.colors.primary.base)
-      .alpha('0.45')
-      .rgb()
-      .string()};
+    Color(theme.colors.primary.base).alpha('0.45').rgb().string()};
 `;
 
 Emphasize.propTypes = {

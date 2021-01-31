@@ -21,7 +21,7 @@ const Errors = ({ errors }) => (
     {errors.length > 0 && (
       <BoxDanger mt={2} py={2} px={3}>
         <Text display="block" color="error.darker" data-cy="error">
-          {errors.map(error => (
+          {errors.map((error) => (
             <Paragraph marginBottom={0} key={error.msg || error.message}>
               {error.msg || error.message}
             </Paragraph>

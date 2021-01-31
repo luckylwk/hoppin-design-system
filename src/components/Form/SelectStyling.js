@@ -2,7 +2,7 @@
  * Documentation: https://react-select.com/styles
  */
 
-const getSelectStyles = theme => ({
+const getSelectStyles = (theme) => ({
   control: (styles, props) => {
     const {
       isFocused, //hasValue
@@ -29,7 +29,7 @@ const getSelectStyles = theme => ({
       lineHeight: 1,
     };
   },
-  menu: styles => {
+  menu: (styles) => {
     return {
       ...styles,
       marginTop: `0`,
@@ -39,7 +39,7 @@ const getSelectStyles = theme => ({
       boxShadow: theme.shadows.small,
     };
   },
-  menuList: styles => {
+  menuList: (styles) => {
     return { ...styles };
   },
   option: (styles, props) => {
@@ -81,10 +81,10 @@ const getSelectStyles = theme => ({
         : theme.colors.whiteout.dark,
     };
   },
-  valueContainer: styles => {
+  valueContainer: (styles) => {
     return { ...styles, padding: '2.5px' };
   },
-  placeholder: styles => {
+  placeholder: (styles) => {
     return {
       ...styles,
       fontFamily: theme.fonts.secondary,
@@ -93,14 +93,14 @@ const getSelectStyles = theme => ({
       color: theme.colors.neutral.base,
     };
   },
-  singleValue: styles => ({
+  singleValue: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
   }),
   /** Multi value specific.  */
-  multiValue: styles => ({
+  multiValue: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.secondary,
@@ -108,12 +108,12 @@ const getSelectStyles = theme => ({
     backgroundColor: theme.colors.whiteout.darkest,
     borderRadius: theme.radii.xsmall,
   }),
-  multiValueLabel: styles => ({
+  multiValueLabel: (styles) => ({
     ...styles,
     fontSize: theme.fontSizes.body,
     color: theme.colors.neutral.dark,
   }),
-  multiValueRemove: styles => ({
+  multiValueRemove: (styles) => ({
     ...styles,
     color: theme.colors.neutral.dark,
     cursor: 'pointer',
@@ -123,12 +123,12 @@ const getSelectStyles = theme => ({
     },
   }),
   /*  */
-  loadingMessage: styles => ({
+  loadingMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
   }),
-  noOptionsMessage: styles => ({
+  noOptionsMessage: (styles) => ({
     ...styles,
     fontFamily: theme.fonts.secondary,
     color: theme.colors.neutral.light,
@@ -137,7 +137,7 @@ const getSelectStyles = theme => ({
 
 // ---------------------------
 
-const getSelectTheme = theme => {
+const getSelectTheme = (theme) => {
   const colors = {
     primary: theme.colors.primary.base,
     primary75: theme.colors.primary.light,
@@ -183,7 +183,7 @@ const getSelectTheme = theme => {
 
 export { getSelectTheme, getSelectStyles };
 
-export default theme => ({
+export default (theme) => ({
   styles: getSelectStyles(theme),
   theme: getSelectTheme(theme),
 });

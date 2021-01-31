@@ -208,7 +208,7 @@ const StyledSlider = styled(Slider)`
 // ---------------------------
 
 const RangeSlider = ({ name, value, onChange, ...rest }) => {
-  const onChangeHandler = newValue => {
+  const onChangeHandler = (newValue) => {
     onChange({ target: { type: 'slider', name, value: newValue } });
   };
 

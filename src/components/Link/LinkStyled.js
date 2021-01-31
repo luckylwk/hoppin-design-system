@@ -30,10 +30,11 @@ const LinkStyled = styled.a`
   padding: 0;
 
   border: none;
-  border-bottom: 1px solid ${({ theme, context }) => {
-    const colors = get(theme.colors, context, theme.colors.neutral);
-    return colors.base;
-  }};
+  border-bottom: 1px solid
+    ${({ theme, context }) => {
+      const colors = get(theme.colors, context, theme.colors.neutral);
+      return colors.base;
+    }};
 
   color: ${({ theme, context }) => {
     const colors = get(theme.colors, context, theme.colors.neutral);

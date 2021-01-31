@@ -19,7 +19,7 @@ const Link = ({ to, unstyled, ...rest }) => {
    * - `ws://`
    * - `//`
    */
-  const isExternalUrl = url =>
+  const isExternalUrl = (url) =>
     typeof url === 'string'
       ? url.indexOf('//') > -1 && url.indexOf('//') < 10 // can we find the protocol // early in the url?
       : false; // if there's no url, we can't know if it's external

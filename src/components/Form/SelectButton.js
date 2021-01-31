@@ -91,7 +91,7 @@ const SelectButton = ({
 }) => {
   const { value, other } = splitValueWithOther(
     valueComposite,
-    options.map(o => o.value),
+    options.map((o) => o.value),
     isMultiSelect
   );
 
@@ -115,11 +115,11 @@ const SelectButton = ({
     // console.log(myInputRef);
   };
 
-  const onChangeOther = event => {
+  const onChangeOther = (event) => {
     setOtherValue(event.target.value);
   };
 
-  const onBlurOther = event => {
+  const onBlurOther = (event) => {
     if (otherValue && otherValue.length > 0) {
       setOtherSelected(true);
       onChange(
@@ -212,7 +212,7 @@ const SelectButton = ({
                     : rest.flexDirection || 'column'
                 }
               >
-                {columnOptions.map(thisOption => {
+                {columnOptions.map((thisOption) => {
                   const isSelected = getIsSelected(
                     isMultiSelect,
                     value,
@@ -324,7 +324,7 @@ SelectButton.displayName = 'SelectButton';
 
 // ---------------------------
 
-const SingleSelectButton = props => <SelectButton {...props} />;
+const SingleSelectButton = (props) => <SelectButton {...props} />;
 
 SingleSelectButton.propTypes = {
   type: PropTypes.string,

@@ -62,7 +62,7 @@ ExpandableToggle.displayName = 'ExpandableToggle';
 
 // ---------------------------
 
-const ExpandableToggleIcon = props => {
+const ExpandableToggleIcon = (props) => {
   const { isExpanded } = useContext(ExpandableContext);
 
   return isExpanded ? <FiChevronUp {...props} /> : <FiChevronDown {...props} />;
