@@ -21,11 +21,3 @@ start:
 
 make build:
 	yarn build
-
-deploy:
-	now switch orbiit
-	now
-
-deploy/prod:
-	now switch orbiit
-	now --prod
