@@ -9,11 +9,6 @@ import { FiMenu, FiX, FiChevronUp } from 'react-icons/fi';
 import { Flex } from '../Flex';
 import { Box } from '../Box';
 import { Button } from '../Button';
-import { 
-  Expandable, 
-  ExpandableToggle, 
-  ExpandableBody, 
-} from '../Expandable';
 import { HeartLoader } from '../Loader';
 import { Overlay } from '.';
 
@@ -50,36 +45,6 @@ When passing `position="absolute"` it will fit to the parent. This is useful for
           <OverlayContent />
         </Overlay>
       </Box>
-    )
-  }}
-</Playground>
-
-### Page overlay
-
-We use `Expandable` to allow for toggling on and off in this case.
-
-<Playground>
-  {() => {
-    const OverlayContent = () => (
-      <Flex width="100%" height="100%" justifyContent="center" alignItems="center">
-        <ExpandableToggle>
-          <Button context="neutral">
-            <FiX /> Close page overlay
-          </Button>
-        </ExpandableToggle>
-      </Flex>
-    );
-    return (
-      <Expandable>
-        <ExpandableToggle>
-          <Button context="neutral">Click to show page overlay</Button>
-        </ExpandableToggle>
-        <ExpandableBody>
-          <Overlay>
-            <OverlayContent />
-          </Overlay>
-        </ExpandableBody>
-      </Expandable>
     )
   }}
 </Playground>
